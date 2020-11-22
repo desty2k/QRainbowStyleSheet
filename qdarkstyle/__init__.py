@@ -94,7 +94,18 @@ then use load_stylesheet() or use load_stylesheet()
 passing the argument qt_api='wanted_binding'.'''
 
 
-def _apply_os_patches():
+def import_file(full_name, path):
+    """Import a python module from a path"""
+    from importlib import util
+
+    spec = util.spec_from_file_location(full_name, path)
+    mod = util.module_from_spec(spec)
+
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _apply_os_patches(palette):
     """
     Apply OS-only specific stylesheet pacthes.
 
@@ -112,7 +123,7 @@ def _apply_os_patches():
             text-align: center;
             height: 12px;
         }}
-        '''.format(color=DarkPalette.COLOR_BACKGROUND_NORMAL)
+        '''.format(color=palette.COLOR_BACKGROUND_NORMAL)
 
     # Only open the QSS file if any patch is needed
     if os_fix:
@@ -151,7 +162,7 @@ def _apply_version_patches():
     return version_fix
 
 
-def _apply_application_patches(QCoreApplication, QPalette, QColor):
+def _apply_application_patches(palette, QCoreApplication, QPalette, QColor):
     """
     Apply application level fixes on the QPalette.
 
@@ -160,7 +171,7 @@ def _apply_application_patches(QCoreApplication, QPalette, QColor):
     that moment for setting reasons.
     """
     # See issue #139
-    color = DarkPalette.COLOR_SELECTION_LIGHT
+    color = palette.COLOR_SELECTION_LIGHT
     qcolor = QColor(color)
 
     # Todo: check if it is qcoreapplication indeed
@@ -179,7 +190,7 @@ def _apply_application_patches(QCoreApplication, QPalette, QColor):
                         "instantiation of QApplication to take effect. ")
 
 
-def _load_stylesheet(qt_api=''):
+def _load_stylesheet(qt_api='', style: str = 'dark'):
     """
     Load the stylesheet based on QtPy abstraction layer environment variable.
 
@@ -212,8 +223,33 @@ def _load_stylesheet(qt_api=''):
     from qtpy.QtCore import QCoreApplication, QFile, QTextStream
     from qtpy.QtGui import QColor, QPalette
 
-    # Then we import resources - binary qrc content
-    from qdarkstyle import style_rc
+    # Search for style in styles directory
+    style_dir = None
+
+    avaiable_styles = os.listdir(STYLES_PATH)
+    _logger.debug(f"Avaiable styles: {avaiable_styles}")
+    for stl in avaiable_styles:
+        if style in stl.lower():
+            style_dir = stl
+            break
+
+    if style_dir is None:
+        stylesheet = ""
+        raise FileNotFoundError("Style " + style + " does not exists")
+
+    _logger.debug("Loading style from directory: " + style_dir)
+
+    # set style directory
+    package_dir = os.path.join(STYLES_PATH, style_dir)
+    os.chdir(package_dir)
+
+    # Import style, python 3.5+
+    sys.path.append(package_dir)
+    try:
+        import style_rc
+        palette = style_rc.palette
+    except Exception as e:
+        raise FileNotFoundError("Missing style_rc.py file")
 
     # Thus, by importing the binary we can access the resources
     package_dir = os.path.basename(PACKAGE_PATH)
@@ -240,7 +276,7 @@ def _load_stylesheet(qt_api=''):
 
     # Todo: check execution order for these functions
     # 1. Apply OS specific patches
-    stylesheet += _apply_os_patches()
+    stylesheet += _apply_os_patches(palette)
 
     # 2. Apply binding specific patches
     stylesheet += _apply_binding_patches()
@@ -249,7 +285,7 @@ def _load_stylesheet(qt_api=''):
     stylesheet += _apply_version_patches()
 
     # 4. Apply palette fix. See issue #139
-    _apply_application_patches(QCoreApplication, QPalette, QColor)
+    _apply_application_patches(palette, QCoreApplication, QPalette, QColor)
 
     return stylesheet
 

@@ -37,7 +37,7 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 # Local imports
-from qdarkstyle import PACKAGE_PATH
+from qdarkstyle import PACKAGE_PATH, STYLES_PATH, QRC_FILE, QSS_FILE, VARIABLES_SCSS_FILE
 from qdarkstyle.utils.images import create_images, create_palette_image, generate_qrc_file
 from qdarkstyle.utils.scss import create_qss
 
@@ -55,6 +55,148 @@ class QSSFileHandler(FileSystemEventHandler):
         if event.src_path.endswith('.qss'):
             run_process(self.args)
             print('\n')
+
+
+def run_process(args):
+    """Process qrc files."""
+
+    import inspect
+    import qdarkstyle.palette as source
+
+    palettes = []
+    for name, obj in inspect.getmembers(source):
+        if inspect.isclass(obj) and issubclass(obj, source.BasePalette) and obj is not source.BasePalette:
+            palettes.append(obj)
+
+    print("Found palettes: " + str(palettes))
+
+    for palette in palettes:
+        palette_name = str(palette.__name__)
+        print("\nGenerating files for: " + palette_name)
+
+        # create directory for every style in palette.py
+        os.chdir(STYLES_PATH)
+        os.makedirs(palette_name, exist_ok=True)
+        os.chdir(os.path.join(STYLES_PATH, palette_name))
+        open("__init__.py", "w+").close()
+
+        output_dir = os.path.join(STYLES_PATH, palette_name)
+
+        # get paths to output directories for this palette
+        images_dir = os.path.join(output_dir, 'images')
+        rc_dir = os.path.join(output_dir, 'rc')
+        # qss_dir = os.path.join(output_dir, 'qss')
+
+        # create directories
+        os.makedirs(images_dir, exist_ok=True)
+        os.makedirs(rc_dir, exist_ok=True)
+        # os.makedirs(qss_dir, exist_ok=True)
+
+        qrc_filepath = os.path.join(output_dir, QRC_FILE)
+        qss_filepath = os.path.join(output_dir, QSS_FILE)
+        # variables_scss_filepath = os.path.join(qss_dir, VARIABLES_SCSS_FILE)
+
+        # Create palette and resources png images
+        print('Generating palette image ...')
+        create_palette_image(palette=palette, path=images_dir)
+
+        print('Generating images ...')
+        create_images(palette=palette, rc_path=rc_dir)
+
+        print('Generating qrc ...')
+        generate_qrc_file(rc_path=rc_dir, qrc_path=qrc_filepath)
+
+        print('Converting .qrc to _rc.py and/or .rcc ...')
+
+        for qrc_file in glob.glob('*.qrc'):
+            # get name without extension
+            filename = os.path.splitext(qrc_file)[0]
+
+            print(filename, '...')
+            ext = '_rc.py'
+            ext_c = '.rcc'
+
+            # Create variables SCSS files and compile SCSS files to QSS
+            print('Compiling SCSS/SASS files to QSS ...')
+            create_qss(palette=palette, qss_filepath=qss_filepath)
+
+            # creating names
+            py_file_pyqt5 = 'pyqt5_' + filename + ext
+            py_file_pyqt = 'pyqt_' + filename + ext
+            py_file_pyside = 'pyside_' + filename + ext
+            py_file_pyside2 = 'pyside2_' + filename + ext
+            py_file_qtpy = '' + filename + ext
+            py_file_pyqtgraph = 'pyqtgraph_' + filename + ext
+
+            # append palette used to generate this file
+            used_palette = "\nfrom qdarkstyle.palette import " + palette.__name__ + "\npalette = " + palette.__name__ + "\n"
+
+            # calling external commands
+            if args.create in ['pyqt', 'pyqtgraph', 'all']:
+                print("Compiling for PyQt4 ...")
+                try:
+                    call(['pyrcc4', '-py3', qrc_file, '-o', py_file_pyqt])
+                    with open(py_file_pyqt, "a+") as f:
+                        f.write(used_palette)
+
+                except FileNotFoundError:
+                    print("You must install pyrcc4")
+
+            if args.create in ['pyqt5', 'qtpy', 'all']:
+                print("Compiling for PyQt5 ...")
+                try:
+                    call(['pyrcc5', qrc_file, '-o', py_file_pyqt5])
+                    with open(py_file_pyqt5, "a+") as f:
+                        f.write(used_palette)
+                except FileNotFoundError:
+                    print("You must install pyrcc5")
+
+            if args.create in ['pyside', 'all']:
+                print("Compiling for PySide ...")
+                try:
+                    call(['pyside-rcc', '-py3', qrc_file, '-o', py_file_pyside])
+                    with open(py_file_pyside, "a+") as f:
+                        f.write(used_palette)
+                except FileNotFoundError:
+                    print("You must install pyside-rcc")
+
+            if args.create in ['pyside2', 'all']:
+                print("Compiling for PySide 2...")
+                try:
+                    call(['pyside2-rcc', '-py3', qrc_file, '-o', py_file_pyside2])
+                    with open(py_file_pyside2, "a+") as f:
+                        f.write(used_palette)
+                except FileNotFoundError:
+                    print("You must install pyside2-rcc")
+
+            if args.create in ['qtpy', 'all']:
+                print("Compiling for QtPy ...")
+                # special case - qtpy - syntax is PyQt5
+                with open(py_file_pyqt5, 'r') as file:
+                    filedata = file.read()
+
+                # replace the target string
+                filedata = filedata.replace('from PyQt5', 'from qtpy')
+
+                with open(py_file_qtpy, 'w+') as file:
+                    # write the file out again
+                    file.write(filedata)
+
+                if args.create not in ['pyqt5']:
+                    os.remove(py_file_pyqt5)
+
+            if args.create in ['pyqtgraph', 'all']:
+                print("Compiling for PyQtGraph ...")
+                # special case - pyqtgraph - syntax is PyQt4
+                with open(py_file_pyqt, 'r') as file:
+                    filedata = file.read()
+
+                # replace the target string
+                filedata = filedata.replace('from PyQt4', 'from pyqtgraph.Qt')
+
+                with open(py_file_pyqtgraph, 'w+') as file:
+                    # write the file out again
+                    file.write(filedata)
 
 
 def main(arguments):
@@ -89,102 +231,6 @@ def main(arguments):
         observer.join()
     else:
         run_process(args)
-
-
-def run_process(args):
-    """Process qrc files."""
-    # Generate qrc file based on the content of the resources folder
-
-    # Create palette and resources png images
-    print('Generating palette image ...')
-    create_palette_image()
-
-    print('Generating images ...')
-    create_images()
-
-    print('Generating qrc ...')
-    generate_qrc_file()
-
-    print('Converting .qrc to _rc.py and/or .rcc ...')
-    os.chdir(args.qrc_dir)
-
-    for qrc_file in glob.glob('*.qrc'):
-        # get name without extension
-        filename = os.path.splitext(qrc_file)[0]
-
-        print(filename, '...')
-        ext = '_rc.py'
-        ext_c = '.rcc'
-
-        # Create variables SCSS files and compile SCSS files to QSS
-        print('Compiling SCSS/SASS files to QSS ...')
-        create_qss()
-
-        # creating names
-        py_file_pyqt5 = 'pyqt5_' + filename + ext
-        py_file_pyqt = 'pyqt_' + filename + ext
-        py_file_pyside = 'pyside_' + filename + ext
-        py_file_pyside2 = 'pyside2_' + filename + ext
-        py_file_qtpy = '' + filename + ext
-        py_file_pyqtgraph = 'pyqtgraph_' + filename + ext
-
-        # calling external commands
-        if args.create in ['pyqt', 'pyqtgraph', 'all']:
-            print("Compiling for PyQt4 ...")
-            try:
-                call(['pyrcc4', '-py3', qrc_file, '-o', py_file_pyqt])
-            except FileNotFoundError:
-                print("You must install pyrcc4")
-
-        if args.create in ['pyqt5', 'qtpy', 'all']:
-            print("Compiling for PyQt5 ...")
-            try:
-                call(['pyrcc5', qrc_file, '-o', py_file_pyqt5])
-            except FileNotFoundError:
-                print("You must install pyrcc5")
-
-        if args.create in ['pyside', 'all']:
-            print("Compiling for PySide ...")
-            try:
-                call(['pyside-rcc', '-py3', qrc_file, '-o', py_file_pyside])
-            except FileNotFoundError:
-                print("You must install pyside-rcc")
-
-        if args.create in ['pyside2', 'all']:
-            print("Compiling for PySide 2...")
-            try:
-                call(['pyside2-rcc', '-py3', qrc_file, '-o', py_file_pyside2])
-            except FileNotFoundError:
-                print("You must install pyside2-rcc")
-
-        if args.create in ['qtpy', 'all']:
-            print("Compiling for QtPy ...")
-            # special case - qtpy - syntax is PyQt5
-            with open(py_file_pyqt5, 'r') as file:
-                filedata = file.read()
-
-            # replace the target string
-            filedata = filedata.replace('from PyQt5', 'from qtpy')
-
-            with open(py_file_qtpy, 'w+') as file:
-                # write the file out again
-                file.write(filedata)
-
-            if args.create not in ['pyqt5']:
-                os.remove(py_file_pyqt5)
-
-        if args.create in ['pyqtgraph', 'all']:
-            print("Compiling for PyQtGraph ...")
-            # special case - pyqtgraph - syntax is PyQt4
-            with open(py_file_pyqt, 'r') as file:
-                filedata = file.read()
-
-            # replace the target string
-            filedata = filedata.replace('from PyQt4', 'from pyqtgraph.Qt')
-
-            with open(py_file_pyqtgraph, 'w+') as file:
-                # write the file out again
-                file.write(filedata)
 
 
 if __name__ == '__main__':

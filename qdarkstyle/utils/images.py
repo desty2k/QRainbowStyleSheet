@@ -20,7 +20,7 @@ from qtpy.QtWidgets import QApplication
 # Local imports
 from qdarkstyle import (IMAGES_PATH, STYLES_SCSS_FILEPATH, QRC_FILEPATH, RC_PATH,
                         SVG_PATH)
-from qdarkstyle.palette import DarkPalette
+from qdarkstyle.palette import BasePalette
 
 IMAGE_BLACKLIST = ['base_palette']
 
@@ -88,7 +88,7 @@ def convert_svg_to_png(svg_path, png_path, height, width):
 
 
 def create_palette_image(base_svg_path=SVG_PATH, path=IMAGES_PATH,
-                         palette=DarkPalette):
+                         palette=BasePalette):
     """
     Create palette image svg and png image on specified path.
     """
@@ -121,7 +121,7 @@ def create_palette_image(base_svg_path=SVG_PATH, path=IMAGES_PATH,
 
 
 def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
-                  palette=DarkPalette):
+                  palette=BasePalette):
     """Create resources `rc` png image files from base svg files and palette.
 
     Search all SVG files in `base_svg_path` excluding IMAGE_BLACKLIST,
@@ -131,7 +131,7 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     Args:
         base_svg_path (str, optional): [description]. Defaults to SVG_PATH.
         rc_path (str, optional): [description]. Defaults to RC_PATH.
-        palette (DarkPalette, optional): Palette . Defaults to DarkPalette.
+        palette (BasePalette, optional): Palette . Defaults to BasePalette.
     """
 
     # Needed to use QPixmap
@@ -211,7 +211,7 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     _logger.info("RC links not in RC: %s" % rc_list)
 
 
-def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qdarkstyle'):
+def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qdarkstyle', rc_path=RC_PATH, qrc_path=QRC_FILEPATH):
     """
     Generate the QRC file programmaticaly.
 
@@ -222,6 +222,10 @@ def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qdarkstyle'):
             Defaults to 'qss_icons'.
         style_prefix (str, optional): Prefix used to this style.
             Defaults to 'qdarkstyle'.
+        rc_path (str, optional): Source path
+            Defaults to 'RC_PATH'
+        qrc_path (str, optional): Output path
+            Defaults to 'QRC_FILEPATH'
     """
 
     files = []
@@ -230,10 +234,10 @@ def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qdarkstyle'):
     _logger.info("Resource prefix: %s" % resource_prefix)
     _logger.info("Style prefix: %s" % style_prefix)
 
-    _logger.info("Searching in: %s" % RC_PATH)
+    _logger.info("Searching in: %s" % rc_path)
 
     # Search by png images
-    for fname in sorted(os.listdir(RC_PATH)):
+    for fname in sorted(os.listdir(rc_path)):
         files.append(TEMPLATE_QRC_FILE.format(fname=fname))
 
     # Join parts
@@ -241,10 +245,10 @@ def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qdarkstyle'):
                    + '\n'.join(files)
                    + TEMPLATE_QRC_FOOTER.format(style_prefix=style_prefix))
 
-    _logger.info("Writing in: %s" % QRC_FILEPATH)
+    _logger.info("Writing in: %s" % qrc_path)
 
     # Write qrc file
-    with open(QRC_FILEPATH, 'w') as fh:
+    with open(qrc_path, 'w') as fh:
         fh.write(qrc_content)
 
 

@@ -17,7 +17,7 @@ import qtsass
 from qdarkstyle import (MAIN_SCSS_FILE, MAIN_SCSS_FILEPATH, QSS_PATH,
                         QSS_FILEPATH, RC_PATH, QSS_FILE,
                         VARIABLES_SCSS_FILE, VARIABLES_SCSS_FILEPATH)
-from qdarkstyle.palette import DarkPalette
+from qdarkstyle.palette import BasePalette
 from qdarkstyle.utils.images import create_images, create_palette_image
 
 # Constants
@@ -108,7 +108,7 @@ def _create_qss(main_scss_path, qss_filepath, header=HEADER_QSS):
 
 def create_qss(qss_filepath=QSS_FILEPATH, main_scss_filepath=MAIN_SCSS_FILEPATH,
                variables_scss_filepath=VARIABLES_SCSS_FILEPATH,
-               palette=DarkPalette):
+               palette=BasePalette):
     """Create variables files and run qtsass compilation."""
     _create_scss_variables(variables_scss_filepath, palette)
     stylesheet = _create_qss(main_scss_filepath, qss_filepath)
@@ -130,6 +130,7 @@ def is_identifier(name):
 
 
 def create_custom_qss(
+    palette,
     name,
     path,
     color_background_light,
@@ -181,7 +182,7 @@ def create_custom_qss(
     shutil.copytree(QSS_PATH, theme_qss_path)
 
     # Create custom palette
-    custom_palette = type(name, (DarkPalette, ), {})
+    custom_palette = type(name, (palette, ), {})
     custom_palette.COLOR_BACKGROUND_LIGHT = color_background_light
     custom_palette.COLOR_BACKGROUND_NORMAL = color_background_normal
     custom_palette.COLOR_BACKGROUND_DARK = color_background_dark
@@ -213,7 +214,7 @@ def create_custom_qss(
     with open(theme_main_scss_filepath, 'r') as fh:
         data = fh.read()
 
-    for key, color in DarkPalette.color_palette().items():
+    for key, color in palette.color_palette().items():
         custom_color = custom_palette.color_palette()[key].upper()
         data = data.replace(color, custom_color)
         stylesheet = stylesheet.replace(color, custom_color)
@@ -232,6 +233,7 @@ def create_custom_qss_from_palette(name, path, palette):
     Create a custom palette based on a palette class.
     """
     kwargs = {
+        'palette': palette,
         'name': name,
         'path': path,
         'border_radius': palette.SIZE_BORDER_RADIUS,
@@ -242,19 +244,19 @@ def create_custom_qss_from_palette(name, path, palette):
     return stylesheet
 
 
-def create_custom_qss_from_dict(name, path, palette_dict):
-    """
-    Create a custom palette based on a palette dictionary.
-    """
-    kwargs = {
-        'name': name,
-        'path': path,
-        'border_radius': palette_dict.get('SIZE_BORDER_RADIUS', '4px'),
-    }
-    kwargs.update(palette_dict)
-    stylesheet = create_custom_qss(**kwargs)
-
-    return stylesheet
+# def create_custom_qss_from_dict(name, path, palette_dict):
+#     """
+#     Create a custom palette based on a palette dictionary.
+#     """
+#     kwargs = {
+#         'name': name,
+#         'path': path,
+#         'border_radius': palette_dict.get('SIZE_BORDER_RADIUS', '4px'),
+#     }
+#     kwargs.update(palette_dict)
+#     stylesheet = create_custom_qss(**kwargs)
+#
+#     return stylesheet
 
 
 if __name__ == '__main__':
@@ -262,6 +264,7 @@ if __name__ == '__main__':
     # TODO: change to not use a specfic path
     # TODO: may move to other place, e.g., example.py
     qss = create_custom_qss(
+        BasePalette,
         'MyAwesomePalette',
         '/Users/gpena-castellanos/Desktop',
         '#ff0000',
