@@ -502,4 +502,3 @@ class Ui_DockWidget(object):
         self.label_36.setStatusTip(_translate("DockWidget", "This is a status tip"))
         self.label_36.setWhatsThis(_translate("DockWidget", "This is \"what is this\""))
         self.label_36.setText(_translate("DockWidget", "Inside DockWidget"))
-from qdarkstyle import style_rc

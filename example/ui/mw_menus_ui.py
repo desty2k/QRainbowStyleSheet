@@ -315,4 +315,3 @@ class Ui_MainWindow(object):
         self.actionAction_with_icon_A.setText(_translate("MainWindow", "Action With Icon A"))
         self.actionAction_With_Icon_B.setText(_translate("MainWindow", "Action With Icon B"))
         self.actionAction_With_Icon_C.setText(_translate("MainWindow", "Action With Icon C"))
-from qdarkstyle import style_rc
