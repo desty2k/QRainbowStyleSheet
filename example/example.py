@@ -135,7 +135,12 @@ def main():
 
     style = ''
 
-    app.setStyleSheet(qdarkstyle.load_stylesheet(style="darkorange"))
+    import random
+    styles = qdarkstyle.get_available_styles()
+    randomstyle = styles[random.randint(0, len(styles))-1]
+
+    app.setStyleSheet(qdarkstyle.load_stylesheet(style=str(randomstyle)))
+    print(qdarkstyle.get_current_palette())
 
     # create main window
     window = QMainWindow()
