@@ -95,6 +95,13 @@ def get_available_styles():
     return [x for x in os.listdir(STYLES_PATH) if x != '__init__.py']
 
 
+def get_current_palette():
+    """Returns loaded palette"""
+    try:
+        from style_rc import palette
+        return palette
+    except ModuleNotFoundError:
+        raise ModuleNotFoundError("Cannot find current palette. Did you load style sheet?")
 
 
 def _apply_os_patches(palette):
