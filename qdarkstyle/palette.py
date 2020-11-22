@@ -9,17 +9,25 @@ from collections import OrderedDict
 class BasePalette(object):
     """Base class for palettes."""
 
-    # Color
+    # buttons background, active tabs name background
     COLOR_BACKGROUND_LIGHT = '#505F69'
+    # borders, non-active tabs names, headers in tables
     COLOR_BACKGROUND_NORMAL = '#32414B'
+    # widgets background
     COLOR_BACKGROUND_DARK = '#19232D'
 
+    # text
     COLOR_FOREGROUND_LIGHT = '#F0F0F0'
+    # not used?
     COLOR_FOREGROUND_NORMAL = '#AAAAAA'
+    # disabled widgets text
     COLOR_FOREGROUND_DARK = '#787878'
 
+    # borders on selection
     COLOR_SELECTION_LIGHT = '#148CD2'
+    # checked widgets borders, current tab indicator
     COLOR_SELECTION_NORMAL = '#1464A0'
+    # disabled widgets borders, disabled tabs indicators
     COLOR_SELECTION_DARK = '#14506E'
 
     OPACITY_TOOLTIP = 230
