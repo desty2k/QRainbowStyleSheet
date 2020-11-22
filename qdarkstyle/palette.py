@@ -93,7 +93,7 @@ class BasePalette(object):
         return cls.to_dict(colors_only=True)
 
 
-class DarkBluePalette(BasePalette):
+class DarkBlue(BasePalette):
     """Theme variables."""
 
     # Color
@@ -112,7 +112,45 @@ class DarkBluePalette(BasePalette):
     W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
 
 
-class DarkOrangePalette(BasePalette):
+class Oceanic(BasePalette):
+    """Theme variables."""
+
+    # Color
+    COLOR_BACKGROUND_LIGHT = '#314147'
+    COLOR_BACKGROUND_NORMAL = '#3B4950'
+    COLOR_BACKGROUND_DARK = '#263238'
+
+    COLOR_FOREGROUND_LIGHT = '#C4D6DB'
+    COLOR_FOREGROUND_NORMAL = '#56BFBA'
+    COLOR_FOREGROUND_DARK = '#56BFBA'
+
+    COLOR_SELECTION_LIGHT = '#097D74'
+    COLOR_SELECTION_NORMAL = '#136460'
+    COLOR_SELECTION_DARK = '#1B2529'
+
+    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+
+
+class Cyberpunk(BasePalette):
+    """Theme variables."""
+
+    # Color
+    COLOR_BACKGROUND_LIGHT = '#314147'
+    COLOR_BACKGROUND_NORMAL = '#010014'
+    COLOR_BACKGROUND_DARK = '#090D0C'
+
+    COLOR_FOREGROUND_LIGHT = '#FBEC08'
+    COLOR_FOREGROUND_NORMAL = '#49666e'
+    COLOR_FOREGROUND_DARK = '#EC1E77'
+
+    COLOR_SELECTION_LIGHT = '#51BCE2'
+    COLOR_SELECTION_NORMAL = '#51BCE2'
+    COLOR_SELECTION_DARK = '#51BCE2'
+
+    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+
+
+class DarkOrange(BasePalette):
     """Theme variables."""
 
     # Color
@@ -131,7 +169,7 @@ class DarkOrangePalette(BasePalette):
     W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
 
 
-class LightOrangePalette(BasePalette):
+class LightOrange(BasePalette):
     COLOR_BACKGROUND_LIGHT = '#F0F0F0'
     COLOR_BACKGROUND_NORMAL = '#D1D1D1'
     COLOR_BACKGROUND_DARK = '#DDDDDD'
