@@ -135,10 +135,7 @@ def main():
 
     style = ''
 
-    if not args.no_dark:
-        style = qdarkstyle.load_stylesheet()
-
-    app.setStyleSheet(style)
+    app.setStyleSheet(qdarkstyle._load_stylesheet(style="lightorange"))
 
     # create main window
     window = QMainWindow()
