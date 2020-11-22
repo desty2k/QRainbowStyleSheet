@@ -70,6 +70,7 @@ PACKAGE_PATH = os.path.join(REPO_PATH, 'qdarkstyle')
 QSS_PATH = os.path.join(PACKAGE_PATH, 'qss')
 RC_PATH = os.path.join(PACKAGE_PATH, 'rc')
 SVG_PATH = os.path.join(PACKAGE_PATH, 'svg')
+STYLES_PATH = os.path.join(PACKAGE_PATH, 'styles')
 
 # File names
 QSS_FILE = 'style.qss'
