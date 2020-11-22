@@ -228,7 +228,7 @@ def _load_stylesheet(qt_api='', style=''):
     available_styles = [x for x in os.listdir(STYLES_PATH) if x != '__init__.py']
     _logger.debug(f"Available styles: {available_styles}")
     for stl in available_styles:
-        if style in stl.lower():
+        if style.lower() in stl.lower():
             style_dir = stl
             break
 
