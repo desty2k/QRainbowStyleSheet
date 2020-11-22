@@ -135,7 +135,7 @@ def main():
 
     style = ''
 
-    app.setStyleSheet(qdarkstyle._load_stylesheet(style="lightorange"))
+    app.setStyleSheet(qdarkstyle.load_stylesheet(style="darkorange"))
 
     # create main window
     window = QMainWindow()

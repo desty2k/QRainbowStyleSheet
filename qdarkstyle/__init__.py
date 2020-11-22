@@ -187,7 +187,7 @@ def _apply_application_patches(palette, QCoreApplication, QPalette, QColor):
                         "instantiation of QApplication to take effect. ")
 
 
-def _load_stylesheet(qt_api='', style: str = 'dark'):
+def _load_stylesheet(qt_api='', style=''):
     """
     Load the stylesheet based on QtPy abstraction layer environment variable.
 
@@ -223,9 +223,9 @@ def _load_stylesheet(qt_api='', style: str = 'dark'):
     # Search for style in styles directory
     style_dir = None
 
-    avaiable_styles = os.listdir(STYLES_PATH)
-    _logger.debug(f"Avaiable styles: {avaiable_styles}")
-    for stl in avaiable_styles:
+    available_styles = [x for x in os.listdir(STYLES_PATH) if x != '__init__.py']
+    _logger.debug(f"Available styles: {available_styles}")
+    for stl in available_styles:
         if style in stl.lower():
             style_dir = stl
             break
@@ -247,6 +247,8 @@ def _load_stylesheet(qt_api='', style: str = 'dark'):
         palette = style_rc.palette
     except Exception as e:
         raise FileNotFoundError("Missing style_rc.py file")
+
+    _logger.info("Style resources imported successfully")
 
     # Thus, by importing the binary we can access the resources
     package_dir = os.path.basename(PACKAGE_PATH)
@@ -287,7 +289,7 @@ def _load_stylesheet(qt_api='', style: str = 'dark'):
     return stylesheet
 
 
-def load_stylesheet(*args, **kwargs):
+def load_stylesheet(*args, style='darkblue', **kwargs):
     """
     Load the stylesheet. Takes care of importing the rc module.
 
@@ -301,6 +303,8 @@ def load_stylesheet(*args, **kwargs):
                       Default is '', i.e PyQt5 the default QtPy binding.
                       Possible values are pyside, pyside2 pyqt4, pyqt5.
                       Not case sensitive.
+
+        style (str): Style to use. Default is 'darkblue'
 
     Raises:
         TypeError: If arguments do not match: type, keyword name nor quantity.
@@ -326,21 +330,21 @@ def load_stylesheet(*args, **kwargs):
 
     # No arguments
     if not kwargs and not args:
-        stylesheet = _load_stylesheet(qt_api='pyqt5')
+        stylesheet = _load_stylesheet(qt_api='pyqt5', style=style)
 
     # Old API arguments
     elif 'pyside' in kwargs or isinstance(arg, bool):
         pyside = kwargs.get('pyside', arg)
 
         if pyside:
-            stylesheet = _load_stylesheet(qt_api='pyside2')
+            stylesheet = _load_stylesheet(qt_api='pyside2', style=style)
             if not stylesheet:
-                stylesheet = _load_stylesheet(qt_api='pyside')
+                stylesheet = _load_stylesheet(qt_api='pyside', style=style)
 
         else:
-            stylesheet = _load_stylesheet(qt_api='pyqt5')
+            stylesheet = _load_stylesheet(qt_api='pyqt5', style=style)
             if not stylesheet:
-                stylesheet = _load_stylesheet(qt_api='pyqt4')
+                stylesheet = _load_stylesheet(qt_api='pyqt4', style=style)
 
         # Deprecation warning only for old API
         _logger.warning(DEPRECATION_MSG, DeprecationWarning)
@@ -348,7 +352,7 @@ def load_stylesheet(*args, **kwargs):
     # New API arguments
     elif 'qt_api' in kwargs or isinstance(arg, str):
         qt_api = kwargs.get('qt_api', arg)
-        stylesheet = _load_stylesheet(qt_api=qt_api)
+        stylesheet = _load_stylesheet(qt_api=qt_api, style=style)
 
     # Wrong API arguments name or type
     else:
@@ -359,50 +363,50 @@ def load_stylesheet(*args, **kwargs):
     return stylesheet
 
 
-def load_stylesheet_pyside():
+def load_stylesheet_pyside(style='darkblue'):
     """
     Load the stylesheet for use in a PySide application.
 
     Returns:
         str: the stylesheet string.
     """
-    return _load_stylesheet(qt_api='pyside')
+    return _load_stylesheet(qt_api='pyside', style=style)
 
 
-def load_stylesheet_pyside2():
+def load_stylesheet_pyside2(style='darkblue'):
     """
     Load the stylesheet for use in a PySide2 application.
 
     Returns:
         str: the stylesheet string.
     """
-    return _load_stylesheet(qt_api='pyside2')
+    return _load_stylesheet(qt_api='pyside2', style=style)
 
 
-def load_stylesheet_pyqt():
+def load_stylesheet_pyqt(style='darkblue'):
     """
     Load the stylesheet for use in a PyQt4 application.
 
     Returns:
         str: the stylesheet string.
     """
-    return _load_stylesheet(qt_api='pyqt4')
+    return _load_stylesheet(qt_api='pyqt4', style=style)
 
 
-def load_stylesheet_pyqt5():
+def load_stylesheet_pyqt5(style='darkblue'):
     """
     Load the stylesheet for use in a PyQt5 application.
 
     Returns:
         str: the stylesheet string.
     """
-    return _load_stylesheet(qt_api='pyqt5')
+    return _load_stylesheet(qt_api='pyqt5', style=style)
 
 
 # Deprecation Warning --------------------------------------------------------
 
 
-def load_stylesheet_from_environment(is_pyqtgraph=False):
+def load_stylesheet_from_environment(is_pyqtgraph=False, style='darkblue'):
     """
     Load the stylesheet from QT_API (or PYQTGRAPH_QT_LIB) environment variable.
 
@@ -418,9 +422,9 @@ def load_stylesheet_from_environment(is_pyqtgraph=False):
     _logger.warning(DEPRECATION_MSG, DeprecationWarning)
 
     if is_pyqtgraph:
-        stylesheet = _load_stylesheet(qt_api=os.environ.get('PYQTGRAPH_QT_LIB'))
+        stylesheet = _load_stylesheet(qt_api=os.environ.get('PYQTGRAPH_QT_LIB'), style=style)
     else:
-        stylesheet = _load_stylesheet()
+        stylesheet = _load_stylesheet(style=style)
 
     return stylesheet
 
