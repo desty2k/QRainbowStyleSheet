@@ -53,9 +53,6 @@ import sys
 import logging
 import platform
 
-# Local imports
-from qdarkstyle.palette import DarkPalette
-
 __version__ = "2.8.1"
 
 _logger = logging.getLogger(__name__)
