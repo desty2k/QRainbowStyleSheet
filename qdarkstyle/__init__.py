@@ -91,15 +91,8 @@ then use load_stylesheet() or use load_stylesheet()
 passing the argument qt_api='wanted_binding'.'''
 
 
-def import_file(full_name, path):
-    """Import a python module from a path"""
-    from importlib import util
 
-    spec = util.spec_from_file_location(full_name, path)
-    mod = util.module_from_spec(spec)
 
-    spec.loader.exec_module(mod)
-    return mod
 
 
 def _apply_os_patches(palette):
