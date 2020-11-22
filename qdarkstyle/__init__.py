@@ -48,10 +48,10 @@ Enjoy!
 """
 
 # Standard library imports
-import logging
 import os
+import sys
+import logging
 import platform
-import warnings
 
 # Local imports
 from qdarkstyle.palette import DarkPalette
@@ -88,7 +88,6 @@ MAIN_SCSS_FILEPATH = os.path.join(QSS_PATH, MAIN_SCSS_FILE)
 STYLES_SCSS_FILEPATH = os.path.join(QSS_PATH, STYLES_SCSS_FILE)
 VARIABLES_SCSS_FILEPATH = os.path.join(QSS_PATH, VARIABLES_SCSS_FILE)
 
-# Todo: check if we are deprecate all those functions or keep them
 DEPRECATION_MSG = '''This function will be deprecated in v3.0.
 Please, set the wanted binding by using QtPy environment variable QT_API,
 then use load_stylesheet() or use load_stylesheet()
@@ -170,14 +169,14 @@ def _apply_application_patches(QCoreApplication, QPalette, QColor):
     _logger.info("Found application patches to be applied.")
 
     if app:
-        palette = app.palette()
-        palette.setColor(QPalette.Normal, QPalette.Link, qcolor)
-        app.setPalette(palette)
+        _palette = app.palette()
+        _palette.setColor(QPalette.Normal, QPalette.Link, qcolor)
+        app.setPalette(_palette)
     else:
-        _logger.warn("No QCoreApplication instance found. "
-                     "Application patches not applied. "
-                     "You have to call load_stylesheet function after "
-                     "instantiation of QApplication to take effect. ")
+        _logger.warning("No QCoreApplication instance found. "
+                        "Application patches not applied. "
+                        "You have to call load_stylesheet function after "
+                        "instantiation of QApplication to take effect. ")
 
 
 def _load_stylesheet(qt_api=''):
@@ -311,7 +310,7 @@ def load_stylesheet(*args, **kwargs):
                 stylesheet = _load_stylesheet(qt_api='pyqt4')
 
         # Deprecation warning only for old API
-        warnings.warn(DEPRECATION_MSG, DeprecationWarning)
+        _logger.warning(DEPRECATION_MSG, DeprecationWarning)
 
     # New API arguments
     elif 'qt_api' in kwargs or isinstance(arg, str):
@@ -383,7 +382,7 @@ def load_stylesheet_from_environment(is_pyqtgraph=False):
     Returns:
         str: the stylesheet string.
     """
-    warnings.warn(DEPRECATION_MSG, DeprecationWarning)
+    _logger.warning(DEPRECATION_MSG, DeprecationWarning)
 
     if is_pyqtgraph:
         stylesheet = _load_stylesheet(qt_api=os.environ('PYQTGRAPH_QT_LIB'))
