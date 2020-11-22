@@ -6,8 +6,8 @@
 from collections import OrderedDict
 
 
-class DarkPalette(object):
-    """Theme variables."""
+class BasePalette(object):
+    """Base class for palettes."""
 
     # Color
     COLOR_BACKGROUND_LIGHT = '#505F69'
@@ -83,3 +83,57 @@ class DarkPalette(object):
     def color_palette(cls):
         """Return the ordered colored palette dictionary."""
         return cls.to_dict(colors_only=True)
+
+
+class DarkBluePalette(BasePalette):
+    """Theme variables."""
+
+    # Color
+    COLOR_BACKGROUND_LIGHT = '#505F69'
+    COLOR_BACKGROUND_NORMAL = '#32414B'
+    COLOR_BACKGROUND_DARK = '#19232D'
+
+    COLOR_FOREGROUND_LIGHT = '#F0F0F0'
+    COLOR_FOREGROUND_NORMAL = '#AAAAAA'
+    COLOR_FOREGROUND_DARK = '#787878'
+
+    COLOR_SELECTION_LIGHT = '#148CD2'
+    COLOR_SELECTION_NORMAL = '#1464A0'
+    COLOR_SELECTION_DARK = '#14506E'
+
+    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+
+
+class DarkOrangePalette(BasePalette):
+    """Theme variables."""
+
+    # Color
+    COLOR_BACKGROUND_LIGHT = '#505F69'
+    COLOR_BACKGROUND_NORMAL = '#32414B'
+    COLOR_BACKGROUND_DARK = '#19232D'
+
+    COLOR_FOREGROUND_LIGHT = '#F0F0F0'
+    COLOR_FOREGROUND_NORMAL = '#AAAAAA'
+    COLOR_FOREGROUND_DARK = '#787878'
+
+    COLOR_SELECTION_LIGHT = '#ffbb54'
+    COLOR_SELECTION_NORMAL = '#F9AA33'
+    COLOR_SELECTION_DARK = '#fa9e14'
+
+    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+
+
+class LightOrangePalette(BasePalette):
+    COLOR_BACKGROUND_LIGHT = '#F0F0F0'
+    COLOR_BACKGROUND_NORMAL = '#D1D1D1'
+    COLOR_BACKGROUND_DARK = '#DDDDDD'
+
+    COLOR_FOREGROUND_LIGHT = '#000000'
+    COLOR_FOREGROUND_NORMAL = '#d2d5d9'
+    COLOR_FOREGROUND_DARK = '#d2d5d9'
+
+    COLOR_SELECTION_LIGHT = '#ffbb54'
+    COLOR_SELECTION_NORMAL = '#F9AA33'
+    COLOR_SELECTION_DARK = '#fa9e14'
+
+    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
