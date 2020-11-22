@@ -91,6 +91,8 @@ then use load_stylesheet() or use load_stylesheet()
 passing the argument qt_api='wanted_binding'.'''
 
 
+def get_available_styles():
+    return [x for x in os.listdir(STYLES_PATH) if x != '__init__.py']
 
 
 
