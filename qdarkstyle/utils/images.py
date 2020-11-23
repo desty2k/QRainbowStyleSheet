@@ -10,6 +10,7 @@ from __future__ import absolute_import, division, print_function
 import logging
 import os
 import re
+import shutil
 import tempfile
 
 # Third party imports
@@ -19,7 +20,7 @@ from qtpy.QtWidgets import QApplication
 
 # Local imports
 from qdarkstyle import (IMAGES_PATH, STYLES_SCSS_FILEPATH, QRC_FILEPATH, RC_PATH,
-                        SVG_PATH)
+                        SVG_PATH, BUTTONS_NT_PATH, BUTTONS_DARWIN_PATH)
 from qdarkstyle.palette import BasePalette
 
 IMAGE_BLACKLIST = ['base_palette']
@@ -40,6 +41,65 @@ TEMPLATE_QRC_FOOTER = '''
 '''
 
 _logger = logging.getLogger(__name__)
+
+
+def _create_nt_buttons(base_svg_path=BUTTONS_NT_PATH, rc_path=RC_PATH, palette=BasePalette):
+    """Create png images from svg files for windows style buttons"""
+
+    sizes = [{"ext": '.png', "width": 45, "height": 30}, {"ext": '@2x.png', "width": 90, "height": 60}]
+
+    temp_dir = tempfile.mkdtemp()
+    svg_fnames = [f for f in os.listdir(base_svg_path) if f.endswith('.svg')]
+
+    background = palette.COLOR_BACKGROUND_DARK
+    background_hover = palette.COLOR_BACKGROUND_NORMAL
+    text = palette.COLOR_FOREGROUND_LIGHT
+
+    for svg in svg_fnames:
+        svg_path = os.path.join(base_svg_path, svg)
+        with open(svg_path, 'r') as fh:
+            data = fh.read()
+
+            new_data = data
+            new_data = new_data.replace("COLOR_BACKGROUND_DARK", background)
+            new_data = new_data.replace("COLOR_BACKGROUND_NORMAL", background_hover)
+            new_data = new_data.replace("COLOR_FOREGROUND_LIGHT", text)
+
+        temp_svg_path = os.path.join(temp_dir, svg)
+        with open(temp_svg_path, 'w') as fh:
+            fh.write(new_data)
+
+        for size in sizes:
+            png_fname = svg.replace('.svg', size['ext'])
+            png_path = os.path.join(rc_path, png_fname)
+            convert_svg_to_png(temp_svg_path, png_path, size['height'], size['width'])
+
+
+def _create_darwin_buttons(base_svg_path=BUTTONS_DARWIN_PATH, rc_path=RC_PATH):
+    """Create png images from svg files for darwin style buttons"""
+
+    temp_dir = tempfile.mkdtemp()
+    svg_fnames = [f for f in os.listdir(base_svg_path) if f.endswith('.svg')]
+
+    sizes = [{"ext": '.png', "width": 32, "height": 32}, {"ext": '@2x.png', "width": 64, "height": 64}]
+
+    for svg in svg_fnames:
+        svg_path = os.path.join(base_svg_path, svg)
+        temp_svg_path = os.path.join(temp_dir, svg)
+        shutil.copy2(svg_path, temp_svg_path)
+
+        for size in sizes:
+            png_fname = svg.replace('.svg', size['ext'])
+            png_path = os.path.join(rc_path, png_fname)
+            convert_svg_to_png(temp_svg_path, png_path, size['height'], size['width'])
+
+
+def create_titlebar_images(buttons_svg_path=SVG_PATH, rc_path=RC_PATH, palette=BasePalette):
+    """Create resources `rc` png image files from titlebar buttons svg files and palette
+    """
+    _ = QApplication([])
+    _create_nt_buttons(rc_path=rc_path, palette=palette)
+    _create_darwin_buttons(rc_path=rc_path)
 
 
 def _get_file_color_map(fname, palette):
@@ -80,7 +140,7 @@ def convert_svg_to_png(svg_path, png_path, height, width):
     """
     Convert svg files to png files using Qt.
     """
-    size = QSize(height, width)
+    size = QSize(width, height)
     icon = QIcon(svg_path)
     pixmap = icon.pixmap(size)
     img = pixmap.toImage()
@@ -129,8 +189,8 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     state generating PNG images for each size `heights`.
 
     Args:
-        base_svg_path (str, optional): [description]. Defaults to SVG_PATH.
-        rc_path (str, optional): [description]. Defaults to RC_PATH.
+        base_svg_path (str, optional): Input svgs directory path. Defaults to SVG_PATH.
+        rc_path (str, optional): Output pngs directory path. Defaults to RC_PATH.
         palette (BasePalette, optional): Palette . Defaults to BasePalette.
     """
 

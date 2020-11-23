@@ -25,20 +25,21 @@ Links to understand those tools:
 
 # Standard library imports
 from __future__ import absolute_import, print_function
-from subprocess import call
 
-import argparse
-import glob
 import os
 import sys
+import glob
+import argparse
+from subprocess import call
 
 # Third party imports
+import qdarkstyle
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 # Local imports
-from qdarkstyle import PACKAGE_PATH, STYLES_PATH, QRC_FILE, QSS_FILE, VARIABLES_SCSS_FILE
-from qdarkstyle.utils.images import create_images, create_palette_image, generate_qrc_file
+from qdarkstyle import PACKAGE_PATH, STYLES_PATH, QRC_FILE, QSS_FILE
+from qdarkstyle.utils.images import create_images, create_palette_image, generate_qrc_file, create_titlebar_images
 from qdarkstyle.utils.scss import create_qss
 
 
@@ -102,6 +103,9 @@ def run_process(args):
 
         print('Generating images ...')
         create_images(palette=palette, rc_path=rc_dir)
+
+        print("Generating images for titlebar buttons")
+        create_titlebar_images(rc_path=rc_dir, palette=palette)
 
         print('Generating qrc ...')
         generate_qrc_file(rc_path=rc_dir, qrc_path=qrc_filepath)
@@ -234,4 +238,8 @@ def main(arguments):
 
 
 if __name__ == '__main__':
+    from qtpy import QtCore
+    logger = qdarkstyle.utils.OutputLogger()
+    sys.excepthook = qdarkstyle.utils.catch_exceptions
+    QtCore.qInstallMessageHandler(qdarkstyle.utils.qt_message_handler)
     sys.exit(main(sys.argv[1:]))

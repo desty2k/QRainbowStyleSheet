@@ -69,6 +69,9 @@ RC_PATH = os.path.join(PACKAGE_PATH, 'rc')
 SVG_PATH = os.path.join(PACKAGE_PATH, 'svg')
 STYLES_PATH = os.path.join(PACKAGE_PATH, 'styles')
 
+BUTTONS_DARWIN_PATH = os.path.join(SVG_PATH, 'buttons_darwin')
+BUTTONS_NT_PATH = os.path.join(SVG_PATH, 'buttons_nt')
+
 # File names
 QSS_FILE = 'style.qss'
 QRC_FILE = QSS_FILE.replace('.qss', '.qrc')
