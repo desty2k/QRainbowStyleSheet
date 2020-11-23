@@ -7,6 +7,24 @@ QRainbowStylesheet
 The most complete customizable stylesheet for Qt application (Qt4, Qt5, PySide,
 PySide2, PyQt4, PyQt5, QtPy, PyQtGraph, Qt.Py).
 
+Preview
+-------
+
+Frameless main window + NT buttons on the right + "Oceanic" style
+
+.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_nt_right_oceanic.png
+
+Frameless main window + NT buttons on the right + "Cyberpunk" style
+
+.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_nt_right_cyberpunk.png
+
+Frameless main window + Darwin buttons on the left + "DarkOrange" style
+
+.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_darwin_left_darkorange.png 
+
+Frameless main window + Darwin buttons on the right + "Darkblue" style
+
+.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_darwin_right_darkblue.png
 
 Installation
 ------------
@@ -102,6 +120,49 @@ Usage
 If your project already uses QtPy or you need to set it programmatically,
 it is far more simple
 
+
+Frameless windows
+~~~~~~~~~~~~~~~~~~
+.. code:: python
+
+    import os
+    import sys
+    import qrainbowstyle
+    import qrainbowstyle.windows
+    
+    from qtpy import QtWidgets
+    from qtpy.QtCore import Qt
+    
+    QtWidgets.QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    QtWidgets.QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+
+    app = QtWidgets.QApplication(sys.argv)
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
+
+    # Package options
+    # qrainbowstyle.align_buttons_left()
+    # qrainbowstyle.use_darwin_buttons()
+    qrainbowstyle.setAppName("My new application")
+    qrainbowstyle.setAppIcon("/path/to/icon.ico")
+
+    # Create frameless mainwindow
+    win = qrainbowstyle.windows.FramelessMainWindow()
+
+    # Example of using signals
+    win.closeClicked.connect(lambda: print("Close clicked!"))
+
+    # Create content widget and pass reference to main window
+    widget = SomeWidget(win)
+
+    # Add widget to main window and show it
+    win.addContentWidget(widget)
+    win.show()
+
+    sys.exit(app.exec())
+
+
+Style sheet
+~~~~~~~~~~~~
 .. code:: python
 
     import os
