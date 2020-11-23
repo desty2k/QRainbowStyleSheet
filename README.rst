@@ -1,10 +1,10 @@
-QDarkStylesheet
-===============
+QRainbowStylesheet
+==================
 
 |Build Status| |Docs Status| |Latest PyPI version| |License: MIT|
 |License: CC BY 4.0| |Conduct|
 
-The most complete dark stylesheet for Qt application (Qt4, Qt5, PySide,
+The most complete customizable stylesheet for Qt application (Qt4, Qt5, PySide,
 PySide2, PyQt4, PyQt5, QtPy, PyQtGraph, Qt.Py).
 
 
@@ -15,15 +15,15 @@ Installation
 Python
 ~~~~~~
 
-From PyPI: Get the latest stable version of ``qdarkstyle`` package using
+From PyPI: Get the latest stable version of ``qrainbowstyle`` package using
 *pip* (preferable):
 
     .. code:: bash
 
-        pip install qdarkstyle
+        pip install qrainbowstyle
 
 
-From code: Download/clone the project, go to ``qdarkstyle`` folder then:
+From code: Download/clone the project, go to ``qrainbowstyle`` folder then:
 
 -  You can use the *setup* script and pip install.
 
@@ -45,23 +45,23 @@ C++
 -  Download/clone the project and copy the following files to your
    application directory (keep the existing directory hierarchy):
 
-    -  **qdarkstyle/style.qss**
-    -  **qdarkstyle/style.qrc**
-    -  **qdarkstyle/rc/** (the whole directory)
+    -  **qrainbowstyle/style.qss**
+    -  **qrainbowstyle/style.qrc**
+    -  **qrainbowstyle/rc/** (the whole directory)
 
 
--  Add **qdarkstyle/style.qrc** to your **.pro file** as follows:
+-  Add **qrainbowstyle/style.qrc** to your **.pro file** as follows:
 
     .. code:: c++
 
-        RESOURCES += qdarkstyle/style.qrc
+        RESOURCES += qrainbowstyle/style.qrc
 
 
 -  Load the stylesheet:
 
     .. code:: c++
 
-        QFile f(":qdarkstyle/style.qss");
+        QFile f(":qrainbowstyle/style.qss");
 
         if (!f.exists())   {
             printf("Unable to set stylesheet, file not found\n");
@@ -78,6 +78,24 @@ resource library. For more information see the discussion
 `here <https://github.com/ColinDuquesnoy/QDarkStyleSheet/pull/87>`__.
 
 
+Available styles
+----------------
+
+Currently available styles are:
+
+* oceanic
+* cyberpunk
+* lightorange
+* darkorange
+* darkblue (original)
+
+Select style by using keyword argument ``style=``
+
+.. code:: python
+
+    qrainbowstyle.load_stylesheet(style=lightorange)
+
+
 Usage
 -----
 
@@ -86,9 +104,9 @@ it is far more simple
 
 .. code:: python
 
-    import sys
-    import qdarkstyle
     import os
+    import sys
+    import qrainbowstyle
 
     # set the environment variable to use a specific wrapper
     # it can be set to pyqt, pyqt5, pyside or pyside2 (not implemented yet)
@@ -104,8 +122,8 @@ it is far more simple
     window = QtWidgets.QMainWindow()
 
     # setup stylesheet
-    # the default system in qdarkstyle uses qtpy environment variable
-    app.setStyleSheet(qdarkstyle.load_stylesheet())
+    # the default system in qrainbowstyle uses qtpy environment variable
+    app.setStyleSheet(qrainbowstyle.load_stylesheet())
 
     # run
     window.show()
@@ -117,7 +135,7 @@ If you are using PyQt5 directly, see the complete example
 .. code:: python
 
     import sys
-    import qdarkstyle
+    import qrainbowstyle
     from PyQt5 import QtWidgets
 
     # create the application and the main window
@@ -125,9 +143,9 @@ If you are using PyQt5 directly, see the complete example
     window = QtWidgets.QMainWindow()
 
     # setup stylesheet
-    app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
+    app.setStyleSheet(qrainbowstyle.load_stylesheet_pyqt5())
     # or in new API
-    app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(qt_api='pyqt5'))
 
     # run
     window.show()
@@ -139,7 +157,7 @@ Here is an example using PySide2
 .. code:: python
 
     import sys
-    import qdarkstyle
+    import qrainbowstyle
     from PyQt5 import QtWidgets
 
     # create the application and the main window
@@ -147,9 +165,9 @@ Here is an example using PySide2
     window = QtWidgets.QMainWindow()
 
     # setup stylesheet
-    app.setStyleSheet(qdarkstyle.load_stylesheet_pyside2())
+    app.setStyleSheet(qrainbowstyle.load_stylesheet_pyside2())
     # or in new API
-    app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyside2'))
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(qt_api='pyside2'))
 
     # run
     window.show()
@@ -160,9 +178,9 @@ If you use PyQtGraph, then the code is
 
 .. code:: python
 
-    import sys
-    import qdarkstyle
     import os
+    import sys
+    import qrainbowstyle
 
     # set the environment variable to use a specific wrapper
     # it can be set to PyQt, PyQt5, PySide or PySide2 (not implemented yet)
@@ -177,7 +195,7 @@ If you use PyQtGraph, then the code is
     window = QtGui.QMainWindow()
 
     # setup stylesheet
-    app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api=os.environ['PYQTGRAPH_QT_LIB'])
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(qt_api=os.environ['PYQTGRAPH_QT_LIB'])
 
     # run
     window.show()
@@ -188,8 +206,53 @@ qtpy then set both to the same binding.
 
 
 *There is an example included in the *example* folder. You can run the
-script without installing qdarkstyle. You only need to have PySide or
+script without installing qrainbowstyle. You only need to have PySide or
 PySide2 or PyQt4 or PyQt5 installed on your system.*
+
+
+Building your own style sheet
+-----------------------------
+
+Download/clone the project, go to ``qrainbowstyle`` folder then:
+
+1. Create new style in palette.py by subclassing BasePalette. New palette should have unique name, for example ``DeepBluePalette``
+
+2. Override default colors by your own. Example:
+
+    .. code:: python
+
+        class DeepBluePalette(BasePalette):
+
+            COLOR_BACKGROUND_LIGHT = '#505F69'
+            COLOR_BACKGROUND_NORMAL = '#32414B'
+            COLOR_BACKGROUND_DARK = '#19232D'
+
+            COLOR_FOREGROUND_LIGHT = '#F0F0F0'
+            COLOR_FOREGROUND_NORMAL = '#AAAAAA'
+            COLOR_FOREGROUND_DARK = '#787878'
+
+            COLOR_SELECTION_LIGHT = '#148CD2'
+            COLOR_SELECTION_NORMAL = '#1464A0'
+            COLOR_SELECTION_DARK = '#14506E'
+
+            W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+
+3. Generate resources for your style by running scripts/process_qrc.py
+
+4. Install package by running:
+
+    .. code:: python
+
+        pip install .
+
+5. To use style sheet in your application:
+
+    .. code:: python
+
+        import qrainbowstyle
+
+        app = QApplication(sys.argv)
+        app.setStyleSheet(qrainbowstyle.load_stylesheet(style = "deepblue")
 
 
 What is new?
@@ -212,7 +275,7 @@ required dependency now.
 Screenshots
 -----------
 
-Here are a few snapshots comparing the use of QDarkStyle and the
+Here are a few snapshots comparing the use of QRainbowStyleSheet and the
 default style. Click in the image to zoom.
 
 
