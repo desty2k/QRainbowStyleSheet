@@ -52,6 +52,7 @@ import os
 import sys
 import logging
 import platform
+import qdarkstyle
 
 __version__ = "0.1"
 
@@ -92,6 +93,42 @@ DEPRECATION_MSG = '''This function will be deprecated in v3.0.
 Please, set the wanted binding by using QtPy environment variable QT_API,
 then use load_stylesheet() or use load_stylesheet()
 passing the argument qt_api='wanted_binding'.'''
+
+
+# Use lightstyle as default
+
+LIGHT_STYLE = 0
+DARK_STYLE = 1
+
+USE_DARWIN_BUTTONS = False
+ALIGN_BUTTONS_LEFT = False
+
+# Global app name
+APP_NAME = None
+
+# Path to app icon
+APP_ICON_PATH = None
+
+
+def alignButtonsLeft():
+    """Align titlebar buttons to left"""
+    qdarkstyle.ALIGN_BUTTONS_LEFT = True
+    _logger.info("Buttons will be aligned to left")
+
+
+def setAppName(name: str):
+    """Set global app name which will be used in titlebars"""
+    qdarkstyle.APP_NAME = name
+
+
+def setAppIcon(icon_path: str):
+    """Set path to app icon which will be used in titlebars"""
+    qdarkstyle.APP_ICON_PATH = icon_path
+
+
+def use_darwin_buttons():
+    qdarkstyle.USE_DARWIN_BUTTONS = True
+    _logger.info("Darwin buttons style has been enabled")
 
 
 def get_available_styles():

@@ -102,8 +102,9 @@ def main():
     from qtpy import API_NAME, QT_VERSION, PYQT_VERSION, PYSIDE_VERSION
     from qtpy import __version__ as QTPY_VERSION
     from qtpy.QtWidgets import (QApplication, QMainWindow, QDockWidget,
-                                QStatusBar, QLabel, QPushButton, QMenu)
+                                QStatusBar, QLabel, QPushButton, QMenu, QToolButton)
     from qtpy.QtCore import QTimer, Qt, QSettings
+    from qtpy.QtGui import QIcon
 
     # Set API_VERSION variable
     API_VERSION = ''
