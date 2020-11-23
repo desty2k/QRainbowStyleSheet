@@ -1,5 +1,15 @@
 Changelog
 =========
+
+-  0.2:
+    -  Add preview images
+    -  Add frameless windows
+    -  Add new example script
+    -  Add NT and Darwin window buttons svg files
+    -  Add svg to png generators for window buttons
+    -  Update README
+    -  Generate resources
+
 -  **0.1**:
     -  Change project name
     -  Add stylesheet for QDial
