@@ -9,9 +9,9 @@ from collections import OrderedDict
 class BasePalette(object):
     """Base class for palettes."""
 
-    # buttons background, active tabs name background
+    # buttons background, active tabs name background, titlebar icons background on hover
     COLOR_BACKGROUND_LIGHT = '#505F69'
-    # borders, non-active tabs names, headers in tables
+    # borders, non-active tabs names, headers in tables, titlebar icons background
     COLOR_BACKGROUND_NORMAL = '#32414B'
     # widgets background
     COLOR_BACKGROUND_DARK = '#19232D'
