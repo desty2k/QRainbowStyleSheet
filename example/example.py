@@ -63,12 +63,13 @@ SCREENSHOTS_PATH = qrainbowstyle.IMAGES_PATH
 
 
 def main():
-    """Execute QRainbowStyle example."""
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--qt_from', default='qtpy', type=str,
                         choices=['pyqt5', 'pyqt', 'pyside2', 'pyside', 'qtpy', 'pyqtgraph', 'qt.py'],
                         help="Choose which binding and/or abstraction is to be used to run the example.")
+    parser.add_argument('--style', type=str,
+                        help="Use custom style.")
     parser.add_argument('--test', action='store_true',
                         help="Auto close window after 2s.")
     parser.add_argument('--reset', action='store_true',
@@ -79,6 +80,16 @@ def main():
     # Parsing arguments from command line
     args = parser.parse_args()
 
+    if args.test:
+        print(args, type(args))
+        for style in qrainbowstyle.get_available_styles():
+            parser.set_defaults(style=style)
+            _main(parser.parse_args())
+    else:
+        _main(args)
+
+
+def _main(args):
     # To avoid problems when testing without screen
     if args.test or args.screenshots:
         os.environ['QT_QPA_PLATFORM'] = 'offscreen'
@@ -132,14 +143,16 @@ def main():
     app.setOrganizationName('QRainbowStyle')
     app.setApplicationName('QRainbowStyle Example')
 
-    style = ''
-
     import random
     styles = qrainbowstyle.get_available_styles()
-    randomstyle = styles[random.randint(0, len(styles))-1]
 
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(style=str(randomstyle)))
-    print(qrainbowstyle.get_current_palette())
+    style = args.style
+    if not args.style:
+        style = styles[random.randint(0, len(styles)) - 1]
+
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style=str(style)))
 
     # create main window
     window = QMainWindow()
@@ -253,7 +266,7 @@ def main():
     # Save screenshots for different displays and quit
     if args.screenshots:
         window.showFullScreen()
-        create_screenshots(app, window, args.no_dark)
+        # create_screenshots(app, window, args.no_dark)
     # Do not read settings when taking screenshots - like reset
     else:
         _read_settings(window, args.reset, QSettings)
