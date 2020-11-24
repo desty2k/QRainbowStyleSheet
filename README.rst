@@ -12,19 +12,19 @@ Preview
 
 Frameless main window + NT buttons on the right + "Oceanic" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_nt_right_oceanic.png
+.. image:: /images/frameless_mainwindow_nt_right_oceanic.png
 
 Frameless main window + NT buttons on the right + "Cyberpunk" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_nt_right_cyberpunk.png
+.. image:: /images/frameless_mainwindow_nt_right_cyberpunk.png
 
 Frameless main window + Darwin buttons on the left + "DarkOrange" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_darwin_left_darkorange.png 
+.. image:: /images/frameless_mainwindow_darwin_left_darkorange.png 
 
 Frameless main window + Darwin buttons on the right + "Darkblue" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_darwin_right_darkblue.png
+.. image:: /images/frameless_mainwindow_darwin_right_darkblue.png
 
 Installation
 ------------
@@ -331,45 +331,6 @@ creating SVG files for all of them.
 
 From 2.8, we moved to QtPy to simplify your code, thus this is a
 required dependency now.
-
-
-Screenshots
------------
-
-Here are a few snapshots comparing the use of QRainbowStyleSheet and the
-default style. Click in the image to zoom.
-
-
-Containers (no tabs) and Buttons
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/dark_containers_buttons.png
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/images/no_dark_containers_buttons.png
-
-
-Containers (tabs) and Displays
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/dark_containers_tabs_displays.png
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/no_dark_containers_tabs_displays.png
-
-
-Widgets and Inputs (fields)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/dark_widgets_inputs_fields.png
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/no_dark_widgets_inputs_fields.png
-
-
-Views and Inputs (no fields)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/dark_views_inputs_no_fields.png
-
-.. image:: https://github.com/ColinDuquesnoy/QDarkStyleSheet/blob/master/images/no_dark_views_inputs_no_fields.png
 
 
 Changelog
