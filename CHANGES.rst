@@ -1,6 +1,10 @@
 Changelog
 =========
 
+-  0.3:
+    -  Change qdarkstyle module name to qrainbowstyle
+    -  Generate resources with new prefix
+
 -  0.2:
     -  Add preview images
     -  Add frameless windows
