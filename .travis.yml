@@ -34,7 +34,7 @@ matrix:
 
     - python: 3.8
       env: TOXENV=py38-release
-      
+
 
 
 install:
