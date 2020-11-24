@@ -363,10 +363,10 @@ request.
 
 If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
 
-.. |Build Status| image:: https://travis-ci.org/ColinDuquesnoy/QDarkStyleSheet.png?branch=master
-   :target: https://travis-ci.org/ColinDuquesnoy/QDarkStyleSheet
-.. |Docs Status| image:: https://readthedocs.org/projects/qdarkstylesheet/badge/?version=latest&style=flat
-   :target: https://qdarkstylesheet.readthedocs.io
+.. |Build Status| image:: https://travis-ci.org/desty2k/QRainbowStyleSheet.svg?branch=master
+   :target: https://travis-ci.org/github/desty2k/QRainbowStyleSheet
+.. |Docs Status| image:: https://readthedocs.org/projects/qrainbowstylesheet/badge/?version=latest
+   :target: https://qrainbowstylesheet.readthedocs.io/en/latest/
 .. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QDarkStyle.svg
    :target: https://pypi.python.org/pypi/QDarkStyle
 .. |License: MIT| image:: https://img.shields.io/dub/l/vibe-d.svg?color=lightgrey
