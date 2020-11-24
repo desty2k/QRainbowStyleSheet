@@ -9,6 +9,7 @@ from qtpy.QtCore import *
 import qrainbowstyle.windows
 import qrainbowstyle
 
+
 class WidgetGallery(QWidget):
     def __init__(self, parent=None):
         super(WidgetGallery, self).__init__(parent)
@@ -75,7 +76,7 @@ class WidgetGallery(QWidget):
 
     def advanceProgressBar(self):
         self.progressBar.setMaximum(100)
-        self.val +=1
+        self.val += 1
         self.progressBar.setValue(self.val)
 
     def createTopLeftGroupBox(self):
@@ -121,7 +122,7 @@ class WidgetGallery(QWidget):
     def createBottomLeftTabWidget(self):
         self.bottomLeftTabWidget = QTabWidget()
         self.bottomLeftTabWidget.setSizePolicy(QSizePolicy.Preferred,
-                QSizePolicy.Ignored)
+                                               QSizePolicy.Ignored)
 
         tab1 = QWidget()
         tableWidget = QTableWidget(10, 10)

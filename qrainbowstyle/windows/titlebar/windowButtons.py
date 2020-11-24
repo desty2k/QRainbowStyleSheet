@@ -6,7 +6,7 @@ from qtpy import QtGui, QtCore, QtWidgets
 
 class titleBarButton(QToolButton):
 
-    def __init__(self, icon: QIcon, hovericon: QIcon , parent=None):
+    def __init__(self, icon: QIcon, hovericon: QIcon, parent=None):
         super(titleBarButton, self).__init__(parent)
 
         self.setMask(QtGui.QRegion(QRect(0, 0, 21, 21), QtGui.QRegion.Ellipse))

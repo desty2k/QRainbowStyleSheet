@@ -16,6 +16,7 @@ sys.path.insert(0, abspath(dirname(abspath(__file__)) + '/..'))
 
 QRainbowStyle = qrainbowstyle
 
+
 def main():
     """Execute QRainbowStyle helper."""
     parser = argparse.ArgumentParser(description="QRainbowStyle helper. Use the option --all to report bugs",

@@ -20,11 +20,12 @@ def getWorkspace() -> QtCore.QRect:
 
 class OutputLogger(object):
     """docstring for OutputLogger"""
+
     def __init__(self):
         super(OutputLogger, self).__init__()
         try:
-            if len(open("labnet.log").readlines())>=300:
-                open("labnet.log","w").close()
+            if len(open("labnet.log").readlines()) >= 300:
+                open("labnet.log", "w").close()
         except Exception:
             pass
         import logging
@@ -34,9 +35,6 @@ class OutputLogger(object):
             handlers=[
                 logging.StreamHandler()
             ])
-        _logger.debug("        _ _  _ _ ___        ")
-        _logger.debug("        | |\ | |  |         ")
-        _logger.debug("___ ___ | | \| |  |  ___ ___")
         _logger.debug("Logger enabled.")
 
 

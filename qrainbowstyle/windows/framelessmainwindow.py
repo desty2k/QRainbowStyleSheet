@@ -14,14 +14,18 @@ class FramelessMainWindow(QMainWindow):
 
         self._contentWidgets = []
 
-        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint | Qt.WindowSystemMenuHint | Qt.WindowCloseButtonHint |
-                            Qt.WindowMinimizeButtonHint | Qt.WindowMaximizeButtonHint)
+        self.setWindowFlags(Qt.Window |
+                            Qt.FramelessWindowHint |
+                            Qt.WindowSystemMenuHint |
+                            Qt.WindowCloseButtonHint |
+                            Qt.WindowMinimizeButtonHint |
+                            Qt.WindowMaximizeButtonHint)
 
         self.setAttribute(Qt.WA_TranslucentBackground)
 
         # For preview
         screen = QApplication.desktop().availableGeometry()
-        self.resize(screen.width()/2, screen.height()/2)
+        self.resize(screen.width() / 2, screen.height() / 2)
         self.setContentsMargins(0, 0, 0, 0)
 
         self._centralWidget = QWidget(self)

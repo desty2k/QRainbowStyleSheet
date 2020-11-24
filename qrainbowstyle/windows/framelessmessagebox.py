@@ -17,7 +17,7 @@ class FramelessMessageBox(FramelessDialog):
         self.grid.setHorizontalSpacing(0)
 
         self.iconLabel = QLabel(self)
-        self.iconLabel.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed);
+        self.iconLabel.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         self.iconLabel.setScaledContents(True)
         self.setIcon(QStyle.SP_MessageBoxInformation)
         self.grid.addWidget(self.iconLabel, 0, 0, 2, 1, QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)

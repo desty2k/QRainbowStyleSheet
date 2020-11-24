@@ -21,4 +21,3 @@ class FramelessDialog(QtWidgets.QDialog):
 
         self.closed = self.bar.terminate.clicked
         self.closed.connect(self.close)
-
