@@ -69,8 +69,6 @@ def main():
     parser.add_argument('--qt_from', default='qtpy', type=str,
                         choices=['pyqt5', 'pyqt', 'pyside2', 'pyside', 'qtpy', 'pyqtgraph', 'qt.py'],
                         help="Choose which binding and/or abstraction is to be used to run the example.")
-    parser.add_argument('--no_dark', action='store_true',
-                        help="Exihibts the original window (without qrainbowstyle).")
     parser.add_argument('--test', action='store_true',
                         help="Auto close window after 2s.")
     parser.add_argument('--reset', action='store_true',
