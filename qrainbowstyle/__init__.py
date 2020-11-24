@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""QDarkStyle is a dark stylesheet for Python and Qt applications.
+"""QRainbowStyle is a dark stylesheet for Python and Qt applications.
 
 This module provides a function to load the stylesheets transparently
 with the right resources file.
@@ -12,7 +12,7 @@ First, start importing our module
 
     import qrainbowstyle
 
-Then you can get stylesheet provided by QDarkStyle for various Qt wrappers
+Then you can get stylesheet provided by QRainbowStyle for various Qt wrappers
 as shown below
 
 .. code-block:: python

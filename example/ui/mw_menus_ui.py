@@ -289,7 +289,7 @@ class Ui_MainWindow(object):
         self.menuMenuSubDelayed.setTitle(_translate("MainWindow", "Menu Sub Delayed"))
         self.menuMenuCheckale.setTitle(_translate("MainWindow", "Menu Checkable"))
         self.menuNew.setTitle(_translate("MainWindow", "New"))
-        self.menuAbout.setTitle(_translate("MainWindow", "About QDarkStyle"))
+        self.menuAbout.setTitle(_translate("MainWindow", "About QRainbowStyle"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.toolBar.setWindowTitle(_translate("MainWindow", "Tool bar actions"))
         self.toolBarDelayed.setWindowTitle(_translate("MainWindow", "Tool bar actions delayed"))

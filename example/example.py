@@ -63,7 +63,7 @@ SCREENSHOTS_PATH = qrainbowstyle.IMAGES_PATH
 
 
 def main():
-    """Execute QDarkStyle example."""
+    """Execute QRainbowStyle example."""
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--qt_from', default='qtpy', type=str,
@@ -131,8 +131,8 @@ def main():
 
     # create the application
     app = QApplication(sys.argv)
-    app.setOrganizationName('QDarkStyle')
-    app.setApplicationName('QDarkStyle Example')
+    app.setOrganizationName('QRainbowStyle')
+    app.setApplicationName('QRainbowStyle Example')
 
     style = ''
 
@@ -150,8 +150,8 @@ def main():
     ui = ui_main()
     ui.setupUi(window)
 
-    title = ("QDarkStyle Example - "
-             + "(QDarkStyle=v" + qrainbowstyle.__version__
+    title = ("QRainbowStyle Example - "
+             + "(QRainbowStyle=v" + qrainbowstyle.__version__
              + ", QtPy=v" + QTPY_VERSION
              + ", " + API_NAME + "=v" + API_VERSION
              + ", Qt=v" + QT_VERSION
@@ -267,7 +267,7 @@ def main():
 
 def _write_settings(window, QSettings):
     """Get window settings and write it into a file."""
-    settings = QSettings('QDarkStyle', 'QDarkStyle Example')
+    settings = QSettings('QRainbowStyle', 'QRainbowStyle Example')
     settings.setValue('pos', window.pos())
     settings.setValue('size', window.size())
     settings.setValue('state', window.saveState())
@@ -275,7 +275,7 @@ def _write_settings(window, QSettings):
 
 def _read_settings(window, reset, QSettings):
     """Read and set window settings from a file."""
-    settings = QSettings('QDarkStyle', 'QDarkStyle Example')
+    settings = QSettings('QRainbowStyle', 'QRainbowStyle Example')
 
     try:
         pos = settings.value('pos', window.pos())

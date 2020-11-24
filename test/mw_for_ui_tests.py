@@ -56,13 +56,13 @@ def get_main_window_app(qt_from='pyqt', no_dark=True):
 
     # create the application
     app = QApplication(sys.argv)
-    app.setOrganizationName('QDarkStyle')
-    app.setApplicationName('QDarkStyle Test')
+    app.setOrganizationName('QRainbowStyle')
+    app.setApplicationName('QRainbowStyle Test')
     # setup stylesheet
     app.setStyleSheet(style)
     # create main window
     window = QMainWindow()
-    window.setWindowTitle("QDarkStyle v." + qrainbowstyle.__version__ +
+    window.setWindowTitle("QRainbowStyle v." + qrainbowstyle.__version__ +
                           " - TEST - Using " + qt_from)
     # auto quit after 2s when testing on travis-ci
     if "--test" in sys.argv:

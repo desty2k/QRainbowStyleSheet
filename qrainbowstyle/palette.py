@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""QDarkStyle default palette."""
+"""QRainbowStyle default palette."""
 
 # Standard library imports
 from collections import OrderedDict

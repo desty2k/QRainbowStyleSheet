@@ -14,10 +14,11 @@ import qrainbowstyle
 
 sys.path.insert(0, abspath(dirname(abspath(__file__)) + '/..'))
 
+QRainbowStyle = qrainbowstyle
 
 def main():
-    """Execute QDarkStyle helper."""
-    parser = argparse.ArgumentParser(description="QDarkStyle helper. Use the option --all to report bugs",
+    """Execute QRainbowStyle helper."""
+    parser = argparse.ArgumentParser(description="QRainbowStyle helper. Use the option --all to report bugs",
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('-i', '--information', action='store_true',
                         help="Show information about environment")
