@@ -6,8 +6,8 @@ from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
 
-import qdarkstyle.windows
-import qdarkstyle
+import qrainbowstyle.windows
+import qrainbowstyle
 
 class WidgetGallery(QWidget):
     def __init__(self, parent=None):
@@ -200,16 +200,16 @@ def main():
     QtWidgets.QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 
     app = QtWidgets.QApplication(sys.argv)
-    app.setStyleSheet(qdarkstyle.load_stylesheet(style="cyberpunk"))
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="cyberpunk"))
 
     # Package options
-    # qdarkstyle.alignButtonsLeft()
-    # qdarkstyle.use_darwin_buttons()
-    qdarkstyle.setAppName("My new application")
-    qdarkstyle.setAppIcon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
+    # qrainbowstyle.alignButtonsLeft()
+    # qrainbowstyle.use_darwin_buttons()
+    qrainbowstyle.setAppName("My new application")
+    qrainbowstyle.setAppIcon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
 
     # Create frameless mainwindow
-    win = qdarkstyle.windows.FramelessMainWindow()
+    win = qrainbowstyle.windows.FramelessMainWindow()
 
     # Example of using signals
     win.closeClicked.connect(lambda: print("Close clicked!"))

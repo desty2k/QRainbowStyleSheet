@@ -13827,5 +13827,5 @@ def qCleanupResources():
 
 qInitResources()
 
-from qdarkstyle.palette import LightOrange
+from qrainbowstyle.palette import LightOrange
 palette = LightOrange

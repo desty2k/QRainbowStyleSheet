@@ -14110,5 +14110,5 @@ def qCleanupResources():
 
 qInitResources()
 
-from qdarkstyle.palette import Oceanic
+from qrainbowstyle.palette import Oceanic
 palette = Oceanic

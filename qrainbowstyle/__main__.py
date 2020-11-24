@@ -10,7 +10,7 @@ from os.path import abspath, dirname
 import helpdev
 
 # Local imports
-import qdarkstyle
+import qrainbowstyle
 
 sys.path.insert(0, abspath(dirname(abspath(__file__)) + '/..'))
 
@@ -32,7 +32,7 @@ def main():
                         help="Show all information options at once")
 
     parser.add_argument('--version', '-v', action='version',
-                        version='v{}'.format(qdarkstyle.__version__))
+                        version='v{}'.format(qrainbowstyle.__version__))
 
     # parsing arguments from command line
     args = parser.parse_args()
@@ -53,7 +53,7 @@ def main():
         info.update(helpdev.check_qt_abstractions())
 
     if args.dependencies or args.all:
-        info.update(helpdev.check_python_packages(packages='helpdev,qdarkstyle'))
+        info.update(helpdev.check_python_packages(packages='helpdev,qrainbowstyle'))
 
     helpdev.print_output(info)
 

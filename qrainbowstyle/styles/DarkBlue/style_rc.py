@@ -14024,5 +14024,5 @@ def qCleanupResources():
 
 qInitResources()
 
-from qdarkstyle.palette import DarkBlue
+from qrainbowstyle.palette import DarkBlue
 palette = DarkBlue

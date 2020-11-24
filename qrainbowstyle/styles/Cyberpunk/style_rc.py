@@ -13722,5 +13722,5 @@ def qCleanupResources():
 
 qInitResources()
 
-from qdarkstyle.palette import Cyberpunk
+from qrainbowstyle.palette import Cyberpunk
 palette = Cyberpunk

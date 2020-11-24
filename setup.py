@@ -10,8 +10,8 @@ import os
 from setuptools import find_packages, setup
 
 # Local imports
-from qdarkstyle import __doc__ as long_desc
-from qdarkstyle import __version__
+from qrainbowstyle import __doc__ as long_desc
+from qrainbowstyle import __version__
 
 install_requires = ['helpdev>=0.6.10', 'qtpy>=1.9']
 

@@ -42,20 +42,20 @@ class Titlebar(QFrame):
         self.layout.addWidget(self.appLogoButton)
 
         self.label = QtWidgets.QLabel(self)
-        self.label.setText(qdarkstyle.APP_NAME)
+        self.label.setText(qrainbowstyle.APP_NAME)
         self.label.setAlignment(Qt.AlignVCenter)
         self.label.mouseMoveEvent = self.mouseMoveEvent
         self.label.mousePressEvent = self.mousePressEvent
         self.label.mouseReleaseEvent = self.mouseReleaseEvent
         self.layout.addWidget(self.label)
-        if qdarkstyle.ALIGN_BUTTONS_LEFT:
+        if qrainbowstyle.ALIGN_BUTTONS_LEFT:
             self.layout.setAlignment(self.label, Qt.AlignCenter)
 
         self.layout.insertStretch(3)
 
         self.buttonsWidget = buttonsWidget(self)
 
-        if qdarkstyle.ALIGN_BUTTONS_LEFT:
+        if qrainbowstyle.ALIGN_BUTTONS_LEFT:
             self.layout.insertWidget(0, self.buttonsWidget)
         else:
             self.layout.addWidget(self.buttonsWidget)
@@ -79,7 +79,7 @@ class Titlebar(QFrame):
 
     @Slot()
     def on_btnMaximize_clicked(self):
-        if qdarkstyle.USE_DARWIN_BUTTONS:
+        if qrainbowstyle.USE_DARWIN_BUTTONS:
             if self.window.windowState() == Qt.WindowMaximized:
                 self.window.setWindowState(Qt.WindowNoState)
                 self.maxNormal = False
@@ -111,11 +111,11 @@ class Titlebar(QFrame):
         self.appLogoButton.setVisible(value)
 
     def showRestoreButton(self, value):
-        if not qdarkstyle.USE_DARWIN_BUTTONS:
+        if not qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsWidget.btnRestore.setVisible(value)
 
     def showMaximizeButton(self, value):
-        if not qdarkstyle.USE_DARWIN_BUTTONS:
+        if not qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsWidget.btnMaximize.setVisible(value)
 
     def setMenu(self, menu: QMenu):
@@ -189,5 +189,5 @@ class Titlebar(QFrame):
     def resizeEvent(self, event):
         """Handle resizing events"""
         self.buttonsWidget.btnMaximize.leaveEvent(None)
-        if not qdarkstyle.USE_DARWIN_BUTTONS:
+        if not qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsWidget.btnRestore.leaveEvent(None)

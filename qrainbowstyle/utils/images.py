@@ -19,9 +19,9 @@ from qtpy.QtGui import QIcon
 from qtpy.QtWidgets import QApplication
 
 # Local imports
-from qdarkstyle import (IMAGES_PATH, STYLES_SCSS_FILEPATH, QRC_FILEPATH, RC_PATH,
-                        SVG_PATH, BUTTONS_NT_PATH, BUTTONS_DARWIN_PATH)
-from qdarkstyle.palette import BasePalette
+from qrainbowstyle import (IMAGES_PATH, STYLES_SCSS_FILEPATH, QRC_FILEPATH, RC_PATH,
+                           SVG_PATH, BUTTONS_NT_PATH, BUTTONS_DARWIN_PATH)
+from qrainbowstyle.palette import BasePalette
 
 IMAGE_BLACKLIST = ['base_palette']
 
@@ -271,7 +271,7 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     _logger.info("RC links not in RC: %s" % rc_list)
 
 
-def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qdarkstyle', rc_path=RC_PATH, qrc_path=QRC_FILEPATH):
+def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qrainbowstyle', rc_path=RC_PATH, qrc_path=QRC_FILEPATH):
     """
     Generate the QRC file programmaticaly.
 
@@ -281,7 +281,7 @@ def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qdarkstyle', rc
         resource_prefix (str, optional): Prefix used in resources.
             Defaults to 'qss_icons'.
         style_prefix (str, optional): Prefix used to this style.
-            Defaults to 'qdarkstyle'.
+            Defaults to 'qrainbowstyle'.
         rc_path (str, optional): Source path
             Defaults to 'RC_PATH'
         qrc_path (str, optional): Output path

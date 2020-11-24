@@ -6,7 +6,7 @@
 import tempfile
 
 # Local imports
-from qdarkstyle.utils.scss import create_custom_qss, create_qss
+from qrainbowstyle.utils.scss import create_custom_qss, create_qss
 
 
 def test_create_qss():

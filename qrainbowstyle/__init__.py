@@ -10,7 +10,7 @@ First, start importing our module
 
 .. code-block:: python
 
-    import qdarkstyle
+    import qrainbowstyle
 
 Then you can get stylesheet provided by QDarkStyle for various Qt wrappers
 as shown below
@@ -18,24 +18,24 @@ as shown below
 .. code-block:: python
 
     # PySide
-    dark_stylesheet = qdarkstyle.load_stylesheet_pyside()
+    dark_stylesheet = qrainbowstyle.load_stylesheet_pyside()
     # PySide 2
-    dark_stylesheet = qdarkstyle.load_stylesheet_pyside2()
+    dark_stylesheet = qrainbowstyle.load_stylesheet_pyside2()
     # PyQt4
-    dark_stylesheet = qdarkstyle.load_stylesheet_pyqt()
+    dark_stylesheet = qrainbowstyle.load_stylesheet_pyqt()
     # PyQt5
-    dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
+    dark_stylesheet = qrainbowstyle.load_stylesheet_pyqt5()
 
 Alternatively, from environment variables provided by QtPy, PyQtGraph, Qt.Py
 
 .. code-block:: python
 
     # QtPy
-    dark_stylesheet = qdarkstyle.load_stylesheet()
+    dark_stylesheet = qrainbowstyle.load_stylesheet()
     # PyQtGraph
-    dark_stylesheet = qdarkstyle.load_stylesheet(qt_api=os.environ('PYQTGRAPH_QT_LIB'))
+    dark_stylesheet = qrainbowstyle.load_stylesheet(qt_api=os.environ('PYQTGRAPH_QT_LIB'))
     # Qt.Py
-    dark_stylesheet = qdarkstyle.load_stylesheet(qt_api=Qt.__binding__)
+    dark_stylesheet = qrainbowstyle.load_stylesheet(qt_api=Qt.__binding__)
 
 Finally, set your QApplication with it
 
@@ -52,7 +52,7 @@ import os
 import sys
 import logging
 import platform
-import qdarkstyle
+import qrainbowstyle
 
 __version__ = "0.1"
 
@@ -63,7 +63,7 @@ REPO_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 
 EXAMPLE_PATH = os.path.join(REPO_PATH, 'example')
 IMAGES_PATH = os.path.join(REPO_PATH, 'images')
-PACKAGE_PATH = os.path.join(REPO_PATH, 'qdarkstyle')
+PACKAGE_PATH = os.path.join(REPO_PATH, 'qrainbowstyle')
 
 QSS_PATH = os.path.join(PACKAGE_PATH, 'qss')
 RC_PATH = os.path.join(PACKAGE_PATH, 'rc')
@@ -112,22 +112,22 @@ APP_ICON_PATH = None
 
 def alignButtonsLeft():
     """Align titlebar buttons to left"""
-    qdarkstyle.ALIGN_BUTTONS_LEFT = True
+    qrainbowstyle.ALIGN_BUTTONS_LEFT = True
     _logger.info("Buttons will be aligned to left")
 
 
 def setAppName(name: str):
     """Set global app name which will be used in titlebars"""
-    qdarkstyle.APP_NAME = name
+    qrainbowstyle.APP_NAME = name
 
 
 def setAppIcon(icon_path: str):
     """Set path to app icon which will be used in titlebars"""
-    qdarkstyle.APP_ICON_PATH = icon_path
+    qrainbowstyle.APP_ICON_PATH = icon_path
 
 
 def use_darwin_buttons():
-    qdarkstyle.USE_DARWIN_BUTTONS = True
+    qrainbowstyle.USE_DARWIN_BUTTONS = True
     _logger.info("Darwin buttons style has been enabled")
 
 

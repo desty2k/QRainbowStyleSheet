@@ -3,7 +3,7 @@ from qtpy.QtGui import *
 from qtpy.QtCore import *
 from qtpy import QtWidgets, QtGui
 
-import qdarkstyle
+import qrainbowstyle
 
 
 class appLogoButton(QToolButton):
@@ -11,7 +11,7 @@ class appLogoButton(QToolButton):
     def __init__(self, parent):
         super(appLogoButton, self).__init__(parent)
 
-        self.setIcon(QtGui.QIcon(qdarkstyle.APP_ICON_PATH))
+        self.setIcon(QtGui.QIcon(qrainbowstyle.APP_ICON_PATH))
 
         self.setFixedSize(32, 32)
         self.setStyleSheet("border: none;")
@@ -25,7 +25,7 @@ class appLogoLabel(QLabel):
     def __init__(self, parent):
         super(appLogoLabel, self).__init__(parent)
 
-        self.setPixmap(QtGui.QPixmap(qdarkstyle.APP_ICON_PATH))
+        self.setPixmap(QtGui.QPixmap(qrainbowstyle.APP_ICON_PATH))
         self.setScaledContents(True)
         self.setFixedSize(25, 25)
         self.setStyleSheet("border: none;")

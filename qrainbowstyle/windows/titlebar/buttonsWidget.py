@@ -1,11 +1,11 @@
 from qtpy import QtWidgets, QtCore, QtGui
 
-import qdarkstyle
+import qrainbowstyle
 from .windowButtons import titleBarWindowsButton, titleBarButton
 
 
 def getButtons(parent, style=None):
-    if qdarkstyle.USE_DARWIN_BUTTONS:
+    if qrainbowstyle.USE_DARWIN_BUTTONS:
         return {"minimize": titleBarButton(QtGui.QIcon(":/qss_icons/rc/button_darwin_minimize.png"),
                                            QtGui.QIcon(":/qss_icons/rc/button_darwin_minimize_hover.png"),
                                            parent),
@@ -61,24 +61,24 @@ class buttonsWidget(QtWidgets.QWidget):
         self.btnRestore = btns["restore"]
         self.btnClose = btns["close"]
 
-        if qdarkstyle.ALIGN_BUTTONS_LEFT:
+        if qrainbowstyle.ALIGN_BUTTONS_LEFT:
             self.buttonsLayout.addWidget(self.btnClose)
-            if not qdarkstyle.USE_DARWIN_BUTTONS:
+            if not qrainbowstyle.USE_DARWIN_BUTTONS:
                 self.buttonsLayout.addWidget(self.btnRestore)
             self.buttonsLayout.addWidget(self.btnMaximize)
             self.buttonsLayout.addWidget(self.btnMinimize)
         else:
             self.buttonsLayout.addWidget(self.btnMinimize)
             self.buttonsLayout.addWidget(self.btnMaximize)
-            if not qdarkstyle.USE_DARWIN_BUTTONS:
+            if not qrainbowstyle.USE_DARWIN_BUTTONS:
                 self.buttonsLayout.addWidget(self.btnRestore)
             self.buttonsLayout.addWidget(self.btnClose)
 
         self.btnMinimize.setObjectName("btnMinimize")
         self.btnMaximize.setObjectName("btnMaximize")
-        if not qdarkstyle.USE_DARWIN_BUTTONS:
+        if not qrainbowstyle.USE_DARWIN_BUTTONS:
             self.btnRestore.setObjectName("btnRestore")
         self.btnClose.setObjectName("btnClose")
 
-        if qdarkstyle.USE_DARWIN_BUTTONS:
+        if qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsLayout.setSpacing(8)

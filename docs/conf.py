@@ -22,7 +22,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath('..'))
 
-import qdarkstyle
+import qrainbowstyle
 
 # -- General configuration ------------------------------------------------
 
@@ -66,7 +66,7 @@ author = 'Colin Duquesnoy'
 # built documents.
 #
 # The short X.Y version.
-version = qdarkstyle.__version__
+version = qrainbowstyle.__version__
 # The full version, including alpha/beta/rc tags.
 release = ''
 
@@ -160,7 +160,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'qdarkstyle', 'QDarkStyle Documentation',
+    (master_doc, 'qrainbowstyle', 'QDarkStyle Documentation',
      [author], 1)
 ]
 

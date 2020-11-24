@@ -33,14 +33,14 @@ import argparse
 from subprocess import call
 
 # Third party imports
-import qdarkstyle
+import qrainbowstyle
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 # Local imports
-from qdarkstyle import PACKAGE_PATH, STYLES_PATH, QRC_FILE, QSS_FILE
-from qdarkstyle.utils.images import create_images, create_palette_image, generate_qrc_file, create_titlebar_images
-from qdarkstyle.utils.scss import create_qss
+from qrainbowstyle import PACKAGE_PATH, STYLES_PATH, QRC_FILE, QSS_FILE
+from qrainbowstyle.utils.images import create_images, create_palette_image, generate_qrc_file, create_titlebar_images
+from qrainbowstyle.utils.scss import create_qss
 
 
 class QSSFileHandler(FileSystemEventHandler):
@@ -62,7 +62,7 @@ def run_process(args):
     """Process qrc files."""
 
     import inspect
-    import qdarkstyle.palette as source
+    import qrainbowstyle.palette as source
 
     palettes = []
     for name, obj in inspect.getmembers(source):
@@ -133,7 +133,7 @@ def run_process(args):
             py_file_pyqtgraph = 'pyqtgraph_' + filename + ext
 
             # append palette used to generate this file
-            used_palette = "\nfrom qdarkstyle.palette import " + palette.__name__ + "\npalette = " + palette.__name__ + "\n"
+            used_palette = "\nfrom qrainbowstyle.palette import " + palette.__name__ + "\npalette = " + palette.__name__ + "\n"
 
             # calling external commands
             if args.create in ['pyqt', 'pyqtgraph', 'all']:
@@ -239,7 +239,7 @@ def main(arguments):
 
 if __name__ == '__main__':
     from qtpy import QtCore
-    logger = qdarkstyle.utils.OutputLogger()
-    sys.excepthook = qdarkstyle.utils.catch_exceptions
-    QtCore.qInstallMessageHandler(qdarkstyle.utils.qt_message_handler)
+    logger = qrainbowstyle.utils.OutputLogger()
+    sys.excepthook = qrainbowstyle.utils.catch_exceptions
+    QtCore.qInstallMessageHandler(qrainbowstyle.utils.qt_message_handler)
     sys.exit(main(sys.argv[1:]))
