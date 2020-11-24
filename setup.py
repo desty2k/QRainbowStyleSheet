@@ -36,14 +36,14 @@ def remove_all(dir_path, patterns='*.pyc'):
 
 
 setup(
-    name='QDarkStyle',
+    name='QRainbowStyle',
     version=__version__,
     packages=find_packages(),
-    url='https://github.com/ColinDuquesnoy/QDarkStyleSheet',
+    url='https://github.com/desty2k/QRainbowStyleSheet',
     license='MIT',
-    author='Colin Duquesnoy',
-    author_email='colin.duquesnoy@gmail.com',
-    description='The most complete dark stylesheet for Python and Qt applications',
+    author='Wojciech Wentland',
+    author_email='wojciech.wentland@int.pl',
+    description='The most complete customizable stylesheet for Python and Qt applications',
     long_description=long_desc,
     long_description_content_type='text/x-rst',
     classifiers=[
@@ -65,7 +65,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Application Frameworks'
     ],
     zip_safe=False,  # don't use eggs
-    entry_points={"console_scripts": ["qdarkstyle=qdarkstyle.__main__:main"]},
+    entry_points={"console_scripts": ["qrainbowstyle=qrainbowstyle.__main__:main"]},
     extras_require=extras_require,
     install_requires=install_requires,
     project_urls={
