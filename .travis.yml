@@ -1,5 +1,8 @@
+os: linux
 dist: xenial
 language: python
+
+cache: pip
 
 services:
   # to be able to display
@@ -8,7 +11,7 @@ services:
 before_install:
   - sudo apt-get update
 
-matrix:
+jobs:
   include:
 
     - python: 3.6
