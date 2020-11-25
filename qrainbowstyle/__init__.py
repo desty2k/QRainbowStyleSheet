@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""QRainbowStyle is a dark stylesheet for Python and Qt applications.
+"""QRainbowStyle is a fully customizable stylesheet for Python and Qt applications.
 
-This module provides a function to load the stylesheets transparently
-with the right resources file.
+This module provides a function to load pre-compiled stylesheets. To generate your own
+style based on custom color palette clone package from project homepage.
+
+qrainbowstyle.windows module adds frameless windows, which can replace original QMainWindow,
+QDialog and QMessageBox. Frameless windows support resizing, moving, snapping to edges.
+You can set global icon and app name for all windows you create in your app. In frameless
+mainwindow it is also possible to set custom QMenu to QToolButton with app icon.
 
 First, start importing our module
 
@@ -18,30 +23,64 @@ as shown below
 .. code-block:: python
 
     # PySide
-    dark_stylesheet = qrainbowstyle.load_stylesheet_pyside()
+    stylesheet = qrainbowstyle.load_stylesheet_pyside(style='darkblue')
     # PySide 2
-    dark_stylesheet = qrainbowstyle.load_stylesheet_pyside2()
+    stylesheet = qrainbowstyle.load_stylesheet_pyside2(style='darkblue')
     # PyQt4
-    dark_stylesheet = qrainbowstyle.load_stylesheet_pyqt()
+    stylesheet = qrainbowstyle.load_stylesheet_pyqt(style='darkblue')
     # PyQt5
-    dark_stylesheet = qrainbowstyle.load_stylesheet_pyqt5()
+    stylesheet = qrainbowstyle.load_stylesheet_pyqt5(style='darkblue')
 
 Alternatively, from environment variables provided by QtPy, PyQtGraph, Qt.Py
 
 .. code-block:: python
 
     # QtPy
-    dark_stylesheet = qrainbowstyle.load_stylesheet()
+    stylesheet = qrainbowstyle.load_stylesheet(style='darkblue')
     # PyQtGraph
-    dark_stylesheet = qrainbowstyle.load_stylesheet(qt_api=os.environ('PYQTGRAPH_QT_LIB'))
+    stylesheet = qrainbowstyle.load_stylesheet(style='darkblue', qt_api=os.environ('PYQTGRAPH_QT_LIB'))
     # Qt.Py
-    dark_stylesheet = qrainbowstyle.load_stylesheet(qt_api=Qt.__binding__)
+    stylesheet = qrainbowstyle.load_stylesheet(style='darkblue', qt_api=Qt.__binding__)
 
 Finally, set your QApplication with it
 
 .. code-block:: python
 
-    app.setStyleSheet(dark_stylesheet)
+    app.setStyleSheet(stylesheet)
+
+To load frameless window in your app import both qrainbowstyle and qrainbowstyle.windows modules
+
+.. code-block:: python
+
+    import qrainbowstyle
+    import qrainbowstyle.windows
+
+Initialize qt app and load choosen stylesheet.
+Next, create instances of frameless window and your master widget with content you want to show.
+
+.. code-block:: python
+
+    # Create app and load selected stylesheet
+    app = QtWidgets.QApplication(sys.argv)
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="cyberpunk"))
+
+    # Package options
+    # qrainbowstyle.align_buttons_left()      # align titlebar buttons to left side
+    # qrainbowstyle.use_darwin_buttons()      # use darwin style buttons
+    qrainbowstyle.setAppName("My new application")  # set global name for application
+    # qrainbowstyle.setAppIcon("icon.ico")    # set global app icon
+
+    # Create frameless mainwindow
+    win = qrainbowstyle.windows.FramelessMainWindow()
+
+    # Create content widget and pass reference to main window
+    widget = MasterWidget(win)
+
+    # Add widget to main window and show it
+    win.addContentWidget(widget)
+    win.show()
+
+    sys.exit(app.exec())
 
 Enjoy!
 

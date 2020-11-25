@@ -55,8 +55,6 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -64,12 +62,13 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Topic :: Software Development :: Libraries :: Application Frameworks'
     ],
+    python_requires='>=3.5',
     zip_safe=False,  # don't use eggs
     entry_points={"console_scripts": ["qrainbowstyle=qrainbowstyle.__main__:main"]},
     extras_require=extras_require,
     install_requires=install_requires,
     project_urls={
-        "Issues": "https://github.com/ColinDuquesnoy/QDarkStyleSheet/issues",
-        "Docs": "https://qdarkstylesheet.readthedocs.io/en/stable",
+        "Issues": "https://github.com/desty2k/QRainbowStyleSheet/issues",
+        "Docs": "https://qrainbowstylesheet.readthedocs.io/en/stable/",
     }
 )
