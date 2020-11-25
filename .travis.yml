@@ -15,13 +15,13 @@ jobs:
   include:
 
     - python: 3.6
-      env: TOXENV=py36-pyqt5
+      env: TOXENV=py36-pyqt5-build
     - python: 3.6
-      env: TOXENV=py36-pyside2
+      env: TOXENV=py36-pyside2-build
     - python: 3.9
-      env: TOXENV=py39-pyqt5
+      env: TOXENV=py39-pyqt5-build
     - python: 3.9
-      env: TOXENV=py39-pyside2
+      env: TOXENV=py39-pyside2-build
 
     - python: 3.9
       env: TOXENV=py39-lint
