@@ -1,5 +1,5 @@
-from qtpy import QtCore, QtWidgets
-from qtpy.QtWidgets import *
+from qtpy.QtCore import Qt
+from qtpy.QtWidgets import (QGridLayout, QLabel, QStyle, QDialogButtonBox, QSizePolicy)
 
 from .framelessdialog import FramelessDialog
 
@@ -17,10 +17,10 @@ class FramelessMessageBox(FramelessDialog):
         self.grid.setHorizontalSpacing(0)
 
         self.iconLabel = QLabel(self)
-        self.iconLabel.setSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        self.iconLabel.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         self.iconLabel.setScaledContents(True)
         self.setIcon(QStyle.SP_MessageBoxInformation)
-        self.grid.addWidget(self.iconLabel, 0, 0, 2, 1, QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
+        self.grid.addWidget(self.iconLabel, 0, 0, 2, 1, Qt.AlignTop | Qt.AlignLeft)
 
         self.label = QLabel(self)
         self.label.setWordWrap(True)

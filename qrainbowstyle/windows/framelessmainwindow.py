@@ -1,7 +1,6 @@
-from qtpy import QtCore, QtWidgets, QtGui
-from qtpy.QtWidgets import *
-from qtpy.QtGui import *
-from qtpy.QtCore import *
+from qtpy.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QSizePolicy, QSizeGrip, QMenu
+from qtpy.QtGui import QMouseEvent
+from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot
 
 from .titlebar import Titlebar
 
@@ -63,8 +62,8 @@ class FramelessMainWindow(QMainWindow):
         self._contentWidgetLayout.setContentsMargins(6, 6, 6, 6)
         self._centralLayout.addWidget(self._contentWidget)
 
-        self._sizegrip = QtWidgets.QSizeGrip(self._centralWidget)
-        self._centralLayout.addWidget(self._sizegrip, 0, QtCore.Qt.AlignBottom | QtCore.Qt.AlignRight)
+        self._sizegrip = QSizeGrip(self._centralWidget)
+        self._centralLayout.addWidget(self._sizegrip, 0, Qt.AlignBottom | Qt.AlignRight)
 
         self._centralWidget.setLayout(self._centralLayout)
         self.setCentralWidget(self._centralWidget)
@@ -133,7 +132,7 @@ class FramelessMainWindow(QMainWindow):
             self._bar.setVisible(False)
             self._separator.setVisible(False)
 
-    def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
+    def mousePressEvent(self, event: QMouseEvent) -> None:
         if self.windowState() == Qt.WindowFullScreen:
             ypos = event.globalY()
             if ypos <= 5:

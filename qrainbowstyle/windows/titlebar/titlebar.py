@@ -1,10 +1,16 @@
-from .appLogoButton import *
-from .buttonsWidget import *
+from qtpy.QtWidgets import QApplication, QFrame, QMenu, QLabel, QHBoxLayout, QWidget
+from qtpy.QtCore import Signal, QPoint, QMetaObject, QRect, Slot, Qt
+from qtpy.QtGui import QPalette
+
+from .appLogoButton import appLogoLabel, appLogoButton
+from .buttonsWidget import buttonsWidget
+
+import qrainbowstyle
 
 
-def getWorkspace() -> QtCore.QRect:
+def getWorkspace() -> QRect:
     """Returns workspace area"""
-    return QtWidgets.QApplication.desktop().availableGeometry()
+    return QApplication.desktop().availableGeometry()
 
 
 class Titlebar(QFrame):
@@ -26,9 +32,9 @@ class Titlebar(QFrame):
         self.setAutoFillBackground(True)
         self.setFixedHeight(45)
         self.setContentsMargins(0, 0, 0, 0)
-        self.setBackgroundRole(QtGui.QPalette.Highlight)
+        self.setBackgroundRole(QPalette.Highlight)
 
-        self.layout = QtWidgets.QHBoxLayout(self)
+        self.layout = QHBoxLayout(self)
         self.layout.setAlignment(Qt.AlignVCenter)
         self.layout.setAlignment(Qt.AlignLeft)
         self.layout.setSpacing(2)
@@ -41,7 +47,7 @@ class Titlebar(QFrame):
         self.appLogoButton = appLogoButton(self)
         self.layout.addWidget(self.appLogoButton)
 
-        self.label = QtWidgets.QLabel(self)
+        self.label = QLabel(self)
         self.label.setText(qrainbowstyle.APP_NAME)
         self.label.setAlignment(Qt.AlignVCenter)
         self.label.mouseMoveEvent = self.mouseMoveEvent

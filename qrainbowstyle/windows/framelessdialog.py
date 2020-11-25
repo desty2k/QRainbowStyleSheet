@@ -1,20 +1,21 @@
-from qtpy import QtWidgets, QtCore, QtGui
+from qtpy.QtCore import Signal, Qt
+from qtpy.QtWidgets import QDialog, QVBoxLayout
 
 from .titlebar import Titlebar
 
 
-class FramelessDialog(QtWidgets.QDialog):
-    closed = QtCore.Signal()
+class FramelessDialog(QDialog):
+    closed = Signal()
     """FramelessDialog documentation"""
 
     def __init__(self, parent=None):
         super(FramelessDialog, self).__init__(parent)
         self.resize(300, 500)
 
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.FramelessWindowHint)
 
-        self.layout = QtWidgets.QVBoxLayout(self)
-        self.layout.setAlignment(QtCore.Qt.AlignTop)
+        self.layout = QVBoxLayout(self)
+        self.layout.setAlignment(Qt.AlignTop)
         self.layout.setContentsMargins(11, 5, 11, 11)
         self.bar = Titlebar(self)
         self.layout.addWidget(self.bar)
