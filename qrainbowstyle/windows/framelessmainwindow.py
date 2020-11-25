@@ -23,12 +23,12 @@ class FramelessMainWindow(QMainWindow):
 
         self._contentWidgets = []
 
-        self.setWindowFlags(Qt.Window |
-                            Qt.FramelessWindowHint |
-                            Qt.WindowSystemMenuHint |
-                            Qt.WindowCloseButtonHint |
-                            Qt.WindowMinimizeButtonHint |
-                            Qt.WindowMaximizeButtonHint)
+        self.setWindowFlags(Qt.Window
+                            | Qt.FramelessWindowHint
+                            | Qt.WindowSystemMenuHint
+                            | Qt.WindowCloseButtonHint
+                            | Qt.WindowMinimizeButtonHint
+                            | Qt.WindowMaximizeButtonHint)
 
         self.setAttribute(Qt.WA_TranslucentBackground)
 
