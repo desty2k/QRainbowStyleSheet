@@ -13,11 +13,6 @@ before_install:
 
 jobs:
   include:
-    - python: 2.7
-      env: TOXENV=py27-pyqt-build
-    - python: 2.7
-      env: TOXENV=py27-pyside-build
-
     - python: 3.6
       env: TOXENV=py36-pyqt5-build
     - python: 3.6
