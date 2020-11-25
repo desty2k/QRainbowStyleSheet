@@ -160,9 +160,9 @@ def create_palette_image(base_svg_path=SVG_PATH, path=IMAGES_PATH,
     palette_png_path = os.path.join(path, 'palette.png')
 
     _logger.info("Creating palette image ...")
-    _logger.info("Base SVG: %s" % base_palette_svg_path)
-    _logger.info("To SVG: %s" % palette_svg_path)
-    _logger.info("To PNG: %s" % palette_png_path)
+    _logger.info("Base SVG: %s", base_palette_svg_path)
+    _logger.info("To SVG: %s", palette_svg_path)
+    _logger.info("To PNG: %s", palette_png_path)
 
     with open(base_palette_svg_path, 'r') as fh:
         data = fh.read()
@@ -208,9 +208,9 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     }
 
     _logger.info("Creating images ...")
-    _logger.info("SVG folder: %s" % base_svg_path)
-    _logger.info("TMP folder: %s" % temp_dir)
-    _logger.info("PNG folder: %s" % rc_path)
+    _logger.info("SVG folder: %s", base_svg_path)
+    _logger.info("TMP folder: %s", temp_dir)
+    _logger.info("PNG folder: %s", rc_path)
 
     num_svg = len(svg_fnames)
     num_png = 0
@@ -223,7 +223,7 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     for height, ext in heights.items():
         width = height
 
-        _logger.debug(" Size HxW (px): %s X %s" % (height, width))
+        _logger.debug(" Size HxW (px): %s X %s", (height, width))
 
         for svg_fname in svg_fnames:
             svg_name = svg_fname.split('.')[0]
@@ -263,12 +263,12 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
                 _logger.debug("  Ignored blacklist: %s"
                               % os.path.basename(svg_fname))
 
-    _logger.info("# SVG files: %s" % num_svg)
-    _logger.info("# SVG ignored: %s" % num_ignored)
-    _logger.info("# PNG files: %s" % num_png)
-    _logger.info("# RC links: %s" % num_rc_list)
-    _logger.info("# RC links not in RC: %s" % len(rc_list))
-    _logger.info("RC links not in RC: %s" % rc_list)
+    _logger.info("# SVG files: %s", num_svg)
+    _logger.info("# SVG ignored: %s", num_ignored)
+    _logger.info("# PNG files: %s", num_png)
+    _logger.info("# RC links: %s", num_rc_list)
+    _logger.info("# RC links not in RC: %s", len(rc_list))
+    _logger.info("RC links not in RC: %s", rc_list)
 
 
 def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qrainbowstyle', rc_path=RC_PATH, qrc_path=QRC_FILEPATH):
@@ -291,10 +291,10 @@ def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qrainbowstyle',
     files = []
 
     _logger.info("Generating QRC file ...")
-    _logger.info("Resource prefix: %s" % resource_prefix)
-    _logger.info("Style prefix: %s" % style_prefix)
+    _logger.info("Resource prefix: %s", resource_prefix)
+    _logger.info("Style prefix: %s", style_prefix)
 
-    _logger.info("Searching in: %s" % rc_path)
+    _logger.info("Searching in: %s", rc_path)
 
     # Search by png images
     for fname in sorted(os.listdir(rc_path)):
@@ -305,7 +305,7 @@ def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qrainbowstyle',
                    + '\n'.join(files)
                    + TEMPLATE_QRC_FOOTER.format(style_prefix=style_prefix))
 
-    _logger.info("Writing in: %s" % qrc_path)
+    _logger.info("Writing in: %s", qrc_path)
 
     # Write qrc file
     with open(qrc_path, 'w') as fh:
