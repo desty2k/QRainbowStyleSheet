@@ -139,7 +139,10 @@ def _main(args):
     from dw_containers_no_tabs_ui import Ui_DockWidget as ui_containers_no_tabs
 
     # create the application
-    app = QApplication(sys.argv)
+    if not QApplication.instance():
+        app = QApplication(sys.argv)
+    else:
+        app = QApplication.instance()
     app.setOrganizationName('QRainbowStyle')
     app.setApplicationName('QRainbowStyle Example')
 
