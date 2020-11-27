@@ -73,7 +73,7 @@ def main(arguments):
             try:
                 call(['pyuic4', '--import-from=qrainbowstyle', ui_file, '-o', py_file_pyqt])
             except Exception as er:
-                print("You must install pyuic4 %s" % str(er))
+                print("You must install pyuic4 %s", str(er))
             else:
                 print("Compiling using pyuic4 ...")
 
@@ -81,7 +81,7 @@ def main(arguments):
             try:
                 call(['pyuic5', '--import-from=qrainbowstyle', ui_file, '-o', py_file_pyqt5])
             except Exception as er:
-                print("You must install pyuic5 %s" % str(er))
+                print("You must install pyuic5 %s", str(er))
             else:
                 print("Compiling using pyuic5 ...")
 
@@ -89,7 +89,7 @@ def main(arguments):
             try:
                 call(['pyside-uic', '--import-from=qrainbowstyle', ui_file, '-o', py_file_pyside])
             except Exception as er:
-                print("You must install pyside-uic %s" % str(er))
+                print("You must install pyside-uic %s", str(er))
             else:
                 print("Compiling using pyside-uic ...")
 
@@ -97,7 +97,7 @@ def main(arguments):
             try:
                 call(['pyside2-uic', '--import-from=qrainbowstyle', ui_file, '-o', py_file_pyside2])
             except Exception as er:
-                print("You must install pyside2-uic %s" % str(er))
+                print("You must install pyside2-uic %s", str(er))
             else:
                 print("Compiling using pyside2-uic ...")
 

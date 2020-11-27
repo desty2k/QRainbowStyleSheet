@@ -1,3 +1,3 @@
-from .framelessmessagebox import *
-from .framelessmainwindow import *
-from .framelessdialog import *
+from .framelessmessagebox import FramelessMessageBox
+from .framelessmainwindow import FramelessMainWindow
+from .framelessdialog import FramelessDialog

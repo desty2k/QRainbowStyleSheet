@@ -3,6 +3,7 @@
 
 dist/
 build/
+docs-backup/
 
 *.egg-info/
 __pycache__

@@ -1,13 +1,21 @@
-from qtpy import QtCore, QtWidgets, QtGui
-from qtpy.QtWidgets import *
-from qtpy.QtGui import *
-from qtpy.QtCore import *
+from qtpy.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QSizePolicy, QSizeGrip, QMenu
+from qtpy.QtGui import QMouseEvent
+from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot
 
 from .titlebar import Titlebar
 
 
 class FramelessMainWindow(QMainWindow):
-    """FramelessMainWindow documentation"""
+    """Frameless main window
+        Args:
+            parent (QWidget, optional): Parent widget.
+
+        Usage:
+            1. Create FramelessMainWindow instantion
+            2. Create instantion of your master widget, pass reference to FramelessMainWindow as argument to keep access to signals and slots
+            3. Use addContentWidget(your_master_widget) to add widget to window
+            4. Show window using show()
+    """
 
     def __init__(self, parent=None):
         super(FramelessMainWindow, self).__init__(parent)
@@ -44,12 +52,6 @@ class FramelessMainWindow(QMainWindow):
         self._centralLayout.addWidget(self._bar)
         self._centralLayout.setAlignment(self._bar, Qt.AlignVCenter)
 
-        # self._separator = QFrame(self)
-        # self._separator.setFrameShape(QFrame.HLine)
-        # self._separator.setFrameShadow(QFrame.Sunken)
-        # self._separator.setObjectName("titlebar_Separator")
-        # self._centralLayout.addWidget(self._separator)
-
         self._centralLayout.addSpacing(3)
 
         self._contentWidget = QWidget(self)
@@ -60,8 +62,8 @@ class FramelessMainWindow(QMainWindow):
         self._contentWidgetLayout.setContentsMargins(6, 6, 6, 6)
         self._centralLayout.addWidget(self._contentWidget)
 
-        self._sizegrip = QtWidgets.QSizeGrip(self._centralWidget)
-        self._centralLayout.addWidget(self._sizegrip, 0, QtCore.Qt.AlignBottom | QtCore.Qt.AlignRight)
+        self._sizegrip = QSizeGrip(self._centralWidget)
+        self._centralLayout.addWidget(self._sizegrip, 0, Qt.AlignBottom | Qt.AlignRight)
 
         self._centralWidget.setLayout(self._centralLayout)
         self.setCentralWidget(self._centralWidget)
@@ -79,24 +81,46 @@ class FramelessMainWindow(QMainWindow):
         QMetaObject.connectSlotsByName(self)
 
     def showSizeGrip(self, value: bool):
+        """Show or hide size grip
+            Args:
+                value (bool, required): To show or to hide.
+        """
         self._sizegrip.setVisible(value)
 
     def setMenu(self, menu: QMenu):
+        """Set menu for app icon
+            Args:
+                menu (QMenu, required): QMenu to show.
+        """
         self._bar.setMenu(menu)
 
     def setTitlebarHeight(self, height: int):
-        """Set titlebar height"""
+        """Set titlebar height
+            Args:
+                height (int, required): Titlebar height.
+        """
         self._bar.setTitlebarHeight(height)
 
     def addContentWidget(self, widget: QWidget):
+        """Add master widget to window
+            Args:
+                widget (QWidget, required): Content widget.
+        """
         self._contentWidgets.append(widget)
         self._contentWidgetLayout.addWidget(widget)
 
     def insertContentWidget(self, index, widget: QWidget):
+        """Insert master widget to window at pos
+            Args:
+                index (int, required): Index
+                widget (QWidget, required): Content widget.
+
+        """
         self._contentWidgets.insert(index, widget)
         self._contentWidgetLayout.insertWidget(index, widget)
 
     def showFullScreen(self) -> None:
+        """Show app in fullscreen mode"""
         self.setWindowState(Qt.WindowFullScreen)
 
         firstshow_timer = QTimer(self)
@@ -108,7 +132,7 @@ class FramelessMainWindow(QMainWindow):
             self._bar.setVisible(False)
             self._separator.setVisible(False)
 
-    def mousePressEvent(self, event: QtGui.QMouseEvent) -> None:
+    def mousePressEvent(self, event: QMouseEvent) -> None:
         if self.windowState() == Qt.WindowFullScreen:
             ypos = event.globalY()
             if ypos <= 5:

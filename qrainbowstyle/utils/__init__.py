@@ -19,16 +19,10 @@ def getWorkspace() -> QtCore.QRect:
 
 
 class OutputLogger(object):
-    """docstring for OutputLogger"""
+    """Logging cocfiguration class"""
 
     def __init__(self):
         super(OutputLogger, self).__init__()
-        try:
-            if len(open("labnet.log").readlines()) >= 300:
-                open("labnet.log", "w").close()
-        except Exception:
-            pass
-        import logging
         logging.basicConfig(
             level=logging.NOTSET,
             format="%(asctime)s [%(threadName)s] [%(name)s] [%(levelname)s] %(message)s",
@@ -39,6 +33,7 @@ class OutputLogger(object):
 
 
 def qt_message_handler(mode, context, message):
+    """Qt errors handler"""
     if mode == QtCore.QtInfoMsg:
         mode = 20
     elif mode == QtCore.QtWarningMsg:
@@ -48,11 +43,11 @@ def qt_message_handler(mode, context, message):
     elif mode == QtCore.QtFatalMsg:
         mode = 50
     else:
-        mode = 'Debug'
+        mode = 20
     _logger.log(mode, "%s (%s:%d, %s)" % (message, context.file, context.line, context.file))
 
 
 def catch_exceptions(t, val, tb):
-    oldhook = sys.excepthook
+    """Replaces sys.excepthook to catch and log warnings and errors"""
     trace = "".join(traceback.format_exception(t, val, tb))
     _logger.critical(trace)

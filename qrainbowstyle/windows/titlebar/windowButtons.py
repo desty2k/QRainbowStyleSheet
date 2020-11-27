@@ -1,7 +1,6 @@
-from qtpy.QtWidgets import *
-from qtpy.QtGui import *
-from qtpy.QtCore import *
-from qtpy import QtGui, QtCore, QtWidgets
+from qtpy.QtWidgets import QToolButton, QSizePolicy
+from qtpy.QtGui import QRegion, QIcon
+from qtpy.QtCore import QRect, QSize, QEvent
 
 
 class titleBarButton(QToolButton):
@@ -9,7 +8,7 @@ class titleBarButton(QToolButton):
     def __init__(self, icon: QIcon, hovericon: QIcon, parent=None):
         super(titleBarButton, self).__init__(parent)
 
-        self.setMask(QtGui.QRegion(QRect(0, 0, 21, 21), QtGui.QRegion.Ellipse))
+        self.setMask(QRegion(QRect(0, 0, 21, 21), QRegion.Ellipse))
         self.setMinimumSize(20, 20)
         self.setIconSize(QSize(20, 20))
         self.setAutoFillBackground(True)
@@ -19,10 +18,10 @@ class titleBarButton(QToolButton):
 
         self.setIcon(self.icon)
 
-    def enterEvent(self, event: QtCore.QEvent) -> None:
+    def enterEvent(self, event: QEvent) -> None:
         self.setIcon(self.hovericon)
 
-    def leaveEvent(self, event: QtCore.QEvent) -> None:
+    def leaveEvent(self, event: QEvent) -> None:
         self.setIcon(self.icon)
 
 
@@ -48,7 +47,7 @@ class titleBarWindowsButton(QToolButton):
 
         self.setIcon(self.icon)
 
-        sizepolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizepolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizepolicy.setHorizontalStretch(0)
         sizepolicy.setVerticalStretch(0)
         sizepolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
@@ -57,9 +56,9 @@ class titleBarWindowsButton(QToolButton):
     def getIcons(self):
         return self.icon, self.hoverIcon
 
-    def enterEvent(self, event: QtCore.QEvent) -> None:
+    def enterEvent(self, event: QEvent) -> None:
         if self.hoverIcon:
             self.setIcon(self.hoverIcon)
 
-    def leaveEvent(self, event: QtCore.QEvent) -> None:
+    def leaveEvent(self, event: QEvent) -> None:
         self.setIcon(self.icon)

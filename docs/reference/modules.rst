@@ -1,7 +1,7 @@
-qdarkstyle
-==========
+qrainbowstyle
+==============
 
 .. toctree::
    :maxdepth: 4
 
-   qdarkstyle
+   qrainbowstyle
