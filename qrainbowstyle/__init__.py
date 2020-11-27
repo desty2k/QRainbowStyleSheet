@@ -276,18 +276,37 @@ def _load_stylesheet(qt_api='', style=''):
         stylesheet = ""
         raise FileNotFoundError("Style " + style + " does not exists")
 
-    _logger.debug("Loading style from directory: " + style_dir)
+    # resource cleaning
+    if "style_rc" in sys.modules:
+        _logger.info("Found already imported style in sys.modules")
+        # use qCleanupResources to remove all resource files
+        global style_rc
+        style_rc.qCleanupResources()
 
-    # set style directory
-    package_dir = os.path.join(STYLES_PATH, style_dir)
-    os.chdir(package_dir)
+        # remove imported modules
+        for x in [module for module in sys.modules if module.startswith("style_rc")]:
+            del sys.modules[x]
+            del style_rc
 
-    # Import style, python 3.5+
-    sys.path.append(package_dir)
+        # remove path to previously imported style from sys.path
+        for stylepath in [path for path in sys.path if any(style for style in get_available_styles() if style in path)]:
+            sys.path.remove(stylepath)
+        _logger.debug("Removed all imported styles")
+
     try:
+        _logger.debug("Loading style from directory: " + style_dir)
+
+        # set style directory
+        package_dir = os.path.join(STYLES_PATH, style_dir)
+        os.chdir(package_dir)
+
+        # append directory to sys.path and import style_rc
+        sys.path.append(package_dir)
         import style_rc
+
+        # get palette
         palette = style_rc.palette
-    except Exception as e:
+    except FileExistsError:
         raise FileNotFoundError("Missing style_rc.py file")
 
     _logger.info("Style resources imported successfully")
