@@ -47,8 +47,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.ifconfig',
               'sphinx.ext.viewcode',
               'sphinx.ext.githubpages',
-              'sphinx.ext.napoleon',
-              'sphinx.ext.imgconverter']
+              'sphinx.ext.napoleon']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -105,12 +104,21 @@ autodoc_inherit_docstrings = False
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
+    # The paper size ('letterpaper' or 'a4paper').
+    #
+    # 'papersize': 'letterpaper',
+
+    # The font size ('10pt', '11pt' or '12pt').
+    #
+    # 'pointsize': '10pt',
+
     # Additional stuff for the LaTeX preamble.
-    'preamble': "".join((
-        '\DeclareUnicodeCharacter{00A0}{ }',  # NO-BREAK SPACE
-        '\DeclareUnicodeCharacter{251C}{+}',  # BOX DRAWINGS LIGHT VERTICAL AND RIGHT
-        '\DeclareUnicodeCharacter{2514}{+}',  # BOX DRAWINGS LIGHT UP AND RIGHT
-    )),
+    #
+    # 'preamble': '',
+
+    # Latex figure (float) alignment
+    #
+    # 'figure_align': 'htbp',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
