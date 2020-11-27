@@ -46,6 +46,7 @@ import os
 import sys
 import platform
 import time
+import random
 
 # Make the example runnable without the need to install and include ui
 sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/..'))
@@ -143,7 +144,6 @@ def _main(args):
     app.setOrganizationName('QRainbowStyle')
     app.setApplicationName('QRainbowStyle Example')
 
-    import random
     styles = qrainbowstyle.get_available_styles()
 
     style = args.style
@@ -251,7 +251,9 @@ def _main(args):
     # Issues #9120, #9121 on Spyder
     qstatusbar = QStatusBar()
     qstatusbar.addWidget(QLabel('Issue Spyder #9120, #9121 - background not matching.'))
-    qstatusbar.addWidget(QPushButton('OK'))
+    qstatusbarbutton = QPushButton('Change style')
+    qstatusbar.addWidget(qstatusbarbutton)
+    qstatusbarbutton.clicked.connect(lambda: change_style(app))
 
     # Add info also in status bar for screenshots get it
     qstatusbar.addWidget(QLabel('INFO: ' + title))
@@ -274,6 +276,13 @@ def _main(args):
 
     app.exec_()
     _write_settings(window, QSettings)
+
+
+def change_style(app):
+    """Set random style"""
+    styles = qrainbowstyle.get_available_styles()
+    style = styles[random.randint(0, len(styles)) - 1]
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style=style))
 
 
 def _write_settings(window, QSettings):
