@@ -363,7 +363,7 @@ request.
 
 If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
 
-.. |Build Status| image:: https://travis-ci.org/desty2k/QRainbowStyleSheet.svg?branch=master
+.. |Build Status| image:: https://travis-ci.com/desty2k/QRainbowStyleSheet.svg?branch=master
    :target: https://travis-ci.org/github/desty2k/QRainbowStyleSheet
 .. |Docs Status| image:: https://readthedocs.org/projects/qrainbowstylesheet/badge/?version=latest
    :target: https://qrainbowstylesheet.readthedocs.io/en/latest/
