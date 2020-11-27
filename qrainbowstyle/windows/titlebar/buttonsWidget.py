@@ -7,7 +7,16 @@ from .windowButtons import titleBarWindowsButton, titleBarButton
 import qrainbowstyle
 
 
-def getButtons(parent, style=None):
+def getButtons(parent):
+    """
+        Loads titlebar buttons to dict depending on selected style (NT/Darwin)
+    Args:
+        parent (QWidget, required): Widget where buttons will be used.
+
+    Returns:
+        buttons (dict): Dict with close, minimize, restore and maximize buttons.
+    """
+
     if qrainbowstyle.USE_DARWIN_BUTTONS:
         return {"minimize": titleBarButton(QIcon(":/qss_icons/rc/button_darwin_minimize.png"),
                                            QIcon(":/qss_icons/rc/button_darwin_minimize_hover.png"),
@@ -38,7 +47,7 @@ def getButtons(parent, style=None):
 
 
 class buttonsWidget(QWidget):
-    """buttonsWidget documentation"""
+    """Widget which contains titlebar buttons"""
 
     def __init__(self, parent):
         super(buttonsWidget, self).__init__(parent)
@@ -65,12 +74,14 @@ class buttonsWidget(QWidget):
         self.btnClose = btns["close"]
 
         if qrainbowstyle.ALIGN_BUTTONS_LEFT:
+            # reversed order
             self.buttonsLayout.addWidget(self.btnClose)
             if not qrainbowstyle.USE_DARWIN_BUTTONS:
                 self.buttonsLayout.addWidget(self.btnRestore)
             self.buttonsLayout.addWidget(self.btnMaximize)
             self.buttonsLayout.addWidget(self.btnMinimize)
         else:
+            # normal order
             self.buttonsLayout.addWidget(self.btnMinimize)
             self.buttonsLayout.addWidget(self.btnMaximize)
             if not qrainbowstyle.USE_DARWIN_BUTTONS:

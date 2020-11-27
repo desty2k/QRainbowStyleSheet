@@ -6,6 +6,10 @@ import qrainbowstyle
 
 
 class appLogoButton(QToolButton):
+    """
+        Clickable main window button with app logo.
+        Menu can be added using setMenu().
+    """
 
     def __init__(self, parent):
         super(appLogoButton, self).__init__(parent)
@@ -20,6 +24,10 @@ class appLogoButton(QToolButton):
 
 
 class appLogoLabel(QLabel):
+    """
+        Label with app logo. Is show in FramelessDialog
+        and FramelessMessageBox.
+    """
 
     def __init__(self, parent):
         super(appLogoLabel, self).__init__(parent)
