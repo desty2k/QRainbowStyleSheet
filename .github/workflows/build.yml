@@ -1,4 +1,4 @@
-name: Build - test - docs
+name: build
 
 on:
   push:
@@ -56,34 +56,3 @@ jobs:
       env:
         PLATFORM: ${{ matrix.platform }}
         TASK: ${{ matrix.tasks }}
-  docs:
-    needs: [build, test]
-    name: Create docs for GitHub Pages 
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install -r req-doc.txt
-        
-    - name: Sphinx Build
-      run: |
-        cd docs
-        sphinx-build -b html . _build
-
-    - name: Upload to Github Pages
-      uses: crazy-max/ghaction-github-pages@v2.2.0
-      with:
-        build_dir: docs/_build/
-        target_branch: gh-pages
-        jekyll: false
-        committer: Wojciech Wentland <wojciech.wentland@int.pl>
-        author: Wojciech Wentland <wojciech.wentland@int.pl>
-      env:
-        GITHUB_TOKEN: ${{ secrets.DOCS_TOKEN }}
