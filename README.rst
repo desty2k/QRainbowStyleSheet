@@ -12,19 +12,19 @@ Preview
 
 Frameless main window + NT buttons on the right + "Oceanic" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_darwin_left_darkorange.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_darwin_left_darkorange.png
 
 Frameless main window + NT buttons on the right + "Cyberpunk" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_nt_right_cyberpunk.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_nt_right_cyberpunk.png
 
 Frameless main window + Darwin buttons on the left + "DarkOrange" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_darwin_left_darkorange.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_darwin_left_darkorange.png
 
 Frameless main window + Darwin buttons on the right + "Darkblue" style
 
-.. image:: https://github.com/desty2k/QRainbowStyleSheet/blob/master/images/frameless_mainwindow_darwin_right_darkblue.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_darwin_right_darkblue.png
 
 Installation
 ------------
