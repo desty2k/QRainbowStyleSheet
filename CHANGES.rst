@@ -1,6 +1,15 @@
 Changelog
 =========
 
+-  0.4:
+    -  Add dependabot
+    -  Add Windows and Darwin to tox platforms
+    -  Fix preview images in docs
+    -  Add auto generating docs on commit
+    -  Move builds to Github Actions
+    -  Remove Travis-CI config
+    -  Remove pyside and pyqt4 from tox
+
 -  0.3:
     -  Change qdarkstyle module name to qrainbowstyle
     -  Generate resources with new prefix

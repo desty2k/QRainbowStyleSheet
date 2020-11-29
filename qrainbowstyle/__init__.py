@@ -93,7 +93,7 @@ import logging
 import platform
 import qrainbowstyle
 
-__version__ = "0.3"
+__version__ = "0.4"
 
 _logger = logging.getLogger(__name__)
 
