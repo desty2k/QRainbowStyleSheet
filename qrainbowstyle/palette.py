@@ -6,7 +6,7 @@
 from collections import OrderedDict
 
 
-class BasePalette(object):
+class BasePalette:
     """Base class for palettes."""
 
     # buttons background, active tabs name background, titlebar icons background on hover
