@@ -363,10 +363,10 @@ request.
 
 If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
 
-.. |Build Status| image:: https://travis-ci.com/desty2k/QRainbowStyleSheet.svg?branch=master
-   :target: https://travis-ci.com/github/desty2k/QRainbowStyleSheet
-.. |Docs Status| image:: https://desty2k.github.io/QRainbowStyleSheet/
-   :target: https://qrainbowstylesheet.readthedocs.io/en/latest/
+.. |Build Status| image:: https://github.com/desty2k/QRainbowStyleSheet/workflows/build/badge.svg
+   :target: https://github.com/desty2k/QRainbowStyleSheet/actions?workflow=build
+.. |Docs Status| image:: https://github.com/desty2k/QRainbowStyleSheet/workflows/docs/badge.svg
+   :target: https://github.com/desty2k/QRainbowStyleSheet/actions?workflow=docs
 .. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QDarkStyle.svg
    :target: https://pypi.python.org/pypi/QDarkStyle
 .. |License: MIT| image:: https://img.shields.io/dub/l/vibe-d.svg?color=lightgrey
