@@ -57,6 +57,7 @@ jobs:
         PLATFORM: ${{ matrix.platform }}
         TASK: ${{ matrix.tasks }}
   docs:
+    needs: [build, test]
     name: Create docs for GitHub Pages 
     runs-on: ubuntu-latest
     steps:
