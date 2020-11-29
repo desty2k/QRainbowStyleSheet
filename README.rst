@@ -365,7 +365,7 @@ If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
 
 .. |Build Status| image:: https://travis-ci.com/desty2k/QRainbowStyleSheet.svg?branch=master
    :target: https://travis-ci.com/github/desty2k/QRainbowStyleSheet
-.. |Docs Status| image:: https://readthedocs.org/projects/qrainbowstylesheet/badge/?version=latest
+.. |Docs Status| image:: https://desty2k.github.io/QRainbowStyleSheet/
    :target: https://qrainbowstylesheet.readthedocs.io/en/latest/
 .. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QDarkStyle.svg
    :target: https://pypi.python.org/pypi/QDarkStyle
