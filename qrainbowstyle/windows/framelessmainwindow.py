@@ -6,15 +6,10 @@ from .titlebar import Titlebar
 
 
 class FramelessMainWindow(QMainWindow):
-    """Frameless main window
-        Args:
-            parent (QWidget, optional): Parent widget.
-
-        Usage:
-            1. Create FramelessMainWindow instantion
-            2. Create instantion of your master widget, pass reference to FramelessMainWindow as argument to keep access to signals and slots
-            3. Use addContentWidget(your_master_widget) to add widget to window
-            4. Show window using show()
+    """
+    Frameless main window
+    Args:
+        parent (QWidget, optional): Parent widget.
     """
 
     def __init__(self, parent=None):
@@ -81,40 +76,44 @@ class FramelessMainWindow(QMainWindow):
         QMetaObject.connectSlotsByName(self)
 
     def showSizeGrip(self, value: bool):
-        """Show or hide size grip
-            Args:
-                value (bool, required): To show or to hide.
+        """Show or hide size grip.
+
+        Args:
+            value (bool): To show or to hide.
         """
         self._sizegrip.setVisible(value)
 
     def setMenu(self, menu: QMenu):
-        """Set menu for app icon
-            Args:
-                menu (QMenu, required): QMenu to show.
+        """Set menu for app icon.
+
+        Args:
+            menu (QMenu): QMenu to show.
         """
         self._bar.setMenu(menu)
 
     def setTitlebarHeight(self, height: int):
-        """Set titlebar height
-            Args:
-                height (int, required): Titlebar height.
+        """Set titlebar height.
+
+        Args:
+            height (int): Titlebar height.
         """
         self._bar.setTitlebarHeight(height)
 
     def addContentWidget(self, widget: QWidget):
-        """Add master widget to window
-            Args:
-                widget (QWidget, required): Content widget.
+        """Add master widget to window.
+
+        Args:
+            widget (QWidget): Content widget.
         """
         self._contentWidgets.append(widget)
         self._contentWidgetLayout.addWidget(widget)
 
     def insertContentWidget(self, index, widget: QWidget):
-        """Insert master widget to window at pos
-            Args:
-                index (int, required): Index
-                widget (QWidget, required): Content widget.
+        """Insert master widget to window at pos.
 
+        Args:
+            index (int): Index
+            widget (QWidget): Content widget.
         """
         self._contentWidgets.insert(index, widget)
         self._contentWidgetLayout.insertWidget(index, widget)
@@ -133,6 +132,11 @@ class FramelessMainWindow(QMainWindow):
             self._separator.setVisible(False)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
+        """Handle mouse press events
+
+        Args:
+            index (QMouseEvent): Mouse press event
+        """
         if self.windowState() == Qt.WindowFullScreen:
             ypos = event.globalY()
             if ypos <= 5:
