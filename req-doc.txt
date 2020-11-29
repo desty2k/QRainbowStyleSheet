@@ -6,6 +6,12 @@ pip
 wheel
 virtualenv
 pipdeptree
+helpdev
+qtsass
+watchdog
+pyqt5
+pyside2
+qtpy
 
 # To generate documentation
 sphinx
