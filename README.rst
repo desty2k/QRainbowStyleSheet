@@ -12,7 +12,7 @@ Preview
 
 Frameless main window + NT buttons on the right + "Oceanic" style
 
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_darwin_left_darkorange.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_nt_right_oceanic.png
 
 Frameless main window + NT buttons on the right + "Cyberpunk" style
 
