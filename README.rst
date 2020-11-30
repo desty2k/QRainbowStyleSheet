@@ -366,7 +366,7 @@ If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
 .. |Build Status| image:: https://github.com/desty2k/QRainbowStyleSheet/workflows/build/badge.svg
    :target: https://github.com/desty2k/QRainbowStyleSheet/actions?workflow=build
 .. |Docs Status| image:: https://github.com/desty2k/QRainbowStyleSheet/workflows/docs/badge.svg
-   :target: https://github.com/desty2k/QRainbowStyleSheet/actions?workflow=docs
+   :target: https://desty2k.github.io/QRainbowStyleSheet/
 .. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QDarkStyle.svg
    :target: https://pypi.python.org/pypi/QDarkStyle
 .. |License: MIT| image:: https://img.shields.io/dub/l/vibe-d.svg?color=lightgrey
@@ -374,4 +374,4 @@ If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
 .. |License: CC BY 4.0| image:: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
    :target: https://creativecommons.org/licenses/by/4.0/
 .. |Conduct| image:: https://img.shields.io/badge/code%20of%20conduct-contributor%20covenant-green.svg?style=flat&color=lightgrey
-   :target: http://contributor-covenant.org/version/1/4/
+   :target: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
