@@ -1,4 +1,4 @@
-QRainbowStylesheet
+QRainbowStyleSheet
 ==================
 
 |Build Status| |Docs Status| |Latest PyPI version| |License: MIT|

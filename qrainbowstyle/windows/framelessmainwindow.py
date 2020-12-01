@@ -6,8 +6,8 @@ from .titlebar import Titlebar
 
 
 class FramelessMainWindow(QMainWindow):
-    """
-    Frameless main window
+    """Frameless main window.
+
     Args:
         parent (QWidget, optional): Parent widget.
     """

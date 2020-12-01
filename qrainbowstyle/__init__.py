@@ -133,11 +133,7 @@ Please, set the wanted binding by using QtPy environment variable QT_API,
 then use load_stylesheet() or use load_stylesheet()
 passing the argument qt_api='wanted_binding'.'''
 
-
 # Use lightstyle as default
-
-LIGHT_STYLE = 0
-DARK_STYLE = 1
 
 USE_DARWIN_BUTTONS = False
 ALIGN_BUTTONS_LEFT = False
@@ -315,9 +311,10 @@ def _load_stylesheet(qt_api='', style=''):
         stylesheet = ""
         raise FileNotFoundError("Style " + style + " does not exists")
 
-    # resource cleaning
+    # check if any style_rc was loaded before
     if "style_rc" in sys.modules:
         _logger.info("Found already imported style in sys.modules")
+
         # use qCleanupResources to remove all resource files
         global style_rc
         style_rc.qCleanupResources()
