@@ -21,7 +21,6 @@ Links to understand those tools:
 """
 
 # Standard library imports
-from __future__ import absolute_import, print_function
 from subprocess import call
 import argparse
 import glob
