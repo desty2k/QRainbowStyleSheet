@@ -389,88 +389,31 @@ def _load_stylesheet(qt_api='', style=''):
     return stylesheet
 
 
-def load_stylesheet(*args, style='darkblue', **kwargs):
+def load_stylesheet(qt_api="", style='darkblue'):
     """
     Load the stylesheet. Takes care of importing the rc module.
 
     Args:
-        pyside (bool): True to load the PySide (or PySide2) rc file,
-                       False to load the PyQt4 (or PyQt5) rc file.
-                       Default is False.
-        or
-
         qt_api (str): Qt binding name to set QT_API environment variable.
                       Default is '', i.e PyQt5 the default QtPy binding.
-                      Possible values are pyside, pyside2 pyqt4, pyqt5.
+                      Possible values are pyside2, pyqt5.
                       Not case sensitive.
 
         style (str): Style to use. Default is 'darkblue'
-
-    Raises:
-        TypeError: If arguments do not match: type, keyword name nor quantity.
 
     Returns:
         str: the stylesheet string.
     """
 
     stylesheet = ""
-    arg = None
 
-    try:
-        arg = args[0]
-    except IndexError:
-        # It is already none
-        pass
-
-    # Number of arguments are wrong
-    if (kwargs and args) or len(args) > 1 or len(kwargs) > 1:
-        raise TypeError("load_stylesheet() takes zero or one argument: "
-                        "(new) string type qt_api='pyqt5' or "
-                        "(old) boolean type pyside='False'.")
-
-    # No arguments
-    if not kwargs and not args:
-        stylesheet = _load_stylesheet(qt_api='pyqt5', style=style)
-
-    # Old API arguments
-    elif 'pyside' in kwargs or isinstance(arg, bool):
-        pyside = kwargs.get('pyside', arg)
-
-        if pyside:
-            stylesheet = _load_stylesheet(qt_api='pyside2', style=style)
-            if not stylesheet:
-                stylesheet = _load_stylesheet(qt_api='pyside', style=style)
-
-        else:
-            stylesheet = _load_stylesheet(qt_api='pyqt5', style=style)
-            if not stylesheet:
-                stylesheet = _load_stylesheet(qt_api='pyqt4', style=style)
-
-        # Deprecation warning only for old API
-        _logger.warning(DEPRECATION_MSG, DeprecationWarning)
-
-    # New API arguments
-    elif 'qt_api' in kwargs or isinstance(arg, str):
-        qt_api = kwargs.get('qt_api', arg)
+    if qt_api:
         stylesheet = _load_stylesheet(qt_api=qt_api, style=style)
 
-    # Wrong API arguments name or type
     else:
-        raise TypeError("load_stylesheet() takes only zero or one argument: "
-                        "(new) string type qt_api='pyqt5' or "
-                        "(old) boolean type pyside='False'.")
+        stylesheet = _load_stylesheet(qt_api='pyqt5', style=style)
 
     return stylesheet
-
-
-def load_stylesheet_pyside(style='darkblue'):
-    """
-    Load the stylesheet for use in a PySide application.
-
-    Returns:
-        str: the stylesheet string.
-    """
-    return _load_stylesheet(qt_api='pyside', style=style)
 
 
 def load_stylesheet_pyside2(style='darkblue'):
@@ -483,16 +426,6 @@ def load_stylesheet_pyside2(style='darkblue'):
     return _load_stylesheet(qt_api='pyside2', style=style)
 
 
-def load_stylesheet_pyqt(style='darkblue'):
-    """
-    Load the stylesheet for use in a PyQt4 application.
-
-    Returns:
-        str: the stylesheet string.
-    """
-    return _load_stylesheet(qt_api='pyqt4', style=style)
-
-
 def load_stylesheet_pyqt5(style='darkblue'):
     """
     Load the stylesheet for use in a PyQt5 application.
@@ -501,32 +434,3 @@ def load_stylesheet_pyqt5(style='darkblue'):
         str: the stylesheet string.
     """
     return _load_stylesheet(qt_api='pyqt5', style=style)
-
-
-# Deprecation Warning --------------------------------------------------------
-
-
-def load_stylesheet_from_environment(is_pyqtgraph=False, style='darkblue'):
-    """
-    Load the stylesheet from QT_API (or PYQTGRAPH_QT_LIB) environment variable.
-
-    Args:
-        is_pyqtgraph (bool): True if it is to be set using PYQTGRAPH_QT_LIB.
-
-    Raises:
-        KeyError: if PYQTGRAPH_QT_LIB does not exist.
-
-    Returns:
-        str: the stylesheet string.
-    """
-    _logger.warning(DEPRECATION_MSG, DeprecationWarning)
-
-    if is_pyqtgraph:
-        stylesheet = _load_stylesheet(qt_api=os.environ.get('PYQTGRAPH_QT_LIB'), style=style)
-    else:
-        stylesheet = _load_stylesheet(style=style)
-
-    return stylesheet
-
-
-# Deprecated ----------------------------------------------------------------

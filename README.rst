@@ -4,8 +4,8 @@ QRainbowStylesheet
 |Build Status| |Docs Status| |Latest PyPI version| |License: MIT|
 |License: CC BY 4.0| |Conduct|
 
-The most complete customizable stylesheet for Qt application (Qt4, Qt5, PySide,
-PySide2, PyQt4, PyQt5, QtPy, PyQtGraph, Qt.Py).
+The most complete customizable stylesheet for Qt application (Qt5, PySide2,
+PyQt5, QtPy, Qt.Py).
 
 Preview
 -------
@@ -170,7 +170,7 @@ Style sheet
     import qrainbowstyle
 
     # set the environment variable to use a specific wrapper
-    # it can be set to pyqt, pyqt5, pyside or pyside2 (not implemented yet)
+    # it can be set to pyqt, pyqt5, or pyside2
     # you do not need to use QtPy to set this variable
     os.environ['QT_API'] = 'pyqt5'
 
@@ -235,40 +235,13 @@ Here is an example using PySide2
     app.exec_()
 
 
-If you use PyQtGraph, then the code is
-
-.. code:: python
-
-    import os
-    import sys
-    import qrainbowstyle
-
-    # set the environment variable to use a specific wrapper
-    # it can be set to PyQt, PyQt5, PySide or PySide2 (not implemented yet)
-    os.environ['PYQTGRAPH_QT_LIB'] = 'PyQt5'
-
-    # import from pyqtgraph instead of doing it directly
-    # note that PyQtGraph always uses PyQt4 API
-    from pyqtgraph.Qt import QtGui
-
-    # create the application and the main window
-    app = QtGui.QApplication(sys.argv)
-    window = QtGui.QMainWindow()
-
-    # setup stylesheet
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(qt_api=os.environ['PYQTGRAPH_QT_LIB'])
-
-    # run
-    window.show()
-    app.exec_()
-
 If you are using Qt.py, which is different from qtpy, you should install
 qtpy then set both to the same binding.
 
 
 *There is an example included in the *example* folder. You can run the
-script without installing qrainbowstyle. You only need to have PySide or
-PySide2 or PyQt4 or PyQt5 installed on your system.*
+script without installing qrainbowstyle. You only need to have or
+PySide2 or PyQt5 installed on your system.*
 
 
 Building your own style sheet
@@ -319,18 +292,9 @@ Download/clone the project, go to ``qrainbowstyle`` folder then:
 What is new?
 ------------
 
-In the version 2.6 and later, a reestructure stylesheet is provided. The
-palette has only 9 colors. Most widgets are revised and their styles
-were improved. We also provide a command line (script) to get info that
-could be used when opening issues. See the image below.
-
-From 2.7, we have added SCSS, so the palette can be accessed programatically.
-Also many scripts were added to give freedom fro developers who wants to
-change the colors of our palette. All images and icons were revised, also
-creating SVG files for all of them.
-
-From 2.8, we moved to QtPy to simplify your code, thus this is a
-required dependency now.
+Starting with new package name, I added possibility to design and build
+your own stylesheet. I added few new SVG icons such as title bar icons.
+New module with frameless windows has been added.
 
 
 Changelog
