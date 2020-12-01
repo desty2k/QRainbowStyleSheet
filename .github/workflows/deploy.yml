@@ -1,8 +1,13 @@
 name: deploy
 
 on:
+  push:
+    tags:
+      - 'v*'
   release:
-    types: [created]
+    types: [published]
+    tags:
+      - 'v*'
 
 jobs:
   deploy-test:
