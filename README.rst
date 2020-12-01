@@ -1,7 +1,7 @@
 QRainbowStyleSheet
 ==================
 
-|Build Status| |Docs Status| |Latest PyPI version| |License: MIT|
+|Latest PyPI version| |Supported python versions| |Build Status| |Docs Status| |License: MIT|
 |License: CC BY 4.0| |Conduct|
 
 The most complete customizable stylesheet for Qt application (Qt5, PySide2,
@@ -331,8 +331,10 @@ If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
    :target: https://github.com/desty2k/QRainbowStyleSheet/actions?workflow=build
 .. |Docs Status| image:: https://github.com/desty2k/QRainbowStyleSheet/workflows/docs/badge.svg
    :target: https://desty2k.github.io/QRainbowStyleSheet/
-.. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QDarkStyle.svg
-   :target: https://pypi.python.org/pypi/QDarkStyle
+.. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QRainbowStyle
+   :target: https://pypi.org/project/QRainbowStyle/
+.. |Supported python versions| image:: https://img.shields.io/pypi/pyversions/QRainbowStyle
+   :target: https://pypi.org/project/QRainbowStyle/
 .. |License: MIT| image:: https://img.shields.io/dub/l/vibe-d.svg?color=lightgrey
    :target: https://opensource.org/licenses/MIT
 .. |License: CC BY 4.0| image:: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
