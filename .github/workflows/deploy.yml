@@ -30,8 +30,8 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_TEST_PASSWORD }}
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/* --repository-url "https://test.pypi.org/legacy/"
-        
+        twine upload --repository testpypi --skip-existing --verbose dist/*
+
   deploy:
     needs: [deploy-test]
     name: Deploy to PyPI
@@ -53,4 +53,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/*
+        twine upload --skip-existing --verbose dist/*
