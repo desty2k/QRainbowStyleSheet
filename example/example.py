@@ -82,7 +82,6 @@ def main():
     args = parser.parse_args()
 
     if args.test:
-        print(args, type(args))
         for style in qrainbowstyle.get_available_styles():
             parser.set_defaults(style=style)
             _main(parser.parse_args())
