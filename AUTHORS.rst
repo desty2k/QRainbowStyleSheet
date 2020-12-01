@@ -4,19 +4,22 @@ Authors
 Mainteiner(s)
 -------------
 
-These people were/are mainteiners of this project.
+Fork maintainer:
 
--  2013-current `Colin Duquesnoy <https://github.com/ColinDuquesnoy>`__ - colin.duquesnoy@gmail.com - original author.
+- `Wojciech Wentland <https://github.com/desty2k>`__
 
--  2018-current `Daniel Pizetta <https://github.com/dpizetta>`__ - daniel.pizetta@usp.br - bug fixes, improvements, features.
+Original project authors:
 
--  2019-current `Gonzalo Peña-Castellanos <https://github.com/goanpeca>`__ - bug fixes, improvements, features.
+-  `Colin Duquesnoy <https://github.com/ColinDuquesnoy>`__ - colin.duquesnoy@gmail.com - original author.
 
--  2019-current `Carlos Cordoba <https://github.com/ccordoba12>`__
+-  `Daniel Pizetta <https://github.com/dpizetta>`__ - daniel.pizetta@usp.br - bug fixes, improvements, features.
 
+-  `Gonzalo Peña-Castellanos <https://github.com/goanpeca>`__ - bug fixes, improvements, features.
 
-Contributor(s)
---------------
+-  `Carlos Cordoba <https://github.com/ccordoba12>`__
+
+Original project contributor(s)
+-------------------------------
 
 These people contribute to bug fixes, improvements and so on. Please,
 insert your information after the last one.
