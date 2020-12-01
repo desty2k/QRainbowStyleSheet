@@ -7,9 +7,9 @@ This module provides a function to load pre-compiled stylesheets. To generate yo
 style based on custom color palette clone package from project homepage.
 
 qrainbowstyle.windows module adds frameless windows, which can replace original QMainWindow,
-QDialog and QMessageBox. Frameless windows support resizing, moving, snapping to edges.
+QDialog and QMessageBox windows. Frameless windows support resizing, moving, snapping to edges.
 You can set global icon and app name for all windows you create in your app. In frameless
-mainwindow it is also possible to set custom QMenu to QToolButton with app icon.
+main window it is also possible to set custom QMenu to QToolButton with app icon.
 
 First, start importing our module
 
@@ -22,23 +22,17 @@ as shown below
 
 .. code-block:: python
 
-    # PySide
-    stylesheet = qrainbowstyle.load_stylesheet_pyside(style='darkblue')
-    # PySide 2
+    # PySide2
     stylesheet = qrainbowstyle.load_stylesheet_pyside2(style='darkblue')
-    # PyQt4
-    stylesheet = qrainbowstyle.load_stylesheet_pyqt(style='darkblue')
     # PyQt5
     stylesheet = qrainbowstyle.load_stylesheet_pyqt5(style='darkblue')
 
-Alternatively, from environment variables provided by QtPy, PyQtGraph, Qt.Py
+Alternatively, from environment variables provided by QtPy, Qt.Py
 
 .. code-block:: python
 
     # QtPy
-    stylesheet = qrainbowstyle.load_stylesheet(style='darkblue')
-    # PyQtGraph
-    stylesheet = qrainbowstyle.load_stylesheet(style='darkblue', qt_api=os.environ('PYQTGRAPH_QT_LIB'))
+    stylesheet =  qrainbowstyle.load_stylesheet(style='darkblue')
     # Qt.Py
     stylesheet = qrainbowstyle.load_stylesheet(style='darkblue', qt_api=Qt.__binding__)
 
@@ -67,8 +61,8 @@ Next, create instances of frameless window and your master widget with content y
     # Package options
     # qrainbowstyle.align_buttons_left()      # align titlebar buttons to left side
     # qrainbowstyle.use_darwin_buttons()      # use darwin style buttons
-    qrainbowstyle.setAppName("My new application")  # set global name for application
-    # qrainbowstyle.setAppIcon("icon.ico")    # set global app icon
+    qrainbowstyle.set_app_name("My new application")  # set global name for application
+    # qrainbowstyle.set_app_icon("icon.ico")    # set global app icon
 
     # Create frameless mainwindow
     win = qrainbowstyle.windows.FramelessMainWindow()
@@ -274,15 +268,12 @@ def _load_stylesheet(qt_api='', style=''):
 
     Args:
         qt_api (str): qt binding name to set QT_API environment variable.
-                      Default is ''. Possible values are pyside, pyside2
-                      pyqt4, pyqt5. Not case sensitive.
+                      Default is ''. Possible values are pyside2,
+                      pyqt5. Not case sensitive.
 
     Note:
         - Note that the variable QT_API is read when first imported. So,
           pay attention to the import order.
-        - If you are using another abstraction layer, i.e PyQtGraph to do
-          imports on Qt things you must set both to use the same Qt
-          binding (PyQt, PySide).
         - OS, binding and binding version number, and application specific
           patches are applied in this order.
 
