@@ -331,9 +331,9 @@ If you want to contribute, see `CONTRIBUTING <CONTRIBUTING.rst>`__ file.
    :target: https://github.com/desty2k/QRainbowStyleSheet/actions?workflow=build
 .. |Docs Status| image:: https://github.com/desty2k/QRainbowStyleSheet/workflows/docs/badge.svg
    :target: https://desty2k.github.io/QRainbowStyleSheet/
-.. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QRainbowStyle
+.. |Latest PyPI version| image:: https://img.shields.io/pypi/v/QRainbowStyle.svg
    :target: https://pypi.org/project/QRainbowStyle/
-.. |Supported python versions| image:: https://img.shields.io/pypi/pyversions/QRainbowStyle
+.. |Supported python versions| image:: https://img.shields.io/pypi/pyversions/QRainbowStyle.svg
    :target: https://pypi.org/project/QRainbowStyle/
 .. |License: MIT| image:: https://img.shields.io/dub/l/vibe-d.svg?color=lightgrey
    :target: https://opensource.org/licenses/MIT
