@@ -1,6 +1,19 @@
 Changelog
 =========
 
+-  0.5:
+    -  Add build and docs workflows
+    -  Add badges to README
+    -  Add PyPI deploy workflow
+    -  Create first QRainbowStyleSheet release
+    -  Upload package to PyPI
+    -  Update comments
+    -  Update LICENSE and AUTHORS
+    -  Update code of conduct version
+    -  Remove PyQt4 and Pyside support
+    -  Remove old api and deprecated code
+    -  Finish migrating docs to GitHub Pages
+
 -  0.4:
     -  Add dependabot
     -  Add Windows and Darwin to tox platforms
