@@ -204,10 +204,10 @@ def main():
     app.setStyleSheet(qrainbowstyle.load_stylesheet(style="cyberpunk"))
 
     # Package options
-    # qrainbowstyle.alignButtonsLeft()
+    # qrainbowstyle.align_buttons_left()
     # qrainbowstyle.use_darwin_buttons()
-    qrainbowstyle.setAppName("My new application")
-    qrainbowstyle.setAppIcon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
+    qrainbowstyle.set_app_icon("My new application")
+    qrainbowstyle.set_app_icon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
 
     # Create frameless mainwindow
     win = qrainbowstyle.windows.FramelessMainWindow()

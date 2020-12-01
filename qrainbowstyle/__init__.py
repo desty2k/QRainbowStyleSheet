@@ -149,20 +149,20 @@ APP_NAME = None
 APP_ICON_PATH = None
 
 
-def alignButtonsLeft():
-    """Align titlebar buttons to left"""
-    qrainbowstyle.ALIGN_BUTTONS_LEFT = True
-    _logger.info("Buttons will be aligned to left")
-
-
-def setAppName(name: str):
+def set_app_name(name: str):
     """Set global app name which will be used in titlebars"""
     qrainbowstyle.APP_NAME = name
 
 
-def setAppIcon(icon_path: str):
+def set_app_icon(icon_path: str):
     """Set path to app icon which will be used in titlebars"""
     qrainbowstyle.APP_ICON_PATH = icon_path
+
+
+def align_buttons_left():
+    """Align titlebar buttons to left"""
+    qrainbowstyle.ALIGN_BUTTONS_LEFT = True
+    _logger.info("Buttons will be aligned to left")
 
 
 def use_darwin_buttons():
