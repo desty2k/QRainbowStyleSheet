@@ -78,14 +78,14 @@ jobs:
     - name: Get package version
       run: |
         python qrainbowstyle --version > version.txt
-        echo "VERSION=$(cat version.txt)" | sed '(\r\n)+|\r+|\n+|\t+' >> $GITHUB_ENV
+        echo "VERSION=$(cat version.txt)" | tr '\n\r\t' '' >> $GITHUB_ENV
         echo ${{ env.VERSION }}
 
     - name: Get latest version
       run: |
         git fetch --tags
         git fetch --prune --unshallow || true
-        echo "RELEASE_VERSION=$(git describe --abbrev=0 --tags)" | sed '(\r\n)+|\r+|\n+|\t+' >> $GITHUB_ENV
+        echo "RELEASE_VERSION=$(git describe --abbrev=0 --tags)" | tr '\n\r\t' '' >> $GITHUB_ENV
         echo ${{ env.RELEASE_VERSION }}
         
     - name: Create a release
