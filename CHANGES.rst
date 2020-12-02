@@ -1,6 +1,15 @@
 Changelog
 =========
 
+- 0.5.2:
+    - Add auto release to PyPI after build
+    - Ignore styles directory in Pylint
+
+-  0.5.1:
+    - Update PyPI docs
+    - Update badges
+    - Fix deploy workflow
+
 -  0.5:
     -  Add build and docs workflows
     -  Add badges to README
@@ -12,6 +21,7 @@ Changelog
     -  Update code of conduct version
     -  Remove PyQt4 and Pyside support
     -  Remove old api and deprecated code
+    -  Remove Python 2.7 support
     -  Finish migrating docs to GitHub Pages
 
 -  0.4:
