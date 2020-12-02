@@ -78,20 +78,21 @@ jobs:
     - name: Get package version
       run: |
         python qrainbowstyle --version > version.txt
-        echo "VERSION = $(cat version.txt)" >> $GITHUB_ENV
+        echo "VERSION = $(cat version.txt)" | sed 's/ //g' >> $GITHUB_ENV
 
     - name: Get latest version
 #       latest_tag=$(git describe --abbrev=0 --tags)
       run: |
         git fetch --tags
         git fetch --prune --unshallow || true
-        echo "RELEASE_VERSION=$(git describe --abbrev=0 --tags)" >> $GITHUB_ENV
+        echo "RELEASE_VERSION=$(git describe --abbrev=0 --tags)" | sed 's/ //g' >> $GITHUB_ENV
 
     - name: Create a release
       if: ${{ env.RELEASE_VERSION }} != ${{ env.VERSION }}
       uses: actions/create-release@v1.1.4
-      env:
-        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
       with:
         tag_name: ${{ env.VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      
         
