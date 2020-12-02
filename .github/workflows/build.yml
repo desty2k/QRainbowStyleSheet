@@ -75,7 +75,7 @@ jobs:
 
     - name: Get version
       run: |
-        echo "VERSION=python qrainbowstyle --version" >> $GITHUB_ENV
+        "VERSION=python qrainbowstyle --version" >> $GITHUB_ENV
 
     - name: Create a Release
       uses: actions/create-release@v1.1.4
