@@ -79,15 +79,15 @@ jobs:
       run: |
         python qrainbowstyle --version > version.txt
         echo "VERSION=$(cat version.txt)" | tr -d '\r\t\n' >> $GITHUB_ENV
-        echo "${VERSION}"
+        echo "${{env.VERSION}}"
 
     - name: Get latest version
       run: |
         git fetch --tags
         git fetch --prune --unshallow || true
         echo "RELEASE_VERSION=$(git describe --abbrev=0 --tags)" > release_version.txt
-        echo "RELEASE_VERSION=$(cat release_version.txt)" | tr -d '\r\t\n' >> $RELEASE_VERSION
-        echo "${RELEASE_VERSION}"
+        echo "RELEASE_VERSION=$(cat release_version.txt)" | tr -d '\r\t\n' >> $GITHUB_ENV
+        echo "${{env.RELEASE_VERSION}}"
     
     - if: contains(${{ env.VERSION }}, ${{ env.RELEASE_VERSION }}) == false
       name: Create a release
