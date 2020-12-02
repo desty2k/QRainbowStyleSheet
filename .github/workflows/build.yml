@@ -76,6 +76,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install -r req-doc.txt
+        python -m pip install .
 
     - name: Get version
       run: |
