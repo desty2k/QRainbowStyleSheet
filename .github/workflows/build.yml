@@ -88,7 +88,7 @@ jobs:
         echo "RELEASE_VERSION=$(git describe --abbrev=0 --tags)" | tr -d '\r\t\n' >> $GITHUB_ENV
         echo "${{ env.RELEASE_VERSION }}"
     
-    - if: ${{ env.RELEASE_VERSION }} != ${{ env.VERSION }}
+    - if: contains( ${{ env.VERSION }}, ${{ env.RELEASE_VERSION }}) == false
       name: Create a release
       uses: actions/create-release@v1.1.4
       with:
@@ -96,7 +96,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
         
-    - if: ${{ env.RELEASE_VERSION }} == ${{ env.VERSION }}
+    - if: contains( ${{ env.VERSION }}, ${{ env.RELEASE_VERSION }}) == true
       name: Skip release
       run: |
         echo "Skipping because version does not changed"
