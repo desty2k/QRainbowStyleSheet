@@ -1,5 +1,8 @@
 name: build
 
+env:
+  VERSION: 0
+
 on:
   push:
     branches: [ master ]
@@ -75,9 +78,15 @@ jobs:
 
     - name: Get version
       run: |
-        "VERSION=python qrainbowstyle --version" >> $GITHUB_ENV
+        python qrainbowstyle --version > version.txt
+        echo "VERSION = $(cat version.txt)" >> $GITHUB_ENV
+
+    - name: Get Previous tag
+      id: previoustag
+      uses: WyriHaximus/github-action-get-previous-tag@master
 
     - name: Create a Release
+      if: ${{ steps.semvers.outputs.patch }} != ${{ env.VERSION }}
       uses: actions/create-release@v1.1.4
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
