@@ -1,8 +1,5 @@
 name: build
 
-env:
-  VERSION: 0
-
 on:
   push:
     branches: [ master ]
@@ -84,11 +81,11 @@ jobs:
         echo "VERSION = $(cat version.txt)" >> $GITHUB_ENV
 
     - name: Get Previous tag
-      id: previoustag
-      uses: WyriHaximus/github-action-get-previous-tag@master
+      uses: nimblehq/branch-tag-action@v1
+      id: extract
 
     - name: Create a Release
-      if: ${{ steps.semvers.outputs.tag }} != ${{ env.VERSION }}
+      if: ${{ env.BRANCH_TAG }} != ${{ env.VERSION }}
       uses: actions/create-release@v1.1.4
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
