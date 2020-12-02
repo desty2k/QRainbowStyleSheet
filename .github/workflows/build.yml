@@ -85,7 +85,7 @@ jobs:
       run: |
         git fetch --tags
         git fetch --prune --unshallow || true
-        echo "RELEASE_VERSION=$(git describe --abbrev=0 --tags)" > release_version.txt
+        git describe --abbrev=0 --tags > release_version.txt
         echo "RELEASE_VERSION=$(cat release_version.txt)" | tr -d '\r\t\n' >> $GITHUB_ENV
         echo "${{env.RELEASE_VERSION}}"
     
