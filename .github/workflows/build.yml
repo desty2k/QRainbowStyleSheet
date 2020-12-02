@@ -88,7 +88,7 @@ jobs:
       uses: WyriHaximus/github-action-get-previous-tag@master
 
     - name: Create a Release
-      if: ${{ steps.semvers.outputs.patch }} != ${{ env.VERSION }}
+      if: ${{ steps.semvers.outputs.tag }} != ${{ env.VERSION }}
       uses: actions/create-release@v1.1.4
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
