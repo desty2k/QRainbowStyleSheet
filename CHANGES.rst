@@ -1,6 +1,11 @@
 Changelog
 =========
 
+- 0.5.4:
+    - Fix copyrights in license
+    - Add square icons for close buttons
+    - Generate resources
+
 - 0.5.3:
     - Add auto publishing release on successful build
     - Update docs url in setup.py
