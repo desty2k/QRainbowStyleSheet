@@ -36,7 +36,7 @@ def remove_all(dir_path, patterns='*.pyc'):
 
 
 setup(
-    name='QRainbowStyle',
+    name='qrainbowstyle',
     version=__version__,
     packages=find_packages(),
     url='https://github.com/desty2k/QRainbowStyleSheet',
