@@ -239,6 +239,6 @@ def main(arguments):
 if __name__ == '__main__':
     from qtpy import QtCore
     logger = qrainbowstyle.utils.OutputLogger()
-    sys.excepthook = qrainbowstyle.utils.catch_exceptions
+    sys.excepthook = qrainbowstyle.utils.__utils.catch_exceptions
     QtCore.qInstallMessageHandler(qrainbowstyle.utils.qt_message_handler)
     sys.exit(main(sys.argv[1:]))
