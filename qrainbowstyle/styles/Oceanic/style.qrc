@@ -109,6 +109,12 @@
     <file>rc/button_nt_close_hover@2x.png</file>
     <file>rc/button_nt_close_hover_red.png</file>
     <file>rc/button_nt_close_hover_red@2x.png</file>
+    <file>rc/button_nt_close_square.png</file>
+    <file>rc/button_nt_close_square@2x.png</file>
+    <file>rc/button_nt_close_square_hover.png</file>
+    <file>rc/button_nt_close_square_hover@2x.png</file>
+    <file>rc/button_nt_close_square_hover_red.png</file>
+    <file>rc/button_nt_close_square_hover_red@2x.png</file>
     <file>rc/button_nt_maximize.png</file>
     <file>rc/button_nt_maximize@2x.png</file>
     <file>rc/button_nt_maximize_hover.png</file>
