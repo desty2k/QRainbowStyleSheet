@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-A dark style sheet for QtWidgets application.
+A customizable style sheet for QtWidgets application.
 """
 
 # Standard library imports
@@ -69,6 +69,6 @@ setup(
     install_requires=install_requires,
     project_urls={
         "Issues": "https://github.com/desty2k/QRainbowStyleSheet/issues",
-        "Docs": "https://qrainbowstylesheet.readthedocs.io/en/stable/",
+        "Docs": "https://desty2k.github.io/QRainbowStyleSheet/",
     }
 )
