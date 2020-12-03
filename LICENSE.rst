@@ -5,6 +5,7 @@ The MIT License (MIT) - Code
 ----------------------------
 
 Copyright (c) 2020-2020 Wojciech Wentland
+
 Copyright (c) 2013-2019 Colin Duquesnoy
 
 Permission is hereby granted, free of charge, to any person obtaining a
