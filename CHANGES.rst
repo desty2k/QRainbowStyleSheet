@@ -1,6 +1,10 @@
 Changelog
 =========
 
+- 0.5.3:
+    - Add auto publishing release on successful build
+    - Update docs url in setup.py
+
 - 0.5.2:
     - Add auto release to PyPI after build
     - Ignore styles directory in Pylint
