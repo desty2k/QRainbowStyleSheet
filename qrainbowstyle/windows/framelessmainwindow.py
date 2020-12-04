@@ -1,6 +1,6 @@
-from qtpy.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QSizePolicy, QSizeGrip, QMenu
-from qtpy.QtGui import QMouseEvent
-from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot
+from qtpy.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QSizePolicy, QMenu
+from qtpy.QtGui import QMouseEvent, QResizeEvent
+from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot, QRect, QPoint, QEvent
 
 from .titlebar import Titlebar
 
@@ -14,8 +14,15 @@ class FramelessMainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(FramelessMainWindow, self).__init__(parent)
-
         self._contentWidgets = []
+
+        self._gripsize = 5
+        self._dndetect = QPoint(0, 0)
+        self._griprect = QRect(self.width()-self._gripsize,
+                               self.height()-self._gripsize,
+                               self._gripsize-self._dndetect.x(),
+                               self._gripsize-self._dndetect.y())
+        self._resizing = False
 
         self.setWindowFlags(Qt.Window
                             | Qt.FramelessWindowHint
@@ -25,6 +32,7 @@ class FramelessMainWindow(QMainWindow):
                             | Qt.WindowMaximizeButtonHint)
 
         self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setMouseTracking(True)
 
         # For preview
         screen = QApplication.desktop().availableGeometry()
@@ -57,9 +65,6 @@ class FramelessMainWindow(QMainWindow):
         self._contentWidgetLayout.setContentsMargins(6, 6, 6, 6)
         self._centralLayout.addWidget(self._contentWidget)
 
-        self._sizegrip = QSizeGrip(self._centralWidget)
-        self._centralLayout.addWidget(self._sizegrip, 0, Qt.AlignBottom | Qt.AlignRight)
-
         self._centralWidget.setLayout(self._centralLayout)
         self.setCentralWidget(self._centralWidget)
 
@@ -75,13 +80,13 @@ class FramelessMainWindow(QMainWindow):
 
         QMetaObject.connectSlotsByName(self)
 
-    def showSizeGrip(self, value: bool):
-        """Show or hide size grip.
+        QApplication.instance().installEventFilter(self)
 
-        Args:
-            value (bool): To show or to hide.
-        """
-        self._sizegrip.setVisible(value)
+    def _updateGripRect(self):
+        self._griprect = QRect(self.width() - self._gripsize,
+                               self.height() - self._gripsize,
+                               self._gripsize - self._dndetect.x(),
+                               self._gripsize - self._dndetect.y())
 
     def setMenu(self, menu: QMenu):
         """Set menu for app icon.
@@ -98,6 +103,59 @@ class FramelessMainWindow(QMainWindow):
             height (int): Titlebar height.
         """
         self._bar.setTitlebarHeight(height)
+
+    def eventFilter(self, source, event):
+        """Handles events. When in full screen mode the user places
+        the cursor no more than five pixels from the top of the screen,
+        a bar with buttons will appear. When the window is in NoState,
+        the user will be able to change the window size by hovering
+        the cursor over the lower right corner of the window.
+
+        Args:
+            source (QObject): Event source.
+            event (QEvent): Event.
+        """
+
+        # fullscreen hover to show buttons
+        if self.windowState() == Qt.WindowFullScreen:
+            if event.type() == QMouseEvent.MouseMove:
+                ypos = event.globalY()
+                if ypos <= 5:
+                    self._bar.setVisible(True)
+                    self._fullscreenTitlebarTimer.start(2500)
+            else:
+                self._fullscreenTitlebarTimer.stop()
+
+        # resizing
+        if self.windowState() not in (Qt.WindowFullScreen, Qt.WindowMaximized):
+            if event.type() == QMouseEvent.MouseButtonPress:
+                self._updateGripRect()
+                if self._griprect.contains(event.pos()):
+                    self._resizing = True
+
+            if event.type() == QMouseEvent.MouseButtonRelease:
+                QApplication.restoreOverrideCursor()
+                self._resizing = False
+
+            if event.type() == QMouseEvent.MouseMove:
+                self._updateGripRect()
+                if self._resizing:
+                    QApplication.setOverrideCursor(Qt.SizeFDiagCursor)
+                    if event.buttons() == Qt.LeftButton:
+                        self.resize(event.x(), event.y())
+                        self._updateGripRect()
+                        self.update()
+                        QApplication.restoreOverrideCursor()
+                else:
+                    if self._griprect.contains(event.pos()):
+                        QApplication.setOverrideCursor(Qt.SizeFDiagCursor)
+                    else:
+                        QApplication.restoreOverrideCursor()
+
+        return QMainWindow.eventFilter(self, source, event)
+
+    def resizeEvent(self, a0: QResizeEvent) -> None:
+        pass
 
     def addContentWidget(self, widget: QWidget):
         """Add master widget to window.
@@ -129,25 +187,8 @@ class FramelessMainWindow(QMainWindow):
     def _on_showFullScreen(self):
         if self.windowState() == Qt.WindowFullScreen:
             self._bar.setVisible(False)
-            self._separator.setVisible(False)
-
-    def mousePressEvent(self, event: QMouseEvent) -> None:
-        """Handle mouse press events
-
-        Args:
-            index (QMouseEvent): Mouse press event
-        """
-        if self.windowState() == Qt.WindowFullScreen:
-            ypos = event.globalY()
-            if ypos <= 5:
-                self._bar.setVisible(True)
-                self._separator.setVisible(True)
-                self._fullscreenTitlebarTimer.start(2500)
-        else:
-            self._fullscreenTitlebarTimer.stop()
 
     @Slot()
     def on__fullscreenTitlebarTimer_timeout(self):
         if self.windowState() == Qt.WindowFullScreen:
             self._bar.setVisible(False)
-            self._separator.setVisible(False)
