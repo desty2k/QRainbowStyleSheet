@@ -1,0 +1,1 @@
+Waiting spinner for qtpy
