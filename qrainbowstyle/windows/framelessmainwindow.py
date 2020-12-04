@@ -18,10 +18,10 @@ class FramelessMainWindow(QMainWindow):
 
         self._gripsize = 5
         self._dndetect = QPoint(0, 0)
-        self._griprect = QRect(self.width()-self._gripsize,
-                               self.height()-self._gripsize,
-                               self._gripsize-self._dndetect.x(),
-                               self._gripsize-self._dndetect.y())
+        self._griprect = QRect(self.width() - self._gripsize,
+                               self.height() - self._gripsize,
+                               self._gripsize - self._dndetect.x(),
+                               self._gripsize - self._dndetect.y())
         self._resizing = False
 
         self.setWindowFlags(Qt.Window
