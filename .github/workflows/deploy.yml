@@ -1,9 +1,6 @@
 name: deploy
 
 on:
-  push:
-    tags:
-      - 'v*'
   release:
     types: [published]
     tags:
