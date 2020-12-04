@@ -1,6 +1,18 @@
 Changelog
 =========
 
+- 0.5.5:
+    - Add widgets subpackage
+    - Add QtWaitingSpinner
+    - Update spinner to use qtpy
+    - Update spinner to use color from palette
+    - Update spinner designer
+    - Remove deploy on push with v* tag
+    - Fix window flickering when resizing frameless windows
+    - Add custom frameless windows resize
+    - Remove size grip
+    - Update example2
+
 - 0.5.4:
     - Fix copyrights in license
     - Add square icons for close buttons
