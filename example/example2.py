@@ -1,11 +1,14 @@
 import os
 import sys
+import logging
 
 from qtpy import QtWidgets
 from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
 
+from qrainbowstyle.utils.__utils import qt_message_handler, OutputLogger
+import qrainbowstyle.widgets
 import qrainbowstyle.windows
 import qrainbowstyle
 
@@ -195,13 +198,15 @@ class WidgetGallery(QWidget):
 
 
 def main():
-    import logging
-    logging.basicConfig(level=logging.DEBUG)
+    logmodule = OutputLogger()
+    logger = logging.getLogger(__name__)
+    qInstallMessageHandler(qt_message_handler)
+
     QtWidgets.QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
     QtWidgets.QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 
     app = QtWidgets.QApplication(sys.argv)
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="cyberpunk"))
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
 
     # Package options
     # qrainbowstyle.align_buttons_left()
@@ -212,6 +217,14 @@ def main():
     # Create frameless mainwindow
     win = qrainbowstyle.windows.FramelessMainWindow()
 
+    # Example for spinner
+    spinner = qrainbowstyle.widgets.WaitingSpinner(win, centerOnParent=True, modality=Qt.WindowModal,
+                                                   roundness=70.0, opacity=15.0,
+                                                   fade=70.0, radius=15.0, lines=12,
+                                                   line_length=33.0, line_width=5.0,
+                                                   speed=2.0)
+    spinner.start()
+    win.setMinimumSize(QSize(500, 300))
     # Example of using signals
     win.closeClicked.connect(lambda: print("Close clicked!"))
 
@@ -222,6 +235,8 @@ def main():
     win.addContentWidget(widget)
     win.show()
 
+    # Fullscreen test
+    # win.showFullScreen()
     sys.exit(app.exec())
 
 
