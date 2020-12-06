@@ -7,9 +7,9 @@ from qtpy.QtWidgets import *
 from qtpy.QtGui import *
 from qtpy.QtCore import *
 
-from qrainbowstyle.utils.__utils import qt_message_handler, OutputLogger
 import qrainbowstyle.widgets
 import qrainbowstyle.windows
+import qrainbowstyle.extras
 import qrainbowstyle
 
 
@@ -198,9 +198,8 @@ class WidgetGallery(QWidget):
 
 
 def main():
-    logmodule = OutputLogger()
-    logger = logging.getLogger(__name__)
-    qInstallMessageHandler(qt_message_handler)
+    logmodule = qrainbowstyle.extras.OutputLogger()
+    qInstallMessageHandler(qrainbowstyle.extras.qt_message_handler)
 
     QtWidgets.QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
     QtWidgets.QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
