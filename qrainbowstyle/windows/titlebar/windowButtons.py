@@ -14,15 +14,19 @@ class titleBarButton(QToolButton):
         self.setAutoFillBackground(True)
 
         self.icon = icon
-        self.hovericon = hovericon
+        self.hoverIcon = hovericon
 
         self.setIcon(self.icon)
 
     def enterEvent(self, event: QEvent) -> None:
-        self.setIcon(self.hovericon)
+        self.setIcon(self.hoverIcon)
 
     def leaveEvent(self, event: QEvent) -> None:
         self.setIcon(self.icon)
+
+    def setIcons(self, normal: QIcon, hover: QIcon):
+        self.icon = normal
+        self.hoverIcon = hover
 
 
 class titleBarWindowsButton(QToolButton):
@@ -53,8 +57,9 @@ class titleBarWindowsButton(QToolButton):
         sizepolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
         self.setSizePolicy(sizepolicy)
 
-    def getIcons(self):
-        return self.icon, self.hoverIcon
+    def setIcons(self, normal: QIcon, hover: QIcon):
+        self.icon = normal
+        self.hoverIcon = hover
 
     def enterEvent(self, event: QEvent) -> None:
         if self.hoverIcon:
