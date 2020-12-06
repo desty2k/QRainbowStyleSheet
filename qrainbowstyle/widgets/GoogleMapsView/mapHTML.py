@@ -150,7 +150,7 @@ html = """
             }
         });
         map.setOptions({minZoom: 0, maxZoom: 50});
-        
+
         /*
         var flightPlanCoordinates = [
             new google.maps.LatLng(53.08254, 19.37103),
