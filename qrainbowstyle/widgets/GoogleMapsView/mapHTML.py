@@ -1,6 +1,4 @@
-
 html = """
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,6 +179,4 @@ html = """
 </script>
 </body>
 </html>
-
-
 """
