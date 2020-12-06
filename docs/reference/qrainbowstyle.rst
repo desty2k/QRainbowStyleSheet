@@ -13,6 +13,8 @@ Subpackages
 
    qrainbowstyle.utils
    qrainbowstyle.windows
+   qrainbowstyle.widgets
+   qrainbowstyle.extras
 
 Submodules
 ----------
