@@ -1,6 +1,15 @@
 Changelog
 =========
 
+- 0.5.6:
+    - Add Resizer module
+    - Add rainbowize() and get_available_palettes()
+    - Add getters for screen geometry
+    - Add setIcons() for titlebar icons
+    - Fix updating titlebar buttons' icons after changing stylesheet
+    - Move debugging stuff to extras
+    - Remove content widget margins for frameless window
+
 - 0.5.5:
     - Add widgets subpackage
     - Add QtWaitingSpinner
