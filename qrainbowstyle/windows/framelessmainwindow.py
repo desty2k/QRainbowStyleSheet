@@ -55,8 +55,9 @@ class FramelessMainWindow(QMainWindow):
         self._contentWidget.setSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Expanding)
+        self._contentWidget.setContentsMargins(0, 0, 0, 0)
         self._contentWidgetLayout = QVBoxLayout(self._contentWidget)
-        self._contentWidgetLayout.setContentsMargins(6, 6, 6, 6)
+        self._contentWidgetLayout.setContentsMargins(0, 0, 0, 0)
         self._centralLayout.addWidget(self._contentWidget)
 
         self._centralWidget.setLayout(self._centralLayout)
