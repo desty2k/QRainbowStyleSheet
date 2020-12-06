@@ -1,15 +1,39 @@
 from qtpy.QtWidgets import QWidget, QSizePolicy, QHBoxLayout
 from qtpy.QtGui import QIcon
-from qtpy.QtCore import Qt
+from qtpy.QtCore import Qt, QEvent
 
 from .windowButtons import titleBarWindowsButton, titleBarButton
 
 import qrainbowstyle
 
 
+def getIcons():
+    if qrainbowstyle.USE_DARWIN_BUTTONS:
+        return {"minimize": {"normal": QIcon(":/qss_icons/rc/button_darwin_minimize.png"),
+                             "hover": QIcon(":/qss_icons/rc/button_darwin_minimize_hover.png")},
+                "maximize": {"normal": QIcon(":/qss_icons/rc/button_darwin_maximize.png"),
+                             "hover": QIcon(":/qss_icons/rc/button_darwin_maximize_hover.png")},
+                "restore": {"normal": QIcon(":/qss_icons/rc/button_darwin_restore_hover.png"),
+                            "hover": QIcon(":/qss_icons/rc/button_darwin_restore_hover.png")},
+                "close": {"normal": QIcon(":/qss_icons/rc/button_darwin_close.png"),
+                          "hover": QIcon(":/qss_icons/rc/button_darwin_close_hover.png")}
+                }
+
+    else:
+        return {"minimize": {"normal": QIcon(":/qss_icons/rc/button_nt_minimize.png"),
+                             "hover": QIcon(":/qss_icons/rc/button_nt_minimize_hover.png")},
+                "maximize": {"normal": QIcon(":/qss_icons/rc/button_nt_maximize.png"),
+                             "hover": QIcon(":/qss_icons/rc/button_nt_maximize_hover.png")},
+                "restore": {"normal": QIcon(":/qss_icons/rc/button_nt_restore.png"),
+                            "hover": QIcon(":/qss_icons/rc/button_nt_restore_hover.png")},
+                "close": {"normal": QIcon(":/qss_icons/rc/button_nt_close.png"),
+                          "hover": QIcon(":/qss_icons/rc/button_nt_close_hover_red.png")}
+                }
+
+
 def getButtons(parent):
-    """
-        Loads titlebar buttons to dict depending on selected style (NT/Darwin)
+    """Loads titlebar buttons to dict depending on selected style (NT/Darwin)
+
     Args:
         parent (QWidget, required): Widget where buttons will be used.
 
@@ -96,3 +120,20 @@ class buttonsWidget(QWidget):
 
         if qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsLayout.setSpacing(8)
+
+    def _update_buttons_icons(self):
+        icons_dict = getIcons()
+        self.btnMinimize.setIcons(icons_dict["minimize"]["normal"], icons_dict["minimize"]["hover"])
+        self.btnMaximize.setIcons(icons_dict["maximize"]["normal"], icons_dict["maximize"]["hover"])
+        self.btnRestore.setIcons(icons_dict["restore"]["normal"], icons_dict["restore"]["hover"])
+        self.btnClose.setIcons(icons_dict["close"]["normal"], icons_dict["close"]["hover"])
+
+        self.btnMinimize.leaveEvent(None)
+        self.btnMaximize.leaveEvent(None)
+        self.btnRestore.leaveEvent(None)
+        self.btnClose.leaveEvent(None)
+
+    def changeEvent(self, event: QEvent):
+        if event.type() == QEvent.StyleChange:
+            if hasattr(self, "btnMinimize") and hasattr(self, "btnMaximize") and hasattr(self, "btnRestore") and hasattr(self, "btnClose"):
+                self._update_buttons_icons()
