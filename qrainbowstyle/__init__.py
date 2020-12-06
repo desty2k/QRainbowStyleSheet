@@ -83,6 +83,7 @@ Enjoy!
 # Standard library imports
 import os
 import sys
+import inspect
 import logging
 import platform
 import qrainbowstyle
@@ -149,12 +150,24 @@ def align_buttons_left():
 
 
 def use_darwin_buttons():
+    """Use darwin styled buttons everywhere in app"""
     qrainbowstyle.USE_DARWIN_BUTTONS = True
     _logger.info("Darwin buttons style has been enabled")
 
 
 def get_available_styles():
+    """Get list of available styles"""
     return [x for x in os.listdir(STYLES_PATH) if x != '__init__.py']
+
+
+def get_available_palettes() -> list:
+    """Get list of available palettes"""
+    import qrainbowstyle.palette as source
+    palettes = []
+    for name, obj in inspect.getmembers(source):
+        if inspect.isclass(obj) and issubclass(obj, source.BasePalette) and obj is not source.BasePalette:
+            palettes.append(obj)
+    return palettes
 
 
 def get_current_palette():
@@ -164,6 +177,14 @@ def get_current_palette():
         return palette
     except ModuleNotFoundError:
         raise ModuleNotFoundError("Cannot find current palette. Did you load style sheet?")
+
+
+def rainbowize(text: str) -> str:
+    """Replaces colors names to hashes in text"""
+    color_dict = get_current_palette().to_dict()
+    for color in color_dict:
+        text = text.replace(color, str(color_dict[color]))
+    return text
 
 
 def _apply_os_patches(palette):
