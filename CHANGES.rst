@@ -1,6 +1,13 @@
 Changelog
 =========
 
+- 0.6:
+    - Add early versions of GoogleMapsView and StylePicker
+    - Add docs for new widgets
+    - Add example scripts for new widgets
+    - Add new preview images
+    - Update README
+
 - 0.5.6:
     - Add Resizer module
     - Add rainbowize() and get_available_palettes()
