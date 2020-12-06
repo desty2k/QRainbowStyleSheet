@@ -3,6 +3,7 @@ from qtpy.QtGui import QMouseEvent, QResizeEvent
 from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot, QRect, QPoint, QEvent
 
 from .titlebar import Titlebar
+from .titlebar.resizer import Resizer
 
 
 class FramelessMainWindow(QMainWindow):
@@ -15,14 +16,7 @@ class FramelessMainWindow(QMainWindow):
     def __init__(self, parent=None):
         super(FramelessMainWindow, self).__init__(parent)
         self._contentWidgets = []
-
-        self._gripsize = 5
-        self._dndetect = QPoint(0, 0)
-        self._griprect = QRect(self.width() - self._gripsize,
-                               self.height() - self._gripsize,
-                               self._gripsize - self._dndetect.x(),
-                               self._gripsize - self._dndetect.y())
-        self._resizing = False
+        self._enableResizing = True
 
         self.setWindowFlags(Qt.Window
                             | Qt.FramelessWindowHint
@@ -80,13 +74,8 @@ class FramelessMainWindow(QMainWindow):
 
         QMetaObject.connectSlotsByName(self)
 
+        self.resizehandler = Resizer(self)
         QApplication.instance().installEventFilter(self)
-
-    def _updateGripRect(self):
-        self._griprect = QRect(self.width() - self._gripsize,
-                               self.height() - self._gripsize,
-                               self._gripsize - self._dndetect.x(),
-                               self._gripsize - self._dndetect.y())
 
     def setMenu(self, menu: QMenu):
         """Set menu for app icon.
@@ -108,7 +97,7 @@ class FramelessMainWindow(QMainWindow):
         """Handles events. When in full screen mode the user places
         the cursor no more than five pixels from the top of the screen,
         a bar with buttons will appear. When the window is in NoState,
-        the user will be able to change the window size by hovering
+        the user is able to resize the window by hovering
         the cursor over the lower right corner of the window.
 
         Args:
@@ -126,35 +115,15 @@ class FramelessMainWindow(QMainWindow):
             else:
                 self._fullscreenTitlebarTimer.stop()
 
-        # resizing
-        if self.windowState() not in (Qt.WindowFullScreen, Qt.WindowMaximized):
-            if event.type() == QMouseEvent.MouseButtonPress:
-                self._updateGripRect()
-                if self._griprect.contains(event.pos()):
-                    self._resizing = True
-
-            if event.type() == QMouseEvent.MouseButtonRelease:
-                QApplication.restoreOverrideCursor()
-                self._resizing = False
-
-            if event.type() == QMouseEvent.MouseMove:
-                self._updateGripRect()
-                if self._resizing:
-                    QApplication.setOverrideCursor(Qt.SizeFDiagCursor)
-                    if event.buttons() == Qt.LeftButton:
-                        self.resize(event.x(), event.y())
-                        self._updateGripRect()
-                        self.update()
-                        QApplication.restoreOverrideCursor()
-                else:
-                    if self._griprect.contains(event.pos()):
-                        QApplication.setOverrideCursor(Qt.SizeFDiagCursor)
-                    else:
-                        QApplication.restoreOverrideCursor()
-
+        self.resizehandler.handle(source, event, self)
         return QMainWindow.eventFilter(self, source, event)
 
-    def resizeEvent(self, a0: QResizeEvent) -> None:
+    def resizeEvent(self, event: QResizeEvent) -> None:
+        """Handle resize events
+
+        Args:
+            event (QResizeEvent): Resize event
+        """
         pass
 
     def addContentWidget(self, widget: QWidget):
@@ -183,6 +152,22 @@ class FramelessMainWindow(QMainWindow):
         firstshow_timer = QTimer(self)
         firstshow_timer.timeout.connect(self._on_showFullScreen)
         firstshow_timer.start(3000)
+
+    def setResizingEnabled(self, value: bool):
+        """Enable window resizing
+
+        Args:
+            value (bool): Enable or disable window resizing
+        """
+        self._enableResizing = value
+
+    def isResizingEnabled(self) -> bool:
+        """Return if window allows resizing
+
+        Returns:
+            value (bool): Window allow resizing.
+        """
+        return self._enableResizing
 
     def _on_showFullScreen(self):
         if self.windowState() == Qt.WindowFullScreen:
