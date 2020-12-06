@@ -37,16 +37,34 @@ import qrainbowstyle
 
 
 class WaitingSpinner(QWidget):
+    """QtWaitingSpinner is a highly configurable, custom Qt widget
+    for showing "waiting" or "loading" spinner icons in Qt applications,
+    e.g. the spinners below are all QtWaitingSpinner widgets
+    differing only in their configuration
+
+    Args:
+        parent (QWidget): Parent widget.
+        centerOnParent (bool): Center on parent widget.
+        disableParentWhenSpinning (bool): Disable parent widget when spinning.
+        modality (Qt.WindowModality): Spinner modality.
+        roundness (float): Lines roundness.
+        fade (float): Spinner fade.
+        lines (int): Lines count.
+        line_length (int): Lines length.
+        line_width (int): Lines width.
+        radius (int): Spinner radius.
+        speed (float): Spinner speed.
+    """
 
     def __init__(self, parent, centerOnParent=True, disableParentWhenSpinning=False,
-                 modality=Qt.NonModal, roundness=100., opacity=None, fade=80., lines=20,
-                 line_length=10, line_width=2, radius=10, speed=math.pi / 2, color=(0, 0, 0)):
+                 modality=Qt.NonModal, roundness=100., fade=80., lines=20,
+                 line_length=10, line_width=2, radius=10, speed=math.pi / 2):
         super().__init__(parent)
 
         self._centerOnParent = centerOnParent
         self._disableParentWhenSpinning = disableParentWhenSpinning
 
-        self._color = QColor(*color)
+        self._color = QColor(0, 0, 0)
         self._roundness = roundness
         self._minimumTrailOpacity = math.pi
         self._trailFadePercentage = fade
