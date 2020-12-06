@@ -122,13 +122,6 @@ MAIN_SCSS_FILEPATH = os.path.join(QSS_PATH, MAIN_SCSS_FILE)
 STYLES_SCSS_FILEPATH = os.path.join(QSS_PATH, STYLES_SCSS_FILE)
 VARIABLES_SCSS_FILEPATH = os.path.join(QSS_PATH, VARIABLES_SCSS_FILE)
 
-DEPRECATION_MSG = '''This function will be deprecated in v3.0.
-Please, set the wanted binding by using QtPy environment variable QT_API,
-then use load_stylesheet() or use load_stylesheet()
-passing the argument qt_api='wanted_binding'.'''
-
-# Use lightstyle as default
-
 USE_DARWIN_BUTTONS = False
 ALIGN_BUTTONS_LEFT = False
 
