@@ -8,6 +8,8 @@
 
 from qtpy import QtCore, QtGui, QtWidgets
 
+from qroundprogressbar import QRoundProgressBar
+
 
 class Ui_TestWidget(object):
     def setupUi(self, TestWidget):
@@ -384,6 +386,3 @@ class Ui_TestWidget(object):
         self.label.setText(_translate("TestWidget", "Donut Style"))
         self.label_3.setText(_translate("TestWidget", "Pie Style"))
         self.label_4.setText(_translate("TestWidget", "Donut Style"))
-
-
-from qroundprogressbar import QRoundProgressBar
