@@ -1,6 +1,12 @@
 Changelog
 =========
 
+- 0.6.1:
+    - Add QRoundProgressBar
+    - Add example for round progress bar
+    - Fix error when importing widgets
+    - Update README
+
 - 0.6:
     - Add early versions of GoogleMapsView and StylePicker
     - Add docs for new widgets
