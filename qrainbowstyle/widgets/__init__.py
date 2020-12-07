@@ -1,3 +1,4 @@
-from .QtWaitingSpinner.pyqtspinner.spinner import WaitingSpinner
-from .GoogleMapsView.MapsWidget import GoogleMapsView
-from .PythonQtWidgets.qtwidgets.palette.palette import StylePicker
+from qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.spinner import WaitingSpinner
+from qrainbowstyle.widgets.GoogleMapsWidget.MapsWidget import GoogleMapsView
+from qrainbowstyle.widgets.PythonQtWidgets.qtwidgets.palette.palette import StylePicker
+from qrainbowstyle.widgets.QRoundProgressBar.qroundprogressbar import QRoundProgressBar

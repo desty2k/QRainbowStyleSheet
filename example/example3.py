@@ -47,7 +47,7 @@ def main():
     app = QApplication(sys.argv)
     app.setStyleSheet(qrainbowstyle.load_stylesheet())
     qrainbowstyle.set_app_icon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
-    qrainbowstyle.set_app_name("GoogleMapsView Example")
+    qrainbowstyle.set_app_name("GoogleMapsWidget Example")
 
     win = FramelessMainWindow()
 
