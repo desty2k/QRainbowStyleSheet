@@ -26,9 +26,9 @@
 
 import sys
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette
-from PyQt5.QtWidgets import QApplication, QWidget
+from qtpy.QtCore import Qt
+from qtpy.QtGui import QPalette
+from qtpy.QtWidgets import QApplication, QWidget
 
 from qroundprogressbar import QRoundProgressBar
 from ui_TestWidget import Ui_TestWidget
