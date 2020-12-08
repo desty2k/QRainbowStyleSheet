@@ -96,7 +96,7 @@ jobs:
         echo "${{env.RELEASE_VERSION}}"
     
     - name: Create a release
-      if: contains(env.VERSION, env.RELEASE_VERSION) == false
+      if: env.VERSION != env.RELEASE_VERSION
       
       uses: actions/create-release@v1.1.4
       with:
@@ -105,6 +105,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
      
     - name: Skip release
-      if: contains(env.VERSION, env.RELEASE_VERSION) == true
+      if: env.VERSION == env.RELEASE_VERSION
       run: |
         echo "Skipping because version does not changed"
