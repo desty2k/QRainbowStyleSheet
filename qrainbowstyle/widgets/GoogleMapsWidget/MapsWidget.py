@@ -258,7 +258,7 @@ class GoogleMapsPage(QWebEnginePage):
             line (int): Line in code where error occured.
             source_id (str): Element ID.
         """
-        self._logger.log(10*(level+1), "[{}]: {}".format(line, msg))
+        self._logger.log(10 * (level + 1), "[{}]: {}".format(line, msg))
 
 
 class GoogleMapsView(QWebEngineView):

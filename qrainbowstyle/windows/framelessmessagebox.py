@@ -101,4 +101,3 @@ class FramelessCriticalMessageBox(FramelessMessageBox):
 class FramelessQuestionMessageBox(FramelessMessageBox):
     def __init__(self, parent=None):
         super(FramelessQuestionMessageBox, self).__init__(icon=QStyle.SP_MessageBoxQuestion, parent=parent)
-

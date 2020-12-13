@@ -29,16 +29,13 @@ def main():
     dialog = FramelessDialog()
     dialog.show()
 
-    text = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae efficitur arcu, sed accumsan sem. 
-    Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla sit amet rhoncus eros. Curabitur auctor, 
-    mauris a tincidunt congue, libero libero porttitor urna, sed semper ligula libero nec leo. Phasellus feugiat 
-    maximus auctor."""
+    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae efficitur arcu, sed accumsan sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla sit amet rhoncus eros. Curabitur auctor, mauris a tincidunt congue, libero libero porttitor urna, sed semper ligula libero nec leo. Phasellus feugiat maximus auctor."  # noqa
 
     x = 0
     q = FramelessQuestionMessageBox()
     q.setText(text)
     q.show()
-    q.move(QPoint(0, x*q.height()))
+    q.move(QPoint(0, x * q.height()))
 
     x += 1
     c = FramelessCriticalMessageBox()
