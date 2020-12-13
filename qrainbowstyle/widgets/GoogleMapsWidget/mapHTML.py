@@ -19,13 +19,17 @@ html = """
 </head>
 <body>
 <div id="map"></div>
-<script>
+
+<script async>
 
     var jshelper;
-
     new QWebChannel(qt.webChannelTransport,
                 function(channel) { jshelper = channel.objects.jshelper; });
+    let map;
+    let markers = {};
+    let polylines = {};
 
+    const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     var customStyle = [
         {
             "featureType": "water",
@@ -132,8 +136,7 @@ html = """
     ]
 
     function initMap() {
-
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
             zoom: 3,
             center: {lat: 0, lng: -180},
             disableDefaultUI: true,
@@ -151,30 +154,126 @@ html = """
         });
         map.setOptions({minZoom: 0, maxZoom: 50});
 
-        /*
-        var flightPlanCoordinates = [
-            new google.maps.LatLng(53.08254, 19.37103),
-            new google.maps.LatLng(58.46758, 110.027892)
-          ];
-        var flightPath = new google.maps.Polyline({
-            path: flightPlanCoordinates,
-            strokeColor: "#ff1e00",
-            strokeOpacity: 1.0,
-            strokeWeight: 2
+        google.maps.event.addListener(map, "rightclick", function (event) {
+            jshelper.mapIsRightClicked(event.latLng.lat(), event.latLng.lng())
         });
-        flightPath.setMap(map);
-        */
 
-        google.maps.event.addListener(map, "rightclick", function(event) {
-            var lat = event.latLng.lat();
-            var lng = event.latLng.lng();
-            jshelper.logLocation(lat, lng)
+        google.maps.event.addListener(map, 'dragend', function () {
+            var center = map.getCenter();
+            jshelper.mapIsMoved(center.lat(), center.lng());
         });
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            jshelper.mapIsClicked(event.latLng.lat(), event.latLng.lng());
+        });
+
+        google.maps.event.addListener(map, 'dblclick', function (event) {
+            jshelper.mapIsDoubleClicked(event.latLng.lat(), event.latLng.lng());
+        });
+
+        console.log("Setup compeleted!");
     }
 
 
+function addMarker(marker_id, latitude, longitude) {
+    console.log("Creating new marker: " + marker_id)
+    const location = new google.maps.LatLng(latitude, longitude);
+    const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        draggable: true,
+        id: marker_id,
+        polylines: {},
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        jshelper.markerIsClicked(marker_id, marker.position.lat(), marker.position.lng())
+    });
+    google.maps.event.addListener(marker, 'dblclick', function () {
+        jshelper.markerIsDoubleClicked(marker_id, marker.position.lat(), marker.position.lng())
+    });
+    google.maps.event.addListener(marker, 'rightclick', function () {
+         jshelper.markerIsRightClicked(marker_id, marker.position.lat(), marker.position.lng())
+    });
+    google.maps.event.addListener(marker, 'dragend', function () {
+         jshelper.markerIsMoved(marker_id, marker.position.lat(), marker.position.lng())
+    });
+    markers[marker_id] = marker;
+}
+
+function addPolyline(polyline_id, coordsArray) {
+    console.log("Creating new polyline: " + polyline_id)
+        const connection = new google.maps.Polyline({
+        path: coordsArray,
+        geodesic: true,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+        map: map,
+    });
+
+    google.maps.event.addListener(connection, 'click', function () {
+        jshelper.polylineIsClicked(polyline_id, connection.getPath().getArray())
+    });
+    google.maps.event.addListener(connection, 'dblclick', function () {
+        jshelper.polylineIsDoubleClicked(polyline_id, connection.getPath().getArray())
+    });
+    google.maps.event.addListener(connection, 'rightclick', function () {
+         jshelper.polylineIsRightClicked(polyline_id, connection.getPath().getArray())
+    });
+    polylines[polyline_id] = connection;
+}
+
+function getMarkers() {
+    let resp = {};
+    for (var mid in markers) {
+        resp[mid] = {lat: markers[mid].position.lat(), lng: markers[mid].position.lng()};
+    }
+    return resp;
+}
+
+function moveMarker(marker_id, latitude, longitude) {
+    /*
+    var newcords = new google.maps.LatLng(latitude, longitude);
+    for (var poly_id in polylines) {
+        if (polylines[poly_id].get("markers").length > 0) {
+            if(marker_id in polylines[poly_id].get("markers")) {
+                var oldcords = polylines[poly_id].getPath().getArray();
+                oldcords[marker_id] = newcords;
+                polylines[poly_id].setPath(oldcords);
+            }
+        }
+    }
+    */
+}
+
+function deleteMarker(marker_id) {
+    markers[marker_id].setMap(null);
+    delete markers[marker_id];
+    /*
+    for (var poly_id in polylines) {
+        if (polylines[poly_id].get("markers").length > 0) {
+            if(marker_id in polylines[poly_id].get("markers")) {
+                var oldcords = polylines[poly_id].getPath().getArray();
+                oldcords.splice(marker_id, 1);
+                polylines[poly_id]["markers"].splice(marker_id, 1);
+                console.log("Removed marker with id: " + marker_id + "- New markersIDs for this poly: " + polylines[poly_id]["markers"])
+                polylines[poly_id].setPath(oldcords);
+            }
+        }
+    }
+    */
+}
+
+function updateMarker(marker_id, extras) {
+    if (!(marker_id in markers)) {
+        return;
+    }
+    markers[marker_id].setOptions(extras);
+}
+
 </script>
-<script async defer
+<script async
         src="https://maps.googleapis.com/maps/api/js?key=API_KEY_GOES_HERE&callback=initMap">
 </script>
 </body>
