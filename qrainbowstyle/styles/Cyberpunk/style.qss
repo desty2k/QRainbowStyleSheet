@@ -2238,3 +2238,14 @@ FramelessMainWindow #centralWidget {
   border-style: inset;
   background-color: #090D0C;
 }
+
+/* FramelessDialog ----------------------------------------------------------------
+
+--------------------------------------------------------------------------- */
+FramelessDialog #centralWidget {
+  border-radius: 2.5px;
+  border-color: #51BCE2;
+  border-width: 1.5px;
+  border-style: inset;
+  background-color: #090D0C;
+}
