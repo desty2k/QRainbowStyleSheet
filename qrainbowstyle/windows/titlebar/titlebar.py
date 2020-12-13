@@ -28,6 +28,8 @@ class Titlebar(QFrame):
         self.offset = QPoint()
         self.maxNormal = False
         self.moving = False
+        self._maximizeondbclick = True
+        self._enablesnapping = True
 
         self.setAutoFillBackground(True)
         self.setFixedHeight(45)
@@ -104,6 +106,14 @@ class Titlebar(QFrame):
         self.window.showMinimized()
         self.minimizeClicked.emit()
 
+    def maximizeOnDoubleClick(self, value: bool):
+        """Enable or disable maximize on double click."""
+        self._maximizeondbclick = value
+
+    def enableEdgesSnapping(self, value: bool):
+        """Enable snapping to edges."""
+        self._enablesnapping = value
+
     def setWindowTitle(self, title: str) -> None:
         """Set window title"""
         self.label.setText(title)
@@ -123,6 +133,9 @@ class Titlebar(QFrame):
     def showMaximizeButton(self, value):
         if not qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsWidget.btnMaximize.setVisible(value)
+
+    def showMinimizeButton(self, value):
+        self.buttonsWidget.btnMinimize.setVisible(value)
 
     def setMenu(self, menu: QMenu):
         """Set app logo button menu"""
@@ -156,7 +169,7 @@ class Titlebar(QFrame):
 
     def mouseReleaseEvent(self, event):
         """Handle mouse release events"""
-        if self.moving:
+        if self.moving and self._enablesnapping:
             screen = QApplication.desktop().availableGeometry()
 
             if event.globalY() == 0:
@@ -177,7 +190,8 @@ class Titlebar(QFrame):
         self.moving = False
 
     def mouseDoubleClickEvent(self, event):
-        self.showMaxRestore()
+        if self._maximizeondbclick:
+            self.showMaxRestore()
 
     def mouseMoveEvent(self, event):
         """Handle mouse moving"""
