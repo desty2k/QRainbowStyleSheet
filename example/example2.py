@@ -1,16 +1,17 @@
 import os
 import sys
-import logging
 
 from qtpy import QtWidgets
-from qtpy.QtWidgets import *
-from qtpy.QtGui import *
-from qtpy.QtCore import *
+from qtpy.QtCore import qInstallMessageHandler, QSize, QDateTime, Qt, QTimer
+from qtpy.QtWidgets import (QApplication, QWidget, QComboBox, QStyleFactory, QLabel, QCheckBox, QHBoxLayout,
+                            QGridLayout, QGroupBox, QRadioButton, QVBoxLayout, QPushButton, QTabWidget, QSizePolicy,
+                            QTableWidget, QTextEdit, QLineEdit, QSpinBox, QDateTimeEdit, QSlider, QScrollBar, QDial,
+                            QProgressBar)
 
+import qrainbowstyle
+import qrainbowstyle.extras
 import qrainbowstyle.widgets
 import qrainbowstyle.windows
-import qrainbowstyle.extras
-import qrainbowstyle
 
 
 class WidgetGallery(QWidget):
