@@ -32,14 +32,17 @@ import argparse
 from subprocess import call
 
 # Third party imports
-import qrainbowstyle
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 # Local imports
+import qrainbowstyle
 from qrainbowstyle import PACKAGE_PATH, STYLES_PATH, QRC_FILE, QSS_FILE
+from qrainbowstyle.extras import OutputLogger, qt_message_handler
 from qrainbowstyle.utils.images import create_images, create_palette_image, generate_qrc_file, create_titlebar_images
 from qrainbowstyle.utils.scss import create_qss
+
+from qtpy.QtCore import qInstallMessageHandler
 
 
 class QSSFileHandler(FileSystemEventHandler):
@@ -237,8 +240,6 @@ def main(arguments):
 
 
 if __name__ == '__main__':
-    from qtpy import QtCore
-    logger = qrainbowstyle.utils.OutputLogger()
-    sys.excepthook = qrainbowstyle.utils.__utils.catch_exceptions
-    QtCore.qInstallMessageHandler(qrainbowstyle.utils.qt_message_handler)
+    logger = OutputLogger()
+    qInstallMessageHandler(qt_message_handler)
     sys.exit(main(sys.argv[1:]))
