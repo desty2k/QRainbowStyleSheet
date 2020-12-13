@@ -218,10 +218,8 @@ def main():
     win = qrainbowstyle.windows.FramelessMainWindow()
 
     # Example for spinner
-    spinner = qrainbowstyle.widgets.WaitingSpinner(win, centerOnParent=True, modality=Qt.WindowModal,
-                                                   roundness=70.0, opacity=15.0,
-                                                   fade=70.0, radius=15.0, lines=12,
-                                                   line_length=33.0, line_width=5.0,
+    spinner = qrainbowstyle.widgets.WaitingSpinner(win, centerOnParent=True, modality=Qt.WindowModal, roundness=70.0,
+                                                   fade=70.0, radius=15.0, lines=12, line_length=33.0, line_width=5.0,
                                                    speed=2.0)
     spinner.start()
     win.setMinimumSize(QSize(500, 300))
