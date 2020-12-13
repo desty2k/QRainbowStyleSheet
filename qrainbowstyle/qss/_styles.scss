@@ -2315,6 +2315,7 @@ titleBarWindowsButton {
 
 --------------------------------------------------------------------------- */
 
+
 FramelessMainWindow #centralWidget{
     border-radius: 2.5px;
     border-color: $COLOR_SELECTION_LIGHT;
@@ -2323,3 +2324,15 @@ FramelessMainWindow #centralWidget{
     background-color: $COLOR_BACKGROUND_DARK;
 }
 
+
+/* FramelessDialog ----------------------------------------------------------------
+
+--------------------------------------------------------------------------- */
+
+FramelessDialog #centralWidget{
+    border-radius: 2.5px;
+    border-color: $COLOR_SELECTION_LIGHT;
+    border-width: 1.5px;
+    border-style: inset;
+    background-color: $COLOR_BACKGROUND_DARK;
+}
