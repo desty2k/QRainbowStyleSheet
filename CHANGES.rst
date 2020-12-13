@@ -1,6 +1,17 @@
 Changelog
 =========
 
+- 0.6.2:
+    - Fix resize handler
+    - Add FramelessDialog and FramelessMessageBoxes
+    - GoogleMapsView: support for markers and polylines
+    - GoogleMapsView: logging Javascript console errors
+    - GoogleMapsView: signals for mouse events
+    - GoogleMapsView: update example3
+    - Add FramelessDialog to style.scss
+    - Re-generate resources
+    - Replace .pngs with .gif in README in preview section
+
 - 0.6.1:
     - Add QRoundProgressBar
     - Add example for round progress bar
