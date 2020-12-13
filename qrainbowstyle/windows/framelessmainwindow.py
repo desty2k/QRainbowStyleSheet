@@ -35,13 +35,13 @@ class FramelessMainWindow(QMainWindow):
 
         self._centralWidget = QWidget(self)
         self._centralWidget.setObjectName("centralWidget")
-        self._centralWidget.setContentsMargins(0, 0, 0, 0)
+        self._centralWidget.setContentsMargins(2.5, 2.5, 2.5, 2.5)
         self._centralWidget.setMouseTracking(True)
 
         self._centralLayout = QVBoxLayout(self._centralWidget)
         self._centralLayout.setAlignment(Qt.AlignBottom)
         self._centralLayout.setSpacing(3)
-        self._centralLayout.setContentsMargins(5, 5, 5, 5)
+        self._centralLayout.setContentsMargins(0, 0, 0, 0)
 
         self._bar = Titlebar(self)
         self._bar.showRestoreButton(False)
