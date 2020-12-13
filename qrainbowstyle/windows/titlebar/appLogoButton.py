@@ -34,5 +34,5 @@ class appLogoLabel(QLabel):
 
         self.setPixmap(QPixmap(qrainbowstyle.APP_ICON_PATH))
         self.setScaledContents(True)
-        self.setFixedSize(25, 25)
+        self.setFixedSize(32, 32)
         self.setStyleSheet("border: none;")
