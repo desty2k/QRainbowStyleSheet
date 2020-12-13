@@ -1,6 +1,6 @@
 from qtpy.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QSizePolicy, QMenu
 from qtpy.QtGui import QMouseEvent, QResizeEvent
-from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot, QRect, QPoint, QEvent
+from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot, QEvent, QObject
 
 from .titlebar import Titlebar
 from .titlebar.resizer import Resizer
@@ -36,6 +36,7 @@ class FramelessMainWindow(QMainWindow):
         self._centralWidget = QWidget(self)
         self._centralWidget.setObjectName("centralWidget")
         self._centralWidget.setContentsMargins(0, 0, 0, 0)
+        self._centralWidget.setMouseTracking(True)
 
         self._centralLayout = QVBoxLayout(self._centralWidget)
         self._centralLayout.setAlignment(Qt.AlignBottom)
@@ -52,6 +53,7 @@ class FramelessMainWindow(QMainWindow):
         self._centralLayout.addSpacing(3)
 
         self._contentWidget = QWidget(self)
+        self._contentWidget.setMouseTracking(True)
         self._contentWidget.setSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Expanding)
@@ -73,10 +75,12 @@ class FramelessMainWindow(QMainWindow):
         self.restoreClicked = self._bar.restoreClicked
         self.closeClicked = self._bar.closeClicked
 
-        QMetaObject.connectSlotsByName(self)
-
-        self.resizehandler = Resizer(self)
+        # create resizer
+        self.resizehandler = Resizer(self, debug=False)
+        self.resizehandler.updateTitlebarHeight(self._bar.height())
         QApplication.instance().installEventFilter(self)
+
+        QMetaObject.connectSlotsByName(self)
 
     def setMenu(self, menu: QMenu):
         """Set menu for app icon.
@@ -93,6 +97,7 @@ class FramelessMainWindow(QMainWindow):
             height (int): Titlebar height.
         """
         self._bar.setTitlebarHeight(height)
+        self.resizehandler.updateTitlebarHeight(self._bar.height())
 
     def eventFilter(self, source, event):
         """Handles events. When in full screen mode the user places
@@ -116,8 +121,9 @@ class FramelessMainWindow(QMainWindow):
             else:
                 self._fullscreenTitlebarTimer.stop()
 
-        self.resizehandler.handle(source, event, self)
-        return QMainWindow.eventFilter(self, source, event)
+        if hasattr(self, "resizehandler"):
+            self.resizehandler.handle(source, event, self)
+        return super().eventFilter(source, event)
 
     def resizeEvent(self, event: QResizeEvent) -> None:
         """Handle resize events
