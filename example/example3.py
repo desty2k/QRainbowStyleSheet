@@ -29,12 +29,24 @@ class mainWidget(QWidget):
         self.setLayout(self._layout)
 
         self.map = GoogleMapsView(self, "API_KEY")
+        self.map.loadFinished.connect(self.test)
         self._layout.addWidget(self.map)
 
         self.btn = QPushButton(self)
         self.btn.setText("Change style")
         self.btn.clicked.connect(_change_style)
         self._layout.addWidget(self.btn)
+
+    def test(self):
+        poly = []
+        for i in range(1, 10):
+            import random
+            x = random.randint(-80, 80)
+            y = random.randint(-179, 179)
+            self.map.addMarker(i, x, y)
+            poly.append({"lat": x, "lng": y})
+
+        self.map.addPolyline("0", poly)
 
 
 def main():
