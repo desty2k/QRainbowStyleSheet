@@ -1,4 +1,4 @@
-from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout, QSlider, QPushButton
+from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout, QSlider, QPushButton, QHBoxLayout, QLabel, QSizePolicy
 from qtpy.QtCore import Qt, qInstallMessageHandler
 
 import sys
@@ -21,6 +21,49 @@ def get_style():
     return styles[style_index]
 
 
+class MainWidget(QWidget):
+    """MainWidget documentation"""
+
+    def __init__(self, parent):
+        super(MainWidget, self).__init__(parent)
+
+        self._layout = QHBoxLayout(self)
+        self.setLayout(self._layout)
+
+        roundbar = QRoundProgressBar(self)
+        roundbar.setBarStyle(QRoundProgressBar.BarStyle.PIE)
+        roundbar.setFixedWidth(300)
+        roundbar.setFixedHeight(300)
+        roundbar.setDecimals(1)
+        self._layout.addWidget(roundbar)
+
+        self._controlWidget = QWidget(self)
+        self._controlWidget.setMaximumHeight(200)
+        self._controlWidgetLayout = QVBoxLayout(self._controlWidget)
+        self._controlWidget.setLayout(self._controlWidgetLayout)
+
+        style = QPushButton(self._controlWidget)
+        style.setText("Change bar style")
+        self._controlWidgetLayout.addWidget(style)
+
+        label = QLabel(self._controlWidget)
+        label.setText("Change app style")
+        self._controlWidgetLayout.addWidget(label)
+
+        picker = StylePicker(self._controlWidget)
+        self._controlWidgetLayout.addWidget(picker)
+
+        style.clicked.connect(lambda: roundbar.setBarStyle(get_style()))
+
+        slider = QSlider(Qt.Horizontal, self._controlWidget)
+        slider.setRange(0, 100)
+        slider.valueChanged.connect(roundbar.setValue)
+        slider.setValue(28)
+        self._controlWidgetLayout.addWidget(slider)
+
+        self._layout.addWidget(self._controlWidget)
+
+
 def main():
     logmodule = qrainbowstyle.extras.OutputLogger()
     qInstallMessageHandler(qt_message_handler)
@@ -33,32 +76,7 @@ def main():
 
     win = FramelessMainWindow()
 
-    widget = QWidget(win)
-    layout = QVBoxLayout(widget)
-    widget.setLayout(layout)
-
-    style = QPushButton(win)
-    style.setText("Change bar style")
-    layout.addWidget(style)
-
-    picker = StylePicker(win)
-    layout.addWidget(picker)
-
-    roundbar = QRoundProgressBar(widget)
-    roundbar.setBarStyle(QRoundProgressBar.BarStyle.PIE)
-    roundbar.setFixedWidth(300)
-    roundbar.setFixedHeight(300)
-    roundbar.setDecimals(1)
-    layout.addWidget(roundbar)
-
-    style.clicked.connect(lambda: roundbar.setBarStyle(get_style()))
-
-    slider = QSlider(Qt.Horizontal, widget)
-    slider.setRange(0, 100)
-    layout.addWidget(slider)
-    slider.valueChanged.connect(roundbar.setValue)
-    slider.setValue(28)
-
+    widget = MainWidget(win)
     win.addContentWidget(widget)
     win.show()
 
