@@ -10,25 +10,12 @@ PyQt5, QtPy, Qt.Py).
 Preview
 -------
 
-Frameless main window + NT buttons on the right + "Oceanic" style
+Frameless main window
 
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_nt_right_oceanic.png
-
-Frameless main window + NT buttons on the right + "Cyberpunk" style
-
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_nt_right_cyberpunk.png
-
-Frameless main window + Darwin buttons on the left + "DarkOrange" style
-
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_darwin_left_darkorange.png
-
-Frameless main window + Darwin buttons on the right + "Darkblue" style
-
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_darwin_right_darkblue.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow.gif
 
 Installation
 ------------
-
 
 Python
 ~~~~~~
