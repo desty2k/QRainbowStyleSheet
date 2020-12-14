@@ -6,11 +6,7 @@ from .appLogoButton import appLogoLabel, appLogoButton
 from .buttonsWidget import buttonsWidget
 
 import qrainbowstyle
-
-
-def getWorkspace() -> QRect:
-    """Returns workspace area"""
-    return QApplication.desktop().availableGeometry()
+from qrainbowstyle.utils import getWorkspace
 
 
 class Titlebar(QFrame):
