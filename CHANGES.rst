@@ -1,6 +1,13 @@
 Changelog
 =========
 
+- 0.6.3:
+    - Add preview gifs
+    - Add docs for titlebar
+    - Add space between window side and buttons in titlebar
+    - Remove getWorkspace titlebar
+    - Fix buttons appearing in titlebar even when using darwin style
+
 - 0.6.2:
     - Fix resize handler
     - Add FramelessDialog and FramelessMessageBoxes
