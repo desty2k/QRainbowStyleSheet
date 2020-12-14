@@ -48,7 +48,7 @@ def getButtons(parent):
                 "maximize": titleBarButton(QIcon(":/qss_icons/rc/button_darwin_maximize.png"),
                                            QIcon(":/qss_icons/rc/button_darwin_maximize_hover.png"),
                                            parent),
-                "restore": titleBarButton(QIcon(":/qss_icons/rc/button_darwin_restore_hover.png"),
+                "restore": titleBarButton(QIcon(":/qss_icons/rc/button_darwin_restore.png"),
                                           QIcon(":/qss_icons/rc/button_darwin_restore_hover.png"),
                                           parent),
                 "close": titleBarButton(QIcon(":/qss_icons/rc/button_darwin_close.png"),
