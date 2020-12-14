@@ -124,12 +124,10 @@ class Titlebar(QFrame):
         self.appLogoButton.setVisible(value)
 
     def showRestoreButton(self, value):
-        if not qrainbowstyle.USE_DARWIN_BUTTONS:
-            self.buttonsWidget.btnRestore.setVisible(value)
+        self.buttonsWidget.btnRestore.setVisible(value)
 
     def showMaximizeButton(self, value):
-        if not qrainbowstyle.USE_DARWIN_BUTTONS:
-            self.buttonsWidget.btnMaximize.setVisible(value)
+        self.buttonsWidget.btnMaximize.setVisible(value)
 
     def showMinimizeButton(self, value):
         self.buttonsWidget.btnMinimize.setVisible(value)
