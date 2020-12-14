@@ -14,6 +14,14 @@ Frameless main window
 
 .. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow.gif
 
+Frameless message box
+
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_messagebox.gif
+
+Frameless dialog
+
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_dialog.gif
+
 Installation
 ------------
 
