@@ -85,7 +85,7 @@ class buttonsWidget(QWidget):
         self.setStyleSheet("padding: 0px;")
 
         self.buttonsLayout = QHBoxLayout(self)
-        self.buttonsLayout.setContentsMargins(0, 0, 0, 0)
+        self.buttonsLayout.setContentsMargins(5, 0, 5, 0)
         self.buttonsLayout.setSpacing(0)
         self.buttonsLayout.setAlignment(Qt.AlignVCenter)
         self.setLayout(self.buttonsLayout)
