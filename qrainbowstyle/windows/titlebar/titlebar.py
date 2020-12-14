@@ -14,11 +14,12 @@ def getWorkspace() -> QRect:
 
 
 class Titlebar(QFrame):
+    """Titlebar for frameless windows."""
+
     minimizeClicked = Signal()
     maximizeClicked = Signal()
     restoreClicked = Signal()
     closeClicked = Signal()
-    """Titlebar documentation"""
 
     def __init__(self, parentwindow: QWidget, parent=None):
         super(Titlebar, self).__init__(parent)
