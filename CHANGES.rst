@@ -1,6 +1,13 @@
 Changelog
 =========
 
+- 0.6.4:
+    - Add vertical and horizontal style pickers
+    - Add fadeIn and fadeOut for waitingspinner
+    - Change StylePicker name to StylePickerGrid
+    - Update frameless mainwindow gif
+    - Fix html not loaded when running javascript scripts
+
 - 0.6.3:
     - Add preview gifs
     - Add docs for titlebar
