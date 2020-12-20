@@ -58,6 +58,7 @@ class CallHandler(QObject):
         self._logger = logging.getLogger(__name__)
         self.markers = []
 
+        self._loaded = False
         self._draggableMarkers = False
 
     def runScript(self, script, callback=None):
@@ -259,6 +260,19 @@ class CallHandler(QObject):
         if self._loaded:
             return self.runScript("enableMarkersDragging({});".format(jvalue))
 
+    def on_loadFinished(self):
+        """Set loaded flag to True."""
+        self._loaded = True
+        self.appySettings()
+
+    def on_loadStarted(self):
+        """Set loaded flag to False."""
+        self._loaded = False
+
+    def appySettings(self):
+        """Apply settings after loading HTML."""
+        self.enableMarkersDragging(self._draggableMarkers)
+
 
 class GoogleMapsPage(QWebEnginePage):
     """QWebEngineView page for handling Javascript console messages."""
@@ -304,6 +318,9 @@ class GoogleMapsView(QWebEngineView):
         # create map events handler and register it as "jshelper" in HTML
         self.handler = CallHandler(self)
         self.handler.runJavascript.connect(self.runScript)
+        self.loadFinished.connect(self.handler.on_loadFinished)
+        self.loadStarted.connect(self.handler.on_loadStarted)
+
         self.channel.registerObject("jshelper", self.handler)
 
         # Set HTML
