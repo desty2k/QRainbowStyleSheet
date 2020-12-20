@@ -44,6 +44,7 @@ class FramelessMainWindow(QMainWindow):
         self._centralLayout.setContentsMargins(0, 0, 0, 0)
 
         self._bar = Titlebar(self)
+        self._bar.closeClicked.connect(QApplication.quit)
         self._bar.showRestoreButton(False)
         self._bar.showLogoLabel(False)
         self._bar.showLogoButton(True)

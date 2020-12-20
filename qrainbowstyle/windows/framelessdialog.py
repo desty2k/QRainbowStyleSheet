@@ -47,6 +47,7 @@ class FramelessDialog(QDialog):
         self._bar.showLogoButton(False)
         self._bar.maximizeOnDoubleClick(False)
         self._bar.enableEdgesSnapping(False)
+        self._bar.closeClicked.connect(QApplication.quit)
         self._centralLayout.addWidget(self._bar)
         self._centralLayout.setAlignment(self._bar, Qt.AlignVCenter)
 
