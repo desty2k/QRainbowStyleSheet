@@ -75,41 +75,38 @@ class _PaletteBase(QWidget):
         self.selected.emit(color)
 
 
-# class _PaletteLinearBase(_PaletteBase):
-#     def __init__(self, colors, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#
-#         if isinstance(colors, str):
-#             if colors in PALETTES:
-#                 colors = PALETTES[colors]
-#
-#         palette = self.layoutvh()
-#
-#         for c in colors:
-#             b = _PaletteButton(c)
-#             b.pressed.connect(
-#                 lambda c=c: self._emit_color(c)
-#             )
-#             palette.addWidget(b)
-#
-#         self.setLayout(palette)
-#
-#
-# class PaletteHorizontal(_PaletteLinearBase):
-#     layoutvh = QHBoxLayout
-#
-#
-# class PaletteVertical(_PaletteLinearBase):
-#     layoutvh = QVBoxLayout
+class _PaletteLinearBase(_PaletteBase):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        colors = []
+
+        for style in qrainbowstyle.get_available_palettes():
+            colors.append({1: style.COLOR_BACKGROUND_NORMAL, 2: style.COLOR_SELECTION_NORMAL, "name": style.__name__})
+
+        palette = self.layoutvh()
+
+        for c in colors:
+            b = _PaletteButton(c)
+            b.pressed.connect(lambda color=c: setStylesheetOnQApp(style=color["name"]))
+            palette.addWidget(b)
+
+        self.setLayout(palette)
 
 
-class StylePicker(QWidget):
+class StylePickerHorizontal(_PaletteLinearBase):
+    layoutvh = QHBoxLayout
+
+
+class StylePickerVertical(_PaletteLinearBase):
+    layoutvh = QVBoxLayout
+
+
+class StylePickerGrid(QWidget):
     """Select application color palette from a grid."""
 
-    def __init__(self, parent):
-        super(StylePicker, self).__init__(parent)
+    def __init__(self, n_columns=5, parent=None):
+        super(StylePickerGrid, self).__init__(parent)
         self.setMaximumWidth(150)
-        n_columns = 5
         colors = []
 
         for style in qrainbowstyle.get_available_palettes():
