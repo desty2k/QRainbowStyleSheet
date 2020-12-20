@@ -30,6 +30,7 @@ from qtpy.QtWidgets import QWidget, QGridLayout, QGroupBox, QHBoxLayout, QSpinBo
 from pyqtspinner.spinner import WaitingSpinner
 
 import qrainbowstyle
+import qrainbowstyle.widgets
 
 
 class Demo(QWidget):
@@ -99,6 +100,8 @@ class Demo(QWidget):
         self.btn_stop = QPushButton("Stop")
         self.btn_pick_color = QPushButton("Pick Color")
         self.btn_show_init = QPushButton("Show init args")
+        self.btn_fade_in = QPushButton("Fade in")
+        self.btn_fade_out = QPushButton("Fade out")
 
         # Connects
         self.sb_roundness.valueChanged.connect(self.set_roundness)
@@ -110,10 +113,15 @@ class Demo(QWidget):
         self.sb_inner_radius.valueChanged.connect(self.set_inner_radius)
         self.sb_rev_s.valueChanged.connect(self.set_rev_s)
 
+        # qrainbowstyle
+        self.picker = qrainbowstyle.widgets.StylePickerGrid(self)
+
         self.btn_start.clicked.connect(self.spinner_start)
         self.btn_stop.clicked.connect(self.spinner_stop)
         self.btn_pick_color.clicked.connect(self.show_color_picker)
         self.btn_show_init.clicked.connect(self.show_init_args)
+        self.btn_fade_in.clicked.connect(self.fadeIn)
+        self.btn_fade_out.clicked.connect(self.fadeOut)
 
         # Layout adds
         groupbox1_layout.addWidget(self.spinner)
@@ -135,6 +143,8 @@ class Demo(QWidget):
         groupbox2_layout.addWidget(self.sb_inner_radius, *(7, 2))
         groupbox2_layout.addWidget(QLabel("Rev/s:"), *(8, 1))
         groupbox2_layout.addWidget(self.sb_rev_s, *(8, 2))
+        groupbox2_layout.addWidget(QLabel("Style: "), *(9, 1))
+        groupbox2_layout.addWidget(self.picker, *(9, 2))
 
         groupbox2.setLayout(groupbox2_layout)
 
@@ -142,6 +152,8 @@ class Demo(QWidget):
         button_hbox.addWidget(self.btn_stop)
         button_hbox.addWidget(self.btn_pick_color)
         button_hbox.addWidget(self.btn_show_init)
+        button_hbox.addWidget(self.btn_fade_in)
+        button_hbox.addWidget(self.btn_fade_out)
 
         grid.addWidget(groupbox1, *(1, 1))
         grid.addWidget(groupbox2, *(1, 2))
@@ -207,6 +219,12 @@ class Demo(QWidget):
         cb.setText(text, mode=cb.Clipboard)
         print(text)
         msg_box.exec_()
+
+    def fadeIn(self):
+        self.spinner.fadeIn()
+
+    def fadeOut(self):
+        self.spinner.fadeOut()
 
 
 if __name__ == '__main__':
