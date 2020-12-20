@@ -58,6 +58,8 @@ class CallHandler(QObject):
         self._logger = logging.getLogger(__name__)
         self.markers = []
 
+        self._draggableMarkers = False
+
     def runScript(self, script, callback=None):
         """Run Javascript code.
 
@@ -241,6 +243,22 @@ class CallHandler(QObject):
         """
         return self.runScript("addPolylineBetweenMarkers({}, {});".format(polyline_id, markers_ids))
 
+    def enableMarkersDragging(self, value):
+        """Enable or disable markers dragging feature.
+
+        Args:
+            value (bool): Enable markers dragging.
+        """
+        self._draggableMarkers = value
+
+        if value:
+            jvalue = "true"
+        else:
+            jvalue = "false"
+
+        if self._loaded:
+            return self.runScript("enableMarkersDragging({});".format(jvalue))
+
 
 class GoogleMapsPage(QWebEnginePage):
     """QWebEngineView page for handling Javascript console messages."""
@@ -303,6 +321,14 @@ class GoogleMapsView(QWebEngineView):
             self.page().runJavaScript(script)
         else:
             self.page().runJavaScript(script, callback)
+
+    def enableMarkersDragging(self, value):
+        """Enable or disable markers dragging feature.
+
+        Args:
+            value (bool): Enable markers dragging.
+        """
+        self.handler.enableMarkersDragging(value)
 
     def addMarker(self, marker_id, lat, lng):
         """Creates marker with marker_id id at latitude, longitude.

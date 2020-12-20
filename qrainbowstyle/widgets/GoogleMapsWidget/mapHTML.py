@@ -28,6 +28,7 @@ html = """
     let map;
     let markers = {};
     let polylines = {};
+    let allow_marker_dragging = true;
 
     const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     var customStyle = [
@@ -178,10 +179,15 @@ html = """
 function addMarker(marker_id, latitude, longitude) {
     console.log("Creating new marker: " + marker_id)
     const location = new google.maps.LatLng(latitude, longitude);
+
+    if (marker_id in markers) {
+        return updateMarker(marker_id, {position:location})
+    }
+
     const marker = new google.maps.Marker({
         position: location,
         map: map,
-        draggable: true,
+        draggable: allow_marker_dragging,
         id: marker_id,
         polylines: {},
     });
@@ -270,6 +276,14 @@ function updateMarker(marker_id, extras) {
         return;
     }
     markers[marker_id].setOptions(extras);
+}
+
+function enableMarkersDragging(value) {
+    allow_marker_dragging = value;
+    for (var marker_id in markers) {
+        updateMarker(marker_id, {draggable: value});
+    }
+    console.log("Dragging settings changed!")
 }
 
 </script>
