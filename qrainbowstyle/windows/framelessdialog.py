@@ -11,6 +11,7 @@ class FramelessDialog(QDialog):
 
     def __init__(self, parent=None):
         super(FramelessDialog, self).__init__(parent)
+        QApplication.setQuitOnLastWindowClosed(True)
         self._contentWidgets = []
         self._enableResizing = True
 
@@ -47,7 +48,7 @@ class FramelessDialog(QDialog):
         self._bar.showLogoButton(False)
         self._bar.maximizeOnDoubleClick(False)
         self._bar.enableEdgesSnapping(False)
-        self._bar.closeClicked.connect(QApplication.quit)
+        self._bar.closeClicked.connect(self.close)
         self._centralLayout.addWidget(self._bar)
         self._centralLayout.setAlignment(self._bar, Qt.AlignVCenter)
 

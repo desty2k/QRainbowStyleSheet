@@ -15,6 +15,7 @@ class FramelessMainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(FramelessMainWindow, self).__init__(parent)
+        QApplication.setQuitOnLastWindowClosed(True)
         self._contentWidgets = []
         self._enableResizing = True
 
@@ -44,10 +45,10 @@ class FramelessMainWindow(QMainWindow):
         self._centralLayout.setContentsMargins(0, 0, 0, 0)
 
         self._bar = Titlebar(self)
-        self._bar.closeClicked.connect(QApplication.quit)
         self._bar.showRestoreButton(False)
         self._bar.showLogoLabel(False)
         self._bar.showLogoButton(True)
+        self._bar.closeClicked.connect(self.close)
         self._centralLayout.addWidget(self._bar)
         self._centralLayout.setAlignment(self._bar, Qt.AlignVCenter)
 
