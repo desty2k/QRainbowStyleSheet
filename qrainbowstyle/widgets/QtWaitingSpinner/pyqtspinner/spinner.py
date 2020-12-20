@@ -29,7 +29,7 @@ SOFTWARE.
 
 import math
 
-from qtpy.QtCore import Qt, QTimer, QRect
+from qtpy.QtCore import Qt, QTimer, QRect, Signal, QEvent
 from qtpy.QtGui import QColor, QPainter
 from qtpy.QtWidgets import QWidget
 
@@ -68,13 +68,18 @@ class WaitingSpinner(QWidget):
         self._roundness = roundness
         self._minimumTrailOpacity = math.pi
         self._trailFadePercentage = fade
+        self._oldTrailFadePercentage = fade
         self._revolutionsPerSecond = speed
         self._numberOfLines = lines
         self._lineLength = line_length
         self._lineWidth = line_width
         self._innerRadius = radius
         self._currentCounter = 0
+
         self._isSpinning = False
+
+        self.fadeInTimer = QTimer()
+        self.fadeOutTimer = QTimer()
 
         self._timer = QTimer(self)
         self._timer.timeout.connect(self.rotate)
@@ -112,12 +117,21 @@ class WaitingSpinner(QWidget):
             )
             painter.setBrush(color)
             painter.drawRoundedRect(
-                QRect(0, -self._lineWidth / 2, self._lineLength, self._lineWidth),
+                QRect(0, - self._lineWidth / 2, self._lineLength, self._lineWidth),
                 self._roundness,
                 self._roundness,
                 Qt.RelativeSize
             )
             painter.restore()
+
+    def changeEvent(self, event: QEvent):
+        """Change event handler.
+
+        Args:
+            event (QEvent): Event.
+        """
+        if event.type() == QEvent.StyleChange:
+            self.setColor(qrainbowstyle.get_current_palette().COLOR_SELECTION_NORMAL)
 
     def start(self):
         self.updatePosition()
@@ -158,6 +172,48 @@ class WaitingSpinner(QWidget):
     def setInnerRadius(self, radius):
         self._innerRadius = radius
         self.updateSize()
+
+    def fadeIn(self, time: int = 15):
+        self.setTrailFadePercentage(0)
+        self.stopFade()
+        self.hide()
+
+        self.fadeInTimer = QTimer()
+        self.fadeInTimer.timeout.connect(self._on_fadeIn)
+        self.fadeInTimer.start(time)
+
+    def _on_fadeIn(self):
+        if self.trailFadePercentage < self._oldTrailFadePercentage:
+            if self.trailFadePercentage == 0:
+                self.show()
+            self.setTrailFadePercentage(self.trailFadePercentage + 1)
+        else:
+            self.fadeInTimer.stop()
+            print("FadeIn completed")
+
+    def fadeOut(self, time: int = 15):
+        self.show()
+        self.stopFade()
+
+        self.fadeOutTimer = QTimer()
+        self.fadeOutTimer.timeout.connect(self._on_fadeOut)
+        self.fadeOutTimer.start(time)
+
+    def _on_fadeOut(self):
+        if self.trailFadePercentage > 0:
+            self.setTrailFadePercentage(self.trailFadePercentage - 1)
+        else:
+            self.hide()
+            self.fadeOutTimer.stop()
+            self._isFading = False
+            print("FadeOut completed")
+
+    def stopFade(self):
+        if self.fadeInTimer.isActive():
+            self.fadeInTimer.stop()
+        if self.fadeOutTimer.isActive():
+            self.fadeOutTimer.stop()
+        print("Stopped all fade timers!")
 
     @property
     def color(self):
