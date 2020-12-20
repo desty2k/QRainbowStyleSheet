@@ -173,7 +173,7 @@ def get_available_palettes() -> list:
 def get_current_palette():
     """Returns loaded palette"""
     try:
-        from style_rc import palette
+        from style_rc import palette  # noqa
         return palette
     except ModuleNotFoundError:
         raise ModuleNotFoundError("Cannot find current palette. Did you load style sheet?")
@@ -321,7 +321,7 @@ def _load_stylesheet(qt_api='', style=''):
         _logger.info("Found already imported style in sys.modules")
 
         # use qCleanupResources to remove all resource files
-        global style_rc
+        global style_rc  # noqa
         style_rc.qCleanupResources()
 
         # remove imported modules
@@ -343,7 +343,7 @@ def _load_stylesheet(qt_api='', style=''):
 
         # append directory to sys.path and import style_rc
         sys.path.append(package_dir)
-        import style_rc
+        import style_rc  # noqa
 
         # get palette
         palette = style_rc.palette
