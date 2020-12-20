@@ -71,7 +71,6 @@ class Titlebar(QFrame):
     # connecting buttons signals
     @Slot()
     def on_btnClose_clicked(self):
-        self.window.close()
         self.closeClicked.emit()
 
     @Slot()
