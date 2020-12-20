@@ -219,9 +219,14 @@ def main():
 
     # Example for spinner
     spinner = qrainbowstyle.widgets.WaitingSpinner(win, centerOnParent=True, modality=Qt.WindowModal, roundness=70.0,
-                                                   fade=70.0, radius=15.0, lines=12, line_length=33.0, line_width=5.0,
-                                                   speed=2.0)
+                                                   fade=70.0, radius=9.0, lines=24, line_length=35.0, line_width=2.0)
     spinner.start()
+    spinner.fadeIn()
+    t = QTimer()
+    t.setSingleShot(True)
+    t.timeout.connect(spinner.fadeOut)
+    t.start(5000)
+
     win.setMinimumSize(QSize(500, 300))
     # Example of using signals
     win.closeClicked.connect(lambda: print("Close clicked!"))
