@@ -29,6 +29,14 @@ def _replace_api_key(api_key: str):
     return html.replace("API_KEY_GOES_HERE", api_key)
 
 
+def convertBoolean(value: bool):
+    if value:
+        jvalue = "true"
+    else:
+        jvalue = "false"
+    return jvalue
+
+
 class CallHandler(QObject):
     """Google Maps events handler. Emits signals for
     map, markers, polylines - clicked, doubleClicked, rightClicked,
