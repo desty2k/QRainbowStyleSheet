@@ -33,16 +33,16 @@ html = """
     let map_zoomControl = false;
     let map_scrollwheel = true;
     let map_disableDoubleClickZoom = false;
-    
+
     window.addEventListener('load', (event) => {
         console.log('Page is fully loaded!');
         jshelper.pageIsLoaded();
     });
-    
+
     window.addEventListener('resize', (event) => {
         jshelper.pageIsResized();
     });
-    
+
     const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     var customStyle = [
         {
@@ -184,11 +184,11 @@ html = """
         google.maps.event.addListener(map, 'dblclick', function (event) {
             jshelper.mapIsDoubleClicked(event.latLng.lat(), event.latLng.lng());
         });
-        
+
         google.maps.event.addListenerOnce(map, 'idle', function (){
             jshelper.mapIsFullyLoaded();
         });
-        
+
         google.maps.event.addListener(map, 'tilesloaded', function () {
             jshelper.tilesAreFullyLoaded();
         });
@@ -234,7 +234,7 @@ function addPolyline(polyline_id, coordsArray) {
         coordsArray[i]["lat"] = parseFloat(coordsArray[i]["lat"]);
         coordsArray[i]["lng"] = parseFloat(coordsArray[i]["lng"]);
     }
-    
+
     const connection = new google.maps.Polyline({
         path: coordsArray,
         geodesic: true,

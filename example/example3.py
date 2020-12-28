@@ -42,7 +42,8 @@ class mainWidget(QWidget):
         poly = []
         loc = [38.736, -9.142]
         self.map.addMarker(0, loc[0], loc[1], {
-                "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Redpoint.svg/16px-Redpoint.svg.png"})
+            "icon":
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Redpoint.svg/16px-Redpoint.svg.png"})
         for i in range(1, 10):
             import random
             x = random.randint(-80, 80)
