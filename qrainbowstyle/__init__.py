@@ -336,7 +336,7 @@ def _load_stylesheet(qt_api='', style=''):
 
     try:
         _logger.debug("Loading style from directory: " + style_dir)
-
+        old_working_dir = os.getcwd()
         # set style directory
         package_dir = os.path.join(STYLES_PATH, style_dir)
         os.chdir(package_dir)
@@ -347,6 +347,7 @@ def _load_stylesheet(qt_api='', style=''):
 
         # get palette
         palette = style_rc.palette
+        os.chdir(old_working_dir)
     except FileExistsError:
         raise FileNotFoundError("Missing style_rc.py file")
 
