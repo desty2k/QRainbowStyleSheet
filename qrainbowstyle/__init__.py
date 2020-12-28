@@ -90,7 +90,7 @@ import qrainbowstyle
 
 __version__ = "0.6.4"
 
-_logger = logging.getLogger(__name__)
+_logger = logging.getLogger("qrainbowstyle")
 
 # Folder's path
 REPO_PATH = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
