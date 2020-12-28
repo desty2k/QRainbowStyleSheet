@@ -30,6 +30,16 @@ html = """
     let polylines = {};
     let allow_marker_dragging = true;
 
+    
+    window.addEventListener('load', (event) => {
+        console.log('Page is fully loaded!');
+        jshelper.pageIsLoaded();
+    });
+    
+    window.addEventListener('resize', (event) => {
+        jshelper.pageIsResized();
+    });
+    
     const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     var customStyle = [
         {
@@ -170,6 +180,14 @@ html = """
 
         google.maps.event.addListener(map, 'dblclick', function (event) {
             jshelper.mapIsDoubleClicked(event.latLng.lat(), event.latLng.lng());
+        });
+        
+        google.maps.event.addListenerOnce(map, 'idle', function (){
+            jshelper.mapIsFullyLoaded();
+        });
+        
+        google.maps.event.addListener(map, 'tilesloaded', function () {
+            jshelper.tilesAreFullyLoaded();
         });
 
         console.log("Setup compeleted!");

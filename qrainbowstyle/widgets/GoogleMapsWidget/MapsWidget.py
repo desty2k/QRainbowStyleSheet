@@ -61,6 +61,11 @@ class CallHandler(QObject):
     polylineRightClicked = Signal(str, list)
     polylineDoubleClicked = Signal(str, list)
 
+    pageLoaded = Signal()
+    pageResized = Signal()
+    mapLoaded = Signal()
+    tilesLoaded = Signal()
+
     def __init__(self, parent=None):
         super(CallHandler, self).__init__(parent)
         self._logger = logging.getLogger(__name__)
@@ -203,6 +208,29 @@ class CallHandler(QObject):
         """
         self._logger.debug("Polyline " + str(polyline_id) + " double clicked: " + str(path))
         self.polylineDoubleClicked.emit(polyline_id, path)
+
+    @Slot()
+    def pageIsLoaded(self):
+        """Triggered when QWebEngineView finishes loading page.
+        Emits pageLoaded signal."""
+        self.pageLoaded.emit()
+
+    @Slot()
+    def pageIsResized(self):
+        """Triggered when map widget is resized. Emits pageResized signal."""
+        self.pageResized.emit()
+
+    @Slot()
+    def mapIsFullyLoaded(self):
+        """Triggered when map finishes loading. Emits mapLoaded signal.
+        It may be triggered before showing the map."""
+        self.mapLoaded.emit()
+
+    @Slot()
+    def tilesAreFullyLoaded(self):
+        """Triggered when map finish loading tiles. Emits tilesLoaded signal.
+        It is last signal emited after creating GoogleMapsView widget."""
+        self.tilesLoaded.emit()
 
     def _updateMarkersCallback(self, markers: list):
         """Callback for loading marker list from QWebEngineView."""
