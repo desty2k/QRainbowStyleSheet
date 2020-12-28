@@ -72,7 +72,7 @@ class CallHandler(QObject):
         self.markers = []
 
         self._loaded = False
-        self._draggableMarkers = False
+        self._exec_later = []
 
     def runScript(self, script, callback=None):
         """Run Javascript code.
@@ -252,21 +252,22 @@ class CallHandler(QObject):
         """Delete marker with provided ID."""
         return self.runScript("deleteMarker({});".format(marker_id))
 
-    def addMarker(self, marker_id, latitude, longitude):
+    def addMarker(self, marker_id, latitude, longitude, options):
         """Creates marker with marker_id id at latitude, longitude.
 
         Args:
-            marker_id (float): Marker id.
+            marker_id (int): Marker id.
             latitude (float): Marker latitude.
             longitude (float): Marker longitude.
+            options (dict): Marker options.
         """
-        return self.runScript("addMarker({}, {}, {});".format(marker_id, latitude, longitude))
+        return self.runScript("addMarker({}, {}, {}, {});".format(marker_id, latitude, longitude, json.dumps(options)))
 
     def addPolyline(self, polyline_id, coordinates: list):
         """Creates polyline between coordinates.
 
         Args:
-            polyline_id (str): Polyline ID.
+            polyline_id (int): Polyline ID.
             coordinates (list): List of coordinates (dicts with "lat" and "lng" keys).
         """
         return self.runScript("addPolyline({}, {});".format(polyline_id, coordinates))
@@ -275,10 +276,69 @@ class CallHandler(QObject):
         """Creates polyline between markers.
 
         Args:
-            polyline_id (str): Polyline ID.
+            polyline_id (int): Polyline ID.
             markers_ids (list): List of markers IDs.
         """
         return self.runScript("addPolylineBetweenMarkers({}, {});".format(polyline_id, markers_ids))
+
+    def deletePolyline(self, polyline_id):
+        """Delete polyline with provided ID.
+
+        Args:
+            polyline_id (int): Polyline ID.
+        """
+        return self.runScript("deletePolyline({});".format(polyline_id))
+
+    def panToCenter(self):
+        """Pan map to center."""
+        if self._loaded:
+            return self.runScript("panToCenter();")
+        else:
+            self._exec_later.append(lambda: self.panToCenter())
+
+    def disableMapDragging(self, value):
+        """Enable or disable map dragging.
+
+        Args:
+            value (bool): Map dragging status.
+        """
+        if self._loaded:
+            return self.runScript("disableMapDragging({});".format(convertBoolean(not value)))
+        else:
+            self._exec_later.append(lambda: self.disableMapDragging(value))
+
+    def showZoomControl(self, value):
+        """Show or hide zoom control widget.
+
+        Args:
+            value (bool): Zoom control widget status.
+        """
+        if self._loaded:
+            return self.runScript("showZoomControl({});".format(convertBoolean(value)))
+        else:
+            self._exec_later.append(lambda: self.showZoomControl(value))
+
+    def disableDoubleClickToZoom(self, value):
+        """Enable or disable double click to zoom.
+
+        Args:
+            value (bool): Double click to zoom status.
+        """
+        if self._loaded:
+            return self.runScript("disableDoubleClickToZoom({})".format(convertBoolean(value)))
+        else:
+            self._exec_later.append(lambda: self.disableDoubleClickToZoom(value))
+
+    def disableScrollWheel(self, value):
+        """Enable or disable scroll to zoom.
+
+        Args:
+            value (bool): Scroll to zoom status.
+        """
+        if self._loaded:
+            return self.runScript("disableScrollWheel({});".format(convertBoolean(not value)))
+        else:
+            self._exec_later.append(lambda: self.disableScrollWheel(value))
 
     def enableMarkersDragging(self, value):
         """Enable or disable markers dragging feature.
@@ -286,32 +346,28 @@ class CallHandler(QObject):
         Args:
             value (bool): Enable markers dragging.
         """
-        self._draggableMarkers = value
-
-        if value:
-            jvalue = "true"
-        else:
-            jvalue = "false"
-
         if self._loaded:
-            return self.runScript("enableMarkersDragging({});".format(jvalue))
+            return self.runScript("enableMarkersDragging({});".format(convertBoolean(value)))
+        else:
+            self._exec_later.append(lambda: self.enableMarkersDragging(value))
 
     def on_loadFinished(self):
         """Set loaded flag to True."""
         self._loaded = True
-        self.appySettings()
+        for setting in self._exec_later:
+            try:
+                setting()
+            except Exception as e:
+                self._logger.warning("Exception while executing setting: {}".format(e))
 
     def on_loadStarted(self):
         """Set loaded flag to False."""
         self._loaded = False
 
-    def appySettings(self):
-        """Apply settings after loading HTML."""
-        self.enableMarkersDragging(self._draggableMarkers)
-
 
 class GoogleMapsPage(QWebEnginePage):
     """QWebEngineView page for handling Javascript console messages."""
+    message = Signal(dict)
 
     def __init__(self, parent=None):
         super(GoogleMapsPage, self).__init__(parent)
@@ -327,6 +383,7 @@ class GoogleMapsPage(QWebEnginePage):
             source_id (str): Element ID.
         """
         self._logger.log(10 * (level + 1), "[{}]: {}".format(line, msg))
+        self.message.emit({"level": 10 * (level + 1), "msg": msg, "line": line, "source_id": source_id})
 
 
 class GoogleMapsView(QWebEngineView):
@@ -375,6 +432,10 @@ class GoogleMapsView(QWebEngineView):
         else:
             self.page().runJavaScript(script, callback)
 
+    def getHandler(self):
+        """Returns map event handler."""
+        return self.handler
+
     def enableMarkersDragging(self, value):
         """Enable or disable markers dragging feature.
 
@@ -383,24 +444,107 @@ class GoogleMapsView(QWebEngineView):
         """
         self.handler.enableMarkersDragging(value)
 
-    def addMarker(self, marker_id, lat, lng):
+    def addMarker(self, marker_id, lat, lng, options=None):
         """Creates marker with marker_id id at latitude, longitude.
 
         Args:
-            marker_id (float): Marker id.
+            marker_id (int): Marker ID.
+            lat (float): Marker latitude.
+            lng (float): Marker longitude.
+            options (dict): Marker options.
+        """
+        if options is None:
+            options = {}
+        self.handler.addMarker(marker_id, lat, lng, options)
+
+    def deleteMarker(self, marker_id):
+        """Delete marker with ID.
+
+        Args:
+            marker_id (int): Marker ID.
+        """
+        self.handler.deleteMarker(marker_id)
+
+    def updateMarker(self, marker_id, options):
+        """Delete marker with ID.
+
+        Args:
+            marker_id (int): Marker ID.
+            options (dict): Marker options.
+        """
+        self.handler.updateMarker(marker_id, options)
+
+    def moveMarker(self, marker_id, lat, lng):
+        """Move marker to location with (lat, lng).
+
+        Args:
+            marker_id (int): Marker ID.
             lat (float): Marker latitude.
             lng (float): Marker longitude.
         """
-        self.handler.addMarker(marker_id, lat, lng)
+        self.handler.moveMarker(marker_id, lat, lng)
 
-    def addPolyline(self, polyline_id, markers: list):
+    def deletePolyline(self, polyline_id):
+        """Delete polyline with ID.
+
+        Args:
+            polyline_id (int): Polyline ID.
+        """
+        self.handler.deletePolyline(polyline_id)
+
+    def addPolyline(self, polyline_id, coords: list):
         """Creates polyline using coordinates.
 
         Args:
-            polyline_id (str): Polyline id
-            markers (list): List of coordinates (dicts with "lat" and "lng" keys).
+            polyline_id (int): Polyline id
+            coords (list): List of coordinates (dicts with "lat" and "lng" keys).
+        """
+        self.handler.addPolyline(polyline_id, coords)
+
+    def addPolylineBetweenMarkers(self, polyline_id, markers: list):
+        """Creates polyline using coordinates.
+
+        Args:
+            polyline_id (int): Polyline id
+            markers (list): List of markers IDs.
         """
         self.handler.addPolyline(polyline_id, markers)
+
+    def panToCenter(self):
+        """Pan map to center."""
+        self.handler.panToCenter()
+
+    def disableMapDragging(self, value):
+        """Enable or disable map dragging.
+
+        Args:
+            value (bool): Map dragging status.
+        """
+        self.handler.disableMapDragging(value)
+
+    def showZoomControl(self, value):
+        """Show or hide zoom control widget.
+
+        Args:
+            value (bool): Zoom control widget status.
+        """
+        self.handler.showZoomControl(value)
+
+    def disableDoubleClickToZoom(self, value):
+        """Enable or disable double click to zoom.
+
+        Args:
+            value (bool): Double click to zoom status.
+        """
+        self.handler.disableDoubleClickToZoom(value)
+
+    def disableScrollWheel(self, value):
+        """Enable or disable scroll to zoom.
+
+        Args:
+            value (bool): Scroll to zoom status.
+        """
+        self.handler.disableScrollWheel(value)
 
     def changeEvent(self, event: QEvent):
         """Change event handler.
@@ -410,3 +554,4 @@ class GoogleMapsView(QWebEngineView):
         """
         if event.type() == QEvent.StyleChange:
             self.setHtml(qrainbowstyle.rainbowize(_replace_api_key(self.api_key)))
+        return super().changeEvent(event)

@@ -29,7 +29,10 @@ html = """
     let markers = {};
     let polylines = {};
     let allow_marker_dragging = true;
-
+    let map_draggable = true;
+    let map_zoomControl = false;
+    let map_scrollwheel = true;
+    let map_disableDoubleClickZoom = false;
     
     window.addEventListener('load', (event) => {
         console.log('Page is fully loaded!');
@@ -148,8 +151,8 @@ html = """
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 3,
-            center: {lat: 0, lng: -180},
+            zoom: 0,
+            center: {lat: 50, lng: 0},
             disableDefaultUI: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             styles: customStyle,
@@ -163,7 +166,7 @@ html = """
                 strictBounds: true
             }
         });
-        map.setOptions({minZoom: 0, maxZoom: 50});
+        map.setOptions({minZoom: 0, maxZoom: 50, draggable: map_draggable, zoomControl: map_zoomControl, scrollwheel: map_scrollwheel, disableDoubleClickZoom: map_disableDoubleClickZoom});
 
         google.maps.event.addListener(map, "rightclick", function (event) {
             jshelper.mapIsRightClicked(event.latLng.lat(), event.latLng.lng())
@@ -194,7 +197,7 @@ html = """
     }
 
 
-function addMarker(marker_id, latitude, longitude) {
+function addMarker(marker_id, latitude, longitude, params) {
     console.log("Creating new marker: " + marker_id)
     const location = new google.maps.LatLng(latitude, longitude);
 
@@ -202,13 +205,13 @@ function addMarker(marker_id, latitude, longitude) {
         return updateMarker(marker_id, {position:location})
     }
 
-    const marker = new google.maps.Marker({
-        position: location,
+    const marker = new google.maps.Marker(Object.assign({},
+        {position: location,
         map: map,
         draggable: allow_marker_dragging,
         id: marker_id,
         polylines: {},
-    });
+    }, params));
 
     google.maps.event.addListener(marker, 'click', function () {
         jshelper.markerIsClicked(marker_id, marker.position.lat(), marker.position.lng())
@@ -227,7 +230,12 @@ function addMarker(marker_id, latitude, longitude) {
 
 function addPolyline(polyline_id, coordsArray) {
     console.log("Creating new polyline: " + polyline_id)
-        const connection = new google.maps.Polyline({
+    for (var i = 0; i < coordsArray.length; i++) {
+        coordsArray[i]["lat"] = parseFloat(coordsArray[i]["lat"]);
+        coordsArray[i]["lng"] = parseFloat(coordsArray[i]["lng"]);
+    }
+    
+    const connection = new google.maps.Polyline({
         path: coordsArray,
         geodesic: true,
         strokeColor: "#FF0000",
@@ -246,6 +254,11 @@ function addPolyline(polyline_id, coordsArray) {
          jshelper.polylineIsRightClicked(polyline_id, connection.getPath().getArray())
     });
     polylines[polyline_id] = connection;
+}
+
+function deletePolyline(polyline_id) {
+    polylines[polyline_id].setMap(null);
+    delete polylines[polyline_id];
 }
 
 function getMarkers() {
@@ -301,7 +314,32 @@ function enableMarkersDragging(value) {
     for (var marker_id in markers) {
         updateMarker(marker_id, {draggable: value});
     }
-    console.log("Dragging settings changed!")
+    console.log("Updated markers dragging settings.")
+}
+
+function disableMapDragging(value) {
+    map_draggable = value;
+    map.setOptions({draggable: value});
+    console.log("Updated map dragging settings.");
+}
+
+function showZoomControl(value) {
+    map_zoomControl = value;
+    map.setOptions({zoomControl: value});
+}
+
+function disableScrollWheel(value) {
+    map_scrollwheel = value;
+    map.setOptions({scrollwheel: value});
+}
+
+function disableDoubleClickToZoom(value) {
+    map_disableDoubleClickZoom = value;
+    map.setOptions({disableDoubleClickZoom: value});
+}
+
+function panToCenter() {
+    map.panTo(map.getCenter());
 }
 
 </script>
