@@ -1,6 +1,16 @@
 Changelog
 =========
 
+- 0.6.5:
+    - Add button getter is FramelessMessageBox
+    - GoogleMapsView: Add Python boolean to JS converter
+    - GoogleMapsView: Add map events catchers - resizing/loading
+    - GoogleMapsView: Add 4 new map settings
+    - GoogleMapsView: Add map function: pan to center
+    - Update package logger name
+    - Fix chdir back to working dir after importing style
+    - Update GoogleMapsView example
+
 - 0.6.4:
     - Add vertical and horizontal style pickers
     - Add fadeIn and fadeOut for waitingspinner
