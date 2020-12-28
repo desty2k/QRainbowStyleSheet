@@ -58,8 +58,17 @@ class FramelessMessageBox(FramelessDialog):
     def removeButton(self, button):
         self.buttonBox.removeButton(button)
 
+    def button(self, button):
+        return self.buttonBox.button(button)
+
     def buttons(self):
         return self.buttonBox.buttons()
+
+    def standardButtons(self):
+        return self.buttonBox.standardButtons()
+
+    def standardButton(self, button):
+        return self.buttonBox.standardButton(button)
 
     def setText(self, text: str):
         self._textLabel.setText(text)
