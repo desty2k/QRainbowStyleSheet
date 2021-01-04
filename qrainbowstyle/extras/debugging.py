@@ -3,8 +3,6 @@ import traceback
 
 from qtpy.QtCore import QtInfoMsg, QtFatalMsg, QtCriticalMsg, QtWarningMsg
 
-_logger = logging.getLogger(__name__)
-
 
 class OutputLogger:
     """Logging cocfiguration class"""
@@ -15,10 +13,11 @@ class OutputLogger:
             level=logging.NOTSET,
             format="%(asctime)s [%(threadName)s] [%(name)s] [%(levelname)s] %(message)s",
             handlers=[logging.StreamHandler()])
-        _logger.debug("Logger enabled.")
+        logging.getLogger(self.__class__.__name__).debug("Logger enabled.")
 
 
 def qt_message_handler(mode, context, message):
+    logger = logging.getLogger("QT Logger")
     """Qt errors handler"""
     if mode == QtInfoMsg:
         mode = 20
@@ -30,10 +29,10 @@ def qt_message_handler(mode, context, message):
         mode = 50
     else:
         mode = 20
-    _logger.log(mode, "%s (%s:%d, %s)" % (message, context.file, context.line, context.file))
+    logger.log(mode, "(%s: %s): %s" % (context.file, context.line, message))
 
 
 def catch_exceptions(t, val, tb):
     """Replaces sys.excepthook to catch and log warnings and errors"""
     trace = "".join(traceback.format_exception(t, val, tb))
-    _logger.critical(trace)
+    logging.getLogger().error(trace)
