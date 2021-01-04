@@ -12,6 +12,7 @@ class titleBarButton(QToolButton):
         self.setMinimumSize(20, 20)
         self.setIconSize(QSize(20, 20))
         self.setAutoFillBackground(True)
+        self.setMouseTracking(True)
 
         self.icon = icon
         self.hoverIcon = hovericon
@@ -48,6 +49,7 @@ class titleBarWindowsButton(QToolButton):
         self.setText("")
         self.setIconSize(iconsize)
         self.setChecked(False)
+        self.setMouseTracking(True)
 
         self.setIcon(self.icon)
 
