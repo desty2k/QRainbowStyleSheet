@@ -1,5 +1,5 @@
 from qtpy.QtWidgets import QApplication, QFrame, QMenu, QLabel, QHBoxLayout, QWidget
-from qtpy.QtCore import Signal, QPoint, QMetaObject, QRect, Slot, Qt
+from qtpy.QtCore import Signal, QPoint, QMetaObject, Slot, Qt
 from qtpy.QtGui import QPalette
 
 from .appLogoButton import appLogoLabel, appLogoButton
