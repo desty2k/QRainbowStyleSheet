@@ -14,7 +14,7 @@ Work in progress...
 """
 import json
 
-from qtpy.QtCore import QObject, Slot, QEvent, Signal
+from qtpy.QtCore import QObject, Slot, QEvent, Signal, Qt
 from qtpy.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings, QWebEnginePage
 from qtpy.QtNetwork import QNetworkProxyFactory
 from qtpy.QtWebChannel import QWebChannel
@@ -372,6 +372,7 @@ class GoogleMapsPage(QWebEnginePage):
     def __init__(self, parent=None):
         super(GoogleMapsPage, self).__init__(parent)
         self._logger = logging.getLogger(__name__)
+        self.setBackgroundColor(Qt.transparent)
 
     def javaScriptConsoleMessage(self, level, msg, line, source_id):
         """Handle Javascript console messages.
