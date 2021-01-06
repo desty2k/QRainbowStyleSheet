@@ -35,7 +35,6 @@ html = """
     let map_disableDoubleClickZoom = false;
 
     window.addEventListener('load', (event) => {
-        console.log('Page is fully loaded!');
         jshelper.pageIsLoaded();
     });
 
