@@ -391,7 +391,7 @@ class GoogleMapsView(QWebEngineView):
 
     def __init__(self, parent, api_key):
         super(GoogleMapsView, self).__init__(parent)
-        self._logger = logging.getLogger(__name__)
+        self._logger = logging.getLogger(self.__class__.__name__)
 
         # Set browser attributes
         QNetworkProxyFactory.setUseSystemConfiguration(False)
