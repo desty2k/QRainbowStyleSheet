@@ -428,7 +428,7 @@ class GoogleMapsView(QWebEngineView):
         self.channel.registerObject("jshelper", self.handler)
 
         # Set HTML
-        self.setHtml(qrainbowstyle.rainbowize(_replace_api_key(self.api_key)))
+        # self.setHtml(qrainbowstyle.rainbowize(_replace_api_key(self.api_key)))
 
     @Slot(str, object)
     def runScript(self, script, callback):
