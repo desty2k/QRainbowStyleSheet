@@ -29,11 +29,13 @@ def main():
                         help="Show available abstraction layers for Qt bindings")
     parser.add_argument('-d', '--dependencies', action='store_true',
                         help="Show information about dependencies")
+    parser.add_argument('-s', '--styles', action='store_true',
+                        help="Show available styles")
 
     parser.add_argument('--all', action='store_true',
                         help="Show all information options at once")
 
-    parser.add_argument('--version', '-v', action='version',
+    parser.add_argument('-v', '--version', action='version',
                         version='v{}'.format(qrainbowstyle.__version__))
 
     # parsing arguments from command line
@@ -43,6 +45,9 @@ def main():
 
     if no_args:
         parser.print_help()
+
+    if args.styles:
+        print("Available styles: {}".format(qrainbowstyle.get_available_styles()))
 
     if args.information or args.all:
         info.update(helpdev.check_os())
