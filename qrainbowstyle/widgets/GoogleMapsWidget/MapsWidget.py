@@ -26,10 +26,20 @@ from .mapHTML import html
 
 
 def _replace_api_key(api_key: str):
+    """Replace Google Maps API key in Html page.
+
+    Args:
+        api_key (str): API key.
+    """
     return html.replace("API_KEY_GOES_HERE", api_key)
 
 
 def convertBoolean(value: bool):
+    """Convert Python bool to JS boolean.
+
+    Args:
+        value (bool): True/False
+    """
     if value:
         jvalue = "true"
     else:
