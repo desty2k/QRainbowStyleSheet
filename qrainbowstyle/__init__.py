@@ -157,7 +157,7 @@ def use_darwin_buttons():
 
 def get_available_styles():
     """Get list of available styles"""
-    return [x for x in os.listdir(STYLES_PATH) if x != '__init__.py']
+    return [x for x in os.listdir(STYLES_PATH) if x not in ('__pycache__', '__init__.py')]
 
 
 def get_available_palettes() -> list:
