@@ -80,8 +80,8 @@ Frameless windows
     # Package options
     # qrainbowstyle.align_buttons_left()
     # qrainbowstyle.use_darwin_buttons()
-    qrainbowstyle.setAppName("My new application")
-    qrainbowstyle.setAppIcon("/path/to/icon.ico")
+    qrainbowstyle.set_app_name("My new application")
+    qrainbowstyle.set_app_icon("/path/to/icon.ico")
 
     # Create frameless mainwindow
     win = qrainbowstyle.windows.FramelessMainWindow()
