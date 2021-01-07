@@ -59,46 +59,6 @@ If your project already uses QtPy or you need to set it programmatically,
 it is far more simple
 
 
-Frameless windows
-~~~~~~~~~~~~~~~~~~
-.. code:: python
-
-    import os
-    import sys
-    import qrainbowstyle
-    import qrainbowstyle.windows
-    
-    from qtpy import QtWidgets
-    from qtpy.QtCore import Qt
-    
-    QtWidgets.QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-    QtWidgets.QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-
-    app = QtWidgets.QApplication(sys.argv)
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
-
-    # Package options
-    # qrainbowstyle.align_buttons_left()
-    # qrainbowstyle.use_darwin_buttons()
-    qrainbowstyle.set_app_name("My new application")
-    qrainbowstyle.set_app_icon("/path/to/icon.ico")
-
-    # Create frameless mainwindow
-    win = qrainbowstyle.windows.FramelessMainWindow()
-
-    # Example of using signals
-    win.closeClicked.connect(lambda: print("Close clicked!"))
-
-    # Create content widget and pass reference to main window
-    widget = SomeWidget(win)
-
-    # Add widget to main window and show it
-    win.addContentWidget(widget)
-    win.show()
-
-    sys.exit(app.exec())
-
-
 Style sheet
 ~~~~~~~~~~~~
 .. code:: python
@@ -127,6 +87,46 @@ Style sheet
     # run
     window.show()
     app.exec_()
+
+
+Frameless windows
+~~~~~~~~~~~~~~~~~~
+.. code:: python
+
+    import os
+    import sys
+    import qrainbowstyle
+    import qrainbowstyle.windows
+
+    from qtpy import QtWidgets
+    from qtpy.QtCore import Qt
+
+    QtWidgets.QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    QtWidgets.QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+
+    app = QtWidgets.QApplication(sys.argv)
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
+
+    # Package options
+    # qrainbowstyle.align_buttons_left()
+    # qrainbowstyle.use_darwin_buttons()
+    qrainbowstyle.set_app_name("My new application")
+    qrainbowstyle.set_app_icon("/path/to/icon.ico")
+
+    # Create frameless mainwindow
+    win = qrainbowstyle.windows.FramelessMainWindow()
+
+    # Example of using signals
+    win.closeClicked.connect(lambda: print("Close clicked!"))
+
+    # Create content widget and pass reference to main window
+    widget = SomeWidget(win)
+
+    # Add widget to main window and show it
+    win.addContentWidget(widget)
+    win.show()
+
+    sys.exit(app.exec())
 
 
 If you are using PyQt5 directly, see the complete example
