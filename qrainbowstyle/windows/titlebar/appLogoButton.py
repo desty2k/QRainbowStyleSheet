@@ -16,7 +16,7 @@ class appLogoButton(QToolButton):
 
         self.setIcon(QIcon(qrainbowstyle.APP_ICON_PATH))
 
-        self.setFixedSize(32, 32)
+        self.setFixedSize(QSize(32, 32))
         self.setStyleSheet("border: none;")
         self.setIconSize(QSize(28, 28))
         self.setArrowType(Qt.NoArrow)
