@@ -1,6 +1,14 @@
 Changelog
 =========
 
+- 0.6.6:
+    - Add setters for window title and icon
+    - Update readme
+    - Update OutputLogger
+    - Update example2
+    - Update loggers names
+    - Fix white background when resizing GoogleMapsView
+
 - 0.6.5:
     - Add button getter is FramelessMessageBox
     - GoogleMapsView: Add Python boolean to JS converter
