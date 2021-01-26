@@ -6,7 +6,7 @@ from qtpy.QtCore import qInstallMessageHandler, QSize, QDateTime, Qt, QTimer
 from qtpy.QtWidgets import (QApplication, QWidget, QComboBox, QStyleFactory, QLabel, QCheckBox, QHBoxLayout,
                             QGridLayout, QGroupBox, QRadioButton, QVBoxLayout, QPushButton, QTabWidget, QSizePolicy,
                             QTableWidget, QTextEdit, QLineEdit, QSpinBox, QDateTimeEdit, QSlider, QScrollBar, QDial,
-                            QProgressBar)
+                            QProgressBar, QMenu, QAction)
 
 import qrainbowstyle
 import qrainbowstyle.extras
@@ -216,6 +216,10 @@ def main():
 
     # Create frameless mainwindow
     win = qrainbowstyle.windows.FramelessMainWindow()
+
+    menu = QMenu(win)
+    menu.addAction(QAction("TEST ACTION", menu))
+    win.setMenu(menu)
 
     # Example for spinner
     spinner = qrainbowstyle.widgets.WaitingSpinner(win, centerOnParent=True, modality=Qt.WindowModal, roundness=70.0,
