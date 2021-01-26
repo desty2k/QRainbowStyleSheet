@@ -381,7 +381,7 @@ class GoogleMapsPage(QWebEnginePage):
 
     def __init__(self, parent=None):
         super(GoogleMapsPage, self).__init__(parent)
-        self._logger = logging.getLogger(__name__)
+        self._logger = logging.getLogger(self.__class__.__name__)
         self.setBackgroundColor(Qt.transparent)
 
     def javaScriptConsoleMessage(self, level, msg, line, source_id):
