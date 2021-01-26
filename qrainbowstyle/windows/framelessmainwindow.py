@@ -1,5 +1,5 @@
 from qtpy.QtWidgets import QMainWindow, QApplication, QWidget, QVBoxLayout, QSizePolicy, QMenu
-from qtpy.QtGui import QMouseEvent, QResizeEvent
+from qtpy.QtGui import QMouseEvent, QResizeEvent, QIcon
 from qtpy.QtCore import Qt, QMetaObject, QTimer, Slot, QEvent, QObject
 
 from .titlebar import Titlebar
@@ -100,6 +100,14 @@ class FramelessMainWindow(QMainWindow):
         """
         self._bar.setTitlebarHeight(height)
         self.resizehandler.updateTitlebarHeight(self._bar.height())
+
+    def setWindowTitle(self, title: str) -> None:
+        self._bar.setWindowTitle(title)
+        super().setWindowTitle(title)
+
+    def setWindowIcon(self, icon: QIcon) -> None:
+        self._bar.setWindowIcon(icon)
+        super().setWindowIcon(icon)
 
     def eventFilter(self, source, event):
         """Handles events. When in full screen mode the user places
