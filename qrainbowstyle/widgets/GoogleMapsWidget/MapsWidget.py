@@ -518,7 +518,7 @@ class GoogleMapsView(QWebEngineView):
             polyline_id (int): Polyline id
             markers (list): List of markers IDs.
         """
-        self.handler.addPolyline(polyline_id, markers)
+        self.handler.addPolylineBetweenMarkers(polyline_id, markers)
 
     def panToCenter(self):
         """Pan map to center."""

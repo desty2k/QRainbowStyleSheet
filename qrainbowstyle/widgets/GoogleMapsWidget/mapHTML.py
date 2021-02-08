@@ -209,8 +209,8 @@ function addMarker(marker_id, latitude, longitude, params) {
         map: map,
         draggable: allow_marker_dragging,
         id: marker_id,
-        polylines: {},
-    }, params));
+        polylines: []},
+        params));
 
     google.maps.event.addListener(marker, 'click', function () {
         jshelper.markerIsClicked(marker_id, marker.position.lat(), marker.position.lng())
@@ -241,6 +241,7 @@ function addPolyline(polyline_id, coordsArray) {
         strokeOpacity: 1.0,
         strokeWeight: 2,
         map: map,
+        markers: [],
     });
 
     google.maps.event.addListener(connection, 'click', function () {
@@ -253,6 +254,14 @@ function addPolyline(polyline_id, coordsArray) {
          jshelper.polylineIsRightClicked(polyline_id, connection.getPath().getArray())
     });
     polylines[polyline_id] = connection;
+}
+
+function addPolylineBetweenMarkers(polyline_id, markersArray) {
+    let cordsArray = [];
+    for (let marker_id in markersArray) {
+        cordsArray.push(markers[marker_id].getPosition());
+    }
+    addPolyline(polyline_id, cordsArray)
 }
 
 function deletePolyline(polyline_id) {
@@ -269,36 +278,13 @@ function getMarkers() {
 }
 
 function moveMarker(marker_id, latitude, longitude) {
-    /*
-    var newcords = new google.maps.LatLng(latitude, longitude);
-    for (var poly_id in polylines) {
-        if (polylines[poly_id].get("markers").length > 0) {
-            if(marker_id in polylines[poly_id].get("markers")) {
-                var oldcords = polylines[poly_id].getPath().getArray();
-                oldcords[marker_id] = newcords;
-                polylines[poly_id].setPath(oldcords);
-            }
-        }
-    }
-    */
+    let cords = new google.maps.LatLng(latitude, longitude);
+    markers[marker_id].setPosition(cords);
 }
 
 function deleteMarker(marker_id) {
     markers[marker_id].setMap(null);
     delete markers[marker_id];
-    /*
-    for (var poly_id in polylines) {
-        if (polylines[poly_id].get("markers").length > 0) {
-            if(marker_id in polylines[poly_id].get("markers")) {
-                var oldcords = polylines[poly_id].getPath().getArray();
-                oldcords.splice(marker_id, 1);
-                polylines[poly_id]["markers"].splice(marker_id, 1);
-                console.log("Removed marker with id: " + marker_id + "- New markersIDs for this poly: " + polylines[poly_id]["markers"])
-                polylines[poly_id].setPath(oldcords);
-            }
-        }
-    }
-    */
 }
 
 function updateMarker(marker_id, extras) {
