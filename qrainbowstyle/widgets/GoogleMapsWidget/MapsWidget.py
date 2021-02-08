@@ -78,7 +78,7 @@ class CallHandler(QObject):
 
     def __init__(self, parent=None):
         super(CallHandler, self).__init__(parent)
-        self._logger = logging.getLogger(__name__)
+        self._logger = logging.getLogger(self.__class__.__name__)
         self.markers = []
 
         self._loaded = False
