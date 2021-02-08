@@ -172,7 +172,6 @@ class CallHandler(QObject):
         """
         self._logger.debug("Marker " + str(marker_id) + " double clicked: " + str(lat) + ":" + str(lng))
         self.markerDoubleClicked.emit(marker_id, lat, lng)
-        self.deleteMarker(marker_id)
 
     @Slot(str, float, float)
     def markerIsMoved(self, marker_id, lat, lng):
