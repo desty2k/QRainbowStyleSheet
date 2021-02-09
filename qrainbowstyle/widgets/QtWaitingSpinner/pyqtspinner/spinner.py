@@ -189,7 +189,6 @@ class WaitingSpinner(QWidget):
             self.setTrailFadePercentage(self.trailFadePercentage + 1)
         else:
             self.fadeInTimer.stop()
-            print("FadeIn completed")
 
     def fadeOut(self, time: int = 15):
         self.show()
@@ -206,14 +205,12 @@ class WaitingSpinner(QWidget):
             self.hide()
             self.fadeOutTimer.stop()
             self._isFading = False
-            print("FadeOut completed")
 
     def stopFade(self):
         if self.fadeInTimer.isActive():
             self.fadeInTimer.stop()
         if self.fadeOutTimer.isActive():
             self.fadeOutTimer.stop()
-        print("Stopped all fade timers!")
 
     @property
     def color(self):
