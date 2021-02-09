@@ -4,7 +4,7 @@ from qtpy.QtCore import Qt, qInstallMessageHandler
 import sys
 
 import qrainbowstyle
-from qrainbowstyle.widgets import QRoundProgressBar, StylePickerGrid
+from qrainbowstyle.widgets import QRoundProgressBar, StylePickerHorizontal
 from qrainbowstyle.windows import FramelessMainWindow
 from qrainbowstyle.extras import OutputLogger, qt_message_handler
 
@@ -50,7 +50,8 @@ class MainWidget(QWidget):
         label.setText("Change app style")
         self._controlWidgetLayout.addWidget(label)
 
-        picker = StylePickerGrid(self._controlWidget)
+        picker = StylePickerHorizontal(self._controlWidget)
+        picker.setMaximumWidth(200)
         self._controlWidgetLayout.addWidget(picker)
 
         style.clicked.connect(lambda: roundbar.setBarStyle(get_style()))
