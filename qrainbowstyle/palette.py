@@ -5,6 +5,9 @@
 # Standard library imports
 from collections import OrderedDict
 
+# package imports
+from qrainbowstyle.colorsystem import *
+
 
 class BasePalette:
     """Base class for palettes."""
@@ -93,7 +96,7 @@ class BasePalette:
         return cls.to_dict(colors_only=True)
 
 
-class DarkBlue(BasePalette):
+class QDarkStyle(BasePalette):
     """Theme variables."""
 
     # Color
@@ -151,35 +154,48 @@ class Cyberpunk(BasePalette):
 
 
 class DarkOrange(BasePalette):
-    """Theme variables."""
+    COLOR_BACKGROUND_LIGHT = Gray.B50
+    COLOR_BACKGROUND_NORMAL = Gray.B30
+    COLOR_BACKGROUND_DARK = Gray.B10
 
-    # Color
-    COLOR_BACKGROUND_LIGHT = '#505F69'
-    COLOR_BACKGROUND_NORMAL = '#32414B'
-    COLOR_BACKGROUND_DARK = '#19232D'
+    COLOR_FOREGROUND_LIGHT = Gray.B120
+    COLOR_FOREGROUND_NORMAL = Gray.B80
+    COLOR_FOREGROUND_DARK = Gray.B60
 
-    COLOR_FOREGROUND_LIGHT = '#F0F0F0'
-    COLOR_FOREGROUND_NORMAL = '#AAAAAA'
-    COLOR_FOREGROUND_DARK = '#787878'
-
-    COLOR_SELECTION_LIGHT = '#ffbb54'
-    COLOR_SELECTION_NORMAL = '#F9AA33'
-    COLOR_SELECTION_DARK = '#fa9e14'
+    COLOR_SELECTION_LIGHT = Orange.B80
+    COLOR_SELECTION_NORMAL = Orange.B70
+    COLOR_SELECTION_DARK = Orange.B60
 
     W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
 
 
 class LightOrange(BasePalette):
-    COLOR_BACKGROUND_LIGHT = '#F0F0F0'
-    COLOR_BACKGROUND_NORMAL = '#D1D1D1'
-    COLOR_BACKGROUND_DARK = '#DDDDDD'
+    COLOR_BACKGROUND_LIGHT = Gray.B140
+    COLOR_BACKGROUND_NORMAL = Gray.B110
+    COLOR_BACKGROUND_DARK = Gray.B120
 
-    COLOR_FOREGROUND_LIGHT = '#000000'
-    COLOR_FOREGROUND_NORMAL = '#d2d5d9'
-    COLOR_FOREGROUND_DARK = '#d2d5d9'
+    COLOR_FOREGROUND_LIGHT = Gray.B10
+    COLOR_FOREGROUND_NORMAL = Gray.B30
+    COLOR_FOREGROUND_DARK = Gray.B50
 
-    COLOR_SELECTION_LIGHT = '#ffbb54'
-    COLOR_SELECTION_NORMAL = '#F9AA33'
-    COLOR_SELECTION_DARK = '#fa9e14'
+    COLOR_SELECTION_LIGHT = Orange.B80
+    COLOR_SELECTION_NORMAL = Orange.B70
+    COLOR_SELECTION_DARK = Orange.B60
+
+    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+
+
+class QDarkStyle3(BasePalette):
+    COLOR_BACKGROUND_LIGHT = Gray.B50
+    COLOR_BACKGROUND_NORMAL = Gray.B30
+    COLOR_BACKGROUND_DARK = Gray.B10
+
+    COLOR_FOREGROUND_LIGHT = Gray.B120
+    COLOR_FOREGROUND_NORMAL = Gray.B80
+    COLOR_FOREGROUND_DARK = Gray.B60
+
+    COLOR_SELECTION_LIGHT = Blue.B60
+    COLOR_SELECTION_NORMAL = Blue.B40
+    COLOR_SELECTION_DARK = Blue.B20
 
     W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK

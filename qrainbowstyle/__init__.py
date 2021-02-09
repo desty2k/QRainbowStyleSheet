@@ -392,7 +392,7 @@ def _load_stylesheet(qt_api='', style=''):
     return stylesheet
 
 
-def load_stylesheet(qt_api="", style='darkblue'):
+def load_stylesheet(qt_api="", style='qdarkstyle'):
     """
     Load the stylesheet. Takes care of importing the rc module.
 
