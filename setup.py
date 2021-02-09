@@ -9,11 +9,11 @@ import glob
 import os
 from setuptools import find_packages, setup
 
-# Local imports
+# Package imports
 from qrainbowstyle import __doc__ as long_desc
 from qrainbowstyle import __version__
 
-install_requires = ['helpdev>=0.6.10', 'qtpy>=1.9']
+install_requires = ['helpdev>=0.6.10', 'qtpy>=1.9', 'PyQtWebEngine']
 
 extras_require = {
     'develop': ['qtsass', 'watchdog'],
