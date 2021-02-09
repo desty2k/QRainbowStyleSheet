@@ -747,6 +747,7 @@ QToolBar {
 QToolBar QToolButton {
   background-color: #010014;
   border: 1px solid #010014;
+  /* This fixes 202 */
 }
 
 QToolBar QToolButton:hover {
@@ -760,6 +761,10 @@ QToolBar QToolButton:checked {
 
 QToolBar QToolButton:checked:hover {
   border: 1px solid #51BCE2;
+}
+
+QToolBar QToolButton:disabled {
+  border: 1px solid #090D0C;
 }
 
 QToolBar::handle:horizontal {

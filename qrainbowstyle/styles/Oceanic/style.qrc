@@ -41,8 +41,6 @@
     <file>rc/base_icon_focus@2x.png</file>
     <file>rc/base_icon_pressed.png</file>
     <file>rc/base_icon_pressed@2x.png</file>
-    <file>rc/base_palette.png</file>
-    <file>rc/base_palette@2x.png</file>
     <file>rc/branch_closed.png</file>
     <file>rc/branch_closed@2x.png</file>
     <file>rc/branch_closed_disabled.png</file>
