@@ -54,6 +54,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + 
 
 # Must be in this place, after setting path, to not need to install
 import qrainbowstyle  # noqa: E402
+import qrainbowstyle.widgets  # noqa: E402
 
 # Set log for debug
 logging.basicConfig(level=logging.DEBUG)
@@ -252,10 +253,9 @@ def _main(args):
 
     # Issues #9120, #9121 on Spyder
     qstatusbar = QStatusBar()
-    qstatusbar.addWidget(QLabel('Issue Spyder #9120, #9121 - background not matching.'))
-    qstatusbarbutton = QPushButton('Change style')
+    qstatusbar.addWidget(QLabel('Style'))
+    qstatusbarbutton = qrainbowstyle.widgets.StylePickerHorizontal()
     qstatusbar.addWidget(qstatusbarbutton)
-    qstatusbarbutton.clicked.connect(lambda: change_style(app))
 
     # Add info also in status bar for screenshots get it
     qstatusbar.addWidget(QLabel('INFO: ' + title))
@@ -278,13 +278,6 @@ def _main(args):
 
     app.exec_()
     _write_settings(window, QSettings)
-
-
-def change_style(app):
-    """Set random style"""
-    styles = qrainbowstyle.get_available_styles()
-    style = styles[random.randint(0, len(styles)) - 1]
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(style=style))
 
 
 def _write_settings(window, QSettings):
