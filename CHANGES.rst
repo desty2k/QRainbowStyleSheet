@@ -1,6 +1,18 @@
 Changelog
 =========
 
+- 0.7:
+    - Add new color system from qdarkstyle v3
+    - Update checkbox icon when checked
+    - Update styles using new palette
+    - Generate resources
+    - Update readme
+    - Update preview images
+    - Update examples
+    - Add slot to connect two markers in GoogleMapsView
+    - Fix marker removed after double clicking
+    - Remove prints on fade in/out in spinner
+
 - 0.6.6:
     - Add setters for window title and icon
     - Update readme
