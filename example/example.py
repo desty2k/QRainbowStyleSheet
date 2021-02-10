@@ -112,9 +112,8 @@ def _main(args):
     from qtpy import API_NAME, QT_VERSION, PYQT_VERSION, PYSIDE_VERSION
     from qtpy import __version__ as QTPY_VERSION
     from qtpy.QtWidgets import (QApplication, QMainWindow, QDockWidget,
-                                QStatusBar, QLabel, QPushButton, QMenu, QToolButton)
+                                QStatusBar, QLabel, QMenu)
     from qtpy.QtCore import QTimer, Qt, QSettings
-    from qtpy.QtGui import QIcon
 
     # Set API_VERSION variable
     API_VERSION = ''
@@ -139,6 +138,9 @@ def _main(args):
     from dw_containers_tabs_ui import Ui_DockWidget as ui_containers_tabs
     from dw_containers_no_tabs_ui import Ui_DockWidget as ui_containers_no_tabs
 
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+
     # create the application
     if not QApplication.instance():
         app = QApplication(sys.argv)
@@ -153,8 +155,6 @@ def _main(args):
     if not args.style:
         style = styles[random.randint(0, len(styles)) - 1]
 
-    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app.setStyleSheet(qrainbowstyle.load_stylesheet(style=str(style)))
 
     # create main window
