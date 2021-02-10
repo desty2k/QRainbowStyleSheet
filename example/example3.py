@@ -6,7 +6,7 @@ import sys
 import random
 
 import qrainbowstyle
-from qrainbowstyle.widgets import GoogleMapsView
+from qrainbowstyle.widgets import GoogleMapsView, OpenStreetMapsView
 from qrainbowstyle.windows import FramelessMainWindow
 from qrainbowstyle.extras import OutputLogger, qt_message_handler
 from qrainbowstyle.utils import setStylesheetOnQApp
@@ -28,7 +28,9 @@ class mainWidget(QWidget):
         self._layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self._layout)
 
-        self.map = GoogleMapsView(self, "API_KEY")
+        # self.map = GoogleMapsView(self, "")
+        self.map = OpenStreetMapsView(self)
+        # self.map.showZoomControl(False)
         self.map.loadFinished.connect(self.test)
 
         self._layout.addWidget(self.map)

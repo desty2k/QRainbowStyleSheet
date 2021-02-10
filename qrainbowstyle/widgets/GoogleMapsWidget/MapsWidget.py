@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""GoogleMapsView allows to load Google Maps to Qt app.
+"""MapsView allows to load Google Maps to Qt app.
 
 Usage
 
@@ -14,7 +14,7 @@ Work in progress...
 """
 import json
 
-from qtpy.QtCore import QObject, Slot, QEvent, Signal, Qt
+from qtpy.QtCore import QObject, Slot, QEvent, Signal, Qt, QUrl
 from qtpy.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings, QWebEnginePage
 from qtpy.QtNetwork import QNetworkProxyFactory
 from qtpy.QtWebChannel import QWebChannel
@@ -22,16 +22,7 @@ from qtpy.QtWebChannel import QWebChannel
 import qrainbowstyle
 import logging
 
-from .mapHTML import html
-
-
-def _replace_api_key(api_key: str):
-    """Replace Google Maps API key in Html page.
-
-    Args:
-        api_key (str): API key.
-    """
-    return html.replace("API_KEY_GOES_HERE", api_key)
+from . import GoogleMapsHtml, OpenStreetMapsHtml
 
 
 def convertBoolean(value: bool):
@@ -238,7 +229,7 @@ class CallHandler(QObject):
     @Slot()
     def tilesAreFullyLoaded(self):
         """Triggered when map finish loading tiles. Emits tilesLoaded signal.
-        It is last signal emited after creating GoogleMapsView widget."""
+        It is last signal emited after creating MapsView widget."""
         self.tilesLoaded.emit()
 
     def _updateMarkersCallback(self, markers: list):
@@ -374,12 +365,12 @@ class CallHandler(QObject):
         self._loaded = False
 
 
-class GoogleMapsPage(QWebEnginePage):
+class MapsPage(QWebEnginePage):
     """QWebEngineView page for handling Javascript console messages."""
     message = Signal(dict)
 
     def __init__(self, parent=None):
-        super(GoogleMapsPage, self).__init__(parent)
+        super(MapsPage, self).__init__(parent)
         self._logger = logging.getLogger(self.__class__.__name__)
         self.setBackgroundColor(Qt.transparent)
 
@@ -396,11 +387,11 @@ class GoogleMapsPage(QWebEnginePage):
         self.message.emit({"level": 10 * (level + 1), "msg": msg, "line": line, "source_id": source_id})
 
 
-class GoogleMapsView(QWebEngineView):
+class MapsView(QWebEngineView):
     """Show Google Maps in Qt app."""
 
-    def __init__(self, parent, api_key):
-        super(GoogleMapsView, self).__init__(parent)
+    def __init__(self, parent):
+        super(MapsView, self).__init__(parent)
         self._logger = logging.getLogger(self.__class__.__name__)
 
         # Set browser attributes
@@ -408,10 +399,8 @@ class GoogleMapsView(QWebEngineView):
         self.settings().setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
         self.settings().setAttribute(QWebEngineSettings.JavascriptEnabled, True)
 
-        self.api_key = api_key
-
         # Create maps page (it is not needed, but we can handle Javascript console logs)
-        self._mapspage = GoogleMapsPage(self)
+        self._mapspage = MapsPage(self)
         self.setPage(self._mapspage)
 
         # Create connection between Javascript and Qt
@@ -426,8 +415,6 @@ class GoogleMapsView(QWebEngineView):
 
         self.channel.registerObject("jshelper", self.handler)
 
-        # Set HTML
-        # self.setHtml(qrainbowstyle.rainbowize(_replace_api_key(self.api_key)))
 
     @Slot(str, object)
     def runScript(self, script, callback):
@@ -556,12 +543,33 @@ class GoogleMapsView(QWebEngineView):
         """
         self.handler.disableScrollWheel(value)
 
+
+class GoogleMapsView(MapsView):
+
+    def __init__(self, parent, api_key):
+        super(GoogleMapsView, self).__init__(parent)
+        self.api_key = api_key
+
     def changeEvent(self, event: QEvent):
         """Change event handler.
-
         Args:
             event (QEvent): Event.
         """
         if event.type() == QEvent.StyleChange:
-            self.setHtml(qrainbowstyle.rainbowize(_replace_api_key(self.api_key)))
+            self.setHtml(qrainbowstyle.rainbowize(GoogleMapsHtml.html.replace("API_KEY_GOES_HERE", self.api_key)))
+        return super().changeEvent(event)
+
+
+class OpenStreetMapsView(MapsView):
+
+    def __init__(self, parent):
+        super(OpenStreetMapsView, self).__init__(parent)
+
+    def changeEvent(self, event: QEvent):
+        """Change event handler.
+        Args:
+            event (QEvent): Event.
+        """
+        if event.type() == QEvent.StyleChange:
+            self.setHtml(qrainbowstyle.rainbowize(OpenStreetMapsHtml.html))
         return super().changeEvent(event)
