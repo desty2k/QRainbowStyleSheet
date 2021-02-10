@@ -415,7 +415,6 @@ class MapsView(QWebEngineView):
 
         self.channel.registerObject("jshelper", self.handler)
 
-
     @Slot(str, object)
     def runScript(self, script, callback):
         """Run Javascript code.
