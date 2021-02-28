@@ -1,6 +1,10 @@
 Changelog
 =========
 
+- 0.7.1:
+    - Fix windows being deleted after creating them in slots
+    - Reduce amount of window flags
+
 - 0.7:
     - Add new color system from qdarkstyle v3
     - Update checkbox icon when checked
