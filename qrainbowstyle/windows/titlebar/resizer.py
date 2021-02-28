@@ -82,8 +82,6 @@ class Resizer(QObject):
             parent (QWidget): Window to alter
         """
 
-        # resizing
-        parent.deleteLater()
         try:
             self._updateGripRect(parent)
             try:
