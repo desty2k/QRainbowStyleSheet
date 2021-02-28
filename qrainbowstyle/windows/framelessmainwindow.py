@@ -15,17 +15,10 @@ class FramelessMainWindow(QMainWindow):
 
     def __init__(self, parent=None):
         super(FramelessMainWindow, self).__init__(parent)
-        QApplication.setQuitOnLastWindowClosed(True)
         self._contentWidgets = []
         self._enableResizing = True
 
-        self.setWindowFlags(Qt.Window
-                            | Qt.FramelessWindowHint
-                            | Qt.WindowSystemMenuHint
-                            | Qt.WindowCloseButtonHint
-                            | Qt.WindowMinimizeButtonHint
-                            | Qt.WindowMaximizeButtonHint)
-
+        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
 

@@ -11,17 +11,10 @@ class FramelessDialog(QDialog):
 
     def __init__(self, parent=None):
         super(FramelessDialog, self).__init__(parent)
-        QApplication.setQuitOnLastWindowClosed(True)
         self._contentWidgets = []
         self._enableResizing = True
 
-        self.setWindowFlags(Qt.Window
-                            | Qt.FramelessWindowHint
-                            | Qt.WindowSystemMenuHint
-                            | Qt.WindowCloseButtonHint
-                            | Qt.WindowMinimizeButtonHint
-                            | Qt.WindowMaximizeButtonHint)
-
+        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setMouseTracking(True)
 
@@ -76,6 +69,7 @@ class FramelessDialog(QDialog):
 
         # create resizer
         self.resizehandler = Resizer(debug=False)
+        self.resizehandler.updateTitlebarHeight(self._bar.height())
         QApplication.instance().installEventFilter(self)
 
         QMetaObject.connectSlotsByName(self)
@@ -108,7 +102,8 @@ class FramelessDialog(QDialog):
             event (QEvent): Event.
         """
 
-        self.resizehandler.handle(source, event, self)
+        if hasattr(self, "resizehandler"):
+            self.resizehandler.handle(source, event, self)
         return QDialog.eventFilter(self, source, event)
 
     def addContentWidget(self, widget: QWidget):
