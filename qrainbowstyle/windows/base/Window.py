@@ -41,7 +41,6 @@ class FramelessWindowBase(QDialog):
         self.__bar.showRestoreButton(False)
         self.__bar.showMinimizeButton(False)
         self.__bar.showMaximizeButton(False)
-        self.__bar.closeClicked.connect(self.close)
         self.__centralLayout.addWidget(self.__bar)
         self.__centralLayout.setAlignment(self.__bar, Qt.AlignVCenter)
 
@@ -61,6 +60,7 @@ class FramelessWindowBase(QDialog):
 
         self.__bar.minimizeClicked.connect(self.minimizeClicked.emit)
         self.__bar.closeClicked.connect(self.closeClicked.emit)
+        self.closeClicked.connect(self.close)
 
         self.__main_layout = QVBoxLayout(self)
         self.__main_layout.setContentsMargins(0, 0, 0, 0)
