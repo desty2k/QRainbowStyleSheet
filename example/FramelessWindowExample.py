@@ -211,15 +211,17 @@ def main():
     # Package options
     # qrainbowstyle.align_buttons_left()
     # qrainbowstyle.use_darwin_buttons()
-    qrainbowstyle.set_app_icon("My new application")
-    qrainbowstyle.set_app_icon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
+    qrainbowstyle.setAppName("My new application")
+    qrainbowstyle.setAppIcon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
 
     # Create frameless mainwindow
-    win = qrainbowstyle.windows.FramelessMainWindow()
+    win = qrainbowstyle.windows.FramelessWindow()
+    win.showBordersOnMaximize(True)
 
     menu = QMenu(win)
+    menu.setTitle("Some menu")
     menu.addAction(QAction("TEST ACTION", menu))
-    win.setMenu(menu)
+    win.addMenu(menu)
 
     # Example for spinner
     spinner = qrainbowstyle.widgets.WaitingSpinner(win, centerOnParent=True, modality=Qt.WindowModal, roundness=70.0,

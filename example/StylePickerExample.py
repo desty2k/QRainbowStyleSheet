@@ -5,7 +5,7 @@ import sys
 
 import qrainbowstyle
 from qrainbowstyle.widgets import StylePickerGrid, StylePickerHorizontal, StylePickerVertical
-from qrainbowstyle.windows import FramelessMainWindow
+from qrainbowstyle.windows import FramelessWindow
 from qrainbowstyle.extras import OutputLogger, qt_message_handler
 
 
@@ -19,7 +19,7 @@ def main():
     app = QApplication(sys.argv)
     app.setStyleSheet(qrainbowstyle.load_stylesheet())
 
-    win = FramelessMainWindow()
+    win = FramelessWindow()
 
     groupbox = QGroupBox(win)
     groupbox_layout = QGridLayout(groupbox)

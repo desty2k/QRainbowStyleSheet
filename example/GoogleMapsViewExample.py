@@ -7,14 +7,14 @@ import random
 
 import qrainbowstyle
 from qrainbowstyle.widgets import GoogleMapsView, OpenStreetMapsView
-from qrainbowstyle.windows import FramelessMainWindow
+from qrainbowstyle.windows import FramelessWindow
 from qrainbowstyle.extras import OutputLogger, qt_message_handler
 from qrainbowstyle.utils import setStylesheetOnQApp
 
 
 def _change_style():
-    styles = qrainbowstyle.get_available_styles()
-    setStylesheetOnQApp(qrainbowstyle.get_available_styles()[random.randint(0, len(styles)) - 1])
+    styles = qrainbowstyle.getAvailableStyles()
+    setStylesheetOnQApp(qrainbowstyle.getAvailableStyles()[random.randint(0, len(styles)) - 1])
 
 
 class mainWidget(QWidget):
@@ -28,9 +28,9 @@ class mainWidget(QWidget):
         self._layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self._layout)
 
-        # self.map = GoogleMapsView(self, "")
-        self.map = OpenStreetMapsView(self)
-        # self.map.showZoomControl(False)
+        self.map = GoogleMapsView(self, "AIzaSyAEea-e9xrZGTn8AcAxds85uoxkASds-88")
+        # self.map = GoogleMapsView(self, "AIzaSyAEea-e9xrZGTn8AcAxds85uoxkASds-88")
+        self.map.showZoomControl(False)
         self.map.loadFinished.connect(self.test)
 
         self._layout.addWidget(self.map)
@@ -66,10 +66,10 @@ def main():
 
     app = QApplication(sys.argv)
     app.setStyleSheet(qrainbowstyle.load_stylesheet())
-    qrainbowstyle.set_app_icon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
-    qrainbowstyle.set_app_name("GoogleMapsWidget Example")
+    qrainbowstyle.setAppIcon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
+    qrainbowstyle.setAppName("GoogleMapsWidget Example")
 
-    win = FramelessMainWindow()
+    win = FramelessWindow()
 
     widget = mainWidget(win)
 

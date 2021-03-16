@@ -5,7 +5,7 @@ import sys
 
 import qrainbowstyle
 from qrainbowstyle.widgets import QRoundProgressBar, StylePickerHorizontal
-from qrainbowstyle.windows import FramelessMainWindow
+from qrainbowstyle.windows import FramelessWindow
 from qrainbowstyle.extras import OutputLogger, qt_message_handler
 
 styles = [QRoundProgressBar.BarStyle.PIE, QRoundProgressBar.BarStyle.DONUT, QRoundProgressBar.BarStyle.EXPAND,
@@ -75,7 +75,7 @@ def main():
     app = QApplication(sys.argv)
     app.setStyleSheet(qrainbowstyle.load_stylesheet(style="darkorange"))
 
-    win = FramelessMainWindow()
+    win = FramelessWindow()
 
     widget = MainWidget(win)
     win.addContentWidget(widget)
