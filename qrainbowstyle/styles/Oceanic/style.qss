@@ -2194,7 +2194,7 @@ PlotWidget {
 
 --------------------------------------------------------------------------- */
 Titlebar {
-  border-bottom: 1.5px solid #3B4950;
+  background-color: #263238;
 }
 
 Titlebar QLabel {
@@ -2223,7 +2223,7 @@ Titlebar QPushButton:hover {
   border: none;
 }
 
-titleBarWindowsButton {
+WindowsButton {
   border: none;
   padding: 0px;
   border-radius: 0px;
@@ -2233,22 +2233,10 @@ titleBarWindowsButton {
   max-width: 45;
 }
 
-/* FramelessMainWindow ----------------------------------------------------------------
+/* FramelessWindow ----------------------------------------------------------------
 
 --------------------------------------------------------------------------- */
-FramelessMainWindow #centralWidget {
-  border-radius: 2.5px;
-  border-color: #097D74;
-  border-width: 1.5px;
-  border-style: inset;
-  background-color: #263238;
-}
-
-/* FramelessDialog ----------------------------------------------------------------
-
---------------------------------------------------------------------------- */
-FramelessDialog #centralWidget {
-  border-radius: 2.5px;
+FramelessWindow #centralWidget {
   border-color: #097D74;
   border-width: 1.5px;
   border-style: inset;
