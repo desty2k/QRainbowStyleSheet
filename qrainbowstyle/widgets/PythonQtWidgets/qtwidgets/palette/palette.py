@@ -80,7 +80,7 @@ class _PaletteLinearBase(_PaletteBase):
         super().__init__(*args, **kwargs)
         colors = []
 
-        for style in qrainbowstyle.get_available_palettes():
+        for style in qrainbowstyle.getAvailablePalettes():
             colors.append({1: style.COLOR_BACKGROUND_NORMAL, 2: style.COLOR_SELECTION_NORMAL, "name": style.__name__})
 
         palette = self.layoutvh()
@@ -109,7 +109,7 @@ class StylePickerGrid(QWidget):
         self.setMaximumWidth(150)
         colors = []
 
-        for style in qrainbowstyle.get_available_palettes():
+        for style in qrainbowstyle.getAvailablePalettes():
             colors.append({1: style.COLOR_BACKGROUND_NORMAL, 2: style.COLOR_SELECTION_NORMAL, "name": style.__name__})
 
         palette = QGridLayout()

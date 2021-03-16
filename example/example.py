@@ -83,7 +83,7 @@ def main():
     args = parser.parse_args()
 
     if args.test:
-        for style in qrainbowstyle.get_available_styles():
+        for style in qrainbowstyle.getAvailableStyles():
             parser.set_defaults(style=style)
             _main(parser.parse_args())
     else:
@@ -149,7 +149,7 @@ def _main(args):
     app.setOrganizationName('QRainbowStyle')
     app.setApplicationName('QRainbowStyle Example')
 
-    styles = qrainbowstyle.get_available_styles()
+    styles = qrainbowstyle.getAvailableStyles()
 
     style = args.style
     if not args.style:

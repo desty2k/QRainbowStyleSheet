@@ -88,7 +88,7 @@ import logging
 import platform
 import qrainbowstyle
 
-__version__ = "0.7.1"
+__version__ = "0.8"
 
 _logger = logging.getLogger("qrainbowstyle")
 
@@ -133,34 +133,34 @@ APP_NAME = None
 APP_ICON_PATH = None
 
 
-def set_app_name(name: str):
+def setAppName(name: str):
     """Set global app name which will be used in titlebars"""
     qrainbowstyle.APP_NAME = name
 
 
-def set_app_icon(icon_path: str):
+def setAppIcon(icon_path: str):
     """Set path to app icon which will be used in titlebars"""
     qrainbowstyle.APP_ICON_PATH = icon_path
 
 
-def align_buttons_left():
+def alignButtonsLeft():
     """Align titlebar buttons to left"""
     qrainbowstyle.ALIGN_BUTTONS_LEFT = True
     _logger.info("Buttons will be aligned to left")
 
 
-def use_darwin_buttons():
+def useDarwinButtons():
     """Use darwin styled buttons everywhere in app"""
     qrainbowstyle.USE_DARWIN_BUTTONS = True
     _logger.info("Darwin buttons style has been enabled")
 
 
-def get_available_styles():
+def getAvailableStyles():
     """Get list of available styles"""
     return [x for x in os.listdir(STYLES_PATH) if x not in ('__pycache__', '__init__.py')]
 
 
-def get_available_palettes() -> list:
+def getAvailablePalettes() -> list:
     """Get list of available palettes"""
     import qrainbowstyle.palette as source
     palettes = []
@@ -170,7 +170,7 @@ def get_available_palettes() -> list:
     return palettes
 
 
-def get_current_palette():
+def getCurrentPalette():
     """Returns loaded palette"""
     try:
         from style_rc import palette  # noqa
@@ -181,7 +181,7 @@ def get_current_palette():
 
 def rainbowize(text: str) -> str:
     """Replaces colors names to hashes in text"""
-    color_dict = get_current_palette().to_dict()
+    color_dict = getCurrentPalette().to_dict()
     for color in color_dict:
         text = text.replace(color, str(color_dict[color]))
     return text
@@ -330,7 +330,7 @@ def _load_stylesheet(qt_api='', style=''):
             del style_rc
 
         # remove path to previously imported style from sys.path
-        for stylepath in [path for path in sys.path if any(style for style in get_available_styles() if style in path)]:
+        for stylepath in [path for path in sys.path if any(style for style in getAvailableStyles() if style in path)]:
             sys.path.remove(stylepath)
         _logger.debug("Removed all imported styles")
 
@@ -343,11 +343,17 @@ def _load_stylesheet(qt_api='', style=''):
 
         # append directory to sys.path and import style_rc
         sys.path.append(package_dir)
-        import style_rc  # noqa
+        try:
+            import style_rc  # noqa
+            # get palette
+            palette = style_rc.palette
 
-        # get palette
-        palette = style_rc.palette
-        os.chdir(old_working_dir)
+        except ModuleNotFoundError:
+            raise ModuleNotFoundError("Failed to import style_rc from directory: {}".format(package_dir))
+
+        finally:
+            os.chdir(old_working_dir)
+
     except FileExistsError:
         raise FileNotFoundError("Missing style_rc.py file")
 

@@ -47,7 +47,7 @@ def main():
         parser.print_help()
 
     if args.styles:
-        print("Available styles: {}".format(qrainbowstyle.get_available_styles()))
+        print("Available styles: {}".format(qrainbowstyle.getAvailableStyles()))
 
     if args.information or args.all:
         info.update(helpdev.check_os())

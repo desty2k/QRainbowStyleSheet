@@ -89,7 +89,7 @@ class WaitingSpinner(QWidget):
 
         self.setWindowModality(modality)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        self.setColor(qrainbowstyle.get_current_palette().COLOR_SELECTION_NORMAL)
+        self.setColor(qrainbowstyle.getCurrentPalette().COLOR_SELECTION_NORMAL)
 
     def paintEvent(self, QPaintEvent):
         self.updatePosition()
@@ -131,7 +131,7 @@ class WaitingSpinner(QWidget):
             event (QEvent): Event.
         """
         if event.type() == QEvent.StyleChange:
-            self.setColor(qrainbowstyle.get_current_palette().COLOR_SELECTION_NORMAL)
+            self.setColor(qrainbowstyle.getCurrentPalette().COLOR_SELECTION_NORMAL)
 
     def start(self):
         self.updatePosition()
