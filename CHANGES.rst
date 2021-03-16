@@ -1,6 +1,16 @@
 Changelog
 =========
 
+- 0.8.0:
+    - Refactor code in windows module
+    - Add Windows API support
+    - Add OS detection
+    - Update funcs names
+    - Update examples
+    - Update scripts to use loggers
+    - 0xC0000005 errors are now fixed
+    - Regenerate resources
+
 - 0.7.1:
     - Fix windows being deleted after creating them in slots
     - Reduce amount of window flags
