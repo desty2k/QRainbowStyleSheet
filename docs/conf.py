@@ -21,7 +21,7 @@ import qrainbowstyle
 # -- Project information -----------------------------------------------------
 
 project = 'QRainbowStyle'
-copyright = '2020, Wojciech Wentland'
+copyright = '2021, Wojciech Wentland'
 author = 'Wojciech Wentland'
 
 
