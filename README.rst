@@ -10,17 +10,29 @@ PyQt5, QtPy, Qt.Py).
 Preview
 -------
 
-Frameless main window
+Since version v0.8 qrainbowstyle.windows module supports native Windows calls.
+Features:
 
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow.gif
+    - Borders snapping
+    - Minimize, restore, close animations
+    - Size grips on borders
+    - Frame shadow
+    - Aero shake
+
+On Linux and Darwin qrainbowstyle will load class with its own implementation of these features.
+Due to a bug in Qt, window minimizing is not supported on MacOS.
+
+
+Frameless window
+~~~~~~~~~~~~~~~~
+
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v2.png
 
 Frameless message box
+~~~~~~~~~~~~~~~~~~~~~
 
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_messagebox.gif
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_messagebox_v2.png
 
-Frameless dialog
-
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_dialog.gif
 
 Installation
 ------------
@@ -55,8 +67,45 @@ From code: Download/clone the project, go to ``qrainbowstyle`` folder then:
 Usage
 -----
 
-If your project already uses QtPy or you need to set it programmatically,
-it is far more simple
+
+Frameless windows
+~~~~~~~~~~~~~~~~~~
+.. code:: python
+
+    import os
+    import sys
+    import qrainbowstyle
+    import qrainbowstyle.windows
+
+    from qtpy.QtWidgets import QApplication
+    from qtpy.QtCore import Qt
+
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+
+    app = QApplication(sys.argv)
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
+
+    # Package options
+    # qrainbowstyle.alignButtonsLeft()
+    # qrainbowstyle.userDarwinButtons()
+    qrainbowstyle.setAppName("My new application")
+    qrainbowstyle.setAppIcon("/path/to/icon.ico")
+
+    # Create frameless mainwindow
+    win = qrainbowstyle.windows.FramelessWindow()
+
+    # Example of using signals
+    win.closeClicked.connect(lambda: print("Close clicked!"))
+
+    # Create content widget and pass reference to main window
+    widget = SomeWidget(win)
+
+    # Add widget to main window and show it
+    win.addContentWidget(widget)
+    win.show()
+
+    sys.exit(app.exec())
 
 
 Style sheet
@@ -87,46 +136,6 @@ Style sheet
     # run
     window.show()
     app.exec_()
-
-
-Frameless windows
-~~~~~~~~~~~~~~~~~~
-.. code:: python
-
-    import os
-    import sys
-    import qrainbowstyle
-    import qrainbowstyle.windows
-
-    from qtpy.QtWidgets import QApplication
-    from qtpy.QtCore import Qt
-
-    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
-    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
-
-    app = QApplication(sys.argv)
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
-
-    # Package options
-    # qrainbowstyle.align_buttons_left()
-    # qrainbowstyle.use_darwin_buttons()
-    qrainbowstyle.set_app_name("My new application")
-    qrainbowstyle.set_app_icon("/path/to/icon.ico")
-
-    # Create frameless mainwindow
-    win = qrainbowstyle.windows.FramelessMainWindow()
-
-    # Example of using signals
-    win.closeClicked.connect(lambda: print("Close clicked!"))
-
-    # Create content widget and pass reference to main window
-    widget = SomeWidget(win)
-
-    # Add widget to main window and show it
-    win.addContentWidget(widget)
-    win.show()
-
-    sys.exit(app.exec())
 
 
 If you are using PyQt5 directly, see the complete example
@@ -209,7 +218,8 @@ Widgets are automatically loading colors from current
 stylesheet's palette. Changing the style while the application
 is running is supported. These widgets can not be used
 without loading stylesheet. You can find exampels in example
-directory.
+directory. In v0.8 windows module has been refactored and now supports
+native Windows events.
 
 
 GoogleMapsView
