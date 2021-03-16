@@ -2,94 +2,93 @@ from qtpy.QtCore import Qt, QSize
 from qtpy.QtWidgets import QGridLayout, QLabel, QStyle, QDialogButtonBox, QSizePolicy, QWidget, QApplication
 from qtpy.QtGui import QIcon
 
-from .framelessdialog import FramelessDialog
+from . import FramelessWindow
 
 
-class FramelessMessageBox(FramelessDialog):
-    """FramelessMessageBox documentation"""
+class FramelessMessageBox(FramelessWindow):
 
     def __init__(self, icon=None, parent=None):
         super(FramelessMessageBox, self).__init__(parent)
         self.setResizingEnabled(False)
-        self.resize(350, 150)
-
-        self._messagewidget = QWidget(self)
-        self._messagewidget.setContentsMargins(11, 5, 11, 11)
-
-        self._grid = QGridLayout(self._messagewidget)
-        self._grid.setContentsMargins(0, 0, 0, 0)
-        self._grid.setVerticalSpacing(8)
-        self._grid.setHorizontalSpacing(0)
-
-        self._messagewidget.setLayout(self._grid)
-
-        self._iconLabel = QLabel(self._messagewidget)
-        self._iconLabel.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        self._iconLabel.setScaledContents(True)
-        self._grid.addWidget(self._iconLabel, 0, 0, 2, 1, Qt.AlignTop | Qt.AlignLeft)
-
-        self._textLabel = QLabel(self._messagewidget)
-        self._textLabel.setWordWrap(True)
-        self._textLabel.setContentsMargins(2, 0, 0, 0)
-        self._textLabel.setIndent(9)
-        self._textLabel.setScaledContents(True)
-        self._textLabel.setMouseTracking(True)
-        self._textLabel.autoFillBackground()
-        self._textLabel.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-
-        self._grid.addWidget(self._textLabel, 0, 1, 1, 1)
-
-        self._grid.setRowStretch(1, 100)
-        self._grid.setRowMinimumHeight(2, 6)
-
-        self.buttonBox = QDialogButtonBox(self._messagewidget)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
-        self._grid.addWidget(self.buttonBox, 3, 1, 1, 1)
-
-        self.addContentWidget(self._messagewidget)
-        self.setIcon(icon)
-
-    def setStandardButtons(self, buttons):
-        self.buttonBox.setStandardButtons(buttons)
-
-    def addButton(self, button, role):
-        self.buttonBox.addButton(button, role)
-
-    def removeButton(self, button):
-        self.buttonBox.removeButton(button)
-
-    def button(self, button):
-        return self.buttonBox.button(button)
-
-    def buttons(self):
-        return self.buttonBox.buttons()
-
-    def standardButtons(self):
-        return self.buttonBox.standardButtons()
-
-    def standardButton(self, button):
-        return self.buttonBox.standardButton(button)
-
-    def setText(self, text: str):
-        self._textLabel.setText(text)
-        self._textLabel.adjustSize()
-        self._textLabel.updateGeometry()
-
+        self.resize(QSize(350, 150))
         policy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
         policy.setHeightForWidth(True)
-        self._textLabel.setSizePolicy(policy)
         self.setSizePolicy(policy)
+
+        self.__messagewidget = QWidget(self)
+        self.__messagewidget.setContentsMargins(11, 5, 11, 11)
+
+        self.__grid = QGridLayout(self.__messagewidget)
+        self.__grid.setContentsMargins(0, 0, 0, 0)
+        self.__grid.setVerticalSpacing(8)
+        self.__grid.setHorizontalSpacing(0)
+
+        self.__messagewidget.setLayout(self.__grid)
+
+        self.__iconLabel = QLabel(self.__messagewidget)
+        self.__iconLabel.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.__iconLabel.setScaledContents(True)
+        self.__grid.addWidget(self.__iconLabel, 0, 0, 2, 1, Qt.AlignTop | Qt.AlignLeft)
+
+        self.__textLabel = QLabel(self.__messagewidget)
+        self.__textLabel.setWordWrap(True)
+        self.__textLabel.setContentsMargins(2, 0, 0, 0)
+        self.__textLabel.setIndent(9)
+        self.__textLabel.setScaledContents(True)
+        self.__textLabel.setMouseTracking(True)
+        self.__textLabel.autoFillBackground()
+        self.__textLabel.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        self.__grid.addWidget(self.__textLabel, 0, 1, 1, 1)
+
+        self.__grid.setRowStretch(1, 100)
+        self.__grid.setRowMinimumHeight(2, 6)
+
+        self.__buttonBox = QDialogButtonBox(self.__messagewidget)
+        self.__buttonBox.setStandardButtons(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        self.__grid.addWidget(self.__buttonBox, 3, 1, 1, 1)
+
+        self.addContentWidget(self.__messagewidget)
+        self.setIcon(icon)
+
+        self.showSizeControl(False)
+        self.setEdgeSnapping(False)
+
+    def setStandardButtons(self, buttons):
+        self.__buttonBox.setStandardButtons(buttons)
+
+    def addButton(self, button, role):
+        self.__buttonBox.addButton(button, role)
+
+    def removeButton(self, button):
+        self.__buttonBox.removeButton(button)
+
+    def button(self, button):
+        return self.__buttonBox.button(button)
+
+    def buttons(self):
+        return self.__buttonBox.buttons()
+
+    def standardButtons(self):
+        return self.__buttonBox.standardButtons()
+
+    def standardButton(self, button):
+        return self.__buttonBox.standardButton(button)
+
+    def setText(self, text: str):
+        self.__textLabel.setText(text)
+        self.__textLabel.adjustSize()
+        self.__textLabel.updateGeometry()
         self.adjustSize()
 
     def text(self):
-        return self._textLabel.text()
+        return self.__textLabel.text()
 
     def setIcon(self, icon):
         if icon:
-            icon = QApplication.style().standardIcon(icon)
-            self._iconLabel.setPixmap(icon.pixmap(QSize(128, 128)))
+            icon = QApplication.instance().style().standardIcon(icon)
+            self.__iconLabel.setPixmap(icon.pixmap(QSize(128, 128)))
         else:
-            self._iconLabel.setPixmap(QIcon().pixmap(QSize(128, 128)))
+            self.__iconLabel.setPixmap(QIcon().pixmap(QSize(128, 128)))
 
 
 class FramelessWarningMessageBox(FramelessMessageBox):

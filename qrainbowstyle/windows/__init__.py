@@ -1,4 +1,14 @@
-from .framelessdialog import FramelessDialog
-from .framelessmainwindow import FramelessMainWindow
-from .framelessmessagebox import (FramelessMessageBox, FramelessCriticalMessageBox, FramelessInformationMessageBox,
-                                  FramelessQuestionMessageBox, FramelessWarningMessageBox)
+import os
+import sys
+
+
+if sys.platform == "win32" and not os.getenv("FORCE_NON_WIN"):
+    from .FramelessWindowWin import FramelessWindow
+    import logging
+    logging.getLogger().info("Imported frameless windows with Windows API support. "
+                             "Setting parent for windows is not supported.")
+else:
+    from .FramelessWindow import FramelessWindow
+
+from .FramelessMessageBox import (FramelessWarningMessageBox, FramelessQuestionMessageBox,
+                                  FramelessInformationMessageBox, FramelessCriticalMessageBox, FramelessMessageBox)  # noqa

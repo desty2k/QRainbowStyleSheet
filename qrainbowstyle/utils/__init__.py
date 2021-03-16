@@ -4,4 +4,4 @@
 Utilities for processing SASS and images from default and custom palette.
 """
 
-from .__utils import getAllScreensGeometry, getAllScreensWorkspace, getWorkspace, setStylesheetOnQApp
+from .__utils import getAllScreensGeometry, getAllScreensWorkspace, getWorkspace, setStylesheetOnQApp, StyleLooper

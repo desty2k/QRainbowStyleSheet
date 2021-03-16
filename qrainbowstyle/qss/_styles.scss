@@ -2277,7 +2277,7 @@ PlotWidget {
 
 --------------------------------------------------------------------------- */
 Titlebar {
-    border-bottom: 1.5px solid $COLOR_BACKGROUND_NORMAL;
+    background-color: $COLOR_BACKGROUND_DARK;
 }
 
 Titlebar QLabel {
@@ -2306,7 +2306,7 @@ Titlebar QPushButton:hover{
     border:none;
 }
 
-titleBarWindowsButton {
+WindowsButton {
     border:none;
     padding: 0px;
     border-radius: 0px;
@@ -2316,26 +2316,10 @@ titleBarWindowsButton {
     max-width: 45;
 }
 
-/* FramelessMainWindow ----------------------------------------------------------------
+/* FramelessWindow ----------------------------------------------------------------
 
 --------------------------------------------------------------------------- */
-
-
-FramelessMainWindow #centralWidget{
-    border-radius: 2.5px;
-    border-color: $COLOR_SELECTION_LIGHT;
-    border-width: 1.5px;
-    border-style: inset;
-    background-color: $COLOR_BACKGROUND_DARK;
-}
-
-
-/* FramelessDialog ----------------------------------------------------------------
-
---------------------------------------------------------------------------- */
-
-FramelessDialog #centralWidget{
-    border-radius: 2.5px;
+FramelessWindow #centralWidget{
     border-color: $COLOR_SELECTION_LIGHT;
     border-width: 1.5px;
     border-style: inset;
