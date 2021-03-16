@@ -1,6 +1,10 @@
 Changelog
 =========
 
+- 0.8.1:
+    - Fix file with capitalized name not commited to GH
+    - Do not use titlebar signal to close window
+
 - 0.8.0:
     - Refactor code in windows module
     - Add Windows API support
