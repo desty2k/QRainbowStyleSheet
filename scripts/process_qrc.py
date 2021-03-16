@@ -28,6 +28,7 @@ Links to understand those tools:
 import os
 import sys
 import glob
+import logging
 import argparse
 from subprocess import call
 
@@ -57,7 +58,7 @@ class QSSFileHandler(FileSystemEventHandler):
         """Handle file system events."""
         if event.src_path.endswith('.qss'):
             run_process(self.args)
-            print('\n')
+            logging.debug('\n')
 
 
 def run_process(args):
@@ -71,11 +72,11 @@ def run_process(args):
         if inspect.isclass(obj) and issubclass(obj, source.BasePalette) and obj is not source.BasePalette:
             palettes.append(obj)
 
-    print("Found palettes: " + str(palettes))
+    logging.debug("Found palettes: " + str(palettes))
 
     for palette in palettes:
         palette_name = str(palette.__name__)
-        print("\nGenerating files for: " + palette_name)
+        logging.debug("Generating files for: " + palette_name)
 
         # create directory for every style in palette.py
         os.chdir(STYLES_PATH)
@@ -100,30 +101,30 @@ def run_process(args):
         # variables_scss_filepath = os.path.join(qss_dir, VARIABLES_SCSS_FILE)
 
         # Create palette and resources png images
-        print('Generating palette image ...')
+        logging.debug('Generating palette image ...')
         create_palette_image(palette=palette, path=images_dir)
 
-        print('Generating images ...')
+        logging.debug('Generating images ...')
         create_images(palette=palette, rc_path=rc_dir)
 
-        print("Generating images for titlebar buttons")
+        logging.debug("Generating images for titlebar buttons")
         create_titlebar_images(rc_path=rc_dir, palette=palette)
 
-        print('Generating qrc ...')
+        logging.debug('Generating qrc ...')
         generate_qrc_file(rc_path=rc_dir, qrc_path=qrc_filepath)
 
-        print('Converting .qrc to _rc.py and/or .rcc ...')
+        logging.debug('Converting .qrc to _rc.py and/or .rcc ...')
 
         for qrc_file in glob.glob('*.qrc'):
             # get name without extension
             filename = os.path.splitext(qrc_file)[0]
 
-            print(filename, '...')
+            logging.debug(filename + '...')
             ext = '_rc.py'
             ext_c = '.rcc'
 
             # Create variables SCSS files and compile SCSS files to QSS
-            print('Compiling SCSS/SASS files to QSS ...')
+            logging.debug('Compiling SCSS/SASS files to QSS ...')
             create_qss(palette=palette, qss_filepath=qss_filepath)
 
             # creating names
@@ -139,44 +140,44 @@ def run_process(args):
 
             # calling external commands
             if args.create in ['pyqt', 'pyqtgraph', 'all']:
-                print("Compiling for PyQt4 ...")
+                logging.debug("Compiling for PyQt4 ...")
                 try:
                     call(['pyrcc4', '-py3', qrc_file, '-o', py_file_pyqt])
                     with open(py_file_pyqt, "a+") as f:
                         f.write(used_palette)
 
                 except FileNotFoundError:
-                    print("You must install pyrcc4")
+                    logging.debug("You must install pyrcc4")
 
             if args.create in ['pyqt5', 'qtpy', 'all']:
-                print("Compiling for PyQt5 ...")
+                logging.debug("Compiling for PyQt5 ...")
                 try:
                     call(['pyrcc5', qrc_file, '-o', py_file_pyqt5])
                     with open(py_file_pyqt5, "a+") as f:
                         f.write(used_palette)
                 except FileNotFoundError:
-                    print("You must install pyrcc5")
+                    logging.debug("You must install pyrcc5")
 
             if args.create in ['pyside', 'all']:
-                print("Compiling for PySide ...")
+                logging.debug("Compiling for PySide ...")
                 try:
                     call(['pyside-rcc', '-py3', qrc_file, '-o', py_file_pyside])
                     with open(py_file_pyside, "a+") as f:
                         f.write(used_palette)
                 except FileNotFoundError:
-                    print("You must install pyside-rcc")
+                    logging.debug("You must install pyside-rcc")
 
             if args.create in ['pyside2', 'all']:
-                print("Compiling for PySide 2...")
+                logging.debug("Compiling for PySide 2...")
                 try:
                     call(['pyside2-rcc', '-py3', qrc_file, '-o', py_file_pyside2])
                     with open(py_file_pyside2, "a+") as f:
                         f.write(used_palette)
                 except FileNotFoundError:
-                    print("You must install pyside2-rcc")
+                    logging.debug("You must install pyside2-rcc")
 
             if args.create in ['qtpy', 'all']:
-                print("Compiling for QtPy ...")
+                logging.debug("Compiling for QtPy ...")
                 # special case - qtpy - syntax is PyQt5
                 with open(py_file_pyqt5, 'r') as file:
                     filedata = file.read()
@@ -192,7 +193,7 @@ def run_process(args):
                     os.remove(py_file_pyqt5)
 
             if args.create in ['pyqtgraph', 'all']:
-                print("Compiling for PyQtGraph ...")
+                logging.debug("Compiling for PyQtGraph ...")
                 # special case - pyqtgraph - syntax is PyQt4
                 with open(py_file_pyqt, 'r') as file:
                     filedata = file.read()
@@ -230,7 +231,7 @@ def main(arguments):
         handler = QSSFileHandler(parser_args=args)
         observer.schedule(handler, path, recursive=True)
         try:
-            print('\nWatching QSS file for changes...\nPress Ctrl+C to exit\n')
+            logging.debug('Watching QSS file for changes...Press Ctrl+C to exit')
             observer.start()
         except KeyboardInterrupt:
             observer.stop()
