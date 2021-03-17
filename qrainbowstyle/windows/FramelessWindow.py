@@ -2,14 +2,14 @@ import logging
 
 from qtpy.QtCore import QObject, QRect, Qt, QPoint, QSize, QEvent
 from qtpy.QtGui import QMouseEvent, QCursor
-from qtpy.QtWidgets import QApplication
+from qtpy.QtWidgets import QApplication, QWidget
 
 from .base import FramelessWindowBase
 
 
 class FramelessWindow(FramelessWindowBase):
 
-    def __init__(self, parent):
+    def __init__(self, parent=None):
         super(FramelessWindow, self).__init__(parent)
 
         self.__titlebarHeight = 45
@@ -26,8 +26,21 @@ class FramelessWindow(FramelessWindowBase):
         self.__horizontalResizing = False
         self.__verticalResizing = False
 
-        QApplication.instance().installEventFilter(self)
+        self.installEventFilter(self)
         self.__updateGripRect()
+        self.setMouseTracking(True)
+
+    def setMouseTracking(self, flag):
+        def recursive_set(parent):
+            for child in parent.findChildren(QObject):
+                try:
+                    child.setMouseTracking(flag)
+                except Exception:
+                    pass
+                recursive_set(child)
+
+        QWidget.setMouseTracking(self, flag)
+        recursive_set(self)
 
     def __updateGripRect(self):
         """Update rects for current window geometry."""
@@ -56,8 +69,7 @@ class FramelessWindow(FramelessWindowBase):
             widget (QObject): Widget.
             event (QEvent): Event.
         """
-        if (self.isResizingEnabled()
-                and hasattr(widget, "window")
+        if (hasattr(widget, "window")
                 and widget.window() is self):
             self.__updateGripRect()
 
@@ -119,7 +131,8 @@ class FramelessWindow(FramelessWindowBase):
                 # fixes __moving remain True after clicking titlebar on border and leaving titlebar
                 self.__moving = False
 
-            elif self.windowState() not in (Qt.WindowFullScreen, Qt.WindowMaximized):
+            elif (self.windowState() not in (Qt.WindowFullScreen, Qt.WindowMaximized)
+                    and self.isResizingEnabled()):
                 # when cursor is not over titlebar
                 # and window is not maximized or in full screen mode
 
@@ -167,14 +180,17 @@ class FramelessWindow(FramelessWindowBase):
                             self.resize(QSize(self.width(), event.y()))
 
                     else:
-                        if self.__griprect.contains(
-                                event.pos()) and not self.__horizontalResizing and not self.__verticalResizing:
+                        if (self.__griprect.contains(event.pos())
+                                and not self.__horizontalResizing
+                                and not self.__verticalResizing):
                             self.setCursor(Qt.SizeFDiagCursor)
-                        elif self.__hgriprect.contains(
-                                event.pos()) and not self.__resizing and not self.__verticalResizing:
+                        elif (self.__hgriprect.contains(event.pos())
+                              and not self.__resizing
+                              and not self.__verticalResizing):
                             self.setCursor(Qt.SizeHorCursor)
-                        elif self.__vgriprect.contains(
-                                event.pos()) and not self.__resizing and not self.__horizontalResizing:
+                        elif (self.__vgriprect.contains(event.pos())
+                              and not self.__resizing
+                              and not self.__horizontalResizing):
                             self.setCursor(Qt.SizeVerCursor)
                         else:
                             self.setCursor(Qt.ArrowCursor)
