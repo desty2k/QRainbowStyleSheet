@@ -10,7 +10,7 @@ PyQt5, QtPy, Qt.Py).
 Preview
 -------
 
-Since version v0.8 qrainbowstyle.windows module supports native Windows calls.
+From version v0.8 qrainbowstyle.windows module supports native Windows calls.
 Features:
 
     - Borders snapping

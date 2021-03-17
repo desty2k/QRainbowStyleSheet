@@ -6,10 +6,20 @@
 This module provides a function to load pre-compiled stylesheets. To generate your own
 style based on custom color palette clone package from project homepage.
 
-qrainbowstyle.windows module adds frameless windows, which can replace original QMainWindow,
-QDialog and QMessageBox windows. Frameless windows support resizing, moving, snapping to edges.
-You can set global icon and app name for all windows you create in your app. In frameless
-main window it is also possible to set custom QMenu to QToolButton with app icon.
+qrainbowstyle.windows module adds frameless windows and message boxes.
+From version v0.8 module supports native Windows calls.
+Features:
+
+    - Borders snapping
+    - Minimize, restore, close animations
+    - Size grips on borders
+    - Frame shadow
+    - Aero shake
+
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v2.png
+
+On Linux and Darwin qrainbowstyle will load class with its own implementation of these features.
+Due to a bug in Qt, window minimizing is not supported on MacOS.
 
 First, start importing our module
 
@@ -59,13 +69,13 @@ Next, create instances of frameless window and your master widget with content y
     app.setStyleSheet(qrainbowstyle.load_stylesheet(style="cyberpunk"))
 
     # Package options
-    # qrainbowstyle.align_buttons_left()      # align titlebar buttons to left side
-    # qrainbowstyle.use_darwin_buttons()      # use darwin style buttons
-    qrainbowstyle.set_app_name("My new application")  # set global name for application
-    # qrainbowstyle.set_app_icon("icon.ico")    # set global app icon
+    # qrainbowstyle.alignButtonsLeft()      # align titlebar buttons to left side
+    # qrainbowstyle.useDarwinButtons()      # use darwin style buttons
+    qrainbowstyle.setAppName("My new application")  # set global name for application
+    # qrainbowstyle.setAppIcon("icon.ico")    # set global app icon
 
     # Create frameless mainwindow
-    win = qrainbowstyle.windows.FramelessMainWindow()
+    win = qrainbowstyle.windows.FramelessWindow()
 
     # Create content widget and pass reference to main window
     widget = MasterWidget(win)
