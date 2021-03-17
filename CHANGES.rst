@@ -1,6 +1,12 @@
 Changelog
 =========
 
+- 0.8.2:
+    - Do not use app event filters in FramelessWindows
+      for non Windows OS, fixes 0xC0000005 errors
+    - Update PyPI docs and readme
+    - Fix moving window not working in frameless messageboxes
+
 - 0.8.1:
     - Fix file with capitalized name not commited to GH
     - Do not use titlebar signal to close window

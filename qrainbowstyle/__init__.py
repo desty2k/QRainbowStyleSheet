@@ -98,7 +98,7 @@ import logging
 import platform
 import qrainbowstyle
 
-__version__ = "0.8.1"
+__version__ = "0.8.2"
 
 _logger = logging.getLogger("qrainbowstyle")
 
