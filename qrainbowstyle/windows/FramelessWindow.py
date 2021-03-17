@@ -35,7 +35,7 @@ class FramelessWindow(FramelessWindowBase):
             for child in parent.findChildren(QObject):
                 try:
                     child.setMouseTracking(flag)
-                except Exception:
+                except AttributeError:
                     pass
                 recursive_set(child)
 
