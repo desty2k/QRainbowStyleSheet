@@ -1,6 +1,12 @@
 Changelog
 =========
 
+- 0.8.3:
+    - Fix setting parent for frameless windows, window modality works now
+    - Fix window outside display when moved in maximized mode
+    - Fix do not list pycache as style
+    - Update example
+
 - 0.8.2:
     - Do not use app event filters in FramelessWindows
       for non Windows OS, fixes 0xC0000005 errors
@@ -11,7 +17,7 @@ Changelog
     - Fix file with capitalized name not commited to GH
     - Do not use titlebar signal to close window
 
-- 0.8.0:
+- 0.8:
     - Refactor code in windows module
     - Add Windows API support
     - Add OS detection
