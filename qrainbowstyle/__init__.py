@@ -315,7 +315,7 @@ def _load_stylesheet(qt_api='', style=''):
     # Search for style in styles directory
     style_dir = None
 
-    available_styles = [x for x in os.listdir(STYLES_PATH) if x != '__init__.py']
+    available_styles = getAvailableStyles()
     _logger.debug(f"Available styles: {available_styles}")
     for stl in available_styles:
         if style.lower() in stl.lower():
