@@ -90,10 +90,10 @@ class FramelessWindow(FramelessWindowBase):
                         if self.windowState() == Qt.WindowMaximized:
                             self.setWindowState(Qt.WindowNoState)
                             self.titlebar().on_btnRestore_clicked()
-                            self.resize(QSize(QApplication.instance().desktop().width(),
-                                        QApplication.instance().desktop().height()))
-
-                        self.move(event.globalPos() - self.__move_offset)
+                            self.move(event.pos() - self.mapFromParent(event.pos()))
+                            self.__moving = False
+                        else:
+                            self.move(event.globalPos() - self.__move_offset)
 
                 elif event.type() == QMouseEvent.MouseButtonRelease and event.button() == Qt.LeftButton:
                     # if left button released
