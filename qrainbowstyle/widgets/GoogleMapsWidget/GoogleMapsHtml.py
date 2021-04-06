@@ -299,13 +299,11 @@ function enableMarkersDragging(value) {
     for (var marker_id in markers) {
         updateMarker(marker_id, {draggable: value});
     }
-    console.log("Updated markers dragging settings.")
 }
 
 function disableMapDragging(value) {
     map_draggable = value;
     map.setOptions({draggable: value});
-    console.log("Updated map dragging settings.");
 }
 
 function showZoomControl(value) {
