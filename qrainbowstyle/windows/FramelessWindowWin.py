@@ -15,7 +15,7 @@ else:
     raise Exception("Windows API is not supported on non Windows OS.")
 
 from qtpy.QtWidgets import QApplication
-from qtpy.QtCore import QMetaObject
+from qtpy.QtCore import QMetaObject, QEvent, Qt
 
 from .base import FramelessWindowBase
 
@@ -33,26 +33,25 @@ class MINMAXINFO(ctypes.Structure):
 class FramelessWindow(FramelessWindowBase):
 
     def __init__(self, parent=None):
-        super(FramelessWindow, self).__init__(parent=None)
+        super(FramelessWindow, self).__init__(parent)
         self.__rect = QApplication.instance().desktop().availableGeometry(self)
 
         self.__titlebarHeight = 45
         self.__borderWidth = 3
         self.__maxSizeOffset = 0
 
-        self.hwnd = int(self.winId())
-        style = win32gui.GetWindowLong(self.hwnd, win32con.GWL_STYLE)
-        win32gui.SetWindowLong(self.hwnd, win32con.GWL_STYLE, style | win32con.WS_TILEDWINDOW)
+        self.hwnd = None
 
         if QtWin.isCompositionEnabled():
             QtWin.extendFrameIntoClientArea(self, -1, -1, -1, -1)
         else:
             QtWin.resetExtendedFrame(self)
-
         QMetaObject.connectSlotsByName(self)
 
-    def setParent(self, parent):
-        raise Exception("Setting parent is not supported.")
+    def show(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().show()
 
     def showWindowShadow(self, value: bool):
         if value:
@@ -69,6 +68,9 @@ class FramelessWindow(FramelessWindowBase):
         self.__resizingEnabled = value
 
     def setEdgeSnapping(self, value: bool):
+        if not self.hwnd:
+            self.__setStyle()
+
         if value:
             style = win32gui.GetWindowLong(self.hwnd, win32con.GWL_STYLE)
             win32gui.SetWindowLong(self.hwnd, win32con.GWL_STYLE, style | win32con.WS_TILEDWINDOW)
@@ -146,3 +148,8 @@ class FramelessWindow(FramelessWindowBase):
                 pass
 
         return retval, result
+
+    def __setStyle(self):
+        self.hwnd = int(self.winId())
+        style = win32gui.GetWindowLong(self.hwnd, win32con.GWL_STYLE)
+        win32gui.SetWindowLong(self.hwnd, win32con.GWL_STYLE, style | win32con.WS_TILEDWINDOW)
