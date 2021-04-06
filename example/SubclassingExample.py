@@ -49,6 +49,7 @@ class BaseWindow(FramelessWindow):
     @Slot()
     def on_closeButton_clicked(self):
         self.askClose = FramelessQuestionMessageBox(self)
+        self.askClose.setWindowModality(Qt.WindowModal)
         self.askClose.setText("Do you really want to exit?")
         self.askClose.setStandardButtons(QDialogButtonBox.Yes | QDialogButtonBox.No)
         self.askClose.button(QDialogButtonBox.No).clicked.connect(self.askClose.close)
