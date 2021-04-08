@@ -52,6 +52,26 @@ class FramelessWindow(FramelessWindowBase):
             self.__setStyle()
         super().show()
 
+    def showNormal(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showNormal()
+
+    def showMaximized(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showMaximized()
+
+    def showMinimized(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showMinimized()
+
+    def showFullScreen(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showFullScreen()
+
     def showWindowShadow(self, value: bool):
         if value:
             QtWin.extendFrameIntoClientArea(self, -1, -1, -1, -1)
