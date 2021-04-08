@@ -54,6 +54,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + 
 
 # Must be in this place, after setting path, to not need to install
 import qrainbowstyle  # noqa: E402
+import qrainbowstyle.windows  # noqa: E402
 import qrainbowstyle.widgets  # noqa: E402
 
 # Set log for debug
@@ -158,11 +159,16 @@ def _main(args):
     app.setStyleSheet(qrainbowstyle.load_stylesheet(style=str(style)))
 
     # create main window
-    window = QMainWindow()
-    window.setObjectName('mainwindow')
+    window = qrainbowstyle.windows.FramelessWindow()
+    window.setTitlebarHeight(30)
 
+    widget = QMainWindow(window)
+    widget.setWindowFlags(Qt.Widget)
+    widget.setObjectName('mainwindow')
     ui = ui_main()
-    ui.setupUi(window)
+    ui.setupUi(widget)
+
+    window.addContentWidget(widget)
 
     title = ("QRainbowStyle Example - "
              + "(QRainbowStyle=v" + qrainbowstyle.__version__
@@ -180,7 +186,7 @@ def _main(args):
     dw_buttons.setObjectName('buttons')
     ui_buttons = ui_buttons()
     ui_buttons.setupUi(dw_buttons)
-    window.addDockWidget(Qt.RightDockWidgetArea, dw_buttons)
+    widget.addDockWidget(Qt.RightDockWidgetArea, dw_buttons)
 
     # Add actions on popup toolbuttons
     menu = QMenu()
@@ -197,69 +203,70 @@ def _main(args):
     dw_displays.setObjectName('displays')
     ui_displays = ui_displays()
     ui_displays.setupUi(dw_displays)
-    window.addDockWidget(Qt.RightDockWidgetArea, dw_displays)
+    widget.addDockWidget(Qt.RightDockWidgetArea, dw_displays)
 
     # Create docks for inputs - no fields
     dw_inputs_no_fields = QDockWidget()
     dw_inputs_no_fields.setObjectName('inputs_no_fields')
     ui_inputs_no_fields = ui_inputs_no_fields()
     ui_inputs_no_fields.setupUi(dw_inputs_no_fields)
-    window.addDockWidget(Qt.RightDockWidgetArea, dw_inputs_no_fields)
+    widget.addDockWidget(Qt.RightDockWidgetArea, dw_inputs_no_fields)
 
     # Create docks for inputs - fields
     dw_inputs_fields = QDockWidget()
     dw_inputs_fields.setObjectName('inputs_fields')
     ui_inputs_fields = ui_inputs_fields()
     ui_inputs_fields.setupUi(dw_inputs_fields)
-    window.addDockWidget(Qt.RightDockWidgetArea, dw_inputs_fields)
+    widget.addDockWidget(Qt.RightDockWidgetArea, dw_inputs_fields)
 
     # Create docks for widgets
     dw_widgets = QDockWidget()
     dw_widgets.setObjectName('widgets')
     ui_widgets = ui_widgets()
     ui_widgets.setupUi(dw_widgets)
-    window.addDockWidget(Qt.LeftDockWidgetArea, dw_widgets)
+    widget.addDockWidget(Qt.LeftDockWidgetArea, dw_widgets)
 
     # Create docks for views
     dw_views = QDockWidget()
     dw_views.setObjectName('views')
     ui_views = ui_views()
     ui_views.setupUi(dw_views)
-    window.addDockWidget(Qt.LeftDockWidgetArea, dw_views)
+    widget.addDockWidget(Qt.LeftDockWidgetArea, dw_views)
 
     # Create docks for containers - no tabs
     dw_containers_no_tabs = QDockWidget()
     dw_containers_no_tabs.setObjectName('containers_no_tabs')
     ui_containers_no_tabs = ui_containers_no_tabs()
     ui_containers_no_tabs.setupUi(dw_containers_no_tabs)
-    window.addDockWidget(Qt.LeftDockWidgetArea, dw_containers_no_tabs)
+    widget.addDockWidget(Qt.LeftDockWidgetArea, dw_containers_no_tabs)
 
     # Create docks for containters - tabs
     dw_containers_tabs = QDockWidget()
     dw_containers_tabs.setObjectName('containers_tabs')
     ui_containers_tabs = ui_containers_tabs()
     ui_containers_tabs.setupUi(dw_containers_tabs)
-    window.addDockWidget(Qt.LeftDockWidgetArea, dw_containers_tabs)
+    widget.addDockWidget(Qt.LeftDockWidgetArea, dw_containers_tabs)
 
     # Tabify right docks
-    window.tabifyDockWidget(dw_buttons, dw_displays)
-    window.tabifyDockWidget(dw_displays, dw_inputs_fields)
-    window.tabifyDockWidget(dw_inputs_fields, dw_inputs_no_fields)
+    widget.tabifyDockWidget(dw_buttons, dw_displays)
+    widget.tabifyDockWidget(dw_displays, dw_inputs_fields)
+    widget.tabifyDockWidget(dw_inputs_fields, dw_inputs_no_fields)
 
     # Tabify left docks
-    window.tabifyDockWidget(dw_containers_no_tabs, dw_containers_tabs)
-    window.tabifyDockWidget(dw_containers_tabs, dw_widgets)
-    window.tabifyDockWidget(dw_widgets, dw_views)
+    widget.tabifyDockWidget(dw_containers_no_tabs, dw_containers_tabs)
+    widget.tabifyDockWidget(dw_containers_tabs, dw_widgets)
+    widget.tabifyDockWidget(dw_widgets, dw_views)
 
     # Issues #9120, #9121 on Spyder
     qstatusbar = QStatusBar()
     qstatusbar.addWidget(QLabel('Style'))
     qstatusbarbutton = qrainbowstyle.widgets.StylePickerHorizontal()
     qstatusbar.addWidget(qstatusbarbutton)
+    qstatusbar.setSizeGripEnabled(False)
 
     # Add info also in status bar for screenshots get it
     qstatusbar.addWidget(QLabel('INFO: ' + title))
-    window.setStatusBar(qstatusbar)
+    widget.setStatusBar(qstatusbar)
 
     # Todo: add report info and other info in HELP graphical
 
@@ -267,17 +274,12 @@ def _main(args):
     if args.test:
         QTimer.singleShot(2000, app.exit)
 
-    # Save screenshots for different displays and quit
-    if args.screenshots:
-        window.showFullScreen()
-        # create_screenshots(app, window, args.no_dark)
-    # Do not read settings when taking screenshots - like reset
-    else:
-        _read_settings(window, args.reset, QSettings)
-        window.showMaximized()
+    _read_settings(widget, args.reset, QSettings)
+    window.show()
+    # window.showMaximized()
 
     app.exec_()
-    _write_settings(window, QSettings)
+    _write_settings(widget, QSettings)
 
 
 def _write_settings(window, QSettings):
@@ -305,85 +307,6 @@ def _read_settings(window, reset, QSettings):
         window.restoreState(state)
         window.resize(size)
         window.move(pos)
-
-
-def create_screenshots(app, window, no_dark):
-    """Save screenshots for different application views and quit."""
-    from qtpy.QtCore import QCoreApplication
-    from qtpy.QtGui import QGuiApplication
-    from qtpy.QtWidgets import QDockWidget, QTabWidget
-
-    theme = 'no_dark' if no_dark else 'dark'
-    print('\nCreating {} screenshots'.format(theme))
-
-    docks = window.findChildren(QDockWidget)
-    tabs = window.findChildren(QTabWidget)
-
-    widget_data = {
-        'containers_no_tabs_buttons.png': [
-            'Containers - No Tabs',
-            'Buttons',
-        ],
-        'containers_tabs_displays.png': [
-            'Containers - Tabs',
-            'Displays',
-        ],
-        'widgets_inputs_fields.png': [
-            'Widgets',
-            'Inputs - Fields',
-        ],
-        'views_inputs_no_fields.png': [
-            'Views',
-            'Inputs - No Fields',
-        ]
-    }
-
-    # Central widget tabs of with examples, reset positions
-    tab = [tab for tab in tabs if tab.count() >= 12][0]
-    tab.setCurrentIndex(0)
-
-    QCoreApplication.processEvents()
-
-    for fname_suffix, dw_titles in widget_data.items():
-        png_path = os.path.join(SCREENSHOTS_PATH, theme + '_' + fname_suffix)
-        print('\t' + png_path)
-
-        for dw in docks:
-            if dw.windowTitle() in dw_titles:
-                print('Evidencing : ', dw.windowTitle())
-                dw.raise_()
-                dw.show()
-                QCoreApplication.processEvents()
-
-        # Attention: any change in update, processEvent and sleep calls
-        # make those screenshots not working, specially the first one.
-        # It seems that processEvents are not working properly
-
-        window.update()
-        window.showFullScreen()
-        QCoreApplication.processEvents()
-
-        time.sleep(0.5)
-        QCoreApplication.processEvents()
-
-        screen = QGuiApplication.primaryScreen()
-        QCoreApplication.processEvents()
-        pixmap = screen.grabWindow(window.winId())
-
-        # Yeah, this is duplicated to avoid screenshot problems
-        screen = QGuiApplication.primaryScreen()
-        QCoreApplication.processEvents()
-        pixmap = screen.grabWindow(window.winId())
-
-        img = pixmap.toImage()
-        img.save(png_path)
-
-        QCoreApplication.processEvents()
-
-    QCoreApplication.processEvents()
-    window.close()
-    print('\n')
-    app.exit(sys.exit())
 
 
 if __name__ == "__main__":

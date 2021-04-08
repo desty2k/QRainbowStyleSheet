@@ -216,7 +216,6 @@ def main():
 
     # Create frameless mainwindow
     win = qrainbowstyle.windows.FramelessWindow()
-    win.showBordersOnMaximize(True)
 
     menu = QMenu(win)
     menu.setTitle("Some menu")
