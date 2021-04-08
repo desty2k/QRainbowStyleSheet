@@ -12,43 +12,41 @@ from qrainbowstyle.colorsystem import *
 class BasePalette:
     """Base class for palettes."""
 
-    # buttons background, active tabs name background, titlebar icons background on hover
-    COLOR_BACKGROUND_LIGHT = '#505F69'
-    # borders, non-active tabs names, headers in tables, titlebar icons background
-    COLOR_BACKGROUND_NORMAL = '#32414B'
-    # widgets background
-    COLOR_BACKGROUND_DARK = '#19232D'
+    # Color
+    COLOR_BACKGROUND_1 = ''
+    COLOR_BACKGROUND_2 = ''
+    COLOR_BACKGROUND_3 = ''
+    COLOR_BACKGROUND_4 = ''
+    COLOR_BACKGROUND_5 = ''
+    COLOR_BACKGROUND_6 = ''
 
-    # text
-    COLOR_FOREGROUND_LIGHT = '#F0F0F0'
-    # not used?
-    COLOR_FOREGROUND_NORMAL = '#AAAAAA'
-    # disabled widgets text
-    COLOR_FOREGROUND_DARK = '#787878'
+    COLOR_TEXT_1 = ''
+    COLOR_TEXT_2 = ''
+    COLOR_TEXT_3 = ''
+    COLOR_TEXT_4 = ''
 
-    # borders on selection
-    COLOR_SELECTION_LIGHT = '#148CD2'
-    # checked widgets borders, current tab indicator
-    COLOR_SELECTION_NORMAL = '#1464A0'
-    # disabled widgets borders, disabled tabs indicators
-    COLOR_SELECTION_DARK = '#14506E'
+    COLOR_ACCENT_1 = ''
+    COLOR_ACCENT_2 = ''
+    COLOR_ACCENT_3 = ''
+    COLOR_ACCENT_4 = ''
+    COLOR_ACCENT_5 = ''
 
-    OPACITY_TOOLTIP = 230
+    OPACITY_TOOLTIP = 0
 
     # Size
     SIZE_BORDER_RADIUS = '4px'
 
     # Borders
-    BORDER_LIGHT = '1px solid $COLOR_BACKGROUND_LIGHT'
-    BORDER_NORMAL = '1px solid $COLOR_BACKGROUND_NORMAL'
-    BORDER_DARK = '1px solid $COLOR_BACKGROUND_DARK'
+    BORDER_1 = '1px solid $COLOR_BACKGROUND_1'
+    BORDER_2 = '1px solid $COLOR_BACKGROUND_4'
+    BORDER_3 = '1px solid $COLOR_BACKGROUND_6'
 
-    BORDER_SELECTION_LIGHT = '1px solid $COLOR_SELECTION_LIGHT'
-    BORDER_SELECTION_NORMAL = '1px solid $COLOR_SELECTION_NORMAL'
-    BORDER_SELECTION_DARK = '1px solid $COLOR_SELECTION_DARK'
+    BORDER_SELECTION_3 = '1px solid $COLOR_ACCENT_3'
+    BORDER_SELECTION_2 = '1px solid $COLOR_ACCENT_2'
+    BORDER_SELECTION_1 = '1px solid $COLOR_ACCENT_1'
 
     # Example of additional widget specific variables
-    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_ACCENT_1
 
     # Paths
     PATH_RESOURCES = "':/qss_icons'"
@@ -57,23 +55,28 @@ class BasePalette:
     def to_dict(cls, colors_only=False):
         """Convert variables to dictionary."""
         order = [
-            'COLOR_BACKGROUND_LIGHT',
-            'COLOR_BACKGROUND_NORMAL',
-            'COLOR_BACKGROUND_DARK',
-            'COLOR_FOREGROUND_LIGHT',
-            'COLOR_FOREGROUND_NORMAL',
-            'COLOR_FOREGROUND_DARK',
-            'COLOR_SELECTION_LIGHT',
-            'COLOR_SELECTION_NORMAL',
-            'COLOR_SELECTION_DARK',
+            'COLOR_BACKGROUND_6',
+            'COLOR_BACKGROUND_5',
+            'COLOR_BACKGROUND_4',
+            'COLOR_BACKGROUND_2',
+            'COLOR_BACKGROUND_3',
+            'COLOR_BACKGROUND_1',
+            'COLOR_TEXT_1',
+            'COLOR_TEXT_2',
+            'COLOR_TEXT_3',
+            'COLOR_TEXT_4',
+            'COLOR_ACCENT_1',
+            'COLOR_ACCENT_2',
+            'COLOR_ACCENT_3',
+            'COLOR_ACCENT_4',
             'OPACITY_TOOLTIP',
             'SIZE_BORDER_RADIUS',
-            'BORDER_LIGHT',
-            'BORDER_NORMAL',
-            'BORDER_DARK',
-            'BORDER_SELECTION_LIGHT',
-            'BORDER_SELECTION_NORMAL',
-            'BORDER_SELECTION_DARK',
+            'BORDER_1',
+            'BORDER_2',
+            'BORDER_3',
+            'BORDER_SELECTION_3',
+            'BORDER_SELECTION_2',
+            'BORDER_SELECTION_1',
             'W_STATUS_BAR_BACKGROUND_COLOR',
             'PATH_RESOURCES',
         ]
@@ -96,106 +99,136 @@ class BasePalette:
         return cls.to_dict(colors_only=True)
 
 
-class QDarkStyle(BasePalette):
-    """Theme variables."""
-
-    # Color
-    COLOR_BACKGROUND_LIGHT = '#505F69'
-    COLOR_BACKGROUND_NORMAL = '#32414B'
-    COLOR_BACKGROUND_DARK = '#19232D'
-
-    COLOR_FOREGROUND_LIGHT = '#F0F0F0'
-    COLOR_FOREGROUND_NORMAL = '#AAAAAA'
-    COLOR_FOREGROUND_DARK = '#787878'
-
-    COLOR_SELECTION_LIGHT = '#148CD2'
-    COLOR_SELECTION_NORMAL = '#1464A0'
-    COLOR_SELECTION_DARK = '#14506E'
-
-    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
-
-
 class Oceanic(BasePalette):
     """Theme variables."""
+    COLOR_BACKGROUND_1 = "#263238"
+    COLOR_BACKGROUND_2 = "#2f4048"
+    COLOR_BACKGROUND_3 = "#34474f"
+    COLOR_BACKGROUND_4 = "#394d57"
+    COLOR_BACKGROUND_5 = "#3d545f"
+    COLOR_BACKGROUND_6 = "#425b67"
 
-    # Color
-    COLOR_BACKGROUND_LIGHT = '#314147'
-    COLOR_BACKGROUND_NORMAL = '#3B4950'
-    COLOR_BACKGROUND_DARK = '#263238'
+    COLOR_TEXT_1 = Gray.B130
+    COLOR_TEXT_2 = Gray.B110
+    COLOR_TEXT_3 = Gray.B90
+    COLOR_TEXT_4 = Gray.B80
 
-    COLOR_FOREGROUND_LIGHT = '#C4D6DB'
-    COLOR_FOREGROUND_NORMAL = '#56BFBA'
-    COLOR_FOREGROUND_DARK = '#56BFBA'
+    COLOR_ACCENT_1 = "#1B2529"
+    COLOR_ACCENT_2 = "#136460"
+    COLOR_ACCENT_3 = "#097D74"
+    COLOR_ACCENT_4 = "#56BFBA"
+    COLOR_ACCENT_5 = "#C4D6DB"
 
-    COLOR_SELECTION_LIGHT = '#097D74'
-    COLOR_SELECTION_NORMAL = '#136460'
-    COLOR_SELECTION_DARK = '#1B2529'
-
-    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+    OPACITY_TOOLTIP = 230
 
 
-class Cyberpunk(BasePalette):
-    """Theme variables."""
+class QDarkStyle(BasePalette):
+    COLOR_BACKGROUND_1 = "#19232d"
+    COLOR_BACKGROUND_2 = "#27323c"
+    COLOR_BACKGROUND_3 = "#35414b"
+    COLOR_BACKGROUND_4 = "#3e4b55"
+    COLOR_BACKGROUND_5 = "#47555f"
+    COLOR_BACKGROUND_6 = "#505f69"
 
-    # Color
-    COLOR_BACKGROUND_LIGHT = '#314147'
-    COLOR_BACKGROUND_NORMAL = '#010014'
-    COLOR_BACKGROUND_DARK = '#090D0C'
+    COLOR_TEXT_1 = Gray.B130
+    COLOR_TEXT_2 = Gray.B110
+    COLOR_TEXT_3 = Gray.B90
+    COLOR_TEXT_4 = Gray.B80
 
-    COLOR_FOREGROUND_LIGHT = '#FBEC08'
-    COLOR_FOREGROUND_NORMAL = '#49666e'
-    COLOR_FOREGROUND_DARK = '#EC1E77'
+    COLOR_ACCENT_1 = "#14506e"
+    COLOR_ACCENT_2 = "#145f87"
+    COLOR_ACCENT_3 = "#146998"
+    COLOR_ACCENT_4 = "#1478b1"
+    COLOR_ACCENT_5 = "#148cd2"
 
-    COLOR_SELECTION_LIGHT = '#51BCE2'
-    COLOR_SELECTION_NORMAL = '#51BCE2'
-    COLOR_SELECTION_DARK = '#51BCE2'
-
-    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+    OPACITY_TOOLTIP = 230
 
 
 class DarkOrange(BasePalette):
-    COLOR_BACKGROUND_LIGHT = Gray.B50
-    COLOR_BACKGROUND_NORMAL = Gray.B30
-    COLOR_BACKGROUND_DARK = Gray.B10
+    COLOR_BACKGROUND_1 = Gray.B10
+    COLOR_BACKGROUND_2 = Gray.B20
+    COLOR_BACKGROUND_3 = Gray.B30
+    COLOR_BACKGROUND_4 = Gray.B40
+    COLOR_BACKGROUND_5 = Gray.B50
+    COLOR_BACKGROUND_6 = Gray.B60
 
-    COLOR_FOREGROUND_LIGHT = Gray.B120
-    COLOR_FOREGROUND_NORMAL = Gray.B80
-    COLOR_FOREGROUND_DARK = Gray.B60
+    COLOR_TEXT_1 = Gray.B130
+    COLOR_TEXT_2 = Gray.B110
+    COLOR_TEXT_3 = Gray.B90
+    COLOR_TEXT_4 = Gray.B80
 
-    COLOR_SELECTION_LIGHT = Orange.B80
-    COLOR_SELECTION_NORMAL = Orange.B70
-    COLOR_SELECTION_DARK = Orange.B60
+    COLOR_ACCENT_1 = "#ce4b01"
+    COLOR_ACCENT_2 = "#d66522"
+    COLOR_ACCENT_3 = "#de8044"
+    COLOR_ACCENT_4 = "#e79b65"
+    COLOR_ACCENT_5 = "#efb587"
 
-    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+    OPACITY_TOOLTIP = 230
 
 
 class LightOrange(BasePalette):
-    COLOR_BACKGROUND_LIGHT = Gray.B140
-    COLOR_BACKGROUND_NORMAL = Gray.B110
-    COLOR_BACKGROUND_DARK = Gray.B120
+    COLOR_BACKGROUND_1 = Gray.B140
+    COLOR_BACKGROUND_2 = Gray.B130
+    COLOR_BACKGROUND_3 = Gray.B120
+    COLOR_BACKGROUND_4 = Gray.B110
+    COLOR_BACKGROUND_5 = Gray.B100
+    COLOR_BACKGROUND_6 = Gray.B90
 
-    COLOR_FOREGROUND_LIGHT = Gray.B10
-    COLOR_FOREGROUND_NORMAL = Gray.B30
-    COLOR_FOREGROUND_DARK = Gray.B50
+    COLOR_TEXT_1 = Gray.B10
+    COLOR_TEXT_2 = Gray.B20
+    COLOR_TEXT_3 = Gray.B50
+    COLOR_TEXT_4 = Gray.B70
 
-    COLOR_SELECTION_LIGHT = Orange.B80
-    COLOR_SELECTION_NORMAL = Orange.B70
-    COLOR_SELECTION_DARK = Orange.B60
+    COLOR_ACCENT_1 = "#ce4b01"
+    COLOR_ACCENT_2 = "#d66522"
+    COLOR_ACCENT_3 = "#de8044"
+    COLOR_ACCENT_4 = "#e79b65"
+    COLOR_ACCENT_5 = "#efb587"
 
-    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+    OPACITY_TOOLTIP = 230
+
+
+class QDarkStyle3Light(BasePalette):
+    # Color
+    COLOR_BACKGROUND_1 = Gray.B140
+    COLOR_BACKGROUND_2 = Gray.B130
+    COLOR_BACKGROUND_3 = Gray.B120
+    COLOR_BACKGROUND_4 = Gray.B110
+    COLOR_BACKGROUND_5 = Gray.B100
+    COLOR_BACKGROUND_6 = Gray.B90
+
+    COLOR_TEXT_1 = Gray.B10
+    COLOR_TEXT_2 = Gray.B20
+    COLOR_TEXT_3 = Gray.B50
+    COLOR_TEXT_4 = Gray.B70
+
+    COLOR_ACCENT_1 = Blue.B130
+    COLOR_ACCENT_2 = Blue.B100
+    COLOR_ACCENT_3 = Blue.B90
+    COLOR_ACCENT_4 = Blue.B80
+    COLOR_ACCENT_5 = Blue.B70
+
+    OPACITY_TOOLTIP = 230
 
 
 class QDarkStyle3(BasePalette):
-    COLOR_BACKGROUND_LIGHT = Gray.B50
-    COLOR_BACKGROUND_NORMAL = Gray.B30
-    COLOR_BACKGROUND_DARK = Gray.B10
+    # Color
+    COLOR_BACKGROUND_1 = Gray.B10
+    COLOR_BACKGROUND_2 = Gray.B20
+    COLOR_BACKGROUND_3 = Gray.B30
+    COLOR_BACKGROUND_4 = Gray.B40
+    COLOR_BACKGROUND_5 = Gray.B50
+    COLOR_BACKGROUND_6 = Gray.B60
 
-    COLOR_FOREGROUND_LIGHT = Gray.B120
-    COLOR_FOREGROUND_NORMAL = Gray.B80
-    COLOR_FOREGROUND_DARK = Gray.B60
+    COLOR_TEXT_1 = Gray.B130
+    COLOR_TEXT_2 = Gray.B110
+    COLOR_TEXT_3 = Gray.B90
+    COLOR_TEXT_4 = Gray.B80
 
-    COLOR_SELECTION_LIGHT = Blue.B60
-    COLOR_SELECTION_NORMAL = Blue.B40
-    COLOR_SELECTION_DARK = Blue.B20
+    COLOR_ACCENT_1 = Blue.B20
+    COLOR_ACCENT_2 = Blue.B40
+    COLOR_ACCENT_3 = Blue.B50
+    COLOR_ACCENT_4 = Blue.B70
+    COLOR_ACCENT_5 = Blue.B80
 
-    W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+    OPACITY_TOOLTIP = 230

@@ -207,7 +207,7 @@ def _apply_os_patches(palette):
     os_fix = ""
 
     if platform.system().lower() == 'darwin':
-        # See issue #12
+        # See issue #12, #267
         os_fix = '''
         QDockWidget::title
         {{
@@ -215,7 +215,10 @@ def _apply_os_patches(palette):
             text-align: center;
             height: 12px;
         }}
-        '''.format(color=palette.COLOR_BACKGROUND_NORMAL)
+        QTabBar::close-button {{
+            padding: 2px;
+        }}
+        '''.format(color=palette.COLOR_BACKGROUND_4)
 
     # Only open the QSS file if any patch is needed
     if os_fix:
@@ -239,14 +242,28 @@ def _apply_binding_patches():
     return binding_fix
 
 
-def _apply_version_patches():
+def _apply_version_patches(qt_version):
     """
     Apply version-only specific stylesheet patches for the same binding.
+
+    Args:
+        qt_version (str): Qt string version.
 
     Returns:
         str: stylesheet string (css).
     """
     version_fix = ""
+
+    major, minor, patch = qt_version.split('.')
+    major, minor, patch = int(major), int(minor), int(patch)
+
+    if major == 5 and minor >= 14:
+        # See issue #214
+        version_fix = '''
+        QMenu::item {
+            padding: 4px 24px 4px 6px;
+        }
+        '''
 
     if version_fix:
         _logger.info("Found version patches to be applied.")
@@ -263,7 +280,7 @@ def _apply_application_patches(palette, QCoreApplication, QPalette, QColor):
     that moment for setting reasons.
     """
     # See issue #139
-    color = palette.COLOR_SELECTION_LIGHT
+    color = palette.COLOR_ACCENT_3
     qcolor = QColor(color)
 
     # Todo: check if it is qcoreapplication indeed
@@ -272,9 +289,9 @@ def _apply_application_patches(palette, QCoreApplication, QPalette, QColor):
     _logger.info("Found application patches to be applied.")
 
     if app:
-        _palette = app.palette()
-        _palette.setColor(QPalette.Normal, QPalette.Link, qcolor)
-        app.setPalette(_palette)
+        app_palette = app.palette()
+        app_palette.setColor(QPalette.Normal, QPalette.Link, qcolor)
+        app.setPalette(app_palette)
     else:
         _logger.warning("No QCoreApplication instance found. "
                         "Application patches not applied. "
@@ -311,6 +328,7 @@ def _load_stylesheet(qt_api='', style=''):
     # Import is made after setting QT_API
     from qtpy.QtCore import QCoreApplication, QFile, QTextStream
     from qtpy.QtGui import QColor, QPalette
+    from qtpy import QT_VERSION
 
     # Search for style in styles directory
     style_dir = None
@@ -318,7 +336,7 @@ def _load_stylesheet(qt_api='', style=''):
     available_styles = getAvailableStyles()
     _logger.debug(f"Available styles: {available_styles}")
     for stl in available_styles:
-        if style.lower() in stl.lower():
+        if style.lower() == stl.lower():
             style_dir = stl
             break
 
@@ -400,7 +418,7 @@ def _load_stylesheet(qt_api='', style=''):
     stylesheet += _apply_binding_patches()
 
     # 3. Apply binding version specific patches
-    stylesheet += _apply_version_patches()
+    stylesheet += _apply_version_patches(QT_VERSION)
 
     # 4. Apply palette fix. See issue #139
     _apply_application_patches(palette, QCoreApplication, QPalette, QColor)
@@ -408,7 +426,7 @@ def _load_stylesheet(qt_api='', style=''):
     return stylesheet
 
 
-def load_stylesheet(qt_api="", style='qdarkstyle'):
+def load_stylesheet(qt_api="", style='qdarkstyle3'):
     """
     Load the stylesheet. Takes care of importing the rc module.
 

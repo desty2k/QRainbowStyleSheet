@@ -197,11 +197,11 @@ Available styles
 Currently available styles are:
 
 * Oceanic
-* Cyberpunk
+* QDarkStyle3
+* QDarkstyle3Light
 * LightOrange
 * DarkOrange
 * QDarkStyle (original)
-* QDarkStyle3 (new original)
 
 Select style by using keyword argument ``style=``
 
