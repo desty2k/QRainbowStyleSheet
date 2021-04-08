@@ -34,7 +34,7 @@ class FramelessWindowBase(QDialog):
 
         self.__centralLayout = QVBoxLayout(self.__centralWidget)
         self.__centralLayout.setAlignment(Qt.AlignBottom)
-        self.__centralLayout.setSpacing(3)
+        self.__centralLayout.setSpacing(0)
         self.__centralLayout.setContentsMargins(0, 0, 0, 0)
 
         self.__bar = Titlebar(self)
@@ -43,8 +43,6 @@ class FramelessWindowBase(QDialog):
         self.__bar.showMaximizeButton(False)
         self.__centralLayout.addWidget(self.__bar)
         self.__centralLayout.setAlignment(self.__bar, Qt.AlignVCenter)
-
-        self.__centralLayout.addSpacing(3)
 
         self.__contentWidget = QWidget(self)
         self.__contentWidget.setSizePolicy(
@@ -75,9 +73,6 @@ class FramelessWindowBase(QDialog):
         pass
 
     def setEdgeSnapping(self, value: bool):
-        pass
-
-    def showBordersOnMaximize(self, value: bool):
         pass
 
     def setResizingEnabled(self, value: bool):

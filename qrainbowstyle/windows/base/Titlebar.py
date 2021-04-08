@@ -45,8 +45,7 @@ class Titlebar(QFrame):
         self.layout = QHBoxLayout(self)
         self.layout.setAlignment(Qt.AlignVCenter)
         self.layout.setAlignment(Qt.AlignLeft)
-        self.layout.setSpacing(2)
-        self.layout.setContentsMargins(5, 0, 5, 0)
+        self.layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.layout)
 
         self.appLogoLabel = AppLogo(self)
