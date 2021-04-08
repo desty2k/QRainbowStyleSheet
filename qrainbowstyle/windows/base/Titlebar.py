@@ -1,24 +1,10 @@
-from qtpy.QtWidgets import QFrame, QMenu, QHBoxLayout, QToolButton, QSizePolicy
-from qtpy.QtCore import Signal, QPoint, QMetaObject, Slot, Qt, QEvent, QRect
-from qtpy.QtGui import QPalette
+from qtpy.QtWidgets import QFrame, QMenu, QHBoxLayout
+from qtpy.QtCore import Signal, QPoint, QMetaObject, Slot, Qt, QRect
+from qtpy.QtGui import QPalette, QPixmap, QIcon
 
-from .Buttons import ButtonsWidget, AppLogo
+from .Buttons import ButtonsWidget, AppLogo, MenuButton
 
 import qrainbowstyle
-
-MENU_STYLESHEET = """
-QToolButton {
-    margin: 0px;
-    padding: 0px;
-    border: none;
-}
-QToolButton::menu-indicator {
-    image: none; 
-}
-QToolButton:pressed {
-    background-color: COLOR_BACKGROUND_NORMAL;            
-}
-"""  # noqa
 
 
 class Titlebar(QFrame):
@@ -49,6 +35,8 @@ class Titlebar(QFrame):
         self.setLayout(self.layout)
 
         self.appLogoLabel = AppLogo(self)
+        if qrainbowstyle.APP_ICON_PATH:
+            self.appLogoLabel.setPixmap(QPixmap(qrainbowstyle.APP_ICON_PATH))
         self.layout.addWidget(self.appLogoLabel)
         if qrainbowstyle.ALIGN_BUTTONS_LEFT:
             self.appLogoLabel.setVisible(False)
@@ -65,6 +53,9 @@ class Titlebar(QFrame):
         # auto connect signals
         QMetaObject.connectSlotsByName(self)
         self.installEventFilter(self)
+
+    def setWindowIcon(self, icon: QIcon):
+        self.appLogoLabel.setPixmap(icon.pixmap())
 
     # connecting buttons signals
     @Slot()
@@ -111,13 +102,9 @@ class Titlebar(QFrame):
         self.buttonsWidget.btnMinimize.setVisible(value)
 
     def addMenu(self, menu: QMenu):
-        menuButton = QToolButton(self)
-        menuButton.setPopupMode(QToolButton.InstantPopup)
-        menuButton.setMouseTracking(True)
+        menuButton = MenuButton(self)
         menuButton.setMenu(menu)
         menuButton.setText(menu.title())
-        menuButton.setStyleSheet(qrainbowstyle.rainbowize(MENU_STYLESHEET))
-        menuButton.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         self.layout.insertWidget(len(self.menus) + 1, menuButton)
         self.menus.append(menuButton)
 
@@ -129,12 +116,6 @@ class Titlebar(QFrame):
         self.buttonsWidget.btnMaximize.leaveEvent(None)
         if not qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsWidget.btnRestore.leaveEvent(None)
-
-    def changeEvent(self, event: QEvent) -> None:
-        if event.type() == QEvent.StyleChange:
-            for menu in self.menus:
-                menu.setStyleSheet(qrainbowstyle.rainbowize(MENU_STYLESHEET))
-        super().changeEvent(event)
 
     def mouseOverTitlebar(self, x, y):
         if self.childAt(QPoint(x, y)):
