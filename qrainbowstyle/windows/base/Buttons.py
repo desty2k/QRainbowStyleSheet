@@ -1,8 +1,19 @@
 from qtpy.QtWidgets import QWidget, QSizePolicy, QHBoxLayout, QToolButton, QLabel
-from qtpy.QtGui import QIcon, QRegion, QPixmap
+from qtpy.QtGui import QIcon, QRegion
 from qtpy.QtCore import Qt, QEvent, QSize, QRect
 
 import qrainbowstyle
+
+
+class MenuButton(QToolButton):
+    """MenuButton documentation"""
+
+    def __init__(self, parent):
+        super(MenuButton, self).__init__(parent)
+
+        self.setPopupMode(QToolButton.InstantPopup)
+        self.setMouseTracking(True)
+        self.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
 
 
 class AppLogo(QLabel):
@@ -13,7 +24,6 @@ class AppLogo(QLabel):
     def __init__(self, parent):
         super(AppLogo, self).__init__(parent)
 
-        self.setPixmap(QPixmap(qrainbowstyle.APP_ICON_PATH))
         self.setScaledContents(True)
         self.setFixedSize(QSize(32, 32))
         self.setStyleSheet("border: none;")
@@ -58,11 +68,11 @@ class WindowsButton(QToolButton):
         self.hoverIcon = hovericon
 
         iconsize = QSize(45, 30)
+        self.setText("")
         self.setEnabled(True)
+        self.setIconSize(iconsize)
         self.setMinimumSize(iconsize)
         self.setAutoFillBackground(True)
-        self.setText("")
-        self.setIconSize(iconsize)
         self.setChecked(False)
         self.setMouseTracking(True)
 
@@ -101,7 +111,7 @@ class ButtonsWidget(QWidget):
         self.setStyleSheet("padding: 0px;")
 
         self.buttonsLayout = QHBoxLayout(self)
-        self.buttonsLayout.setContentsMargins(5, 0, 3, 0)
+        self.buttonsLayout.setContentsMargins(0, 0, 0, 0)
         self.buttonsLayout.setSpacing(0)
         self.buttonsLayout.setAlignment(Qt.AlignVCenter)
         self.setLayout(self.buttonsLayout)
