@@ -15,7 +15,7 @@ from qrainbowstyle import __doc__ as long_desc
 from qrainbowstyle import __version__
 
 install_requires = ['helpdev>=0.6.10', 'qtpy>=1.9', 'PyQtWebEngine']
-if "win" in sys.platform:
+if sys.platform.startswith("win"):
     install_requires += ["pywin32"]
 
 extras_require = {
