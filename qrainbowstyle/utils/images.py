@@ -50,9 +50,9 @@ def _create_nt_buttons(base_svg_path=BUTTONS_NT_PATH, rc_path=RC_PATH, palette=B
     temp_dir = tempfile.mkdtemp()
     svg_fnames = [f for f in os.listdir(base_svg_path) if f.endswith('.svg')]
 
-    background = palette.COLOR_BACKGROUND_DARK
-    background_hover = palette.COLOR_BACKGROUND_NORMAL
-    text = palette.COLOR_FOREGROUND_LIGHT
+    background = palette.TITLE_BAR_BACKGROUND_COLOR
+    background_hover = palette.TITLE_BAR_BUTTONS_HOVER_COLOR
+    text = palette.TITLE_BAR_TEXT_COLOR
 
     for svg in svg_fnames:
         svg_path = os.path.join(base_svg_path, svg)
@@ -71,7 +71,7 @@ def _create_nt_buttons(base_svg_path=BUTTONS_NT_PATH, rc_path=RC_PATH, palette=B
         for size in sizes:
             png_fname = svg.replace('.svg', size['ext'])
             png_path = os.path.join(rc_path, png_fname)
-            convert_svg_to_png(temp_svg_path, png_path, size['height'], size['width'])
+            convert_svg_to_png(temp_svg_path, png_path, size['width'], size['height'])
 
 
 def _create_darwin_buttons(base_svg_path=BUTTONS_DARWIN_PATH, rc_path=RC_PATH):
@@ -105,10 +105,10 @@ def _get_file_color_map(fname, palette):
     """
     Return map of files (i.e states) to color from given palette.
     """
-    color_disabled = palette.COLOR_BACKGROUND_NORMAL
-    color_focus = palette.COLOR_SELECTION_LIGHT
-    color_pressed = palette.COLOR_SELECTION_NORMAL
-    color_normal = palette.COLOR_FOREGROUND_DARK
+    color_disabled = palette.COLOR_BACKGROUND_4
+    color_focus = palette.COLOR_ACCENT_5
+    color_pressed = palette.COLOR_ACCENT_2
+    color_normal = palette.COLOR_TEXT_1
 
     name, ext = fname.split('.')
     file_colors = {
@@ -139,7 +139,7 @@ def convert_svg_to_png(svg_path, png_path, height, width):
     """
     Convert svg files to png files using Qt.
     """
-    size = QSize(width, height)
+    size = QSize(height, width)
     icon = QIcon(svg_path)
     pixmap = icon.pixmap(size)
     img = pixmap.toImage()
@@ -222,7 +222,7 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     for height, ext in heights.items():
         width = height
 
-        _logger.debug(" Size HxW (px): %s X %s", (height, width))
+        _logger.debug(" Size HxW (px): {} X {}".format(height, width))
 
         for svg_fname in svg_fnames:
             svg_name = svg_fname.split('.')[0]
@@ -270,7 +270,8 @@ def create_images(base_svg_path=SVG_PATH, rc_path=RC_PATH,
     _logger.info("RC links not in RC: %s", rc_list)
 
 
-def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qrainbowstyle', rc_path=RC_PATH, qrc_path=QRC_FILEPATH):
+def generate_qrc_file(resource_prefix='qss_icons', style_prefix='qrainbowstyle',
+                      rc_path=RC_PATH, qrc_path=QRC_FILEPATH):
     """
     Generate the QRC file programmaticaly.
 

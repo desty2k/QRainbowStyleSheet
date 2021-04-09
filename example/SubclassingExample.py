@@ -67,10 +67,10 @@ if __name__ == '__main__':
     logger = OutputLogger()
     qInstallMessageHandler(qt_message_handler)
 
-    qrainbowstyle.useDarwinButtons()
-    qrainbowstyle.alignButtonsLeft()
+    # qrainbowstyle.useDarwinButtons()
+    # qrainbowstyle.alignButtonsLeft()
     app = QApplication(sys.argv)
-    app.setStyleSheet(qrainbowstyle.load_stylesheet("qdarkstyle3"))
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="qdarkstyle3"))
 
     window = BaseWindow()
     window.show()

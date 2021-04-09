@@ -48,7 +48,7 @@ def main():
     dialog.addMenu(oneMenu)
     dialog.addMenu(thirdmenu)
 
-    box = FramelessWarningMessageBox(None)
+    box = FramelessWarningMessageBox(dialog)
     box.setText("Warning :)")
     box.show()
 

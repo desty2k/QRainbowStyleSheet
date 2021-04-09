@@ -1,6 +1,13 @@
 Changelog
 =========
 
+- 0.9:
+    - Redesigned frameless windows
+    - Add color system from qdarkstyle v3
+    - Add new preview images
+    - Clean unused files and code
+    - Generate resources
+
 - 0.8.3:
     - Fix setting parent for frameless windows, window modality works now
     - Fix window outside display when moved in maximized mode
@@ -32,7 +39,7 @@ Changelog
     - Reduce amount of window flags
 
 - 0.7:
-    - Add new color system from qdarkstyle v3
+    - Add color pallette from qdarkstyle v3
     - Update checkbox icon when checked
     - Update styles using new palette
     - Generate resources

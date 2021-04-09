@@ -28,14 +28,14 @@ class FramelessWindowBase(QDialog):
                             | Qt.WindowCloseButtonHint)
 
         self.__centralWidget = QWidget(self)
-        self.__centralWidget.setObjectName("centralWidget")
-        self.__centralWidget.setContentsMargins(2.5, 2.5, 2.5, 2.5)
+        self.__centralWidget.setObjectName("__centralWidget")
+        self.__centralWidget.setContentsMargins(0, 0, 0, 0)
         self.__centralWidget.setMouseTracking(True)
 
         self.__centralLayout = QVBoxLayout(self.__centralWidget)
         self.__centralLayout.setAlignment(Qt.AlignBottom)
-        self.__centralLayout.setSpacing(3)
         self.__centralLayout.setContentsMargins(0, 0, 0, 0)
+        self.__centralLayout.setSpacing(0)
 
         self.__bar = Titlebar(self)
         self.__bar.showRestoreButton(False)
@@ -44,13 +44,12 @@ class FramelessWindowBase(QDialog):
         self.__centralLayout.addWidget(self.__bar)
         self.__centralLayout.setAlignment(self.__bar, Qt.AlignVCenter)
 
-        self.__centralLayout.addSpacing(3)
-
         self.__contentWidget = QWidget(self)
+        self.__contentWidget.setObjectName("__contentWidget")
         self.__contentWidget.setSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Expanding)
-        self.__contentWidget.setContentsMargins(0, 0, 0, 0)
+        self.__contentWidget.setContentsMargins(2, 0, 2, 2)
         self.__contentWidgetLayout = QVBoxLayout(self.__contentWidget)
         self.__contentWidgetLayout.setContentsMargins(0, 0, 0, 0)
         self.__centralLayout.addWidget(self.__contentWidget)
@@ -75,9 +74,6 @@ class FramelessWindowBase(QDialog):
         pass
 
     def setEdgeSnapping(self, value: bool):
-        pass
-
-    def showBordersOnMaximize(self, value: bool):
         pass
 
     def setResizingEnabled(self, value: bool):

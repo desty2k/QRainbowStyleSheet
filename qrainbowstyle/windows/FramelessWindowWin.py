@@ -38,7 +38,6 @@ class FramelessWindow(FramelessWindowBase):
 
         self.__titlebarHeight = 45
         self.__borderWidth = 3
-        self.__maxSizeOffset = 0
 
         self.hwnd = None
 
@@ -52,6 +51,26 @@ class FramelessWindow(FramelessWindowBase):
         if not self.hwnd:
             self.__setStyle()
         super().show()
+
+    def showNormal(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showNormal()
+
+    def showMaximized(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showMaximized()
+
+    def showMinimized(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showMinimized()
+
+    def showFullScreen(self):
+        if not self.hwnd:
+            self.__setStyle()
+        super().showFullScreen()
 
     def showWindowShadow(self, value: bool):
         if value:
@@ -79,12 +98,6 @@ class FramelessWindow(FramelessWindowBase):
             win32gui.SetWindowLong(
                 self.hwnd, win32con.GWL_STYLE, style & ~win32con.WS_OVERLAPPEDWINDOW | win32con.WS_POPUPWINDOW)
 
-    def showBordersOnMaximize(self, value: bool):
-        if value:
-            self.__maxSizeOffset = 1
-        else:
-            self.__maxSizeOffset = 0
-
     def nativeEvent(self, eventType, message):
         retval, result = super().nativeEvent(eventType, message)
         if eventType == "windows_generic_MSG":
@@ -97,7 +110,7 @@ class FramelessWindow(FramelessWindowBase):
                 info = ctypes.cast(
                     msg.lParam, ctypes.POINTER(MINMAXINFO)).contents
                 info.ptMaxSize.x = self.__rect.width()
-                info.ptMaxSize.y = self.__rect.height() - self.__maxSizeOffset
+                info.ptMaxSize.y = self.__rect.height() - 1
                 info.ptMaxPosition.x, info.ptMaxPosition.y = 0, 0
                 return True, 0
 
