@@ -14,8 +14,7 @@ from setuptools import find_packages, setup
 from qrainbowstyle import __doc__ as long_desc
 from qrainbowstyle import __version__
 
-install_requires = (['helpdev>=0.6.10', 'qtpy>=1.9', 'PyQtWebEngine']
-                    + ["pywin32"] if "win" in sys.platform else [])
+install_requires = ['helpdev>=0.6.10', 'qtpy>=1.9', 'PyQtWebEngine'] + ["pywin32"] if "win" in sys.platform else []
 
 extras_require = {
     'develop': ['qtsass', 'watchdog'],
