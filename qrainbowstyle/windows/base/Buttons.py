@@ -23,9 +23,8 @@ class AppLogo(QLabel):
 
     def __init__(self, parent):
         super(AppLogo, self).__init__(parent)
-
         self.setScaledContents(True)
-        self.setFixedSize(QSize(32, 32))
+        self.setFixedSize(QSize(28, 28))
         self.setStyleSheet("border: none;")
 
 
@@ -101,8 +100,8 @@ class ButtonsWidget(QWidget):
 
     def __init__(self, parent):
         super(ButtonsWidget, self).__init__(parent)
-
         self.setObjectName("buttonsWidget")
+        self.setContentsMargins(0, 0, 0, 0)
         sizepolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
         sizepolicy.setHorizontalStretch(0)
         sizepolicy.setVerticalStretch(0)

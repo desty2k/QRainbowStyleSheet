@@ -49,7 +49,7 @@ html = """
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "COLOR_BACKGROUND_DARK"
+                    "color": "COLOR_BACKGROUND_1"
                 }
             ]
         },
@@ -58,7 +58,7 @@ html = """
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "COLOR_BACKGROUND_LIGHT"
+                    "color": "COLOR_BACKGROUND_5"
                 }
             ]
         },
@@ -67,7 +67,7 @@ html = """
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "#29768a"
+                    "color": "COLOR_BACKGROUND_3"
                 },
                 {
                     "lightness": -37
@@ -79,7 +79,7 @@ html = """
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "#406d80"
+                    "color": "COLOR_BACKGROUND_3"
                 }
             ]
         },
@@ -88,7 +88,7 @@ html = """
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "#406d80"
+                    "color": "COLOR_BACKGROUND_3"
                 }
             ]
         },
@@ -96,10 +96,10 @@ html = """
             "elementType": "labels.text.stroke",
             "stylers": [
                 {
-                    "visibility": "on"
+                    "visibility": "off"
                 },
                 {
-                    "color": "COLOR_SELECTION_LIGHT"
+                    "color": "COLOR_ACCENT_4"
                 },
                 {
                     "weight": 2
@@ -113,19 +113,7 @@ html = """
             "elementType": "labels.text.fill",
             "stylers": [
                 {
-                    "color": "COLOR_FOREGROUND_LIGHT"
-                }
-            ]
-        },
-        {
-            "featureType": "administrative",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "weight": 0.6
-                },
-                {
-                    "color": "#1a3541"
+                    "color": "COLOR_TEXT_1"
                 }
             ]
         },
@@ -137,15 +125,6 @@ html = """
                 }
             ]
         },
-        {
-            "featureType": "poi.park",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "color": "#2c5a71"
-                }
-            ]
-        }
     ]
 
     function initMap() {

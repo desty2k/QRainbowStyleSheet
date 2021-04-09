@@ -5,8 +5,8 @@ A customizable style sheet for QtWidgets application.
 """
 
 # Standard library imports
-import glob
 import os
+import glob
 from setuptools import find_packages, setup
 
 # Package imports

@@ -20,31 +20,31 @@ class Titlebar(QFrame):
         self.setObjectName("titlebar")
         self.setMouseTracking(True)
 
-        self.moving = False
         self.menus = []
 
         self.setAutoFillBackground(True)
-        self.setFixedHeight(45)
+        self.setFixedHeight(30)
         self.setContentsMargins(0, 0, 0, 0)
         self.setBackgroundRole(QPalette.Highlight)
 
         self.layout = QHBoxLayout(self)
         self.layout.setAlignment(Qt.AlignVCenter)
         self.layout.setAlignment(Qt.AlignLeft)
-        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setContentsMargins(8, 0, 0, 0)
+        self.layout.setSpacing(0)
         self.setLayout(self.layout)
 
         self.appLogoLabel = AppLogo(self)
         if qrainbowstyle.APP_ICON_PATH:
             self.appLogoLabel.setPixmap(QPixmap(qrainbowstyle.APP_ICON_PATH))
+            self.layout.setContentsMargins(2, 0, 0, 0)
         self.layout.addWidget(self.appLogoLabel)
         if qrainbowstyle.ALIGN_BUTTONS_LEFT:
             self.appLogoLabel.setVisible(False)
+            self.layout.setContentsMargins(8, 0, 0, 0)
 
         self.layout.insertStretch(50)
-
         self.buttonsWidget = ButtonsWidget(self)
-
         if qrainbowstyle.ALIGN_BUTTONS_LEFT:
             self.layout.insertWidget(0, self.buttonsWidget)
         else:

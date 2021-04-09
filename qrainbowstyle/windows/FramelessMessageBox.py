@@ -16,7 +16,7 @@ class FramelessMessageBox(FramelessWindow):
         self.setSizePolicy(policy)
 
         self.__messagewidget = QWidget(self)
-        self.__messagewidget.setContentsMargins(11, 5, 11, 11)
+        self.__messagewidget.setContentsMargins(11, 11, 11, 11)
 
         self.__grid = QGridLayout(self.__messagewidget)
         self.__grid.setContentsMargins(0, 0, 0, 0)

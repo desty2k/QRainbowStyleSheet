@@ -50,9 +50,9 @@ def _create_nt_buttons(base_svg_path=BUTTONS_NT_PATH, rc_path=RC_PATH, palette=B
     temp_dir = tempfile.mkdtemp()
     svg_fnames = [f for f in os.listdir(base_svg_path) if f.endswith('.svg')]
 
-    background = palette.COLOR_BACKGROUND_1
-    background_hover = palette.COLOR_BACKGROUND_3
-    text = palette.COLOR_TEXT_1
+    background = palette.TITLE_BAR_BACKGROUND_COLOR
+    background_hover = palette.TITLE_BAR_BUTTONS_HOVER_COLOR
+    text = palette.TITLE_BAR_TEXT_COLOR
 
     for svg in svg_fnames:
         svg_path = os.path.join(base_svg_path, svg)

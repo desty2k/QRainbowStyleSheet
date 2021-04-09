@@ -29,13 +29,13 @@ class FramelessWindowBase(QDialog):
 
         self.__centralWidget = QWidget(self)
         self.__centralWidget.setObjectName("centralWidget")
-        self.__centralWidget.setContentsMargins(2.5, 2.5, 2.5, 2.5)
+        self.__centralWidget.setContentsMargins(2, 2, 2, 2)
         self.__centralWidget.setMouseTracking(True)
 
         self.__centralLayout = QVBoxLayout(self.__centralWidget)
         self.__centralLayout.setAlignment(Qt.AlignBottom)
-        self.__centralLayout.setSpacing(0)
         self.__centralLayout.setContentsMargins(0, 0, 0, 0)
+        self.__centralLayout.setSpacing(0)
 
         self.__bar = Titlebar(self)
         self.__bar.showRestoreButton(False)
