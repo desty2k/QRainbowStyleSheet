@@ -1,4 +1,4 @@
-from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout, QGroupBox, QGridLayout, QLabel
+from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout, QGridLayout, QLabel
 from qtpy.QtCore import Qt, qInstallMessageHandler
 
 import sys
@@ -21,17 +21,17 @@ def main():
 
     win = FramelessWindow()
 
-    groupbox = QGroupBox(win)
+    groupbox = QWidget(win)
     groupbox_layout = QGridLayout(groupbox)
     groupbox.setLayout(groupbox_layout)
 
-    groupbox_layout.addWidget(QLabel("StylePickerGrid:"), *(1, 1))
+    groupbox_layout.addWidget(QLabel("StylePickerGrid:", groupbox), *(1, 1))
     groupbox_layout.addWidget(StylePickerGrid(2, groupbox), *(1, 2))
 
-    groupbox_layout.addWidget(QLabel("StylePickerVertical:"), *(2, 1))
+    groupbox_layout.addWidget(QLabel("StylePickerVertical:", groupbox), *(2, 1))
     groupbox_layout.addWidget(StylePickerVertical(groupbox), *(2, 2))
 
-    groupbox_layout.addWidget(QLabel("StylePickerHorizontal:"), *(3, 1))
+    groupbox_layout.addWidget(QLabel("StylePickerHorizontal:", groupbox), *(3, 1))
     groupbox_layout.addWidget(StylePickerHorizontal(groupbox), *(3, 2))
 
     win.addContentWidget(groupbox)

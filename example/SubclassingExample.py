@@ -70,7 +70,7 @@ if __name__ == '__main__':
     # qrainbowstyle.useDarwinButtons()
     # qrainbowstyle.alignButtonsLeft()
     app = QApplication(sys.argv)
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="qdarkstyle3light"))
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="qdarkstyle3"))
 
     window = BaseWindow()
     window.show()
