@@ -23,15 +23,10 @@ On Linux and Darwin qrainbowstyle will load class with its own implementation of
 Due to a bug in Qt, window minimizing is not supported on MacOS.
 
 
-Frameless window
-~~~~~~~~~~~~~~~~
+Frameless windows
+~~~~~~~~~~~~~~~~~
 
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v2.png
-
-Frameless message box
-~~~~~~~~~~~~~~~~~~~~~
-
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_messagebox_v2.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v3.png
 
 
 Installation
