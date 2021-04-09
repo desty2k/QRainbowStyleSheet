@@ -93,7 +93,7 @@ QWidget {
 QWidget:disabled {
   background-color: #263238;
   color: #9DA9B5;
-  selection-background-color: #1B2529;
+  selection-background-color: #0a4542;
   selection-color: #9DA9B5;
 }
 
@@ -1031,7 +1031,7 @@ QProgressBar::chunk {
 }
 
 QProgressBar::chunk:disabled {
-  background-color: #1B2529;
+  background-color: #0a4542;
   color: #9DA9B5;
   border-radius: 4px;
 }
@@ -1392,7 +1392,7 @@ QSlider::add-page:vertical {
 }
 
 QSlider::add-page:vertical :disabled {
-  background: #1B2529;
+  background: #0a4542;
 }
 
 QSlider::sub-page:horizontal {
@@ -1404,7 +1404,7 @@ QSlider::sub-page:horizontal {
 }
 
 QSlider::sub-page:horizontal:disabled {
-  background: #1B2529;
+  background: #0a4542;
 }
 
 QSlider::handle:horizontal {
@@ -1544,25 +1544,25 @@ QTabBar::tab, QDockWidget QTabBar::tab {
 }
 
 QTabBar::tab:top:selected:disabled, QDockWidget QTabBar::tab:top:selected:disabled {
-  border-bottom: 3px solid #1B2529;
+  border-bottom: 3px solid #0a4542;
   color: #9DA9B5;
   background-color: #394d57;
 }
 
 QTabBar::tab:bottom:selected:disabled, QDockWidget QTabBar::tab:bottom:selected:disabled {
-  border-top: 3px solid #1B2529;
+  border-top: 3px solid #0a4542;
   color: #9DA9B5;
   background-color: #394d57;
 }
 
 QTabBar::tab:left:selected:disabled, QDockWidget QTabBar::tab:left:selected:disabled {
-  border-right: 3px solid #1B2529;
+  border-right: 3px solid #0a4542;
   color: #9DA9B5;
   background-color: #394d57;
 }
 
 QTabBar::tab:right:selected:disabled, QDockWidget QTabBar::tab:right:selected:disabled {
-  border-left: 3px solid #1B2529;
+  border-left: 3px solid #0a4542;
   color: #9DA9B5;
   background-color: #394d57;
 }
@@ -2093,7 +2093,7 @@ QToolBox::tab:selected {
 
 QToolBox::tab:selected:disabled {
   background-color: #394d57;
-  border-bottom: 2px solid #1B2529;
+  border-bottom: 2px solid #0a4542;
 }
 
 QToolBox::tab:!selected {
@@ -2127,6 +2127,7 @@ https://stackoverflow.com/questions/14581498/qt-stylesheet-for-hline-vline-color
 /* (dot) .QFrame  fix #141, #126, #123 */
 .QFrame {
   border-radius: 4px;
+  border-color: #097D74;
   border: 1px solid #394d57;
   /* No frame */
   /* HLine */
@@ -2265,11 +2266,21 @@ PlotWidget {
 
 --------------------------------------------------------------------------- */
 Titlebar {
-  background-color: #263238;
+  background-color: #097D74;
+}
+
+Titlebar:disabled {
+  background-color: #0a4542;
 }
 
 Titlebar QLabel {
   font: 16px;
+  background-color: #097D74;
+  color: #E0E1E3;
+}
+
+Titlebar QLabel:disabled {
+  background-color: #0a4542;
 }
 
 MenuButton {
@@ -2279,7 +2290,8 @@ MenuButton {
   outline: none;
   border: none;
   border-radius: 0px;
-  background-color: #263238;
+  color: #E0E1E3;
+  background-color: #097D74;
 }
 
 MenuButton::menu-indicator {
@@ -2287,11 +2299,15 @@ MenuButton::menu-indicator {
 }
 
 MenuButton:hover {
-  background-color: #2f4048;
+  background-color: #56BFBA;
 }
 
-MenuButton:pressed {
-  background-color: #394d57;
+MenuButton:pressed, MenuButton:checked, MenuButton:selected {
+  background-color: #0a4542;
+}
+
+MenuButton:disabled {
+  background-color: #0a4542;
 }
 
 WindowsButton {
@@ -2302,20 +2318,50 @@ WindowsButton {
   margin: 0px;
   min-width: 45;
   max-width: 45;
-  background-color: #263238;
+  background-color: #097D74;
 }
 
-WindowsButton:disabled, WindowsButton:hover, WindowsButton:checked, WindowsButton:pressed {
-  background-color: #263238;
-  color: #263238;
+WindowsButton:disabled {
+  background-color: #0a4542;
+}
+
+DarwinButton {
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+  outline: none;
+  margin: 0px;
+  background-color: none;
+}
+
+AppLogo {
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+  outline: none;
+  margin: 0px;
+  background-color: #097D74;
+}
+
+AppLogo:disabled {
+  background-color: #0a4542;
 }
 
 /* FramelessWindow ----------------------------------------------------------------
 
 --------------------------------------------------------------------------- */
 FramelessWindow #centralWidget {
-  border-color: #097D74;
+  padding: 0px;
   border-width: 2px;
   border-style: solid;
+  border-color: #097D74;
   background-color: #263238;
+}
+
+ButtonsWidget {
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+  outline: none;
+  margin: 0px;
 }

@@ -2127,6 +2127,7 @@ https://stackoverflow.com/questions/14581498/qt-stylesheet-for-hline-vline-color
 /* (dot) .QFrame  fix #141, #126, #123 */
 .QFrame {
   border-radius: 4px;
+  border-color: #146998;
   border: 1px solid #3e4b55;
   /* No frame */
   /* HLine */
@@ -2265,11 +2266,21 @@ PlotWidget {
 
 --------------------------------------------------------------------------- */
 Titlebar {
-  background-color: #19232d;
+  background-color: #146998;
+}
+
+Titlebar:disabled {
+  background-color: #14506e;
 }
 
 Titlebar QLabel {
   font: 16px;
+  background-color: #146998;
+  color: #E0E1E3;
+}
+
+Titlebar QLabel:disabled {
+  background-color: #14506e;
 }
 
 MenuButton {
@@ -2279,7 +2290,8 @@ MenuButton {
   outline: none;
   border: none;
   border-radius: 0px;
-  background-color: #19232d;
+  color: #E0E1E3;
+  background-color: #146998;
 }
 
 MenuButton::menu-indicator {
@@ -2287,11 +2299,15 @@ MenuButton::menu-indicator {
 }
 
 MenuButton:hover {
-  background-color: #27323c;
+  background-color: #1478b1;
 }
 
-MenuButton:pressed {
-  background-color: #3e4b55;
+MenuButton:pressed, MenuButton:checked, MenuButton:selected {
+  background-color: #14506e;
+}
+
+MenuButton:disabled {
+  background-color: #14506e;
 }
 
 WindowsButton {
@@ -2302,20 +2318,50 @@ WindowsButton {
   margin: 0px;
   min-width: 45;
   max-width: 45;
-  background-color: #19232d;
+  background-color: #146998;
 }
 
-WindowsButton:disabled, WindowsButton:hover, WindowsButton:checked, WindowsButton:pressed {
-  background-color: #19232d;
-  color: #19232d;
+WindowsButton:disabled {
+  background-color: #14506e;
+}
+
+DarwinButton {
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+  outline: none;
+  margin: 0px;
+  background-color: none;
+}
+
+AppLogo {
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+  outline: none;
+  margin: 0px;
+  background-color: #146998;
+}
+
+AppLogo:disabled {
+  background-color: #14506e;
 }
 
 /* FramelessWindow ----------------------------------------------------------------
 
 --------------------------------------------------------------------------- */
 FramelessWindow #centralWidget {
-  border-color: #146998;
+  padding: 0px;
   border-width: 2px;
   border-style: solid;
+  border-color: #146998;
   background-color: #19232d;
+}
+
+ButtonsWidget {
+  border: none;
+  padding: 0px;
+  border-radius: 0px;
+  outline: none;
+  margin: 0px;
 }
