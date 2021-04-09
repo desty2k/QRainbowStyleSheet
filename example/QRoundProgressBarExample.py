@@ -1,4 +1,4 @@
-from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout, QSlider, QPushButton, QHBoxLayout, QLabel, QSizePolicy
+from qtpy.QtWidgets import QApplication, QWidget, QFormLayout, QSlider, QPushButton, QHBoxLayout, QLabel
 from qtpy.QtCore import Qt, qInstallMessageHandler
 
 import sys
@@ -39,29 +39,29 @@ class MainWidget(QWidget):
 
         self._controlWidget = QWidget(self)
         self._controlWidget.setMaximumHeight(200)
-        self._controlWidgetLayout = QVBoxLayout(self._controlWidget)
+        self._controlWidgetLayout = QFormLayout(self._controlWidget)
         self._controlWidget.setLayout(self._controlWidgetLayout)
 
+        bar_style_label = QLabel("Bar style", self._controlWidget)
         style = QPushButton(self._controlWidget)
+        style.setMaximumWidth(200)
         style.setText("Change bar style")
-        self._controlWidgetLayout.addWidget(style)
+        self._controlWidgetLayout.addRow(bar_style_label, style)
 
-        label = QLabel(self._controlWidget)
-        label.setText("Change app style")
-        self._controlWidgetLayout.addWidget(label)
-
+        app_style_label = QLabel("App style", self._controlWidget)
         picker = StylePickerHorizontal(self._controlWidget)
         picker.setMaximumWidth(200)
-        self._controlWidgetLayout.addWidget(picker)
+        self._controlWidgetLayout.addRow(app_style_label, picker)
 
         style.clicked.connect(lambda: roundbar.setBarStyle(get_style()))
 
+        slider_label = QLabel("Progress", self._controlWidget)
         slider = QSlider(Qt.Horizontal, self._controlWidget)
         slider.setRange(0, 100)
         slider.valueChanged.connect(roundbar.setValue)
+        slider.setMaximumWidth(200)
         slider.setValue(28)
-        self._controlWidgetLayout.addWidget(slider)
-
+        self._controlWidgetLayout.addRow(slider_label, slider)
         self._layout.addWidget(self._controlWidget)
 
 
