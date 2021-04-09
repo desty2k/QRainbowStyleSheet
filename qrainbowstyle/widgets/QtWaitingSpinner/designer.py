@@ -31,6 +31,7 @@ from pyqtspinner.spinner import WaitingSpinner
 
 import qrainbowstyle
 import qrainbowstyle.widgets
+import qrainbowstyle.windows
 
 
 class Demo(QWidget):
@@ -160,7 +161,6 @@ class Demo(QWidget):
         grid.addLayout(button_hbox, *(2, 1))
 
         self.spinner.start()
-        self.show()
 
     def set_roundness(self):
         self.spinner.setRoundness(self.sb_roundness.value())
@@ -230,5 +230,8 @@ class Demo(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyleSheet(qrainbowstyle.load_stylesheet())
+    win = qrainbowstyle.windows.FramelessWindow()
     main = Demo()
+    win.addContentWidget(main)
+    win.show()
     sys.exit(app.exec())
