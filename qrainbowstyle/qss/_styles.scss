@@ -2187,6 +2187,7 @@ https://stackoverflow.com/questions/14581498/qt-stylesheet-for-hline-vline-color
 
 .QFrame {
     border-radius: $SIZE_BORDER_RADIUS;
+    border-color: $COLOR_ACCENT_3;
     border: $BORDER_2;
 
     /* No frame */
@@ -2338,11 +2339,19 @@ PlotWidget {
 
 --------------------------------------------------------------------------- */
 Titlebar {
-    background-color: $COLOR_BACKGROUND_1;
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    &:disabled {
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
 }
 
 Titlebar QLabel {
     font: 16px;
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    color: $COLOR_TEXT_1;
+    &:disabled {
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
 }
 
 MenuButton {
@@ -2352,18 +2361,23 @@ MenuButton {
     outline: none;
     border: none;
     border-radius: 0px;
-    background-color: $COLOR_BACKGROUND_1;
+    color: $TITLE_BAR_TEXT_COLOR;
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
 
     &::menu-indicator {
         image: none;
     }
 
     &:hover {
-        background-color: $COLOR_BACKGROUND_2;
+        background-color: $TITLE_BAR_BUTTONS_HOVER_COLOR;
     }
 
-    &:pressed {
-        background-color: $COLOR_BACKGROUND_4;
+    &:pressed, &:checked, &:selected {
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+
+    &:disabled {
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
     }
 }
 
@@ -2375,12 +2389,30 @@ WindowsButton {
     margin: 0px;
     min-width: 45;
     max-width: 45;
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    &:disabled {
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+}
 
-    background-color: $COLOR_BACKGROUND_1;
+DarwinButton {
+    border: none;
+    padding: 0px;
+    border-radius: 0px;
+    outline: none;
+    margin: 0px;
+    background-color: none;
+}
 
-    &:disabled, &:hover, &:checked, &:pressed {
-        background-color: $COLOR_BACKGROUND_1;
-        color: $COLOR_BACKGROUND_1;
+AppLogo {
+    border: none;
+    padding: 0px;
+    border-radius: 0px;
+    outline: none;
+    margin: 0px;
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    &:disabled {
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
     }
 }
 
@@ -2388,8 +2420,17 @@ WindowsButton {
 
 --------------------------------------------------------------------------- */
 FramelessWindow #centralWidget{
-    border-color: $COLOR_ACCENT_3;
+    padding: 0px;
     border-width: 2px;
     border-style: solid;
+    border-color: $COLOR_ACCENT_3;
     background-color: $COLOR_BACKGROUND_1;
+}
+
+ButtonsWidget {
+    border: none;
+    padding: 0px;
+    border-radius: 0px;
+    outline: none;
+    margin: 0px;
 }
