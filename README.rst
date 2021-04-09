@@ -265,20 +265,30 @@ Download/clone the project, go to ``qrainbowstyle`` folder then:
     .. code:: python
 
         class DeepBluePalette(BasePalette):
+            COLOR_BACKGROUND_1 = "#263238"
+            COLOR_BACKGROUND_2 = "#2f4048"
+            COLOR_BACKGROUND_3 = "#34474f"
+            COLOR_BACKGROUND_4 = "#394d57"
+            COLOR_BACKGROUND_5 = "#3d545f"
+            COLOR_BACKGROUND_6 = "#425b67"
 
-            COLOR_BACKGROUND_LIGHT = '#505F69'
-            COLOR_BACKGROUND_NORMAL = '#32414B'
-            COLOR_BACKGROUND_DARK = '#19232D'
+            COLOR_TEXT_1 = Gray.B130
+            COLOR_TEXT_2 = Gray.B110
+            COLOR_TEXT_3 = Gray.B90
+            COLOR_TEXT_4 = Gray.B80
 
-            COLOR_FOREGROUND_LIGHT = '#F0F0F0'
-            COLOR_FOREGROUND_NORMAL = '#AAAAAA'
-            COLOR_FOREGROUND_DARK = '#787878'
+            COLOR_ACCENT_1 = "#0a4542"
+            COLOR_ACCENT_2 = "#136460"
+            COLOR_ACCENT_3 = "#097D74"
+            COLOR_ACCENT_4 = "#56BFBA"
+            COLOR_ACCENT_5 = "#C4D6DB"
 
-            COLOR_SELECTION_LIGHT = '#148CD2'
-            COLOR_SELECTION_NORMAL = '#1464A0'
-            COLOR_SELECTION_DARK = '#14506E'
+            TITLE_BAR_BACKGROUND_COLOR = COLOR_ACCENT_3
+            TITLE_BAR_BUTTONS_HOVER_COLOR = COLOR_ACCENT_4
+            TITLE_BAR_BUTTONS_DISABLED_COLOR = COLOR_ACCENT_1
+            TITLE_BAR_TEXT_COLOR = COLOR_TEXT_1
 
-            W_STATUS_BAR_BACKGROUND_COLOR = COLOR_SELECTION_DARK
+            OPACITY_TOOLTIP = 230
 
 3. Generate resources for your style by running scripts/process_qrc.py
 
@@ -295,16 +305,18 @@ Download/clone the project, go to ``qrainbowstyle`` folder then:
         import qrainbowstyle
 
         app = QApplication(sys.argv)
-        app.setStyleSheet(qrainbowstyle.load_stylesheet(style = "deepblue")
+        app.setStyleSheet(qrainbowstyle.load_stylesheet(style="deepblue")
 
 
 What is new?
 ------------
 
-Starting with new package name, I added possibility to design and build
-your own stylesheet. I added few new SVG icons such as title bar icons.
-New module with frameless windows has been added. In v0.6 I added widget
-subpackage with widgets designed to work with QRainbowStyleSheet.
+Starting with new package name, I added frameless widnows and possibility to
+design your own stylesheet. I added few new SVG icons such as title bar icons.
+
+- 0.6 - widget subpackage
+- 0.8 - Windows API support
+- 0.9 - modern style for frameless windows, full support for new color system
 
 
 Changelog
