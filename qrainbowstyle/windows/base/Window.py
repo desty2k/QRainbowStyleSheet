@@ -28,8 +28,8 @@ class FramelessWindowBase(QDialog):
                             | Qt.WindowCloseButtonHint)
 
         self.__centralWidget = QWidget(self)
-        self.__centralWidget.setObjectName("centralWidget")
-        self.__centralWidget.setContentsMargins(2, 2, 2, 2)
+        self.__centralWidget.setObjectName("__centralWidget")
+        self.__centralWidget.setContentsMargins(0, 0, 0, 0)
         self.__centralWidget.setMouseTracking(True)
 
         self.__centralLayout = QVBoxLayout(self.__centralWidget)
@@ -45,10 +45,11 @@ class FramelessWindowBase(QDialog):
         self.__centralLayout.setAlignment(self.__bar, Qt.AlignVCenter)
 
         self.__contentWidget = QWidget(self)
+        self.__contentWidget.setObjectName("__contentWidget")
         self.__contentWidget.setSizePolicy(
             QSizePolicy.Expanding,
             QSizePolicy.Expanding)
-        self.__contentWidget.setContentsMargins(0, 0, 0, 0)
+        self.__contentWidget.setContentsMargins(2, 0, 2, 2)
         self.__contentWidgetLayout = QVBoxLayout(self.__contentWidget)
         self.__contentWidgetLayout.setContentsMargins(0, 0, 0, 0)
         self.__centralLayout.addWidget(self.__contentWidget)

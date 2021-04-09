@@ -2350,11 +2350,18 @@ AppLogo:disabled {
 /* FramelessWindow ----------------------------------------------------------------
 
 --------------------------------------------------------------------------- */
-FramelessWindow #centralWidget {
+FramelessWindow #__centralWidget {
+  padding: 0px;
+  border: none;
+  background-color: #19232D;
+}
+
+FramelessWindow #__contentWidget {
   padding: 0px;
   border-width: 2px;
   border-style: solid;
   border-color: #1A72BB;
+  border-top: none;
   background-color: #19232D;
 }
 

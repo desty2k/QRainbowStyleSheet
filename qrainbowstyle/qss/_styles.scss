@@ -2419,11 +2419,18 @@ AppLogo {
 /* FramelessWindow ----------------------------------------------------------------
 
 --------------------------------------------------------------------------- */
-FramelessWindow #centralWidget{
+FramelessWindow #__centralWidget{
+    padding: 0px;
+    border: none;
+    background-color: $COLOR_BACKGROUND_1;
+}
+
+FramelessWindow #__contentWidget{
     padding: 0px;
     border-width: 2px;
     border-style: solid;
     border-color: $COLOR_ACCENT_3;
+    border-top: none;
     background-color: $COLOR_BACKGROUND_1;
 }
 
