@@ -1,6 +1,14 @@
 Changelog
 =========
 
+- 0.9.1:
+    - Fix child windows being minimized to left bottom corner
+    - Set titlebar buttons' icons using stylesheet
+    - Add icons for titlebar buttons disabled state
+    - Add setWindowFlags and setContentMargins methods
+    - Generate resources for styles
+    - Update readme
+
 - 0.9:
     - Redesigned frameless windows
     - Add color system from qdarkstyle v3
