@@ -16,7 +16,7 @@ Features:
     - Frame shadow
     - Aero shake
 
-.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v2.png
+.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v3.png
 
 On Linux and Darwin qrainbowstyle will load class with its own implementation of these features.
 Due to a bug in Qt, window minimizing is not supported on MacOS.
@@ -33,18 +33,18 @@ as shown below
 .. code-block:: python
 
     # PySide2
-    stylesheet = qrainbowstyle.load_stylesheet_pyside2(style='darkblue')
+    stylesheet = qrainbowstyle.load_stylesheet_pyside2(style='oceanic')
     # PyQt5
-    stylesheet = qrainbowstyle.load_stylesheet_pyqt5(style='darkblue')
+    stylesheet = qrainbowstyle.load_stylesheet_pyqt5(style='oceanic')
 
 Alternatively, from environment variables provided by QtPy, Qt.Py
 
 .. code-block:: python
 
     # QtPy
-    stylesheet =  qrainbowstyle.load_stylesheet(style='darkblue')
+    stylesheet =  qrainbowstyle.load_stylesheet(style='oceanic')
     # Qt.Py
-    stylesheet = qrainbowstyle.load_stylesheet(style='darkblue', qt_api=Qt.__binding__)
+    stylesheet = qrainbowstyle.load_stylesheet(style='oceanic', qt_api=Qt.__binding__)
 
 Finally, set your QApplication with it
 
@@ -66,7 +66,7 @@ Next, create instances of frameless window and your master widget with content y
 
     # Create app and load selected stylesheet
     app = QtWidgets.QApplication(sys.argv)
-    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="cyberpunk"))
+    app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
 
     # Package options
     # qrainbowstyle.alignButtonsLeft()      # align titlebar buttons to left side
