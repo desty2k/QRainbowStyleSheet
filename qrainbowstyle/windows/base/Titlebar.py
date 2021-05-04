@@ -1,4 +1,4 @@
-from qtpy.QtWidgets import QFrame, QMenu, QHBoxLayout
+from qtpy.QtWidgets import QFrame, QMenu, QHBoxLayout, QLabel, QSizePolicy
 from qtpy.QtCore import Signal, QPoint, QMetaObject, Slot, Qt, QRect
 from qtpy.QtGui import QPalette, QPixmap, QIcon
 
@@ -52,7 +52,10 @@ class Titlebar(QFrame):
 
         # auto connect signals
         QMetaObject.connectSlotsByName(self)
-        self.installEventFilter(self)
+        if self.window().parent() is not None:
+            self.buttonsWidget.btnRestore.setVisible(False)
+            self.buttonsWidget.btnMaximize.setVisible(False)
+            self.buttonsWidget.btnMinimize.setVisible(False)
 
     def setWindowIcon(self, icon: QIcon):
         self.appLogoLabel.setPixmap(icon.pixmap())
@@ -66,40 +69,41 @@ class Titlebar(QFrame):
     def on_btnRestore_clicked(self):
         self.showRestoreButton(False)
         self.showMaximizeButton(True)
-        self.window().setWindowState(Qt.WindowNoState)
+        self.window().showNormal()
         self.restoreClicked.emit()
 
     @Slot()
     def on_btnMaximize_clicked(self):
         if qrainbowstyle.USE_DARWIN_BUTTONS:
-            if self.window().windowState() == Qt.WindowMaximized:
-                self.window().setWindowState(Qt.WindowNoState)
+            if self.window().isMaximized():
+                self.window().showNormal()
             else:
-                self.window().setWindowState(Qt.WindowMaximized)
-
+                self.window().showMaximized()
         else:
             self.showRestoreButton(True)
             self.showMaximizeButton(False)
-            self.window().setWindowState(Qt.WindowMaximized)
+            self.window().showMaximized()
         self.maximizeClicked.emit()
 
     @Slot()
     def on_btnMinimize_clicked(self):
         self.window().showMinimized()
-        self.minimizeClicked.emit()
 
     def showLogo(self, value: bool):
         """Show or hide app logo label"""
         self.appLogoLabel.setVisible(value)
 
     def showRestoreButton(self, value):
-        self.buttonsWidget.btnRestore.setVisible(value)
+        if self.window().parent() is None:
+            self.buttonsWidget.btnRestore.setVisible(value)
 
     def showMaximizeButton(self, value):
-        self.buttonsWidget.btnMaximize.setVisible(value)
+        if self.window().parent() is None:
+            self.buttonsWidget.btnMaximize.setVisible(value)
 
     def showMinimizeButton(self, value):
-        self.buttonsWidget.btnMinimize.setVisible(value)
+        if self.window().parent() is None:
+            self.buttonsWidget.btnMinimize.setVisible(value)
 
     def addMenu(self, menu: QMenu):
         menuButton = MenuButton(self)
@@ -110,12 +114,6 @@ class Titlebar(QFrame):
 
     def setTitlebarHeight(self, height: int):
         self.setFixedHeight(height)
-
-    def resizeEvent(self, event):
-        """Handle resizing events"""
-        self.buttonsWidget.btnMaximize.leaveEvent(None)
-        if not qrainbowstyle.USE_DARWIN_BUTTONS:
-            self.buttonsWidget.btnRestore.leaveEvent(None)
 
     def mouseOverTitlebar(self, x, y):
         if self.childAt(QPoint(x, y)):

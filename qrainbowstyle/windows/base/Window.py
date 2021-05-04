@@ -134,13 +134,11 @@ class FramelessWindowBase(QDialog):
         super().setWindowIcon(icon)
 
     def changeEvent(self, event: QEvent) -> None:
-        if event.type() == QEvent.WindowStateChange:
-            if self.windowState() == Qt.WindowMaximized:
+        if event.type() == QEvent.WindowStateChange and not qrainbowstyle.USE_DARWIN_BUTTONS:
+            if self.isMaximized():
                 self.__bar.showRestoreButton(True)
-                if not qrainbowstyle.USE_DARWIN_BUTTONS:
-                    self.__bar.showMaximizeButton(False)
-
-            elif self.windowState() == Qt.WindowNoState:
+                self.__bar.showMaximizeButton(False)
+            else:
                 self.__bar.showRestoreButton(False)
                 self.__bar.showMaximizeButton(True)
         return super().changeEvent(event)
