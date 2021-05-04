@@ -1,14 +1,13 @@
 import qrainbowstyle
 from qtpy.QtWidgets import QApplication, QWidget, QVBoxLayout, QSizePolicy, QDialog
 from qtpy.QtGui import QIcon
-from qtpy.QtCore import Qt, QMetaObject, QEvent, QSize, Signal
+from qtpy.QtCore import Qt, QMetaObject, QEvent, QSize, Signal, Slot
 
 from .Titlebar import Titlebar
 
 
 class FramelessWindowBase(QDialog):
     closeClicked = Signal()
-    minimizeClicked = Signal()
 
     def __init__(self, parent):
         super(FramelessWindowBase, self).__init__(parent)
@@ -18,14 +17,14 @@ class FramelessWindowBase(QDialog):
         self.__contentWidgets = []
 
         self.setMouseTracking(True)
-        self.setContentsMargins(0, 0, 0, 0)
         self.setAttribute(Qt.WA_NoSystemBackground)
-        self.setWindowFlags(Qt.Window
-                            | Qt.FramelessWindowHint
-                            | Qt.WindowSystemMenuHint
-                            | Qt.WindowMinimizeButtonHint
-                            | Qt.WindowMaximizeButtonHint
-                            | Qt.WindowCloseButtonHint)
+        super().setContentsMargins(0, 0, 0, 0)
+        super().setWindowFlags(Qt.Window
+                               | Qt.FramelessWindowHint
+                               | Qt.WindowSystemMenuHint
+                               | Qt.WindowMinimizeButtonHint
+                               | Qt.WindowMaximizeButtonHint
+                               | Qt.WindowCloseButtonHint)
 
         self.__centralWidget = QWidget(self)
         self.__centralWidget.setObjectName("__centralWidget")
@@ -57,7 +56,6 @@ class FramelessWindowBase(QDialog):
         self.__centralWidget.setLayout(self.__centralLayout)
         self.__contentWidget.setAutoFillBackground(True)
 
-        self.__bar.minimizeClicked.connect(self.minimizeClicked.emit)
         self.__bar.closeClicked.connect(self.closeClicked.emit)
         self.closeClicked.connect(self.close)
 
@@ -69,6 +67,9 @@ class FramelessWindowBase(QDialog):
         QMetaObject.connectSlotsByName(self)
         self.showSizeControl(True)
         self.resize(QSize(self.__rect.width() / 2, self.__rect.height() / 2))
+
+    def setContentsMargins(self, left, top, right, bottom):
+        self.__contentWidgetLayout.setContentsMargins(left, top, right, bottom)
 
     def showWindowShadow(self, value: bool):
         pass

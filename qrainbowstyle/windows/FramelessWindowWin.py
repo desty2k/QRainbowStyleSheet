@@ -15,7 +15,7 @@ else:
     raise Exception("Windows API is not supported on non Windows OS.")
 
 from qtpy.QtWidgets import QApplication
-from qtpy.QtCore import QMetaObject, QEvent, Qt
+from qtpy.QtCore import QMetaObject, Slot
 
 from .base import FramelessWindowBase
 
@@ -46,6 +46,11 @@ class FramelessWindow(FramelessWindowBase):
         else:
             QtWin.resetExtendedFrame(self)
         QMetaObject.connectSlotsByName(self)
+
+    def setWindowFlags(self, flags):
+        self.hwnd = None
+        super().setWindowFlags(flags)
+        self.show()
 
     def show(self):
         if not self.hwnd:
@@ -153,12 +158,6 @@ class FramelessWindow(FramelessWindowBase):
                         return True, win32con.HTLEFT
                     if rx:
                         return True, win32con.HTRIGHT
-
-            elif eventType == "xcb_generic_event_t":
-                pass
-
-            elif eventType == "mac_generic_NSEvent":
-                pass
 
         return retval, result
 
