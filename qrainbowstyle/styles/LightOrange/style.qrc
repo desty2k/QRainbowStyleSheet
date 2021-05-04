@@ -103,26 +103,36 @@
     <file>rc/button_darwin_minimize_pressed@2x.png</file>
     <file>rc/button_nt_close.png</file>
     <file>rc/button_nt_close@2x.png</file>
+    <file>rc/button_nt_close_disabled.png</file>
+    <file>rc/button_nt_close_disabled@2x.png</file>
     <file>rc/button_nt_close_hover.png</file>
     <file>rc/button_nt_close_hover@2x.png</file>
     <file>rc/button_nt_close_hover_red.png</file>
     <file>rc/button_nt_close_hover_red@2x.png</file>
     <file>rc/button_nt_close_square.png</file>
     <file>rc/button_nt_close_square@2x.png</file>
+    <file>rc/button_nt_close_square_disabled.png</file>
+    <file>rc/button_nt_close_square_disabled@2x.png</file>
     <file>rc/button_nt_close_square_hover.png</file>
     <file>rc/button_nt_close_square_hover@2x.png</file>
     <file>rc/button_nt_close_square_hover_red.png</file>
     <file>rc/button_nt_close_square_hover_red@2x.png</file>
     <file>rc/button_nt_maximize.png</file>
     <file>rc/button_nt_maximize@2x.png</file>
+    <file>rc/button_nt_maximize_disabled.png</file>
+    <file>rc/button_nt_maximize_disabled@2x.png</file>
     <file>rc/button_nt_maximize_hover.png</file>
     <file>rc/button_nt_maximize_hover@2x.png</file>
     <file>rc/button_nt_minimize.png</file>
     <file>rc/button_nt_minimize@2x.png</file>
+    <file>rc/button_nt_minimize_disabled.png</file>
+    <file>rc/button_nt_minimize_disabled@2x.png</file>
     <file>rc/button_nt_minimize_hover.png</file>
     <file>rc/button_nt_minimize_hover@2x.png</file>
     <file>rc/button_nt_restore.png</file>
     <file>rc/button_nt_restore@2x.png</file>
+    <file>rc/button_nt_restore_disabled.png</file>
+    <file>rc/button_nt_restore_disabled@2x.png</file>
     <file>rc/button_nt_restore_hover.png</file>
     <file>rc/button_nt_restore_hover@2x.png</file>
     <file>rc/checkbox_checked.png</file>

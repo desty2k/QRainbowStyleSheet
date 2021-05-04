@@ -2310,7 +2310,7 @@ MenuButton:disabled {
   background-color: #14506e;
 }
 
-WindowsButton {
+TitlebarWindowsButton {
   border: none;
   padding: 0px;
   border-radius: 0px;
@@ -2321,17 +2321,150 @@ WindowsButton {
   background-color: #146998;
 }
 
-WindowsButton:disabled {
+TitlebarWindowsButton:disabled {
+  color: #14506e;
   background-color: #14506e;
 }
 
-DarwinButton {
+MinimizeWindowsButton {
+  background-color: #146998;
+  icon: url(":/qss_icons/rc/button_nt_minimize.png");
+}
+
+MinimizeWindowsButton:hover {
+  icon: url(":/qss_icons/rc/button_nt_minimize_hover.png");
+}
+
+MinimizeWindowsButton:disabled {
+  icon: url(":/qss_icons/rc/button_nt_minimize_disabled.png");
+  background-color: #14506e;
+}
+
+MaximizeWindowsButton {
+  background-color: #146998;
+  icon: url(":/qss_icons/rc/button_nt_maximize.png");
+}
+
+MaximizeWindowsButton:hover {
+  icon: url(":/qss_icons/rc/button_nt_maximize_hover.png");
+}
+
+MaximizeWindowsButton:disabled {
+  icon: url(":/qss_icons/rc/button_nt_maximize_disabled.png");
+  background-color: #14506e;
+}
+
+RestoreWindowsButton {
+  background-color: #146998;
+  icon: url(":/qss_icons/rc/button_nt_restore.png");
+}
+
+RestoreWindowsButton:hover {
+  icon: url(":/qss_icons/rc/button_nt_restore_hover.png");
+}
+
+RestoreWindowsButton:disabled {
+  icon: url(":/qss_icons/rc/button_nt_restore_disabled.png");
+  background-color: #14506e;
+}
+
+CloseWindowsButton {
+  background-color: #146998;
+  icon: url(":/qss_icons/rc/button_nt_close.png");
+}
+
+CloseWindowsButton:hover {
+  icon: url(":/qss_icons/rc/button_nt_close_hover_red.png");
+}
+
+CloseWindowsButton:disabled {
+  icon: url(":/qss_icons/rc/button_nt_close_disabled.png");
+  background-color: #14506e;
+}
+
+CloseSquareWindowsButton {
+  min-width: 30;
+  max-width: 30;
+  background-color: #146998;
+  icon: url(":/qss_icons/rc/button_nt_close_square.png");
+}
+
+CloseSquareWindowsButton:hover {
+  icon: url(":/qss_icons/rc/button_nt_close_square_hover_red.png");
+}
+
+CloseSquareWindowsButton:disabled {
+  icon: url(":/qss_icons/rc/button_nt_close_square_disabled.png");
+  background-color: #14506e;
+}
+
+/* Darwin Buttons  ----------------------------------------------------------------
+
+--------------------------------------------------------------------------- */
+TitlebarDarwinButton {
   border: none;
   padding: 0px;
   border-radius: 0px;
   outline: none;
   margin: 0px;
-  background-color: none;
+  background-color: #146998;
+}
+
+TitlebarDarwinButton:disabled {
+  color: #14506e;
+  background-color: #14506e;
+}
+
+TitlebarDarwinButton:pressed, TitlebarDarwinButton:checked, TitlebarDarwinButton:selected, TitlebarDarwinButton:hover {
+  background-color: #146998;
+}
+
+MinimizeDarwinButton {
+  icon: url(":/qss_icons/rc/button_darwin_minimize.png");
+}
+
+MinimizeDarwinButton:hover {
+  icon: url(":/qss_icons/rc/button_darwin_minimize_hover.png");
+}
+
+MinimizeDarwinButton:pressed {
+  icon: url(":/qss_icons/rc/button_darwin_minimize_pressed.png");
+}
+
+MaximizeDarwinButton {
+  icon: url(":/qss_icons/rc/button_darwin_maximize.png");
+}
+
+MaximizeDarwinButton:hover {
+  icon: url(":/qss_icons/rc/button_darwin_maximize_hover.png");
+}
+
+MaximizeDarwinButton:pressed {
+  icon: url(":/qss_icons/rc/button_darwin_maximize_pressed.png");
+}
+
+RestoreDarwinButton {
+  icon: url(":/qss_icons/rc/button_darwin_restore.png");
+}
+
+RestoreDarwinButton:hover {
+  icon: url(":/qss_icons/rc/button_darwin_restore_hover.png");
+}
+
+RestoreDarwinButton:pressed {
+  icon: url(":/qss_icons/rc/button_darwin_restore_pressed.png");
+}
+
+CloseDarwinButton {
+  icon: url(":/qss_icons/rc/button_darwin_close.png");
+}
+
+CloseDarwinButton:hover {
+  icon: url(":/qss_icons/rc/button_darwin_close_hover.png");
+}
+
+CloseDarwinButton:pressed {
+  icon: url(":/qss_icons/rc/button_darwin_close_pressed.png");
 }
 
 AppLogo {
@@ -2363,6 +2496,10 @@ FramelessWindow #__contentWidget {
   border-color: #146998;
   border-top: none;
   background-color: #19232d;
+}
+
+FramelessWindow #__contentWidget:disabled {
+  border-color: #14506e;
 }
 
 ButtonsWidget {
