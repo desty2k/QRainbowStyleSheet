@@ -2381,7 +2381,7 @@ MenuButton {
     }
 }
 
-WindowsButton {
+TitlebarWindowsButton {
     border: none;
     padding: 0px;
     border-radius: 0px;
@@ -2390,19 +2390,156 @@ WindowsButton {
     min-width: 45;
     max-width: 45;
     background-color: $TITLE_BAR_BACKGROUND_COLOR;
+
     &:disabled {
+        color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
         background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
     }
 }
 
-DarwinButton {
+MinimizeWindowsButton {
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    icon:url(':/qss_icons/rc/button_nt_minimize.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_nt_minimize_hover.png');
+    }
+
+    &:disabled {
+        icon:url(':/qss_icons/rc/button_nt_minimize_disabled.png');
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+}
+
+MaximizeWindowsButton {
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    icon:url(':/qss_icons/rc/button_nt_maximize.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_nt_maximize_hover.png');
+    }
+
+    &:disabled {
+        icon:url(':/qss_icons/rc/button_nt_maximize_disabled.png');
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+}
+
+RestoreWindowsButton {
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    icon:url(':/qss_icons/rc/button_nt_restore.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_nt_restore_hover.png');
+    }
+
+    &:disabled {
+        icon:url(':/qss_icons/rc/button_nt_restore_disabled.png');
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+}
+
+CloseWindowsButton {
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    icon:url(':/qss_icons/rc/button_nt_close.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_nt_close_hover_red.png');
+    }
+
+    &:disabled {
+        icon:url(':/qss_icons/rc/button_nt_close_disabled.png');
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+}
+
+CloseSquareWindowsButton {
+    min-width: 30;
+    max-width: 30;
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    icon:url(':/qss_icons/rc/button_nt_close_square.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_nt_close_square_hover_red.png');
+    }
+
+    &:disabled {
+        icon:url(':/qss_icons/rc/button_nt_close_square_disabled.png');
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+}
+
+
+/* Darwin Buttons  ----------------------------------------------------------------
+
+--------------------------------------------------------------------------- */
+
+TitlebarDarwinButton {
     border: none;
     padding: 0px;
     border-radius: 0px;
     outline: none;
     margin: 0px;
-    background-color: none;
+    background-color: $TITLE_BAR_BACKGROUND_COLOR;
+
+    &:disabled {
+        color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+        background-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
+
+    &:pressed, &:checked, &:selected, &:hover {
+        background-color: $TITLE_BAR_BACKGROUND_COLOR;
+    }
 }
+
+MinimizeDarwinButton {
+    icon:url(':/qss_icons/rc/button_darwin_minimize.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_darwin_minimize_hover.png');
+    }
+
+    &:pressed {
+        icon:url(':/qss_icons/rc/button_darwin_minimize_pressed.png');
+    }
+}
+
+MaximizeDarwinButton {
+    icon:url(':/qss_icons/rc/button_darwin_maximize.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_darwin_maximize_hover.png');
+    }
+
+    &:pressed {
+        icon:url(':/qss_icons/rc/button_darwin_maximize_pressed.png');
+    }
+}
+
+RestoreDarwinButton {
+    icon:url(':/qss_icons/rc/button_darwin_restore.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_darwin_restore_hover.png');
+    }
+
+    &:pressed {
+        icon:url(':/qss_icons/rc/button_darwin_restore_pressed.png');
+    }
+}
+
+CloseDarwinButton {
+    icon:url(':/qss_icons/rc/button_darwin_close.png');
+
+    &:hover {
+        icon:url(':/qss_icons/rc/button_darwin_close_hover.png');
+    }
+
+    &:pressed {
+        icon:url(':/qss_icons/rc/button_darwin_close_pressed.png');
+    }
+}
+
 
 AppLogo {
     border: none;
@@ -2432,6 +2569,10 @@ FramelessWindow #__contentWidget{
     border-color: $COLOR_ACCENT_3;
     border-top: none;
     background-color: $COLOR_BACKGROUND_1;
+
+    &:disabled {
+        border-color: $TITLE_BAR_BUTTONS_DISABLED_COLOR;
+    }
 }
 
 ButtonsWidget {

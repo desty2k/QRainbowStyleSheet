@@ -52,6 +52,7 @@ def _create_nt_buttons(base_svg_path=BUTTONS_NT_PATH, rc_path=RC_PATH, palette=B
 
     background = palette.TITLE_BAR_BACKGROUND_COLOR
     background_hover = palette.TITLE_BAR_BUTTONS_HOVER_COLOR
+    disabled = palette.TITLE_BAR_BUTTONS_DISABLED_COLOR
     text = palette.TITLE_BAR_TEXT_COLOR
 
     for svg in svg_fnames:
@@ -60,6 +61,7 @@ def _create_nt_buttons(base_svg_path=BUTTONS_NT_PATH, rc_path=RC_PATH, palette=B
             data = fh.read()
 
             new_data = data
+            new_data = new_data.replace("TITLE_BAR_BUTTONS_DISABLED_COLOR", disabled)
             new_data = new_data.replace("COLOR_BACKGROUND_DARK", background)
             new_data = new_data.replace("COLOR_BACKGROUND_NORMAL", background_hover)
             new_data = new_data.replace("COLOR_FOREGROUND_LIGHT", text)

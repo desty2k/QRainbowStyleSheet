@@ -1,6 +1,6 @@
-from qtpy.QtWidgets import QWidget, QSizePolicy, QHBoxLayout, QToolButton, QLabel
-from qtpy.QtGui import QIcon, QRegion
-from qtpy.QtCore import Qt, QEvent, QSize, QRect
+from qtpy.QtWidgets import QWidget, QSizePolicy, QHBoxLayout, QToolButton, QLabel, QPushButton
+from qtpy.QtGui import QRegion
+from qtpy.QtCore import Qt, QSize, QRect
 
 import qrainbowstyle
 
@@ -28,54 +28,18 @@ class AppLogo(QLabel):
         self.setStyleSheet("border: none;")
 
 
-class DarwinButton(QToolButton):
+class TitlebarWindowsButton(QPushButton):
 
-    def __init__(self, icon: QIcon, hovericon: QIcon, parent=None):
-        super(DarwinButton, self).__init__(parent)
-
-        self.setMask(QRegion(QRect(0, 0, 15, 15), QRegion.Ellipse))
-        self.setMinimumSize(QSize(14, 14))
-        self.setIconSize(QSize(14, 14))
-        self.setAutoFillBackground(True)
-        self.setMouseTracking(True)
-
-        self.icon = icon
-        self.hoverIcon = hovericon
-
-        self.setIcon(self.icon)
-
-    def enterEvent(self, event: QEvent) -> None:
-        self.setIcon(self.hoverIcon)
-
-    def leaveEvent(self, event: QEvent) -> None:
-        self.setIcon(self.icon)
-
-    def setIcons(self, normal: QIcon, hover: QIcon):
-        self.icon = normal
-        self.hoverIcon = hover
-
-
-class WindowsButton(QToolButton):
-
-    def __init__(self, icon: QIcon = None, hovericon: QIcon = None, parent=None):
-        super(WindowsButton, self).__init__(parent)
-
-        if not icon:
-            raise Exception("Icon is required")
-
-        self.icon = icon
-        self.hoverIcon = hovericon
-
+    def __init__(self, parent):
+        super(TitlebarWindowsButton, self).__init__(parent)
         iconsize = QSize(45, 30)
-        self.setText("")
-        self.setEnabled(True)
         self.setIconSize(iconsize)
         self.setMinimumSize(iconsize)
+        self.setText("")
+        self.setEnabled(True)
         self.setAutoFillBackground(True)
         self.setChecked(False)
         self.setMouseTracking(True)
-
-        self.setIcon(self.icon)
 
         sizepolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizepolicy.setHorizontalStretch(0)
@@ -83,16 +47,77 @@ class WindowsButton(QToolButton):
         sizepolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
         self.setSizePolicy(sizepolicy)
 
-    def setIcons(self, normal: QIcon, hover: QIcon):
-        self.icon = normal
-        self.hoverIcon = hover
 
-    def enterEvent(self, event: QEvent) -> None:
-        if self.hoverIcon:
-            self.setIcon(self.hoverIcon)
+class MinimizeWindowsButton(TitlebarWindowsButton):
 
-    def leaveEvent(self, event: QEvent) -> None:
-        self.setIcon(self.icon)
+    def __init__(self, parent=None):
+        super(MinimizeWindowsButton, self).__init__(parent)
+
+
+class MaximizeWindowsButton(TitlebarWindowsButton):
+
+    def __init__(self, parent=None):
+        super(MaximizeWindowsButton, self).__init__(parent)
+
+
+class RestoreWindowsButton(TitlebarWindowsButton):
+
+    def __init__(self, parent=None):
+        super(RestoreWindowsButton, self).__init__(parent)
+
+
+class CloseWindowsButton(TitlebarWindowsButton):
+
+    def __init__(self, parent=None):
+        super(CloseWindowsButton, self).__init__(parent)
+
+
+class CloseSquareWindowsButton(TitlebarWindowsButton):
+
+    def __init__(self, parent=None):
+        super(CloseSquareWindowsButton, self).__init__(parent)
+        iconsize = QSize(30, 30)
+        self.setIconSize(iconsize)
+        self.setMinimumSize(iconsize)
+
+
+class TitlebarDarwinButton(QPushButton):
+
+    def __init__(self, parent):
+        super(TitlebarDarwinButton, self).__init__(parent)
+        self.setIconSize(QSize(15, 15))
+        self.setMinimumSize(QSize(15, 15))
+        self.setAutoFillBackground(True)
+        self.setMouseTracking(True)
+        sizepolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizepolicy.setHorizontalStretch(0)
+        sizepolicy.setVerticalStretch(0)
+        sizepolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
+        self.setSizePolicy(sizepolicy)
+
+
+class MinimizeDarwinButton(TitlebarDarwinButton):
+
+    def __init__(self, parent=None):
+        super(MinimizeDarwinButton, self).__init__(parent)
+
+
+class MaximizeDarwinButton(TitlebarDarwinButton):
+
+    def __init__(self, parent=None):
+        super(MaximizeDarwinButton, self).__init__(parent)
+
+
+class RestoreDarwinButton(TitlebarDarwinButton):
+
+    def __init__(self, parent=None):
+        super(RestoreDarwinButton, self).__init__(parent)
+
+
+class CloseDarwinButton(TitlebarDarwinButton):
+
+    def __init__(self, parent=None):
+        super(CloseDarwinButton, self).__init__(parent)
 
 
 class ButtonsWidget(QWidget):
@@ -114,34 +139,16 @@ class ButtonsWidget(QWidget):
         self.buttonsLayout.setSpacing(0)
         self.buttonsLayout.setAlignment(Qt.AlignVCenter)
         self.setLayout(self.buttonsLayout)
-
         if qrainbowstyle.USE_DARWIN_BUTTONS:
-            self.btnMinimize = DarwinButton(QIcon(":/qss_icons/rc/button_darwin_minimize.png"),
-                                            QIcon(":/qss_icons/rc/button_darwin_minimize_hover.png"),
-                                            self)
-            self.btnMaximize = DarwinButton(QIcon(":/qss_icons/rc/button_darwin_maximize.png"),
-                                            QIcon(":/qss_icons/rc/button_darwin_maximize_hover.png"),
-                                            self)
-            self.btnRestore = DarwinButton(QIcon(":/qss_icons/rc/button_darwin_restore.png"),
-                                           QIcon(":/qss_icons/rc/button_darwin_restore_hover.png"),
-                                           self)
-            self.btnClose = DarwinButton(QIcon(":/qss_icons/rc/button_darwin_close.png"),
-                                         QIcon(":/qss_icons/rc/button_darwin_close_hover.png"),
-                                         self)
-
+            self.btnMinimize = MinimizeDarwinButton(self)
+            self.btnMaximize = MaximizeDarwinButton(self)
+            self.btnRestore = RestoreDarwinButton(self)
+            self.btnClose = CloseDarwinButton(self)
         else:
-            self.btnMinimize = WindowsButton(QIcon(":/qss_icons/rc/button_nt_minimize.png"),
-                                             QIcon(":/qss_icons/rc/button_nt_minimize_hover.png"),
-                                             self)
-            self.btnMaximize = WindowsButton(QIcon(":/qss_icons/rc/button_nt_maximize.png"),
-                                             QIcon(":/qss_icons/rc/button_nt_maximize_hover.png"),
-                                             self)
-            self.btnRestore = WindowsButton(QIcon(":/qss_icons/rc/button_nt_restore.png"),
-                                            QIcon(":/qss_icons/rc/button_nt_restore_hover.png"),
-                                            self)
-            self.btnClose = WindowsButton(QIcon(":/qss_icons/rc/button_nt_close.png"),
-                                          QIcon(":/qss_icons/rc/button_nt_close_hover_red.png"),
-                                          self)
+            self.btnMinimize = MinimizeWindowsButton(self)
+            self.btnMaximize = MaximizeWindowsButton(self)
+            self.btnRestore = RestoreWindowsButton(self)
+            self.btnClose = CloseWindowsButton(self)
 
         if qrainbowstyle.ALIGN_BUTTONS_LEFT:
             self.buttonsLayout.addWidget(self.btnClose)
@@ -164,38 +171,3 @@ class ButtonsWidget(QWidget):
 
         if qrainbowstyle.USE_DARWIN_BUTTONS:
             self.buttonsLayout.setSpacing(8)
-
-    def updateButtons(self):
-        if qrainbowstyle.USE_DARWIN_BUTTONS:
-            self.btnMinimize.setIcons(QIcon(":/qss_icons/rc/button_darwin_minimize.png"),
-                                      QIcon(":/qss_icons/rc/button_darwin_minimize_hover.png"))
-
-            self.btnMaximize.setIcons(QIcon(":/qss_icons/rc/button_darwin_maximize.png"),
-                                      QIcon(":/qss_icons/rc/button_darwin_maximize_hover.png"))
-            self.btnRestore.setIcons(QIcon(":/qss_icons/rc/button_darwin_restore_hover.png"),
-                                     QIcon(":/qss_icons/rc/button_darwin_restore_hover.png"))
-            self.btnClose.setIcons(QIcon(":/qss_icons/rc/button_darwin_close.png"),
-                                   QIcon(":/qss_icons/rc/button_darwin_close_hover.png"))
-
-        else:
-            self.btnMinimize.setIcons(QIcon(":/qss_icons/rc/button_nt_minimize.png"),
-                                      QIcon(":/qss_icons/rc/button_nt_minimize_hover.png"))
-            self.btnMaximize.setIcons(QIcon(":/qss_icons/rc/button_nt_maximize.png"),
-                                      QIcon(":/qss_icons/rc/button_nt_maximize_hover.png"))
-            self.btnRestore.setIcons(QIcon(":/qss_icons/rc/button_nt_restore.png"),
-                                     QIcon(":/qss_icons/rc/button_nt_restore_hover.png"))
-            self.btnClose.setIcons(QIcon(":/qss_icons/rc/button_nt_close.png"),
-                                   QIcon(":/qss_icons/rc/button_nt_close_hover_red.png"))
-
-        self.btnMinimize.leaveEvent(None)
-        self.btnMaximize.leaveEvent(None)
-        self.btnRestore.leaveEvent(None)
-        self.btnClose.leaveEvent(None)
-
-    def changeEvent(self, event: QEvent):
-        if event.type() == QEvent.StyleChange:
-            if (hasattr(self, "btnMinimize")
-                    and hasattr(self, "btnMaximize")
-                    and hasattr(self, "btnRestore")
-                    and hasattr(self, "btnClose")):
-                self.updateButtons()
