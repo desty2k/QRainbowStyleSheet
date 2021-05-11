@@ -32,9 +32,6 @@ Frameless windows
 Installation
 ------------
 
-Python
-~~~~~~
-
 From PyPI: Get the latest stable version of ``qrainbowstyle`` package using
 *pip* (preferable):
 
