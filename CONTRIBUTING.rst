@@ -7,14 +7,14 @@ This file describes a path to contribute to this project. Check out our
 Bug Reports and Feature Requests
 --------------------------------
 
-If you have encountered a problem with QDarkStyle or have an idea for a
+If you have encountered a problem with QRainbowstyle or have an idea for a
 new feature, please submit it to the `issue
-tracker <https://github.com/ColinDuquesnoy/QDarkStyleSheet/issues>`__.
+tracker <https://github.com/desty2k/QRainbowStyleSheet/issues>`__.
 
-Contributing to QDarkStyle
---------------------------
+Contributing to QRainbowstyle
+-----------------------------
 
-The recommended way for new contributors to submit code to QDarkStyle is
+The recommended way for new contributors to submit code to QRainbowstyle is
 to fork the repository on GitHub and then submit a pull request after
 committing the changes. The pull request will then need to be approved
 by one of the manteiners before it is merged into the main repository.
@@ -23,7 +23,7 @@ by one of the manteiners before it is merged into the main repository.
    around a feature idea or a bug.
 
 -  Fork `the
-   repository <https://github.com/ColinDuquesnoy/QDarkStyleSheet>`__ on
+   repository <https://github.com/desty2k/QRainbowStyleSheet>`__ on
    GitHub to start making your changes to the master branch.
 
 -  Write a test which shows that the bug was fixed or that the feature
@@ -37,20 +37,20 @@ by one of the manteiners before it is merged into the main repository.
 Getting Started
 ---------------
 
-These are the basic steps needed to start developing on QDarkStyle.
+These are the basic steps needed to start developing on QRainbowstyle.
 
 -  Create an account on GitHub
 
--  Fork the main `QDarkStyle
-   repository <https://github.com/ColinDuquesnoy/QDarkStyleSheet>`__
+-  Fork the main `QRainbowstyle
+   repository <https://github.com/desty2k/QRainbowStyleSheet>`__
    using the GitHub interface.
 
 -  Clone the forked repository to your machine
 
    .. code:: bash
 
-          git clone https://github.com/USERNAME/qdarkstyle
-          cd qdarkstyle
+          git clone https://github.com/USERNAME/qrainbowstyle
+          cd qrainbowstyle
 
 -  Checkout the appropriate branch
 
@@ -126,7 +126,7 @@ These are the basic steps needed to start developing on QDarkStyle.
 -  Submit a pull request (PR).
 
    Do it from your branch to the respective branch using the `GitHub
-   PR <https://github.com/ColinDuquesnoy/QDarkStyleSheet/pulls>`__
+   PR <https://github.com/desty2k/QRainbowStyleSheet/pulls>`__
    interface.
 
 -  Wait for a mainteiner to review your changes.
@@ -163,8 +163,8 @@ tests.
 The better example is to see the current files to get the style. We are
 using the Google Format and Sphinx for generating the docs.
 
-Guide to QDarkStyle
--------------------
+Guide to QRainbowstyle
+----------------------
 
 Structure of the Example
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -212,7 +212,7 @@ PyQtGraph.
 Modifying QSS File
 ~~~~~~~~~~~~~~~~~~
 
-If you are changing the `stylesheet <./qdarkstyle/style.qss>`__, you
+If you are changing the `stylesheet <./qrainbowstyle/style.qss>`__, you
 will need to recompile the QRC files using
 `process\_qrc.py <./script/process_qrc.py>`__ script, inside script
 folder.
@@ -327,7 +327,7 @@ checked Checkbox.
 Unit Testing and Fix Preview
 ----------------------------
 
-It is a good practice, if you are writing functions to QDarkStyle or
+It is a good practice, if you are writing functions to QRainbowstyle or
 fixing something related to those functions (not style), that you
 provide a test for it.
 
@@ -361,27 +361,27 @@ maintainer in both.
    ``twine check dist/*``
 
 4. Try upload in `PyPI test
-   page <https://test.pypi.org/project/QDarkStyle>`__ platform before
+   page <https://test.pypi.org/project/QRainbowstyle>`__ platform before
    the oficial
 
    ``twine upload --repository-url https://test.pypi.org/legacy/ dist/*``
 
 5. Try to install from test
 
-   ``pip install --no-deps --index-url https://test.pypi.org/simple/ qdarkstyle``
+   ``pip install --no-deps --index-url https://test.pypi.org/simple/ qrainbowstyle``
 
 6. Then, remove it
 
-   ``pip uninstall qdarkstyle -y``
+   ``pip uninstall qrainbowstyle -y``
 
 7. Upload to `PyPI official
-   page <https://pypi.python.org/pypi/QDarkStyle>`__
+   page <https://pypi.python.org/pypi/QRainbowstyle>`__
 
    ``twine upload --repository-url https://upload.pypi.org/legacy/ dist/*``
 
 8. Try to install from oficial
 
-   ``pip install qdarkstyle``
+   ``pip install qrainbowstyle``
 
 You can also use the tox environment to produce the release and upload
 the distribution.
