@@ -143,11 +143,6 @@ APP_NAME = None
 APP_ICON_PATH = None
 
 
-def setAppName(name: str):
-    """Set global app name which will be used in titlebars"""
-    qrainbowstyle.APP_NAME = name
-
-
 def setAppIcon(icon_path: str):
     """Set path to app icon which will be used in titlebars"""
     qrainbowstyle.APP_ICON_PATH = icon_path
