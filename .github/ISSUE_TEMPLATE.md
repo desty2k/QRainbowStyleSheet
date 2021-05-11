@@ -2,9 +2,9 @@
 
 ### Describe Your Environment
 
-Please, report the output of the command (from v2.6+) or fill the information below:
+Please, report the output of the command or fill the information below:
 
-`$ qdarkstyle --all`
+`$ qrainbowstyle --all`
 
 Or use the helpdev if you have
 
@@ -12,7 +12,7 @@ Or use the helpdev if you have
 
 [Versions from your environment]
 
-- QDarkStyle:
+- QRainbowstyle:
 - OS:
 - Python:
 
@@ -24,10 +24,6 @@ Or use the helpdev if you have
 - QtPy:
 - QT_API:
 - PYQTGRAPH_QT_LIB:
-
-### Language
-
-[Python] or [C++]
 
 ### Description / Steps to Reproduce [if necessary]
 
