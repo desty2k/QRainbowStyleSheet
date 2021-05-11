@@ -139,6 +139,8 @@ def _main(args):
     from dw_containers_tabs_ui import Ui_DockWidget as ui_containers_tabs
     from dw_containers_no_tabs_ui import Ui_DockWidget as ui_containers_no_tabs
 
+    # qrainbowstyle.useDarwinButtons()
+
     QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
     QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
 
