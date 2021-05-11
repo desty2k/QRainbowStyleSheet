@@ -1,6 +1,13 @@
 Changelog
 =========
 
+- 0.9.2:
+    - Update docs
+    - Update issue template
+    - Update contributing guide
+    - Clean the code
+    - Docs workflow will be run only after creating release
+
 - 0.9.1:
     - Fix child windows being minimized to left bottom corner
     - Set titlebar buttons' icons using stylesheet
