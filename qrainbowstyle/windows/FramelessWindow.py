@@ -8,6 +8,13 @@ from .base import FramelessWindowBase
 
 
 class FramelessWindow(FramelessWindowBase):
+    """Frameless window for non-Windows OS like Linux and Darwin.
+    Reimplements features:
+        - window moving
+        - window resizing
+        - maximize on double click on titlebar
+        - snap to borders
+    """
 
     def __init__(self, parent=None):
         super(FramelessWindow, self).__init__(parent)
@@ -31,6 +38,13 @@ class FramelessWindow(FramelessWindowBase):
         self.setMouseTracking(True)
 
     def setMouseTracking(self, flag):
+        """Recursively enables mouse tracking for all child widgets.
+        This is required because eventFilter does not catch
+        hover events.
+
+        Args:
+            flag (bool): Enable or disable mouse tracking.
+        """
         def recursive_set(parent):
             for child in parent.findChildren(QObject):
                 try:
@@ -63,7 +77,7 @@ class FramelessWindow(FramelessWindowBase):
                                  self.__gripsize)
 
     def eventFilter(self, widget, event: QEvent):
-        """Handle frameless window resizing events.
+        """Handle frameless window events.
 
         Args:
             widget (QObject): Widget.

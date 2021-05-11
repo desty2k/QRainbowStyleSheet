@@ -10,7 +10,6 @@ Welcome to QRainbowStyle's documentation!
    :maxdepth: 2
 
    readme.rst
-   example/modules.rst
    reference/modules.rst
    scripts/modules.rst
    license.rst

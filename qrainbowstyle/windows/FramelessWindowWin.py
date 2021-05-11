@@ -31,6 +31,15 @@ class MINMAXINFO(ctypes.Structure):
 
 
 class FramelessWindow(FramelessWindowBase):
+    """Frameless window for Windows OS.
+    Available features:
+        - window moving
+        - window resizing
+        - maximize on double click on titlebar
+        - native snap to borders
+        - Aero shake
+        - window shadow
+    """
 
     def __init__(self, parent=None):
         super(FramelessWindow, self).__init__(parent)
@@ -48,36 +57,52 @@ class FramelessWindow(FramelessWindowBase):
         QMetaObject.connectSlotsByName(self)
 
     def setWindowFlags(self, flags):
+        """Sets window flags. Window must be
+        re-shown after calling this method.
+
+        Args:
+            flags (WindowFlags): Window flags.
+        """
         self.hwnd = None
         super().setWindowFlags(flags)
         self.show()
 
     def show(self):
+        """Shows the window."""
         if not self.hwnd:
             self.__setStyle()
         super().show()
 
     def showNormal(self):
+        """Shows the window as normal, i.e. neither maximized, minimized, nor fullscreen."""
         if not self.hwnd:
             self.__setStyle()
         super().showNormal()
 
     def showMaximized(self):
+        """Shows the window as maximized."""
         if not self.hwnd:
             self.__setStyle()
         super().showMaximized()
 
     def showMinimized(self):
+        """Shows the window as minimized."""
         if not self.hwnd:
             self.__setStyle()
         super().showMinimized()
 
     def showFullScreen(self):
+        """Shows the window as fullscreen."""
         if not self.hwnd:
             self.__setStyle()
         super().showFullScreen()
 
     def showWindowShadow(self, value: bool):
+        """Show or hide window shadow.
+
+        Args:
+            value (bool): Enable or disable window shadow
+        """
         if value:
             QtWin.extendFrameIntoClientArea(self, -1, -1, -1, -1)
         else:
@@ -92,6 +117,11 @@ class FramelessWindow(FramelessWindowBase):
         self.__resizingEnabled = value
 
     def setEdgeSnapping(self, value: bool):
+        """Enable or disable edge snapping for window.
+
+        Args:
+            value (bool): Enable or disable edge snapping.
+        """
         if not self.hwnd:
             self.__setStyle()
 
@@ -104,6 +134,12 @@ class FramelessWindow(FramelessWindowBase):
                 self.hwnd, win32con.GWL_STYLE, style & ~win32con.WS_OVERLAPPEDWINDOW | win32con.WS_POPUPWINDOW)
 
     def nativeEvent(self, eventType, message):
+        """Handle frameless window native events.
+
+        Args:
+            eventType (QByteArray): Event type.
+            message (int): Message.
+        """
         retval, result = super().nativeEvent(eventType, message)
         if eventType == "windows_generic_MSG":
             msg = ctypes.wintypes.MSG.from_address(int(message))

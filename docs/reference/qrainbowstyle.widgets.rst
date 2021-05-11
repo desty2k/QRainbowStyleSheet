@@ -14,3 +14,4 @@ Submodules
    qrainbowstyle.widgets.GoogleMapsView
    qrainbowstyle.widgets.StylePicker
    qrainbowstyle.widgets.WaitingSpinner
+   qrainbowstyle.widgets.QRoundProgressBar

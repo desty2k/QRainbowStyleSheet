@@ -11,4 +11,5 @@ Submodules
 
 .. toctree::
 
-   qrainbowstyle.windows.FramelessMainWindow
+   qrainbowstyle.windows.FramelessWindow
+   qrainbowstyle.windows.FramelessMessageBox
