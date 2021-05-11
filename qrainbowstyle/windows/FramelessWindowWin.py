@@ -32,6 +32,7 @@ class MINMAXINFO(ctypes.Structure):
 
 class FramelessWindow(FramelessWindowBase):
     """Frameless window for Windows OS.
+
     Available features:
         - window moving
         - window resizing
