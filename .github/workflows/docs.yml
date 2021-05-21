@@ -23,8 +23,6 @@ jobs:
         python -m pip install -r req-doc.txt
         
     - name: Sphinx Build
-      env:
-        FORCE_NON_WIN: True
       run: |
         cd docs
         sphinx-build -b html . _build
