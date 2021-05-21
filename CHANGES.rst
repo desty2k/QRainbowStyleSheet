@@ -7,6 +7,7 @@ Changelog
     - Update contributing guide
     - Clean the code
     - Docs workflow will be run only after creating release
+    - Update release action
 
 - 0.9.1:
     - Fix child windows being minimized to left bottom corner

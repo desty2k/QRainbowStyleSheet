@@ -96,7 +96,7 @@ jobs:
     - name: Create a release
       if: env.VERSION != env.RELEASE_VERSION
       
-      uses: actions/create-release@v1.1.4
+      uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ env.VERSION }}
       env:
