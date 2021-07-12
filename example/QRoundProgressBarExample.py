@@ -44,13 +44,11 @@ class MainWidget(QWidget):
 
         bar_style_label = QLabel("Bar style", self._controlWidget)
         style = QPushButton(self._controlWidget)
-        style.setMaximumWidth(200)
         style.setText("Change bar style")
         self._controlWidgetLayout.addRow(bar_style_label, style)
 
         app_style_label = QLabel("App style", self._controlWidget)
         picker = StylePickerHorizontal(self._controlWidget)
-        picker.setMaximumWidth(200)
         self._controlWidgetLayout.addRow(app_style_label, picker)
 
         style.clicked.connect(lambda: roundbar.setBarStyle(get_style()))
@@ -59,7 +57,6 @@ class MainWidget(QWidget):
         slider = QSlider(Qt.Horizontal, self._controlWidget)
         slider.setRange(0, 100)
         slider.valueChanged.connect(roundbar.setValue)
-        slider.setMaximumWidth(200)
         slider.setValue(28)
         self._controlWidgetLayout.addRow(slider_label, slider)
         self._layout.addWidget(self._controlWidget)
