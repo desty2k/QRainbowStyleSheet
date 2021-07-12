@@ -92,7 +92,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Right clicked on: " + str(lat) + ":" + str(lng))
         self.mapRightClicked.emit(lat, lng)
 
     @Slot(float, float)
@@ -103,7 +102,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Moved, center: " + str(lat) + ":" + str(lng))
         self.mapMoved.emit(lat, lng)
 
     @Slot(float, float)
@@ -114,7 +112,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Clicked on: " + str(lat) + ":" + str(lng))
         self.mapClicked.emit(lat, lng)
 
     @Slot(float, float)
@@ -125,7 +122,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Double clicked on: " + str(lat) + ":" + str(lng))
         self.mapDoubleClicked.emit(lat, lng)
 
     @Slot(str, float, float)
@@ -137,7 +133,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Marker " + str(marker_id) + " clicked: " + str(lat) + ":" + str(lng))
         self.markerClicked.emit(marker_id, lat, lng)
 
     @Slot(str, float, float)
@@ -149,7 +144,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Marker " + str(marker_id) + " right clicked: " + str(lat) + ":" + str(lng))
         self.markerRightClicked.emit(marker_id, lat, lng)
 
     @Slot(str, float, float)
@@ -161,7 +155,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Marker " + str(marker_id) + " double clicked: " + str(lat) + ":" + str(lng))
         self.markerDoubleClicked.emit(marker_id, lat, lng)
 
     @Slot(str, float, float)
@@ -173,7 +166,6 @@ class CallHandler(QObject):
             lat (float): Event latitude.
             lng (float): Event longitude.
         """
-        self._logger.debug("Marker " + str(marker_id) + " moved to: " + str(lat) + ":" + str(lng))
         self.moveMarker(marker_id, lat, lng)
 
     @Slot(str, list)
@@ -184,7 +176,6 @@ class CallHandler(QObject):
             polyline_id (str): Polyline id.
             path (list): List of coordinates.
         """
-        self._logger.debug("Polyline " + str(polyline_id) + " clicked: " + str(path))
         self.polylineClicked.emit(polyline_id, path)
 
     @Slot(str, list)
@@ -195,7 +186,6 @@ class CallHandler(QObject):
             polyline_id (str): Polyline id.
             path (list): List of coordinates.
         """
-        self._logger.debug("Polyline " + str(polyline_id) + " right clicked: " + str(path))
         self.polylineRightClicked.emit(polyline_id, path)
 
     @Slot(str, list)
@@ -206,7 +196,6 @@ class CallHandler(QObject):
             polyline_id (str): Polyline id.
             path (list): List of coordinates.
         """
-        self._logger.debug("Polyline " + str(polyline_id) + " double clicked: " + str(path))
         self.polylineDoubleClicked.emit(polyline_id, path)
 
     @Slot()
