@@ -27,7 +27,7 @@ import sys
 from qtpy.QtCore import Qt
 from qtpy.QtWidgets import QWidget, QGridLayout, QGroupBox, QHBoxLayout, QSpinBox, QDoubleSpinBox, QPushButton, QLabel, QColorDialog, QApplication, QMessageBox
 
-from pyqtspinner.spinner import WaitingSpinner
+from pyqtspinner import WaitingSpinner
 
 import qrainbowstyle
 import qrainbowstyle.widgets
