@@ -14,8 +14,6 @@ import qrainbowstyle
 
 sys.path.insert(0, abspath(dirname(abspath(__file__)) + '/..'))
 
-QRainbowStyle = qrainbowstyle
-
 
 def main():
     """Execute QRainbowStyle helper."""
