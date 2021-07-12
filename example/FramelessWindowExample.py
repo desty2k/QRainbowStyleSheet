@@ -211,7 +211,6 @@ def main():
     # Package options
     # qrainbowstyle.align_buttons_left()
     # qrainbowstyle.use_darwin_buttons()
-    qrainbowstyle.setAppName("My new application")
     qrainbowstyle.setAppIcon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
 
     # Create frameless mainwindow

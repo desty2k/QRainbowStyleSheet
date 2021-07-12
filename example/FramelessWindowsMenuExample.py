@@ -19,7 +19,6 @@ def main():
 
     app = QApplication(sys.argv)
     app.setStyleSheet(qrainbowstyle.load_stylesheet(style="oceanic"))
-    qrainbowstyle.setAppName("Frameless dialog")
     qrainbowstyle.setAppIcon(os.path.join(os.path.dirname(os.path.realpath(__file__)), "github_logo.png"))
 
     dialog = FramelessWindow()
