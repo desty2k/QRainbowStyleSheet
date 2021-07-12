@@ -1,6 +1,11 @@
 Changelog
 =========
 
+- 0.9.3:
+    - Generate docs using apidoc
+    - Remove unused files from widgets package
+    - Use moduels instead of packages where possible
+
 - 0.9.2:
     - Update docs
     - Update issue template
