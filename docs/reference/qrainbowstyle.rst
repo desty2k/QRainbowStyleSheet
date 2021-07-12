@@ -1,25 +1,41 @@
 qrainbowstyle package
 =====================
 
-.. automodule:: qrainbowstyle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
-   qrainbowstyle.utils
-   qrainbowstyle.windows
-   qrainbowstyle.widgets
    qrainbowstyle.extras
+   qrainbowstyle.styles
+   qrainbowstyle.utils
+   qrainbowstyle.widgets
+   qrainbowstyle.windows
 
 Submodules
 ----------
 
-.. toctree::
+qrainbowstyle.colorsystem module
+--------------------------------
 
-   qrainbowstyle.__main__
-   qrainbowstyle.palette
+.. automodule:: qrainbowstyle.colorsystem
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+qrainbowstyle.palette module
+----------------------------
+
+.. automodule:: qrainbowstyle.palette
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: qrainbowstyle
+   :members:
+   :undoc-members:
+   :show-inheritance:

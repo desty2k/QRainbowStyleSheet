@@ -1,17 +1,21 @@
 qrainbowstyle.widgets package
 =============================
 
-.. automodule:: qrainbowstyle.widgets
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
-Submodules
-----------
+Subpackages
+-----------
 
 .. toctree::
+   :maxdepth: 4
 
-   qrainbowstyle.widgets.GoogleMapsView
-   qrainbowstyle.widgets.StylePicker
-   qrainbowstyle.widgets.WaitingSpinner
+   qrainbowstyle.widgets.GoogleMapsWidget
+   qrainbowstyle.widgets.PythonQtWidgets
    qrainbowstyle.widgets.QRoundProgressBar
+   qrainbowstyle.widgets.QtWaitingSpinner
+
+Module contents
+---------------
+
+.. automodule:: qrainbowstyle.widgets
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,15 +1,29 @@
 qrainbowstyle.utils package
 ===========================
 
-.. automodule:: qrainbowstyle.utils
+Submodules
+----------
+
+qrainbowstyle.utils.images module
+---------------------------------
+
+.. automodule:: qrainbowstyle.utils.images
    :members:
    :undoc-members:
    :show-inheritance:
 
-Submodules
-----------
+qrainbowstyle.utils.scss module
+-------------------------------
 
-.. toctree::
+.. automodule:: qrainbowstyle.utils.scss
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-   qrainbowstyle.utils.images
-   qrainbowstyle.utils.scss
+Module contents
+---------------
+
+.. automodule:: qrainbowstyle.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:

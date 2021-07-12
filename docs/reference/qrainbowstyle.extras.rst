@@ -1,14 +1,21 @@
 qrainbowstyle.extras package
 ============================
 
-.. automodule:: qrainbowstyle.extras
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
 Submodules
 ----------
 
-.. toctree::
+qrainbowstyle.extras.debugging module
+-------------------------------------
 
-   qrainbowstyle.extras.debugging
+.. automodule:: qrainbowstyle.extras.debugging
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: qrainbowstyle.extras
+   :members:
+   :undoc-members:
+   :show-inheritance:

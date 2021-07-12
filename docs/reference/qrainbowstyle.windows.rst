@@ -1,15 +1,45 @@
 qrainbowstyle.windows package
 =============================
 
-.. automodule:: qrainbowstyle.windows
-   :members:
-   :show-inheritance:
-   :undoc-members:
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   qrainbowstyle.windows.base
 
 Submodules
 ----------
 
-.. toctree::
+qrainbowstyle.windows.FramelessMessageBox module
+------------------------------------------------
 
-   qrainbowstyle.windows.FramelessWindow
-   qrainbowstyle.windows.FramelessMessageBox
+.. automodule:: qrainbowstyle.windows.FramelessMessageBox
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+qrainbowstyle.windows.FramelessWindow module
+--------------------------------------------
+
+.. automodule:: qrainbowstyle.windows.FramelessWindow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+qrainbowstyle.windows.FramelessWindowWin module
+-----------------------------------------------
+
+.. automodule:: qrainbowstyle.windows.FramelessWindowWin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: qrainbowstyle.windows
+   :members:
+   :undoc-members:
+   :show-inheritance:
