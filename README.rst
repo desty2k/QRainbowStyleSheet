@@ -205,13 +205,8 @@ Select style by using keyword argument ``style=``
 Widgets
 -------
 
-In v0.6 I added a few new widgets.
-Widgets are automatically loading colors from current
-stylesheet's palette. Changing the style while the application
-is running is supported. These widgets can not be used
-without loading stylesheet. You can find exampels in example
-directory. In v0.8 windows module has been refactored and now supports
-native Windows events.
+In v0.6 I added a few new widgets which automatically load colors from current
+stylesheet's palette.
 
 
 GoogleMapsView
