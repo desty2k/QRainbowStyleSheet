@@ -10,10 +10,10 @@ from .base import FramelessWindowBase
 class FramelessWindow(FramelessWindowBase):
     """Frameless window for non-Windows OS like Linux and Darwin.
     Reimplements features:
-        - window moving
-        - window resizing
-        - maximize on double click on titlebar
-        - snap to borders
+    - window moving
+    - window resizing
+    - maximize on double click on titlebar
+    - snap to borders
     """
 
     def __init__(self, parent=None):
