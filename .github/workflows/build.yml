@@ -76,7 +76,7 @@ jobs:
     - name: Get package version
       run: |
         python qrainbowstyle --version > version.txt
-        echo "VERSION=$(cat version.txt)" | tr -d '\r\t\n' >> $GITHUB_ENV
+        echo "BUILD_VERSION=$(cat version.txt)" | tr -d '\r\t\n' >> $GITHUB_ENV
 
     - name: Get latest version
       run: |
@@ -89,20 +89,37 @@ jobs:
     - name: Echo environment variables
       run: |
         echo "Uploaded package version is: "
-        echo "${{env.VERSION}}"
+        echo "${{env.BUILD_VERSION}}"
         echo "Latest package version is:"
         echo "${{env.RELEASE_VERSION}}"
-    
-    - name: Create a release
-      if: env.VERSION != env.RELEASE_VERSION
-      
+
+    - name: Create a first release
+      if: env.BUILD_VERSION != env.RELEASE_VERSION && env.RELEASE_VERSION == ''
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ env.VERSION }}
+        body: 'First release'
+        tag_name: ${{ env.BUILD_VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-     
+
+    - name: Generate changelog
+      if: env.BUILD_VERSION != env.RELEASE_VERSION && env.RELEASE_VERSION != ''
+      id: changelog
+      uses: metcalfc/changelog-generator@v1.0.0
+      with:
+        myToken: ${{ secrets.DEPLOY_TOKEN }}
+
+    - name: Create a release
+      if: env.BUILD_VERSION != env.RELEASE_VERSION && env.RELEASE_VERSION != ''
+
+      uses: softprops/action-gh-release@v1
+      with:
+        body: ${{ steps.changelog.outputs.changelog }}
+        tag_name: ${{ env.BUILD_VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+
     - name: Skip release
-      if: env.VERSION == env.RELEASE_VERSION
+      if: env.BUILD_VERSION == env.RELEASE_VERSION
       run: |
-        echo "Skipping because version does not changed"
+        echo 'Skipping because version does not changed'
