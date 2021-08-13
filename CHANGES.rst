@@ -1,6 +1,9 @@
 Changelog
 =========
 
+- 0.9.4:
+    - Generate changelog when creating new GitHub release
+
 - 0.9.3:
     - Generate docs using apidoc
     - Remove unused files from widgets package
