@@ -105,7 +105,7 @@ jobs:
     - name: Generate changelog
       if: env.BUILD_VERSION != env.RELEASE_VERSION && env.RELEASE_VERSION != ''
       id: changelog
-      uses: metcalfc/changelog-generator@v1.0.0
+      uses: metcalfc/changelog-generator@v1.0.1
       with:
         myToken: ${{ secrets.DEPLOY_TOKEN }}
 
