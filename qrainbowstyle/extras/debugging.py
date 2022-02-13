@@ -41,7 +41,7 @@ class OutputLogger:
 
 def qt_message_handler(mode, context, message):
     """Logger for Qt errors"""
-    logger = logging.getLogger("QT Logger")
+    logger = logging.getLogger("QtLogger")
     if mode == QtInfoMsg:
         mode = 20
     elif mode == QtWarningMsg:

@@ -115,7 +115,6 @@ class FramelessWindow(FramelessWindowBase):
                     screen = QApplication.instance().desktop().availableGeometry()
                     if event.globalY() == 0:
                         # snap to top edge
-                        pass
                         self.titlebar().on_btnMaximize_clicked()
 
                     elif event.globalX() == 0:
