@@ -1,6 +1,16 @@
 Changelog
 =========
 
+- 0.9.5:
+    - Fix style selector alignment in spinner designer
+    - Remove ``Create a first release`` step from build workflow
+    - Reformat GitHub Actions workflows
+    - Remove pip caching
+    - Remove unused ``develop`` tox action
+    - Update setup-python action to 2.3.2
+    - Update changelog-generator action to 3.0.0
+    - Update info about ``load_stylesheet()`` in README
+
 - 0.9.4:
     - Generate changelog when creating new GitHub release
 
