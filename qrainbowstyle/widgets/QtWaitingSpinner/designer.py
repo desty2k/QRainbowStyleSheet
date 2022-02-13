@@ -25,7 +25,8 @@ SOFTWARE.
 import sys
 
 from qtpy.QtCore import Qt
-from qtpy.QtWidgets import QWidget, QGridLayout, QGroupBox, QHBoxLayout, QSpinBox, QDoubleSpinBox, QPushButton, QLabel, QColorDialog, QApplication, QMessageBox
+from qtpy.QtWidgets import (QWidget, QGridLayout, QGroupBox, QHBoxLayout, QSpinBox, QDoubleSpinBox, QPushButton,
+                            QLabel, QColorDialog, QApplication, QMessageBox, QFormLayout)
 
 from pyqtspinner import WaitingSpinner
 
@@ -59,7 +60,8 @@ class Demo(QWidget):
         groupbox1 = QGroupBox()
         groupbox1_layout = QHBoxLayout()
         groupbox2 = QGroupBox()
-        groupbox2_layout = QGridLayout()
+        groupbox2_layout = QFormLayout()
+
         button_hbox = QHBoxLayout()
         self.setLayout(grid)
         self.setWindowTitle("QtWaitingSpinner Creator")
@@ -128,25 +130,15 @@ class Demo(QWidget):
         groupbox1_layout.addWidget(self.spinner)
         groupbox1.setLayout(groupbox1_layout)
 
-        groupbox2_layout.addWidget(QLabel("Roundness:"), *(1, 1))
-        groupbox2_layout.addWidget(self.sb_roundness, *(1, 2))
-        groupbox2_layout.addWidget(QLabel("Opacity:"), *(2, 1))
-        groupbox2_layout.addWidget(self.sb_opacity, *(2, 2))
-        groupbox2_layout.addWidget(QLabel("Fade Perc:"), *(3, 1))
-        groupbox2_layout.addWidget(self.sb_fadeperc, *(3, 2))
-        groupbox2_layout.addWidget(QLabel("Lines:"), *(4, 1))
-        groupbox2_layout.addWidget(self.sb_lines, *(4, 2))
-        groupbox2_layout.addWidget(QLabel("Line Length:"), *(5, 1))
-        groupbox2_layout.addWidget(self.sb_line_length, *(5, 2))
-        groupbox2_layout.addWidget(QLabel("Line Width:"), *(6, 1))
-        groupbox2_layout.addWidget(self.sb_line_width, *(6, 2))
-        groupbox2_layout.addWidget(QLabel("Inner Radius:"), *(7, 1))
-        groupbox2_layout.addWidget(self.sb_inner_radius, *(7, 2))
-        groupbox2_layout.addWidget(QLabel("Rev/s:"), *(8, 1))
-        groupbox2_layout.addWidget(self.sb_rev_s, *(8, 2))
-        groupbox2_layout.addWidget(QLabel("Style: "), *(9, 1))
-        groupbox2_layout.addWidget(self.picker, *(9, 2))
-
+        groupbox2_layout.addRow(QLabel("Roundness:"), self.sb_roundness)
+        groupbox2_layout.addRow(QLabel("Opacity:"), self.sb_opacity)
+        groupbox2_layout.addRow(QLabel("Fade Perc:"), self.sb_fadeperc)
+        groupbox2_layout.addRow(QLabel("Lines:"), self.sb_lines)
+        groupbox2_layout.addRow(QLabel("Line Length:"), self.sb_line_length)
+        groupbox2_layout.addRow(QLabel("Line Width:"), self.sb_line_width)
+        groupbox2_layout.addRow(QLabel("Inner Radius:"), self.sb_inner_radius)
+        groupbox2_layout.addRow(QLabel("Rev/s:"), self.sb_rev_s)
+        groupbox2_layout.addRow(QLabel("Style: "), self.picker)
         groupbox2.setLayout(groupbox2_layout)
 
         button_hbox.addWidget(self.btn_start)
