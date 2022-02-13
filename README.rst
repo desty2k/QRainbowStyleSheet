@@ -178,11 +178,6 @@ If you are using Qt.py, which is different from qtpy, you should install
 qtpy then set both to the same binding.
 
 
-*There is an example included in the *example* folder. You can run the
-script without installing qrainbowstyle. You only need to have or
-PySide2 or PyQt5 installed on your system.*
-
-
 Available styles
 ----------------
 
@@ -195,11 +190,11 @@ Currently available styles are:
 * DarkOrange
 * QDarkStyle (original)
 
-Select style by using keyword argument ``style=``
+Select style by using ``style=`` keyword argument
 
 .. code:: python
 
-    qrainbowstyle.load_stylesheet(style=lightorange)
+    qrainbowstyle.load_stylesheet(style="lightorange")
 
 
 Widgets
