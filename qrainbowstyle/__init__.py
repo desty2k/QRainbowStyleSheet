@@ -185,7 +185,7 @@ def getCurrentPalette():
 
 
 def rainbowize(text: str) -> str:
-    """Replaces colors names to hashes in text"""
+    """Replaces color names with hashes in text"""
     color_dict = getCurrentPalette().to_dict()
     for color in color_dict:
         text = text.replace(color, str(color_dict[color]))

@@ -36,8 +36,8 @@ class FramelessWindow(FramelessWindowBase):
     Available features:
         - window moving
         - window resizing
-        - maximize on double click on titlebar
-        - native snap to borders
+        - maximize on double-click on titlebar
+        - native snap to border
         - Aero shake
         - window shadow
     """
