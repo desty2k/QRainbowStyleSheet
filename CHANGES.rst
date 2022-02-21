@@ -1,6 +1,11 @@
 Changelog
 =========
 
+- 0.9.6:
+    - Cast ``floats`` to ``ints`` to fix TypeErrors in new Qt version
+    - Install Qt message handler in spinner designer
+    - Fix typos
+
 - 0.9.5:
     - Fix style selector alignment in spinner designer
     - Remove ``Create a first release`` step from build workflow
