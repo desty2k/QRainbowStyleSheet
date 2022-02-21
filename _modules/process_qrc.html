@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>process_qrc &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>process_qrc</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for process_qrc</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Script to process QRC files (convert .qrc to _rc.py and .rcc).</span>
+
+<span class="sd">The script will attempt to compile the qrc file using the following tools:</span>
+
+<span class="sd">    - pyrcc4 for PyQt4 and PyQtGraph (Python)</span>
+<span class="sd">    - pyrcc5 for PyQt5 and QtPy (Python)</span>
+<span class="sd">    - pyside-rcc for PySide (Python)</span>
+<span class="sd">    - pyside2-rcc for PySide2 (Python)</span>
+<span class="sd">    - rcc for Qt4 and Qt5 (C++)</span>
+
+<span class="sd">Delete the compiled files that you don&#39;t want to use manually after</span>
+<span class="sd">running this script.</span>
+
+<span class="sd">Links to understand those tools:</span>
+
+<span class="sd">    - pyrcc4: http://pyqt.sourceforge.net/Docs/PyQt4/resources.html#pyrcc4</span>
+<span class="sd">    - pyrcc5: http://pyqt.sourceforge.net/Docs/PyQt5/resources.html#pyrcc5</span>
+<span class="sd">    - pyside-rcc: https://www.mankier.com/1/pyside-rcc</span>
+<span class="sd">    - pyside2-rcc: https://doc.qt.io/qtforpython/overviews/resources.html (Documentation Incomplete)</span>
+<span class="sd">    - rcc on Qt4: http://doc.qt.io/archives/qt-4.8/rcc.html</span>
+<span class="sd">    - rcc on Qt5: http://doc.qt.io/qt-5/rcc.html</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">call</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">from</span> <span class="nn">watchdog.events</span> <span class="kn">import</span> <span class="n">FileSystemEventHandler</span>
+<span class="kn">from</span> <span class="nn">watchdog.observers</span> <span class="kn">import</span> <span class="n">Observer</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle</span> <span class="kn">import</span> <span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="n">STYLES_PATH</span><span class="p">,</span> <span class="n">QRC_FILE</span><span class="p">,</span> <span class="n">QSS_FILE</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle.extras</span> <span class="kn">import</span> <span class="n">OutputLogger</span><span class="p">,</span> <span class="n">qt_message_handler</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle.utils.images</span> <span class="kn">import</span> <span class="n">create_images</span><span class="p">,</span> <span class="n">create_palette_image</span><span class="p">,</span> <span class="n">generate_qrc_file</span><span class="p">,</span> <span class="n">create_titlebar_images</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle.utils.scss</span> <span class="kn">import</span> <span class="n">create_qss</span>
+
+<span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">qInstallMessageHandler</span>
+
+
+<div class="viewcode-block" id="QSSFileHandler"><a class="viewcode-back" href="../scripts/process_qrc.html#process_qrc.QSSFileHandler">[docs]</a><span class="k">class</span> <span class="nc">QSSFileHandler</span><span class="p">(</span><span class="n">FileSystemEventHandler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;QSS File observer.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser_args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;QSS File observer.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QSSFileHandler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">parser_args</span>
+
+<div class="viewcode-block" id="QSSFileHandler.on_modified"><a class="viewcode-back" href="../scripts/process_qrc.html#process_qrc.QSSFileHandler.on_modified">[docs]</a>    <span class="k">def</span> <span class="nf">on_modified</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle file system events.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">src_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.qss&#39;</span><span class="p">):</span>
+            <span class="n">run_process</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="run_process"><a class="viewcode-back" href="../scripts/process_qrc.html#process_qrc.run_process">[docs]</a><span class="k">def</span> <span class="nf">run_process</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Process qrc files.&quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">inspect</span>
+    <span class="kn">import</span> <span class="nn">qrainbowstyle.palette</span> <span class="k">as</span> <span class="nn">source</span>
+
+    <span class="n">palettes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">source</span><span class="o">.</span><span class="n">BasePalette</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">source</span><span class="o">.</span><span class="n">BasePalette</span><span class="p">:</span>
+            <span class="n">palettes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Found palettes: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">palettes</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">palette</span> <span class="ow">in</span> <span class="n">palettes</span><span class="p">:</span>
+        <span class="n">palette_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">palette</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Generating files for: &quot;</span> <span class="o">+</span> <span class="n">palette_name</span><span class="p">)</span>
+
+        <span class="c1"># create directory for every style in palette.py</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">STYLES_PATH</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">palette_name</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STYLES_PATH</span><span class="p">,</span> <span class="n">palette_name</span><span class="p">))</span>
+        <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;__init__.py&quot;</span><span class="p">,</span> <span class="s2">&quot;w+&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STYLES_PATH</span><span class="p">,</span> <span class="n">palette_name</span><span class="p">)</span>
+
+        <span class="c1"># get paths to output directories for this palette</span>
+        <span class="n">images_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">)</span>
+        <span class="n">rc_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="s1">&#39;rc&#39;</span><span class="p">)</span>
+        <span class="c1"># qss_dir = os.path.join(output_dir, &#39;qss&#39;)</span>
+
+        <span class="c1"># create directories</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">images_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">rc_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># os.makedirs(qss_dir, exist_ok=True)</span>
+
+        <span class="n">qrc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">QRC_FILE</span><span class="p">)</span>
+        <span class="n">qss_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">QSS_FILE</span><span class="p">)</span>
+        <span class="c1"># variables_scss_filepath = os.path.join(qss_dir, VARIABLES_SCSS_FILE)</span>
+
+        <span class="c1"># Create palette and resources png images</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Generating palette image ...&#39;</span><span class="p">)</span>
+        <span class="n">create_palette_image</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">images_dir</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Generating images ...&#39;</span><span class="p">)</span>
+        <span class="n">create_images</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">rc_path</span><span class="o">=</span><span class="n">rc_dir</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Generating images for titlebar buttons&quot;</span><span class="p">)</span>
+        <span class="n">create_titlebar_images</span><span class="p">(</span><span class="n">rc_path</span><span class="o">=</span><span class="n">rc_dir</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Generating qrc ...&#39;</span><span class="p">)</span>
+        <span class="n">generate_qrc_file</span><span class="p">(</span><span class="n">rc_path</span><span class="o">=</span><span class="n">rc_dir</span><span class="p">,</span> <span class="n">qrc_path</span><span class="o">=</span><span class="n">qrc_filepath</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Converting .qrc to _rc.py and/or .rcc ...&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">qrc_file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*.qrc&#39;</span><span class="p">):</span>
+            <span class="c1"># get name without extension</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">qrc_file</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;...&#39;</span><span class="p">)</span>
+            <span class="n">ext</span> <span class="o">=</span> <span class="s1">&#39;_rc.py&#39;</span>
+            <span class="n">ext_c</span> <span class="o">=</span> <span class="s1">&#39;.rcc&#39;</span>
+
+            <span class="c1"># Create variables SCSS files and compile SCSS files to QSS</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Compiling SCSS/SASS files to QSS ...&#39;</span><span class="p">)</span>
+            <span class="n">create_qss</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">qss_filepath</span><span class="o">=</span><span class="n">qss_filepath</span><span class="p">)</span>
+
+            <span class="c1"># creating names</span>
+            <span class="n">py_file_pyqt5</span> <span class="o">=</span> <span class="s1">&#39;pyqt5_&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="n">py_file_pyqt</span> <span class="o">=</span> <span class="s1">&#39;pyqt_&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="n">py_file_pyside</span> <span class="o">=</span> <span class="s1">&#39;pyside_&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="n">py_file_pyside2</span> <span class="o">=</span> <span class="s1">&#39;pyside2_&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="n">py_file_qtpy</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="n">py_file_pyqtgraph</span> <span class="o">=</span> <span class="s1">&#39;pyqtgraph_&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="n">ext</span>
+
+            <span class="c1"># append palette used to generate this file</span>
+            <span class="n">used_palette</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">from qrainbowstyle.palette import &quot;</span> <span class="o">+</span> <span class="n">palette</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">palette = &quot;</span> <span class="o">+</span> <span class="n">palette</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+            <span class="c1"># calling external commands</span>
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">create</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pyqt&#39;</span><span class="p">,</span> <span class="s1">&#39;pyqtgraph&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Compiling for PyQt4 ...&quot;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">call</span><span class="p">([</span><span class="s1">&#39;pyrcc4&#39;</span><span class="p">,</span> <span class="s1">&#39;-py3&#39;</span><span class="p">,</span> <span class="n">qrc_file</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">py_file_pyqt</span><span class="p">])</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_pyqt</span><span class="p">,</span> <span class="s2">&quot;a+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">used_palette</span><span class="p">)</span>
+
+                <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;You must install pyrcc4&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">create</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pyqt5&#39;</span><span class="p">,</span> <span class="s1">&#39;qtpy&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Compiling for PyQt5 ...&quot;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">call</span><span class="p">([</span><span class="s1">&#39;pyrcc5&#39;</span><span class="p">,</span> <span class="n">qrc_file</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">py_file_pyqt5</span><span class="p">])</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_pyqt5</span><span class="p">,</span> <span class="s2">&quot;a+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">used_palette</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;You must install pyrcc5&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">create</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pyside&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Compiling for PySide ...&quot;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">call</span><span class="p">([</span><span class="s1">&#39;pyside-rcc&#39;</span><span class="p">,</span> <span class="s1">&#39;-py3&#39;</span><span class="p">,</span> <span class="n">qrc_file</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">py_file_pyside</span><span class="p">])</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_pyside</span><span class="p">,</span> <span class="s2">&quot;a+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">used_palette</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;You must install pyside-rcc&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">create</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pyside2&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Compiling for PySide 2...&quot;</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">call</span><span class="p">([</span><span class="s1">&#39;pyside2-rcc&#39;</span><span class="p">,</span> <span class="s1">&#39;-py3&#39;</span><span class="p">,</span> <span class="n">qrc_file</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="n">py_file_pyside2</span><span class="p">])</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_pyside2</span><span class="p">,</span> <span class="s2">&quot;a+&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">used_palette</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;You must install pyside2-rcc&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">create</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;qtpy&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Compiling for QtPy ...&quot;</span><span class="p">)</span>
+                <span class="c1"># special case - qtpy - syntax is PyQt5</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_pyqt5</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="n">filedata</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+                <span class="c1"># replace the target string</span>
+                <span class="n">filedata</span> <span class="o">=</span> <span class="n">filedata</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;from PyQt5&#39;</span><span class="p">,</span> <span class="s1">&#39;from qtpy&#39;</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_qtpy</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="c1"># write the file out again</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filedata</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">create</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pyqt5&#39;</span><span class="p">]:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">py_file_pyqt5</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">create</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;pyqtgraph&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Compiling for PyQtGraph ...&quot;</span><span class="p">)</span>
+                <span class="c1"># special case - pyqtgraph - syntax is PyQt4</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_pyqt</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="n">filedata</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+                <span class="c1"># replace the target string</span>
+                <span class="n">filedata</span> <span class="o">=</span> <span class="n">filedata</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;from PyQt4&#39;</span><span class="p">,</span> <span class="s1">&#39;from pyqtgraph.Qt&#39;</span><span class="p">)</span>
+
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">py_file_pyqtgraph</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                    <span class="c1"># write the file out again</span>
+                    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filedata</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../scripts/process_qrc.html#process_qrc.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Process QRC files.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">,</span>
+                                     <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--qrc_dir&#39;</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="n">PACKAGE_PATH</span><span class="p">,</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;QRC file directory, relative to current directory.&quot;</span><span class="p">,)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--create&#39;</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="s1">&#39;qtpy&#39;</span><span class="p">,</span>
+                        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pyqt&#39;</span><span class="p">,</span> <span class="s1">&#39;pyqt5&#39;</span><span class="p">,</span> <span class="s1">&#39;pyside&#39;</span><span class="p">,</span> <span class="s1">&#39;pyside2&#39;</span><span class="p">,</span> <span class="s1">&#39;qtpy&#39;</span><span class="p">,</span> <span class="s1">&#39;pyqtgraph&#39;</span><span class="p">,</span> <span class="s1">&#39;qt&#39;</span><span class="p">,</span> <span class="s1">&#39;qt5&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">],</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Choose which one would be generated.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--watch&#39;</span><span class="p">,</span> <span class="s1">&#39;-w&#39;</span><span class="p">,</span>
+                        <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Watch for file changes.&quot;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">watch</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">PACKAGE_PATH</span>
+        <span class="n">observer</span> <span class="o">=</span> <span class="n">Observer</span><span class="p">()</span>
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">QSSFileHandler</span><span class="p">(</span><span class="n">parser_args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">observer</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">handler</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Watching QSS file for changes...Press Ctrl+C to exit&#39;</span><span class="p">)</span>
+            <span class="n">observer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="n">observer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="n">observer</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">run_process</span><span class="p">(</span><span class="n">args</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">OutputLogger</span><span class="p">()</span>
+    <span class="n">qInstallMessageHandler</span><span class="p">(</span><span class="n">qt_message_handler</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

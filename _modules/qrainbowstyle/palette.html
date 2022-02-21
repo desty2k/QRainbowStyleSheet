@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrainbowstyle.palette &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+          <li><a href="../qrainbowstyle.html">qrainbowstyle</a> &raquo;</li>
+      <li>qrainbowstyle.palette</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qrainbowstyle.palette</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;QRainbowStyle default palette.&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="c1"># package imports</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle.colorsystem</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="BasePalette"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.BasePalette">[docs]</a><span class="k">class</span> <span class="nc">BasePalette</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Base class for palettes.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Color</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Size</span>
+    <span class="n">SIZE_BORDER_RADIUS</span> <span class="o">=</span> <span class="s1">&#39;4px&#39;</span>
+
+    <span class="c1"># Borders</span>
+    <span class="n">BORDER_1</span> <span class="o">=</span> <span class="s1">&#39;1px solid $COLOR_BACKGROUND_1&#39;</span>
+    <span class="n">BORDER_2</span> <span class="o">=</span> <span class="s1">&#39;1px solid $COLOR_BACKGROUND_4&#39;</span>
+    <span class="n">BORDER_3</span> <span class="o">=</span> <span class="s1">&#39;1px solid $COLOR_BACKGROUND_6&#39;</span>
+
+    <span class="n">BORDER_SELECTION_3</span> <span class="o">=</span> <span class="s1">&#39;1px solid $COLOR_ACCENT_3&#39;</span>
+    <span class="n">BORDER_SELECTION_2</span> <span class="o">=</span> <span class="s1">&#39;1px solid $COLOR_ACCENT_2&#39;</span>
+    <span class="n">BORDER_SELECTION_1</span> <span class="o">=</span> <span class="s1">&#39;1px solid $COLOR_ACCENT_1&#39;</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="c1"># Paths</span>
+    <span class="n">PATH_RESOURCES</span> <span class="o">=</span> <span class="s2">&quot;&#39;:/qss_icons&#39;&quot;</span>
+
+<div class="viewcode-block" id="BasePalette.to_dict"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.BasePalette.to_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">colors_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert variables to dictionary.&quot;&quot;&quot;</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;COLOR_BACKGROUND_6&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_BACKGROUND_5&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_BACKGROUND_4&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_BACKGROUND_2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_BACKGROUND_3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_BACKGROUND_1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_TEXT_1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_TEXT_2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_TEXT_3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_TEXT_4&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_ACCENT_1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_ACCENT_2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_ACCENT_3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;COLOR_ACCENT_4&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;OPACITY_TOOLTIP&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;SIZE_BORDER_RADIUS&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BORDER_1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BORDER_2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BORDER_3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BORDER_SELECTION_3&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BORDER_SELECTION_2&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;BORDER_SELECTION_1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TITLE_BAR_BACKGROUND_COLOR&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TITLE_BAR_BUTTONS_HOVER_COLOR&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TITLE_BAR_BUTTONS_DISABLED_COLOR&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;TITLE_BAR_TEXT_COLOR&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;PATH_RESOURCES&#39;</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">dic</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">colors_only</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">var</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;COLOR&#39;</span><span class="p">):</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+                <span class="n">dic</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">dic</span></div>
+
+<div class="viewcode-block" id="BasePalette.color_palette"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.BasePalette.color_palette">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">color_palette</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the ordered colored palette dictionary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">colors_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Oceanic"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.Oceanic">[docs]</a><span class="k">class</span> <span class="nc">Oceanic</span><span class="p">(</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Theme variables.&quot;&quot;&quot;</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="s2">&quot;#263238&quot;</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="s2">&quot;#2f4048&quot;</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="s2">&quot;#34474f&quot;</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="s2">&quot;#394d57&quot;</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="s2">&quot;#3d545f&quot;</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="s2">&quot;#425b67&quot;</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B110</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B90</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B80</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="s2">&quot;#0a4542&quot;</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="s2">&quot;#136460&quot;</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="s2">&quot;#097D74&quot;</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="s2">&quot;#56BFBA&quot;</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="s2">&quot;#C4D6DB&quot;</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">230</span></div>
+
+
+<div class="viewcode-block" id="QDarkStyle"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.QDarkStyle">[docs]</a><span class="k">class</span> <span class="nc">QDarkStyle</span><span class="p">(</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="s2">&quot;#19232d&quot;</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="s2">&quot;#27323c&quot;</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="s2">&quot;#35414b&quot;</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="s2">&quot;#3e4b55&quot;</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="s2">&quot;#47555f&quot;</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="s2">&quot;#505f69&quot;</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B110</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B90</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B80</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="s2">&quot;#14506e&quot;</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="s2">&quot;#145f87&quot;</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="s2">&quot;#146998&quot;</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="s2">&quot;#1478b1&quot;</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="s2">&quot;#148cd2&quot;</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">230</span></div>
+
+
+<div class="viewcode-block" id="DarkOrange"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.DarkOrange">[docs]</a><span class="k">class</span> <span class="nc">DarkOrange</span><span class="p">(</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B10</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B20</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B30</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B40</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B50</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B60</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B110</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B90</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B80</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="s2">&quot;#ce4b01&quot;</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="s2">&quot;#d66522&quot;</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="s2">&quot;#de8044&quot;</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="s2">&quot;#e79b65&quot;</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="s2">&quot;#efb587&quot;</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">230</span></div>
+
+
+<div class="viewcode-block" id="LightOrange"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.LightOrange">[docs]</a><span class="k">class</span> <span class="nc">LightOrange</span><span class="p">(</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B140</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B120</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B110</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B100</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B90</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B10</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B20</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B50</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B70</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="s2">&quot;#ce4b01&quot;</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="s2">&quot;#d66522&quot;</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="s2">&quot;#de8044&quot;</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="s2">&quot;#e79b65&quot;</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="s2">&quot;#efb587&quot;</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">230</span></div>
+
+
+<div class="viewcode-block" id="QDarkStyle3Light"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.QDarkStyle3Light">[docs]</a><span class="k">class</span> <span class="nc">QDarkStyle3Light</span><span class="p">(</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="c1"># Color</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B140</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B120</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B110</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B100</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B90</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B10</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B20</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B50</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B70</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B100</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B90</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B80</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B70</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">230</span></div>
+
+
+<div class="viewcode-block" id="QDarkStyle3"><a class="viewcode-back" href="../../reference/qrainbowstyle.html#qrainbowstyle.palette.QDarkStyle3">[docs]</a><span class="k">class</span> <span class="nc">QDarkStyle3</span><span class="p">(</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="c1"># Color</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B10</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B20</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B30</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B40</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B50</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B60</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B110</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B90</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B80</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B20</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B40</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B50</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B70</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="n">Blue</span><span class="o">.</span><span class="n">B80</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">230</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

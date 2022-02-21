@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrainbowstyle package &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="qrainbowstyle.extras package" href="qrainbowstyle.extras.html" />
+    <link rel="prev" title="qrainbowstyle" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">qrainbowstyle</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">qrainbowstyle package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.extras.html">qrainbowstyle.extras package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.html">qrainbowstyle.styles package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.utils.html">qrainbowstyle.utils package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.html">qrainbowstyle.widgets package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.windows.html">qrainbowstyle.windows package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-qrainbowstyle.colorsystem">qrainbowstyle.colorsystem module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-qrainbowstyle.palette">qrainbowstyle.palette module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-qrainbowstyle">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">qrainbowstyle</a> &raquo;</li>
+      <li>qrainbowstyle package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/qrainbowstyle.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qrainbowstyle-package">
+<h1>qrainbowstyle package<a class="headerlink" href="#qrainbowstyle-package" title="Permalink to this headline"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="qrainbowstyle.extras.html">qrainbowstyle.extras package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.extras.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.extras.html#module-qrainbowstyle.extras.debugging">qrainbowstyle.extras.debugging module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.extras.html#module-qrainbowstyle.extras">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="qrainbowstyle.styles.html">qrainbowstyle.styles package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.styles.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.styles.DarkOrange.html">qrainbowstyle.styles.DarkOrange package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.DarkOrange.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.DarkOrange.html#module-qrainbowstyle.styles.DarkOrange.style_rc">qrainbowstyle.styles.DarkOrange.style_rc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.DarkOrange.html#module-qrainbowstyle.styles.DarkOrange">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.styles.LightOrange.html">qrainbowstyle.styles.LightOrange package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.LightOrange.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.LightOrange.html#module-qrainbowstyle.styles.LightOrange.style_rc">qrainbowstyle.styles.LightOrange.style_rc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.LightOrange.html#module-qrainbowstyle.styles.LightOrange">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.styles.Oceanic.html">qrainbowstyle.styles.Oceanic package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.Oceanic.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.Oceanic.html#module-qrainbowstyle.styles.Oceanic.style_rc">qrainbowstyle.styles.Oceanic.style_rc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.Oceanic.html#module-qrainbowstyle.styles.Oceanic">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle.html">qrainbowstyle.styles.QDarkStyle package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle.html#module-qrainbowstyle.styles.QDarkStyle.style_rc">qrainbowstyle.styles.QDarkStyle.style_rc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle.html#module-qrainbowstyle.styles.QDarkStyle">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3.html">qrainbowstyle.styles.QDarkStyle3 package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3.html#module-qrainbowstyle.styles.QDarkStyle3.style_rc">qrainbowstyle.styles.QDarkStyle3.style_rc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3.html#module-qrainbowstyle.styles.QDarkStyle3">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3Light.html">qrainbowstyle.styles.QDarkStyle3Light package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3Light.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3Light.html#module-qrainbowstyle.styles.QDarkStyle3Light.style_rc">qrainbowstyle.styles.QDarkStyle3Light.style_rc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.styles.QDarkStyle3Light.html#module-qrainbowstyle.styles.QDarkStyle3Light">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.styles.html#module-qrainbowstyle.styles">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="qrainbowstyle.utils.html">qrainbowstyle.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.utils.html#module-qrainbowstyle.utils.images">qrainbowstyle.utils.images module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.utils.html#module-qrainbowstyle.utils.scss">qrainbowstyle.utils.scss module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.utils.html#module-qrainbowstyle.utils">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="qrainbowstyle.widgets.html">qrainbowstyle.widgets package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.widgets.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.widgets.GoogleMapsWidget.html">qrainbowstyle.widgets.GoogleMapsWidget package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.GoogleMapsWidget.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.GoogleMapsWidget.html#module-qrainbowstyle.widgets.GoogleMapsWidget.GoogleMapsHtml">qrainbowstyle.widgets.GoogleMapsWidget.GoogleMapsHtml module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.GoogleMapsWidget.html#qrainbowstyle-widgets-googlemapswidget-mapswidget-module">qrainbowstyle.widgets.GoogleMapsWidget.MapsWidget module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.GoogleMapsWidget.html#module-qrainbowstyle.widgets.GoogleMapsWidget.OpenStreetMapsHtml">qrainbowstyle.widgets.GoogleMapsWidget.OpenStreetMapsHtml module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.GoogleMapsWidget.html#module-qrainbowstyle.widgets.GoogleMapsWidget">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.widgets.PythonQtWidgets.html">qrainbowstyle.widgets.PythonQtWidgets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.PythonQtWidgets.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.PythonQtWidgets.html#qrainbowstyle-widgets-pythonqtwidgets-picker-module">qrainbowstyle.widgets.PythonQtWidgets.picker module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.PythonQtWidgets.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.widgets.QRoundProgressBar.html">qrainbowstyle.widgets.QRoundProgressBar package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.QRoundProgressBar.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.QRoundProgressBar.html#qrainbowstyle-widgets-qroundprogressbar-qroundprogressbar-module">qrainbowstyle.widgets.QRoundProgressBar.qroundprogressbar module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.QRoundProgressBar.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.widgets.QtWaitingSpinner.html">qrainbowstyle.widgets.QtWaitingSpinner package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.QtWaitingSpinner.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle-widgets-qtwaitingspinner-designer-module">qrainbowstyle.widgets.QtWaitingSpinner.designer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.QtWaitingSpinner.html#module-qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner">qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.widgets.QtWaitingSpinner.html#module-qrainbowstyle.widgets.QtWaitingSpinner">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.widgets.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="qrainbowstyle.windows.html">qrainbowstyle.windows package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.windows.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="qrainbowstyle.windows.base.html">qrainbowstyle.windows.base package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.windows.base.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.windows.base.html#module-qrainbowstyle.windows.base.Buttons">qrainbowstyle.windows.base.Buttons module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.windows.base.html#module-qrainbowstyle.windows.base.Titlebar">qrainbowstyle.windows.base.Titlebar module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.windows.base.html#module-qrainbowstyle.windows.base.Window">qrainbowstyle.windows.base.Window module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="qrainbowstyle.windows.base.html#module-qrainbowstyle.windows.base">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.windows.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.windows.html#module-qrainbowstyle.windows.FramelessMessageBox">qrainbowstyle.windows.FramelessMessageBox module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.windows.html#module-qrainbowstyle.windows.FramelessWindow">qrainbowstyle.windows.FramelessWindow module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.windows.html#qrainbowstyle-windows-framelesswindowwin-module">qrainbowstyle.windows.FramelessWindowWin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qrainbowstyle.windows.html#module-qrainbowstyle.windows">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-qrainbowstyle.colorsystem">
+<span id="qrainbowstyle-colorsystem-module"></span><h2>qrainbowstyle.colorsystem module<a class="headerlink" href="#module-qrainbowstyle.colorsystem" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.colorsystem.</span></span><span class="sig-name descname"><span class="pre">Blue</span></span><a class="reference internal" href="../_modules/qrainbowstyle/colorsystem.html#Blue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B0">
+<span class="sig-name descname"><span class="pre">B0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#000000'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B10">
+<span class="sig-name descname"><span class="pre">B10</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#062647'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B100">
+<span class="sig-name descname"><span class="pre">B100</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#9FCBFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B110">
+<span class="sig-name descname"><span class="pre">B110</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C2DFFA'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B110" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B120">
+<span class="sig-name descname"><span class="pre">B120</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#CEE8FF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B120" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B130">
+<span class="sig-name descname"><span class="pre">B130</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#DAEDFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B130" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B140">
+<span class="sig-name descname"><span class="pre">B140</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#F5FAFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B140" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B150">
+<span class="sig-name descname"><span class="pre">B150</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'##FFFFFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B150" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B20">
+<span class="sig-name descname"><span class="pre">B20</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#26486B'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B20" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B30">
+<span class="sig-name descname"><span class="pre">B30</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#375A7F'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B30" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B40">
+<span class="sig-name descname"><span class="pre">B40</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#346792'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B40" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B50">
+<span class="sig-name descname"><span class="pre">B50</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#1A72BB'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B50" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B60">
+<span class="sig-name descname"><span class="pre">B60</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#057DCE'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B60" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B70">
+<span class="sig-name descname"><span class="pre">B70</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#259AE9'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B70" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B80">
+<span class="sig-name descname"><span class="pre">B80</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#37AEFE'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B80" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Blue.B90">
+<span class="sig-name descname"><span class="pre">B90</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#73C7FF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Blue.B90" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.colorsystem.</span></span><span class="sig-name descname"><span class="pre">Gray</span></span><a class="reference internal" href="../_modules/qrainbowstyle/colorsystem.html#Gray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B0">
+<span class="sig-name descname"><span class="pre">B0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#000000'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B10">
+<span class="sig-name descname"><span class="pre">B10</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232D'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B100">
+<span class="sig-name descname"><span class="pre">B100</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#B9BDC1'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B110">
+<span class="sig-name descname"><span class="pre">B110</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C9CDD0'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B110" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B120">
+<span class="sig-name descname"><span class="pre">B120</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#CED1D4'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B120" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B130">
+<span class="sig-name descname"><span class="pre">B130</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B130" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B140">
+<span class="sig-name descname"><span class="pre">B140</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FAFAFA'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B140" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B150">
+<span class="sig-name descname"><span class="pre">B150</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFFFFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B150" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B20">
+<span class="sig-name descname"><span class="pre">B20</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#293544'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B20" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B30">
+<span class="sig-name descname"><span class="pre">B30</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#37414F'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B30" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B40">
+<span class="sig-name descname"><span class="pre">B40</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#455364'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B40" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B50">
+<span class="sig-name descname"><span class="pre">B50</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#54687A'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B50" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B60">
+<span class="sig-name descname"><span class="pre">B60</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#60798B'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B60" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B70">
+<span class="sig-name descname"><span class="pre">B70</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#788D9C'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B70" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B80">
+<span class="sig-name descname"><span class="pre">B80</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#9DA9B5'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B80" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Gray.B90">
+<span class="sig-name descname"><span class="pre">B90</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ACB1B6'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Gray.B90" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.colorsystem.</span></span><span class="sig-name descname"><span class="pre">Green</span></span><a class="reference internal" href="../_modules/qrainbowstyle/colorsystem.html#Green"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.colorsystem.Green" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B0">
+<span class="sig-name descname"><span class="pre">B0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#000000'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B10">
+<span class="sig-name descname"><span class="pre">B10</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#064738'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B100">
+<span class="sig-name descname"><span class="pre">B100</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#88F2D3'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B110">
+<span class="sig-name descname"><span class="pre">B110</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#B0F5E1'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B110" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B120">
+<span class="sig-name descname"><span class="pre">B120</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#D1FBEE'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B120" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B130">
+<span class="sig-name descname"><span class="pre">B130</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E4FFF7'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B130" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B140">
+<span class="sig-name descname"><span class="pre">B140</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#F5FFFD'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B140" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B150">
+<span class="sig-name descname"><span class="pre">B150</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFFFFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B150" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B20">
+<span class="sig-name descname"><span class="pre">B20</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#055C49'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B20" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B30">
+<span class="sig-name descname"><span class="pre">B30</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#007A5E'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B30" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B40">
+<span class="sig-name descname"><span class="pre">B40</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#008760'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B40" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B50">
+<span class="sig-name descname"><span class="pre">B50</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#019D70'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B50" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B60">
+<span class="sig-name descname"><span class="pre">B60</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#02BA85'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B60" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B70">
+<span class="sig-name descname"><span class="pre">B70</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#20C997'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B70" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B80">
+<span class="sig-name descname"><span class="pre">B80</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#44DEB0'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B80" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Green.B90">
+<span class="sig-name descname"><span class="pre">B90</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#3BEBB7'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Green.B90" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.colorsystem.</span></span><span class="sig-name descname"><span class="pre">GroupDark</span></span><a class="reference internal" href="../_modules/qrainbowstyle/colorsystem.html#GroupDark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B10">
+<span class="sig-name descname"><span class="pre">B10</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E11C1C'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B100">
+<span class="sig-name descname"><span class="pre">B100</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#AF2294'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B110">
+<span class="sig-name descname"><span class="pre">B110</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#DB4D8E'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B110" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B120">
+<span class="sig-name descname"><span class="pre">B120</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#38D4A4'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B120" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B20">
+<span class="sig-name descname"><span class="pre">B20</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FF8A00'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B20" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B30">
+<span class="sig-name descname"><span class="pre">B30</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#88BA00'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B30" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B40">
+<span class="sig-name descname"><span class="pre">B40</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#2DB500'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B40" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B50">
+<span class="sig-name descname"><span class="pre">B50</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#3FC6F0'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B50" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B60">
+<span class="sig-name descname"><span class="pre">B60</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#107EEC'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B60" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B70">
+<span class="sig-name descname"><span class="pre">B70</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#5C47E0'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B70" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B80">
+<span class="sig-name descname"><span class="pre">B80</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#7F27C5'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B80" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupDark.B90">
+<span class="sig-name descname"><span class="pre">B90</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C88AFA'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupDark.B90" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.colorsystem.</span></span><span class="sig-name descname"><span class="pre">GroupLight</span></span><a class="reference internal" href="../_modules/qrainbowstyle/colorsystem.html#GroupLight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B10">
+<span class="sig-name descname"><span class="pre">B10</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FF6700'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B100">
+<span class="sig-name descname"><span class="pre">B100</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#CC2782'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B110">
+<span class="sig-name descname"><span class="pre">B110</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FF71BF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B110" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B120">
+<span class="sig-name descname"><span class="pre">B120</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#7EE8C7'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B120" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B20">
+<span class="sig-name descname"><span class="pre">B20</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFB000'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B20" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B30">
+<span class="sig-name descname"><span class="pre">B30</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFE600'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B30" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B40">
+<span class="sig-name descname"><span class="pre">B40</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#7FDD05'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B40" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B50">
+<span class="sig-name descname"><span class="pre">B50</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#00A585'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B50" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B60">
+<span class="sig-name descname"><span class="pre">B60</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#22BCF2'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B60" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B70">
+<span class="sig-name descname"><span class="pre">B70</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#1256CC'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B70" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B80">
+<span class="sig-name descname"><span class="pre">B80</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#803AD0'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B80" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.GroupLight.B90">
+<span class="sig-name descname"><span class="pre">B90</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#B568F2'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.GroupLight.B90" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.colorsystem.</span></span><span class="sig-name descname"><span class="pre">Orange</span></span><a class="reference internal" href="../_modules/qrainbowstyle/colorsystem.html#Orange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B0">
+<span class="sig-name descname"><span class="pre">B0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#000000'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B10">
+<span class="sig-name descname"><span class="pre">B10</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#471D06'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B100">
+<span class="sig-name descname"><span class="pre">B100</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFCF84'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B110">
+<span class="sig-name descname"><span class="pre">B110</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFDDA7'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B110" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B120">
+<span class="sig-name descname"><span class="pre">B120</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFEACA'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B120" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B130">
+<span class="sig-name descname"><span class="pre">B130</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFF3E2'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B130" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B140">
+<span class="sig-name descname"><span class="pre">B140</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFFBF5'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B140" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B150">
+<span class="sig-name descname"><span class="pre">B150</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFFFFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B150" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B20">
+<span class="sig-name descname"><span class="pre">B20</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#692907'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B20" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B30">
+<span class="sig-name descname"><span class="pre">B30</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#AB3E00'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B30" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B40">
+<span class="sig-name descname"><span class="pre">B40</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#CE4B01'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B40" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B50">
+<span class="sig-name descname"><span class="pre">B50</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E05E15'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B50" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B60">
+<span class="sig-name descname"><span class="pre">B60</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E57004'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B60" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B70">
+<span class="sig-name descname"><span class="pre">B70</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#F37E12'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B70" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B80">
+<span class="sig-name descname"><span class="pre">B80</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FF993B'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B80" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Orange.B90">
+<span class="sig-name descname"><span class="pre">B90</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFB950'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Orange.B90" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.colorsystem.</span></span><span class="sig-name descname"><span class="pre">Red</span></span><a class="reference internal" href="../_modules/qrainbowstyle/colorsystem.html#Red"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.colorsystem.Red" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B0">
+<span class="sig-name descname"><span class="pre">B0</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#000000'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B0" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B10">
+<span class="sig-name descname"><span class="pre">B10</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#470606'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B10" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B100">
+<span class="sig-name descname"><span class="pre">B100</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFACA4'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B100" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B110">
+<span class="sig-name descname"><span class="pre">B110</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFC3BD'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B110" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B120">
+<span class="sig-name descname"><span class="pre">B120</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FEDDDA'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B120" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B130">
+<span class="sig-name descname"><span class="pre">B130</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFEEEE'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B130" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B140">
+<span class="sig-name descname"><span class="pre">B140</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFF5F5'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B140" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B150">
+<span class="sig-name descname"><span class="pre">B150</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FFFFFF'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B150" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B20">
+<span class="sig-name descname"><span class="pre">B20</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#760B0B'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B20" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B30">
+<span class="sig-name descname"><span class="pre">B30</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#AF0F0F'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B30" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B40">
+<span class="sig-name descname"><span class="pre">B40</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#D4140B'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B40" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B50">
+<span class="sig-name descname"><span class="pre">B50</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#DE321F'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B50" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B60">
+<span class="sig-name descname"><span class="pre">B60</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E24232'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B60" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B70">
+<span class="sig-name descname"><span class="pre">B70</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E74C3C'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B70" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B80">
+<span class="sig-name descname"><span class="pre">B80</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#F66657'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B80" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.colorsystem.Red.B90">
+<span class="sig-name descname"><span class="pre">B90</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#F88478'</span></em><a class="headerlink" href="#qrainbowstyle.colorsystem.Red.B90" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-qrainbowstyle.palette">
+<span id="qrainbowstyle-palette-module"></span><h2>qrainbowstyle.palette module<a class="headerlink" href="#module-qrainbowstyle.palette" title="Permalink to this headline"></a></h2>
+<p>QRainbowStyle default palette.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.palette.</span></span><span class="sig-name descname"><span class="pre">BasePalette</span></span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#BasePalette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.BasePalette" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for palettes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.BORDER_1">
+<span class="sig-name descname"><span class="pre">BORDER_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1px</span> <span class="pre">solid</span> <span class="pre">$COLOR_BACKGROUND_1'</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.BORDER_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.BORDER_2">
+<span class="sig-name descname"><span class="pre">BORDER_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1px</span> <span class="pre">solid</span> <span class="pre">$COLOR_BACKGROUND_4'</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.BORDER_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.BORDER_3">
+<span class="sig-name descname"><span class="pre">BORDER_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1px</span> <span class="pre">solid</span> <span class="pre">$COLOR_BACKGROUND_6'</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.BORDER_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.BORDER_SELECTION_1">
+<span class="sig-name descname"><span class="pre">BORDER_SELECTION_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1px</span> <span class="pre">solid</span> <span class="pre">$COLOR_ACCENT_1'</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.BORDER_SELECTION_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.BORDER_SELECTION_2">
+<span class="sig-name descname"><span class="pre">BORDER_SELECTION_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1px</span> <span class="pre">solid</span> <span class="pre">$COLOR_ACCENT_2'</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.BORDER_SELECTION_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.BORDER_SELECTION_3">
+<span class="sig-name descname"><span class="pre">BORDER_SELECTION_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1px</span> <span class="pre">solid</span> <span class="pre">$COLOR_ACCENT_3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.BORDER_SELECTION_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_ACCENT_1">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_ACCENT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_ACCENT_2">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_ACCENT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_ACCENT_3">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_ACCENT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_ACCENT_4">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_ACCENT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_ACCENT_5">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_ACCENT_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_1">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_2">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_3">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_4">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_5">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_6">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_6</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_BACKGROUND_6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_TEXT_1">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_TEXT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_TEXT_2">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_TEXT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_TEXT_3">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_TEXT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.COLOR_TEXT_4">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.COLOR_TEXT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.OPACITY_TOOLTIP">
+<span class="sig-name descname"><span class="pre">OPACITY_TOOLTIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.OPACITY_TOOLTIP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.PATH_RESOURCES">
+<span class="sig-name descname"><span class="pre">PATH_RESOURCES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;':/qss_icons'&quot;</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.PATH_RESOURCES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.SIZE_BORDER_RADIUS">
+<span class="sig-name descname"><span class="pre">SIZE_BORDER_RADIUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'4px'</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.SIZE_BORDER_RADIUS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.TITLE_BAR_BACKGROUND_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BACKGROUND_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.TITLE_BAR_BACKGROUND_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.TITLE_BAR_BUTTONS_DISABLED_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_DISABLED_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.TITLE_BAR_BUTTONS_DISABLED_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.TITLE_BAR_BUTTONS_HOVER_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_HOVER_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.TITLE_BAR_BUTTONS_HOVER_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.TITLE_BAR_TEXT_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_TEXT_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.TITLE_BAR_TEXT_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.color_palette">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color_palette</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#BasePalette.color_palette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.color_palette" title="Permalink to this definition"></a></dt>
+<dd><p>Return the ordered colored palette dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.BasePalette.to_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#BasePalette.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.BasePalette.to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Convert variables to dictionary.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.palette.</span></span><span class="sig-name descname"><span class="pre">DarkOrange</span></span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#DarkOrange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qrainbowstyle.palette.BasePalette" title="qrainbowstyle.palette.BasePalette"><code class="xref py py-class docutils literal notranslate"><span class="pre">qrainbowstyle.palette.BasePalette</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_1">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ce4b01'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_2">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#d66522'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_3">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#de8044'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_4">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#e79b65'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_5">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#efb587'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_ACCENT_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_1">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232D'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_2">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#293544'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_3">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#37414F'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_4">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#455364'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_5">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#54687A'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_6">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_6</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#60798B'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_BACKGROUND_6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_TEXT_1">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_TEXT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_TEXT_2">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C9CDD0'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_TEXT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_TEXT_3">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ACB1B6'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_TEXT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.COLOR_TEXT_4">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#9DA9B5'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.COLOR_TEXT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.OPACITY_TOOLTIP">
+<span class="sig-name descname"><span class="pre">OPACITY_TOOLTIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">230</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.OPACITY_TOOLTIP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.TITLE_BAR_BACKGROUND_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BACKGROUND_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#de8044'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.TITLE_BAR_BACKGROUND_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.TITLE_BAR_BUTTONS_DISABLED_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_DISABLED_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ce4b01'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.TITLE_BAR_BUTTONS_DISABLED_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.TITLE_BAR_BUTTONS_HOVER_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_HOVER_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#e79b65'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.TITLE_BAR_BUTTONS_HOVER_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.DarkOrange.TITLE_BAR_TEXT_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_TEXT_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.DarkOrange.TITLE_BAR_TEXT_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.palette.</span></span><span class="sig-name descname"><span class="pre">LightOrange</span></span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#LightOrange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.LightOrange" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qrainbowstyle.palette.BasePalette" title="qrainbowstyle.palette.BasePalette"><code class="xref py py-class docutils literal notranslate"><span class="pre">qrainbowstyle.palette.BasePalette</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_ACCENT_1">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ce4b01'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_ACCENT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_ACCENT_2">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#d66522'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_ACCENT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_ACCENT_3">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#de8044'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_ACCENT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_ACCENT_4">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#e79b65'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_ACCENT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_ACCENT_5">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#efb587'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_ACCENT_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_1">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FAFAFA'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_2">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_3">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#CED1D4'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_4">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C9CDD0'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_5">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#B9BDC1'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_6">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_6</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ACB1B6'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_BACKGROUND_6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_TEXT_1">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232D'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_TEXT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_TEXT_2">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#293544'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_TEXT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_TEXT_3">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#54687A'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_TEXT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.COLOR_TEXT_4">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#788D9C'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.COLOR_TEXT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.OPACITY_TOOLTIP">
+<span class="sig-name descname"><span class="pre">OPACITY_TOOLTIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">230</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.OPACITY_TOOLTIP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.TITLE_BAR_BACKGROUND_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BACKGROUND_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#de8044'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.TITLE_BAR_BACKGROUND_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.TITLE_BAR_BUTTONS_DISABLED_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_DISABLED_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ce4b01'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.TITLE_BAR_BUTTONS_DISABLED_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.TITLE_BAR_BUTTONS_HOVER_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_HOVER_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#e79b65'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.TITLE_BAR_BUTTONS_HOVER_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.LightOrange.TITLE_BAR_TEXT_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_TEXT_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232D'</span></em><a class="headerlink" href="#qrainbowstyle.palette.LightOrange.TITLE_BAR_TEXT_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.palette.</span></span><span class="sig-name descname"><span class="pre">Oceanic</span></span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#Oceanic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.Oceanic" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qrainbowstyle.palette.BasePalette" title="qrainbowstyle.palette.BasePalette"><code class="xref py py-class docutils literal notranslate"><span class="pre">qrainbowstyle.palette.BasePalette</span></code></a></p>
+<p>Theme variables.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_ACCENT_1">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#0a4542'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_ACCENT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_ACCENT_2">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#136460'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_ACCENT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_ACCENT_3">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#097D74'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_ACCENT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_ACCENT_4">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#56BFBA'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_ACCENT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_ACCENT_5">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C4D6DB'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_ACCENT_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_1">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#263238'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_2">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#2f4048'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_3">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#34474f'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_4">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#394d57'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_5">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#3d545f'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_6">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_6</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#425b67'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_BACKGROUND_6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_TEXT_1">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_TEXT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_TEXT_2">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C9CDD0'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_TEXT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_TEXT_3">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ACB1B6'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_TEXT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.COLOR_TEXT_4">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#9DA9B5'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.COLOR_TEXT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.OPACITY_TOOLTIP">
+<span class="sig-name descname"><span class="pre">OPACITY_TOOLTIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">230</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.OPACITY_TOOLTIP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.TITLE_BAR_BACKGROUND_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BACKGROUND_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#097D74'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.TITLE_BAR_BACKGROUND_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.TITLE_BAR_BUTTONS_DISABLED_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_DISABLED_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#0a4542'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.TITLE_BAR_BUTTONS_DISABLED_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.TITLE_BAR_BUTTONS_HOVER_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_HOVER_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#56BFBA'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.TITLE_BAR_BUTTONS_HOVER_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.Oceanic.TITLE_BAR_TEXT_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_TEXT_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.Oceanic.TITLE_BAR_TEXT_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.palette.</span></span><span class="sig-name descname"><span class="pre">QDarkStyle</span></span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#QDarkStyle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qrainbowstyle.palette.BasePalette" title="qrainbowstyle.palette.BasePalette"><code class="xref py py-class docutils literal notranslate"><span class="pre">qrainbowstyle.palette.BasePalette</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_1">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#14506e'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_2">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#145f87'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_3">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#146998'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_4">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#1478b1'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_5">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#148cd2'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_ACCENT_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_1">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232d'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_2">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#27323c'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_3">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#35414b'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_4">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#3e4b55'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_5">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#47555f'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_6">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_6</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#505f69'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_BACKGROUND_6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_1">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_2">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C9CDD0'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_3">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ACB1B6'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_4">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#9DA9B5'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.COLOR_TEXT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.OPACITY_TOOLTIP">
+<span class="sig-name descname"><span class="pre">OPACITY_TOOLTIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">230</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.OPACITY_TOOLTIP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.TITLE_BAR_BACKGROUND_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BACKGROUND_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#146998'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.TITLE_BAR_BACKGROUND_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.TITLE_BAR_BUTTONS_DISABLED_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_DISABLED_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#14506e'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.TITLE_BAR_BUTTONS_DISABLED_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.TITLE_BAR_BUTTONS_HOVER_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_HOVER_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#1478b1'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.TITLE_BAR_BUTTONS_HOVER_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle.TITLE_BAR_TEXT_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_TEXT_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle.TITLE_BAR_TEXT_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.palette.</span></span><span class="sig-name descname"><span class="pre">QDarkStyle3</span></span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#QDarkStyle3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qrainbowstyle.palette.BasePalette" title="qrainbowstyle.palette.BasePalette"><code class="xref py py-class docutils literal notranslate"><span class="pre">qrainbowstyle.palette.BasePalette</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_1">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#26486B'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_2">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#346792'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_3">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#1A72BB'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_4">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#259AE9'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_5">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#37AEFE'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_ACCENT_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_1">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232D'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_2">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#293544'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_3">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#37414F'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_4">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#455364'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_5">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#54687A'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_6">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_6</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#60798B'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_BACKGROUND_6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_1">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_2">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C9CDD0'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_3">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ACB1B6'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_4">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#9DA9B5'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.COLOR_TEXT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.OPACITY_TOOLTIP">
+<span class="sig-name descname"><span class="pre">OPACITY_TOOLTIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">230</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.OPACITY_TOOLTIP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_BACKGROUND_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BACKGROUND_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#1A72BB'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_BACKGROUND_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_BUTTONS_DISABLED_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_DISABLED_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#26486B'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_BUTTONS_DISABLED_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_BUTTONS_HOVER_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_HOVER_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#259AE9'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_BUTTONS_HOVER_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_TEXT_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_TEXT_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3.TITLE_BAR_TEXT_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qrainbowstyle.palette.</span></span><span class="sig-name descname"><span class="pre">QDarkStyle3Light</span></span><a class="reference internal" href="../_modules/qrainbowstyle/palette.html#QDarkStyle3Light"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#qrainbowstyle.palette.BasePalette" title="qrainbowstyle.palette.BasePalette"><code class="xref py py-class docutils literal notranslate"><span class="pre">qrainbowstyle.palette.BasePalette</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_1">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#DAEDFF'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_2">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#9FCBFF'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_3">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#73C7FF'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_4">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#37AEFE'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_5">
+<span class="sig-name descname"><span class="pre">COLOR_ACCENT_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#259AE9'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_ACCENT_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_1">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#FAFAFA'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_2">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#E0E1E3'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_3">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#CED1D4'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_4">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#C9CDD0'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_5">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_5</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#B9BDC1'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_5" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_6">
+<span class="sig-name descname"><span class="pre">COLOR_BACKGROUND_6</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#ACB1B6'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_BACKGROUND_6" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_1">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232D'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_2">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#293544'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_3">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#54687A'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_4">
+<span class="sig-name descname"><span class="pre">COLOR_TEXT_4</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#788D9C'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.COLOR_TEXT_4" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.OPACITY_TOOLTIP">
+<span class="sig-name descname"><span class="pre">OPACITY_TOOLTIP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">230</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.OPACITY_TOOLTIP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_BACKGROUND_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BACKGROUND_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#73C7FF'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_BACKGROUND_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_BUTTONS_DISABLED_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_DISABLED_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#DAEDFF'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_BUTTONS_DISABLED_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_BUTTONS_HOVER_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_BUTTONS_HOVER_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#37AEFE'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_BUTTONS_HOVER_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_TEXT_COLOR">
+<span class="sig-name descname"><span class="pre">TITLE_BAR_TEXT_COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#19232D'</span></em><a class="headerlink" href="#qrainbowstyle.palette.QDarkStyle3Light.TITLE_BAR_TEXT_COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-qrainbowstyle">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-qrainbowstyle" title="Permalink to this headline"></a></h2>
+<p>QRainbowStyle is a fully customizable stylesheet for Python and Qt applications.</p>
+<p>This module provides a function to load pre-compiled stylesheets. To generate your own
+style based on custom color palette clone package from project homepage.</p>
+<p>qrainbowstyle.windows module adds frameless windows and message boxes.
+From version v0.8 module supports native Windows calls.
+Features:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Borders snapping</p></li>
+<li><p>Minimize, restore, close animations</p></li>
+<li><p>Size grips on borders</p></li>
+<li><p>Frame shadow</p></li>
+<li><p>Aero shake</p></li>
+</ul>
+</div></blockquote>
+<img alt="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v3.png" src="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v3.png" />
+<p>On Linux and Darwin qrainbowstyle will load class with its own implementation of these features.
+Due to a bug in Qt, window minimizing is not supported on MacOS.</p>
+<p>First, start importing our module</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+</pre></div>
+</div>
+<p>Then you can get stylesheet provided by QRainbowStyle for various Qt wrappers
+as shown below</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># PySide2</span>
+<span class="n">stylesheet</span> <span class="o">=</span> <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet_pyside2</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;oceanic&#39;</span><span class="p">)</span>
+<span class="c1"># PyQt5</span>
+<span class="n">stylesheet</span> <span class="o">=</span> <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet_pyqt5</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;oceanic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, from environment variables provided by QtPy, Qt.Py</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># QtPy</span>
+<span class="n">stylesheet</span> <span class="o">=</span>  <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;oceanic&#39;</span><span class="p">)</span>
+<span class="c1"># Qt.Py</span>
+<span class="n">stylesheet</span> <span class="o">=</span> <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;oceanic&#39;</span><span class="p">,</span> <span class="n">qt_api</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">__binding__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, set your QApplication with it</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">stylesheet</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To load frameless window in your app import both qrainbowstyle and qrainbowstyle.windows modules</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle.windows</span>
+</pre></div>
+</div>
+<p>Initialize qt app and load choosen stylesheet.
+Next, create instances of frameless window and your master widget with content you want to show.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create app and load selected stylesheet</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;oceanic&quot;</span><span class="p">))</span>
+
+<span class="c1"># Package options</span>
+<span class="c1"># qrainbowstyle.alignButtonsLeft()      # align titlebar buttons to left side</span>
+<span class="c1"># qrainbowstyle.useDarwinButtons()      # use darwin style buttons</span>
+<span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;My new application&quot;</span><span class="p">)</span>  <span class="c1"># set global name for application</span>
+<span class="c1"># qrainbowstyle.setAppIcon(&quot;icon.ico&quot;)    # set global app icon</span>
+
+<span class="c1"># Create frameless mainwindow</span>
+<span class="n">win</span> <span class="o">=</span> <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">FramelessWindow</span><span class="p">()</span>
+
+<span class="c1"># Create content widget and pass reference to main window</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">MasterWidget</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+
+<span class="c1"># Add widget to main window and show it</span>
+<span class="n">win</span><span class="o">.</span><span class="n">addContentWidget</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
+<span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Enjoy!</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.alignButtonsLeft">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">alignButtonsLeft</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#alignButtonsLeft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.alignButtonsLeft" title="Permalink to this definition"></a></dt>
+<dd><p>Align titlebar buttons to left</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.getAvailablePalettes">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">getAvailablePalettes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../_modules/qrainbowstyle.html#getAvailablePalettes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.getAvailablePalettes" title="Permalink to this definition"></a></dt>
+<dd><p>Get list of available palettes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.getAvailableStyles">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">getAvailableStyles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#getAvailableStyles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.getAvailableStyles" title="Permalink to this definition"></a></dt>
+<dd><p>Get list of available styles</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.getCurrentPalette">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">getCurrentPalette</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#getCurrentPalette"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.getCurrentPalette" title="Permalink to this definition"></a></dt>
+<dd><p>Returns loaded palette</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.load_stylesheet">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">load_stylesheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qt_api</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'qdarkstyle3'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#load_stylesheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.load_stylesheet" title="Permalink to this definition"></a></dt>
+<dd><p>Load the stylesheet. Takes care of importing the rc module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qt_api</strong> (<em>str</em>) – Qt binding name to set QT_API environment variable.
+Default is ‘’, i.e PyQt5 the default QtPy binding.
+Possible values are pyside2, pyqt5.
+Not case sensitive.</p></li>
+<li><p><strong>style</strong> (<em>str</em>) – Style to use. Default is ‘darkblue’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the stylesheet string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.load_stylesheet_pyqt5">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">load_stylesheet_pyqt5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkblue'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#load_stylesheet_pyqt5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.load_stylesheet_pyqt5" title="Permalink to this definition"></a></dt>
+<dd><p>Load the stylesheet for use in a PyQt5 application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the stylesheet string.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.load_stylesheet_pyside2">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">load_stylesheet_pyside2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkblue'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#load_stylesheet_pyside2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.load_stylesheet_pyside2" title="Permalink to this definition"></a></dt>
+<dd><p>Load the stylesheet for use in a PySide2 application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the stylesheet string.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.rainbowize">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">rainbowize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/qrainbowstyle.html#rainbowize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.rainbowize" title="Permalink to this definition"></a></dt>
+<dd><p>Replaces color names with hashes in text</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.setAppIcon">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">setAppIcon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icon_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#setAppIcon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.setAppIcon" title="Permalink to this definition"></a></dt>
+<dd><p>Set path to app icon which will be used in titlebars</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qrainbowstyle.useDarwinButtons">
+<span class="sig-prename descclassname"><span class="pre">qrainbowstyle.</span></span><span class="sig-name descname"><span class="pre">useDarwinButtons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qrainbowstyle.html#useDarwinButtons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qrainbowstyle.useDarwinButtons" title="Permalink to this definition"></a></dt>
+<dd><p>Use darwin styled buttons everywhere in app</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="qrainbowstyle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qrainbowstyle.extras.html" class="btn btn-neutral float-right" title="qrainbowstyle.extras package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrainbowstyle.utils.scss &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../qrainbowstyle.html">qrainbowstyle</a> &raquo;</li>
+      <li>qrainbowstyle.utils.scss</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qrainbowstyle.utils.scss</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Utilities for compiling SASS files.&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">import</span> <span class="nn">keyword</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c1"># Third party imports</span>
+<span class="kn">import</span> <span class="nn">qtsass</span>
+
+<span class="c1"># Local imports</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle</span> <span class="kn">import</span> <span class="p">(</span><span class="n">MAIN_SCSS_FILE</span><span class="p">,</span> <span class="n">MAIN_SCSS_FILEPATH</span><span class="p">,</span> <span class="n">QSS_PATH</span><span class="p">,</span>
+                           <span class="n">QSS_FILEPATH</span><span class="p">,</span> <span class="n">RC_PATH</span><span class="p">,</span> <span class="n">QSS_FILE</span><span class="p">,</span>
+                           <span class="n">VARIABLES_SCSS_FILE</span><span class="p">,</span> <span class="n">VARIABLES_SCSS_FILEPATH</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle.palette</span> <span class="kn">import</span> <span class="n">BasePalette</span>
+<span class="kn">from</span> <span class="nn">qrainbowstyle.utils.images</span> <span class="kn">import</span> <span class="n">create_images</span><span class="p">,</span> <span class="n">create_palette_image</span>
+
+<span class="c1"># Constants</span>
+<span class="n">PY2</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span>
+
+<span class="n">HEADER_SCSS</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;// ---------------------------------------------------------------------------</span>
+<span class="s1">//</span>
+<span class="s1">//    File created programmatically</span>
+<span class="s1">//</span>
+<span class="s1">//    The definitions are in the &quot;qrainbowstyle.palette&quot; module</span>
+<span class="s1">//</span>
+<span class="s1">//    WARNING! All changes made in this file will be lost!</span>
+<span class="s1">//</span>
+<span class="s1">//----------------------------------------------------------------------------</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">HEADER_QSS</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;/* ---------------------------------------------------------------------------</span>
+
+<span class="s1">    Created by the qtsass compiler v</span><span class="si">{}</span><span class="s1"></span>
+
+<span class="s1">    The definitions are in the &quot;qrainbowstyle.qss._styles.scss&quot; module</span>
+
+<span class="s1">    WARNING! All changes made in this file will be lost!</span>
+
+<span class="s1">--------------------------------------------------------------------------- */</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_dict_to_scss</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a scss variables string from a dict.&quot;&quot;&quot;</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">;&quot;</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_scss_to_dict</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse variables and return a dict.&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">):</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span> <span class="nf">_create_scss_variables</span><span class="p">(</span><span class="n">variables_scss_filepath</span><span class="p">,</span> <span class="n">palette</span><span class="p">,</span>
+                           <span class="n">header</span><span class="o">=</span><span class="n">HEADER_SCSS</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a scss variables file.&quot;&quot;&quot;</span>
+    <span class="n">scss</span> <span class="o">=</span> <span class="n">_dict_to_scss</span><span class="p">(</span><span class="n">palette</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">header</span> <span class="o">+</span> <span class="n">scss</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">variables_scss_filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_create_qss</span><span class="p">(</span><span class="n">main_scss_path</span><span class="p">,</span> <span class="n">qss_filepath</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">HEADER_QSS</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a styles.qss file from qtsass.&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">qtsass</span><span class="o">.</span><span class="n">compile_filename</span><span class="p">(</span><span class="n">main_scss_path</span><span class="p">,</span> <span class="n">qss_filepath</span><span class="p">,</span>
+                            <span class="n">output_style</span><span class="o">=</span><span class="s1">&#39;expanded&#39;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qss_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qtsass</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span> <span class="o">+</span> <span class="n">data</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">qss_filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<div class="viewcode-block" id="create_qss"><a class="viewcode-back" href="../../../reference/qrainbowstyle.utils.html#qrainbowstyle.utils.scss.create_qss">[docs]</a><span class="k">def</span> <span class="nf">create_qss</span><span class="p">(</span><span class="n">qss_filepath</span><span class="o">=</span><span class="n">QSS_FILEPATH</span><span class="p">,</span> <span class="n">main_scss_filepath</span><span class="o">=</span><span class="n">MAIN_SCSS_FILEPATH</span><span class="p">,</span>
+               <span class="n">variables_scss_filepath</span><span class="o">=</span><span class="n">VARIABLES_SCSS_FILEPATH</span><span class="p">,</span>
+               <span class="n">palette</span><span class="o">=</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create variables files and run qtsass compilation.&quot;&quot;&quot;</span>
+    <span class="n">_create_scss_variables</span><span class="p">(</span><span class="n">variables_scss_filepath</span><span class="p">,</span> <span class="n">palette</span><span class="p">)</span>
+    <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">_create_qss</span><span class="p">(</span><span class="n">main_scss_filepath</span><span class="p">,</span> <span class="n">qss_filepath</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stylesheet</span></div>
+
+
+<div class="viewcode-block" id="is_identifier"><a class="viewcode-back" href="../../../reference/qrainbowstyle.utils.html#qrainbowstyle.utils.scss.is_identifier">[docs]</a><span class="k">def</span> <span class="nf">is_identifier</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check that `name` string is a valid identifier in Python.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">PY2</span><span class="p">:</span>
+        <span class="n">is_not_keyword</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[a-z_][a-z0-9_]*$&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+        <span class="n">matches_pattern</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="n">is_not_keyword</span> <span class="ow">and</span> <span class="n">matches_pattern</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">isidentifier</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">check</span></div>
+
+
+<div class="viewcode-block" id="create_custom_qss"><a class="viewcode-back" href="../../../reference/qrainbowstyle.utils.html#qrainbowstyle.utils.scss.create_custom_qss">[docs]</a><span class="k">def</span> <span class="nf">create_custom_qss</span><span class="p">(</span>
+    <span class="n">palette</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">path</span><span class="p">,</span>
+    <span class="n">color_background_light</span><span class="p">,</span>
+    <span class="n">color_background_normal</span><span class="p">,</span>
+    <span class="n">color_background_dark</span><span class="p">,</span>
+    <span class="n">color_foreground_light</span><span class="p">,</span>
+    <span class="n">color_foreground_normal</span><span class="p">,</span>
+    <span class="n">color_foreground_dark</span><span class="p">,</span>
+    <span class="n">color_selection_light</span><span class="p">,</span>
+    <span class="n">color_selection_normal</span><span class="p">,</span>
+    <span class="n">color_selection_dark</span><span class="p">,</span>
+    <span class="n">border_radius</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a custom palette based on the parameters defined.</span>
+
+<span class="sd">    The `name` must be a valid Python identifier and will be stored</span>
+<span class="sd">    as a lowercased folder (even if the identifier had uppercase letters).</span>
+
+<span class="sd">    This fuction returns the custom stylesheet pointing to resources stored at</span>
+<span class="sd">    .../path/name/.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">stylesheet</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="c1"># Check if name is valid</span>
+    <span class="k">if</span> <span class="n">is_identifier</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">()</span> <span class="k">else</span> <span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;The custom palette name must be a valid Python &#39;</span>
+                        <span class="s1">&#39;identifier!&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Copy resources folder</span>
+    <span class="n">rc_loc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">RC_PATH</span><span class="p">)</span>
+    <span class="n">qss_loc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">QSS_PATH</span><span class="p">)</span>
+    <span class="n">theme_root_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">theme_rc_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">theme_root_path</span><span class="p">,</span> <span class="n">rc_loc</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">theme_root_path</span><span class="p">):</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">theme_root_path</span><span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">RC_PATH</span><span class="p">,</span> <span class="n">theme_rc_path</span><span class="p">)</span>
+
+    <span class="c1"># Copy QSS folder and contents</span>
+    <span class="n">theme_qss_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">theme_root_path</span><span class="p">,</span> <span class="n">qss_loc</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">theme_qss_path</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">removedirs</span><span class="p">(</span><span class="n">theme_qss_path</span><span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">QSS_PATH</span><span class="p">,</span> <span class="n">theme_qss_path</span><span class="p">)</span>
+
+    <span class="c1"># Create custom palette</span>
+    <span class="n">custom_palette</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">palette</span><span class="p">,</span> <span class="p">),</span> <span class="p">{})</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_LIGHT</span> <span class="o">=</span> <span class="n">color_background_light</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_NORMAL</span> <span class="o">=</span> <span class="n">color_background_normal</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_DARK</span> <span class="o">=</span> <span class="n">color_background_dark</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_FOREGROUND_LIGHT</span> <span class="o">=</span> <span class="n">color_foreground_light</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_FOREGROUND_NORMAL</span> <span class="o">=</span> <span class="n">color_foreground_normal</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_FOREGROUND_DARK</span> <span class="o">=</span> <span class="n">color_foreground_dark</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_SELECTION_LIGHT</span> <span class="o">=</span> <span class="n">color_selection_light</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_SELECTION_NORMAL</span> <span class="o">=</span> <span class="n">color_selection_normal</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">COLOR_SELECTION_DARK</span> <span class="o">=</span> <span class="n">color_selection_dark</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">SIZE_BORDER_RADIUS</span> <span class="o">=</span> <span class="n">border_radius</span>
+    <span class="n">custom_palette</span><span class="o">.</span><span class="n">PATH_RESOURCES</span> <span class="o">=</span> <span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">theme_root_path</span><span class="p">)</span>
+
+    <span class="c1"># Process images and save them to the custom platte rc folder</span>
+    <span class="n">create_images</span><span class="p">(</span><span class="n">rc_path</span><span class="o">=</span><span class="n">theme_rc_path</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">custom_palette</span><span class="p">)</span>
+    <span class="n">create_palette_image</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">theme_root_path</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">custom_palette</span><span class="p">)</span>
+
+    <span class="c1"># Compile SCSS</span>
+    <span class="n">variables_scss_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">theme_qss_path</span><span class="p">,</span> <span class="n">VARIABLES_SCSS_FILE</span><span class="p">)</span>
+    <span class="n">theme_main_scss_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">theme_qss_path</span><span class="p">,</span> <span class="n">MAIN_SCSS_FILE</span><span class="p">)</span>
+    <span class="n">theme_qss_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">theme_root_path</span><span class="p">,</span> <span class="n">QSS_FILE</span><span class="p">)</span>
+    <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">create_qss</span><span class="p">(</span>
+        <span class="n">qss_filepath</span><span class="o">=</span><span class="n">theme_qss_filepath</span><span class="p">,</span>
+        <span class="n">main_scss_filepath</span><span class="o">=</span><span class="n">theme_main_scss_filepath</span><span class="p">,</span>
+        <span class="n">variables_scss_filepath</span><span class="o">=</span><span class="n">variables_scss_filepath</span><span class="p">,</span>
+        <span class="n">palette</span><span class="o">=</span><span class="n">custom_palette</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Update colors in text</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">theme_main_scss_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">palette</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">custom_color</span> <span class="o">=</span> <span class="n">custom_palette</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">custom_color</span><span class="p">)</span>
+        <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">stylesheet</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">custom_color</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">theme_main_scss_filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">theme_qss_filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">stylesheet</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stylesheet</span></div>
+
+
+<div class="viewcode-block" id="create_custom_qss_from_palette"><a class="viewcode-back" href="../../../reference/qrainbowstyle.utils.html#qrainbowstyle.utils.scss.create_custom_qss_from_palette">[docs]</a><span class="k">def</span> <span class="nf">create_custom_qss_from_palette</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">palette</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a custom palette based on a palette class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;palette&#39;</span><span class="p">:</span> <span class="n">palette</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s1">&#39;path&#39;</span><span class="p">:</span> <span class="n">path</span><span class="p">,</span>
+        <span class="s1">&#39;border_radius&#39;</span><span class="p">:</span> <span class="n">palette</span><span class="o">.</span><span class="n">SIZE_BORDER_RADIUS</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">palette</span><span class="o">.</span><span class="n">color_palette</span><span class="p">())</span>
+    <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">create_custom_qss</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stylesheet</span></div>
+
+
+<span class="c1"># def create_custom_qss_from_dict(name, path, palette_dict):</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     Create a custom palette based on a palette dictionary.</span>
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     kwargs = {</span>
+<span class="c1">#         &#39;name&#39;: name,</span>
+<span class="c1">#         &#39;path&#39;: path,</span>
+<span class="c1">#         &#39;border_radius&#39;: palette_dict.get(&#39;SIZE_BORDER_RADIUS&#39;, &#39;4px&#39;),</span>
+<span class="c1">#     }</span>
+<span class="c1">#     kwargs.update(palette_dict)</span>
+<span class="c1">#     stylesheet = create_custom_qss(**kwargs)</span>
+<span class="c1">#</span>
+<span class="c1">#     return stylesheet</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Example of a custom palette</span>
+    <span class="c1"># TODO: change to not use a specfic path</span>
+    <span class="c1"># TODO: may move to other place, e.g., example.py</span>
+    <span class="n">qss</span> <span class="o">=</span> <span class="n">create_custom_qss</span><span class="p">(</span>
+        <span class="n">BasePalette</span><span class="p">,</span>
+        <span class="s1">&#39;MyAwesomePalette&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;/Users/gpena-castellanos/Desktop&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#ff0000&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#cc0000&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#aa0000&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#00ff00&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#00cc00&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#00aa00&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#0000ff&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#0000cc&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;#0000aa&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;0px&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

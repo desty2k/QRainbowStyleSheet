@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrainbowstyle.windows.FramelessMessageBox &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../qrainbowstyle.html">qrainbowstyle</a> &raquo;</li>
+      <li>qrainbowstyle.windows.FramelessMessageBox</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qrainbowstyle.windows.FramelessMessageBox</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QSize</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="kn">import</span> <span class="n">QGridLayout</span><span class="p">,</span> <span class="n">QLabel</span><span class="p">,</span> <span class="n">QStyle</span><span class="p">,</span> <span class="n">QDialogButtonBox</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QApplication</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtGui</span> <span class="kn">import</span> <span class="n">QIcon</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">FramelessWindow</span>
+
+
+<div class="viewcode-block" id="FramelessMessageBox"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox">[docs]</a><span class="k">class</span> <span class="nc">FramelessMessageBox</span><span class="p">(</span><span class="n">FramelessWindow</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Frameless messagebox.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FramelessMessageBox</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setResizingEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span>
+        <span class="n">policy</span> <span class="o">=</span> <span class="n">QSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="n">policy</span><span class="o">.</span><span class="n">setHeightForWidth</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">policy</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span> <span class="o">=</span> <span class="n">QWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span> <span class="o">=</span> <span class="n">QGridLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">setVerticalSpacing</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">setHorizontalSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__iconLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__iconLabel</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__iconLabel</span><span class="o">.</span><span class="n">setScaledContents</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__iconLabel</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignTop</span> <span class="o">|</span> <span class="n">Qt</span><span class="o">.</span><span class="n">AlignLeft</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">setWordWrap</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">setIndent</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">setScaledContents</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">setMouseTracking</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">autoFillBackground</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">setSizePolicy</span><span class="p">(</span><span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">,</span> <span class="n">QSizePolicy</span><span class="o">.</span><span class="n">Minimum</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">setRowStretch</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">setRowMinimumHeight</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span> <span class="o">=</span> <span class="n">QDialogButtonBox</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Ok</span> <span class="o">|</span> <span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Cancel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__grid</span><span class="o">.</span><span class="n">addWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">addContentWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__messagewidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">showSizeControl</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setEdgeSnapping</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FramelessMessageBox.setStandardButtons"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.setStandardButtons">[docs]</a>    <span class="k">def</span> <span class="nf">setStandardButtons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buttons</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set standard buttons for message box.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            buttons (StandardButtons): Standard buttons.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">setStandardButtons</span><span class="p">(</span><span class="n">buttons</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.addButton"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.addButton">[docs]</a>    <span class="k">def</span> <span class="nf">addButton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="n">role</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds the given button to the button box with the specified role.</span>
+<span class="sd">        If the role is invalid, the button is not added.</span>
+
+<span class="sd">        If the button has already been added, it is removed and added again with the new role.</span>
+
+<span class="sd">        Note: The button box takes ownership of the button.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            button (StandardButton): Standard button.</span>
+<span class="sd">            role (ButtonRole): Button role</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">addButton</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">role</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.removeButton"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.removeButton">[docs]</a>    <span class="k">def</span> <span class="nf">removeButton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Removes button from the button box without deleting it and sets its parent to zero.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            button (StandardButton): Standard button.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">removeButton</span><span class="p">(</span><span class="n">button</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.button"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.button">[docs]</a>    <span class="k">def</span> <span class="nf">button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the QPushButton corresponding to the standard button which,</span>
+<span class="sd">        or 0 if the standard button doesn&#39;t exist in this button box.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            button (StandardButton): Standard button.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">button</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.buttons"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.buttons">[docs]</a>    <span class="k">def</span> <span class="nf">buttons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a list of all the buttons that have been added to the button box.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">buttons</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.standardButtons"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.standardButtons">[docs]</a>    <span class="k">def</span> <span class="nf">standardButtons</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This property holds collection of standard buttons in the button box.</span>
+<span class="sd">        This property controls which standard buttons are used by the button box.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">standardButtons</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.standardButton"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.standardButton">[docs]</a>    <span class="k">def</span> <span class="nf">standardButton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the standard button enum value corresponding to the given button,</span>
+<span class="sd">        or NoButton if the given button isn&#39;t a standard button.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            button (QAbstractButton): Standard button.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__buttonBox</span><span class="o">.</span><span class="n">standardButton</span><span class="p">(</span><span class="n">button</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.setText"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.setText">[docs]</a>    <span class="k">def</span> <span class="nf">setText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set text for message box.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">adjustSize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">updateGeometry</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adjustSize</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.text"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.text">[docs]</a>    <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This property holds the message box text to be displayed.</span>
+<span class="sd">        The default value of this property is an empty string.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__textLabel</span><span class="o">.</span><span class="n">text</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.setIcon"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.setIcon">[docs]</a>    <span class="k">def</span> <span class="nf">setIcon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">icon</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set icon for message box.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            icon (QIcon): Message box icon.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">icon</span><span class="p">:</span>
+            <span class="n">icon</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">style</span><span class="p">()</span><span class="o">.</span><span class="n">standardIcon</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__iconLabel</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">icon</span><span class="o">.</span><span class="n">pixmap</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__iconLabel</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">QIcon</span><span class="p">()</span><span class="o">.</span><span class="n">pixmap</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="FramelessMessageBox.icon"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessMessageBox.icon">[docs]</a>    <span class="k">def</span> <span class="nf">icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This property holds the message box&#39;s icon&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">QIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__iconLabel</span><span class="o">.</span><span class="n">pixmap</span><span class="p">())</span></div></div>
+
+
+<div class="viewcode-block" id="FramelessWarningMessageBox"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessWarningMessageBox">[docs]</a><span class="k">class</span> <span class="nc">FramelessWarningMessageBox</span><span class="p">(</span><span class="n">FramelessMessageBox</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FramelessWarningMessageBox</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">icon</span><span class="o">=</span><span class="n">QStyle</span><span class="o">.</span><span class="n">SP_MessageBoxWarning</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FramelessInformationMessageBox"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessInformationMessageBox">[docs]</a><span class="k">class</span> <span class="nc">FramelessInformationMessageBox</span><span class="p">(</span><span class="n">FramelessMessageBox</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FramelessInformationMessageBox</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">icon</span><span class="o">=</span><span class="n">QStyle</span><span class="o">.</span><span class="n">SP_MessageBoxInformation</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FramelessCriticalMessageBox"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessCriticalMessageBox">[docs]</a><span class="k">class</span> <span class="nc">FramelessCriticalMessageBox</span><span class="p">(</span><span class="n">FramelessMessageBox</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FramelessCriticalMessageBox</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">icon</span><span class="o">=</span><span class="n">QStyle</span><span class="o">.</span><span class="n">SP_MessageBoxCritical</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FramelessQuestionMessageBox"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessMessageBox.FramelessQuestionMessageBox">[docs]</a><span class="k">class</span> <span class="nc">FramelessQuestionMessageBox</span><span class="p">(</span><span class="n">FramelessMessageBox</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FramelessQuestionMessageBox</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">icon</span><span class="o">=</span><span class="n">QStyle</span><span class="o">.</span><span class="n">SP_MessageBoxQuestion</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

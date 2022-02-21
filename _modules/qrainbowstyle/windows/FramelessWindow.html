@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrainbowstyle.windows.FramelessWindow &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../qrainbowstyle.html">qrainbowstyle</a> &raquo;</li>
+      <li>qrainbowstyle.windows.FramelessWindow</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qrainbowstyle.windows.FramelessWindow</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">QObject</span><span class="p">,</span> <span class="n">QRect</span><span class="p">,</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QPoint</span><span class="p">,</span> <span class="n">QSize</span><span class="p">,</span> <span class="n">QEvent</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtGui</span> <span class="kn">import</span> <span class="n">QMouseEvent</span><span class="p">,</span> <span class="n">QCursor</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QWidget</span>
+
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">FramelessWindowBase</span>
+
+
+<div class="viewcode-block" id="FramelessWindow"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessWindow.FramelessWindow">[docs]</a><span class="k">class</span> <span class="nc">FramelessWindow</span><span class="p">(</span><span class="n">FramelessWindowBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Frameless window for non-Windows OS like Linux and Darwin.</span>
+<span class="sd">    Reimplements features:</span>
+<span class="sd">    - window moving</span>
+<span class="sd">    - window resizing</span>
+<span class="sd">    - maximize on double click on titlebar</span>
+<span class="sd">    - snap to borders</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FramelessWindow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__titlebarHeight</span> <span class="o">=</span> <span class="mi">45</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__sideGripIgnore</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__griprect</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__hgriprect</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__vgriprect</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__moving</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__move_offset</span> <span class="o">=</span> <span class="n">QPoint</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">installEventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__updateGripRect</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setMouseTracking</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FramelessWindow.setMouseTracking"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessWindow.FramelessWindow.setMouseTracking">[docs]</a>    <span class="k">def</span> <span class="nf">setMouseTracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flag</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recursively enables mouse tracking for all child widgets.</span>
+<span class="sd">        This is required because eventFilter does not catch</span>
+<span class="sd">        hover events.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            flag (bool): Enable or disable mouse tracking.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">recursive_set</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">parent</span><span class="o">.</span><span class="n">findChildren</span><span class="p">(</span><span class="n">QObject</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">child</span><span class="o">.</span><span class="n">setMouseTracking</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="n">recursive_set</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+        <span class="n">QWidget</span><span class="o">.</span><span class="n">setMouseTracking</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span>
+        <span class="n">recursive_set</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__updateGripRect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update rects for current window geometry.&quot;&quot;&quot;</span>
+        <span class="c1"># corner grip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__griprect</span> <span class="o">=</span> <span class="n">QRect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">,</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">)</span>
+
+        <span class="c1"># right grip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__hgriprect</span> <span class="o">=</span> <span class="n">QRect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">__titlebarHeight</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sideGripIgnore</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__titlebarHeight</span><span class="p">)</span>
+
+        <span class="c1"># bottom grip</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__vgriprect</span> <span class="o">=</span> <span class="n">QRect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sideGripIgnore</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">__gripsize</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FramelessWindow.eventFilter"><a class="viewcode-back" href="../../../reference/qrainbowstyle.windows.html#qrainbowstyle.windows.FramelessWindow.FramelessWindow.eventFilter">[docs]</a>    <span class="k">def</span> <span class="nf">eventFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QEvent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle frameless window events.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            widget (QObject): Widget.</span>
+<span class="sd">            event (QEvent): Event.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="s2">&quot;window&quot;</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="n">widget</span><span class="o">.</span><span class="n">window</span><span class="p">()</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__updateGripRect</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">titlebar</span><span class="p">()</span><span class="o">.</span><span class="n">rect</span><span class="p">()</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapFromParent</span><span class="p">(</span><span class="n">QCursor</span><span class="o">.</span><span class="n">pos</span><span class="p">()))</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">titlebar</span><span class="p">()</span><span class="o">.</span><span class="n">mouseOverTitlebar</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="n">event</span><span class="o">.</span><span class="n">y</span><span class="p">())):</span>
+                <span class="c1"># when cursor is over titlebar</span>
+
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QMouseEvent</span><span class="o">.</span><span class="n">MouseButtonPress</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">buttons</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">LeftButton</span><span class="p">:</span>
+                    <span class="c1"># if titlebar clicked with left button</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__moving</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">margins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">titlebar</span><span class="p">()</span><span class="o">.</span><span class="n">contentsMargins</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__move_offset</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">titlebar</span><span class="p">()</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span> <span class="o">-</span> <span class="n">QPoint</span><span class="p">(</span><span class="n">margins</span><span class="o">.</span><span class="n">left</span><span class="p">(),</span> <span class="n">margins</span><span class="o">.</span><span class="n">top</span><span class="p">())</span>
+
+                <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QMouseEvent</span><span class="o">.</span><span class="n">MouseMove</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">buttons</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">LeftButton</span><span class="p">:</span>
+                    <span class="c1"># if holding left button and moving window</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__moving</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowState</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">WindowMaximized</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setWindowState</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowNoState</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">titlebar</span><span class="p">()</span><span class="o">.</span><span class="n">on_btnRestore_clicked</span><span class="p">()</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapFromParent</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">()))</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">__moving</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">globalPos</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__move_offset</span><span class="p">)</span>
+
+                <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QMouseEvent</span><span class="o">.</span><span class="n">MouseButtonRelease</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">LeftButton</span><span class="p">:</span>
+                    <span class="c1"># if left button released</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">__moving</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">screen</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">desktop</span><span class="p">()</span><span class="o">.</span><span class="n">availableGeometry</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">globalY</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># snap to top edge</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">titlebar</span><span class="p">()</span><span class="o">.</span><span class="n">on_btnMaximize_clicked</span><span class="p">()</span>
+
+                    <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">globalX</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># snap to left edge</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">QPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">screen</span><span class="o">.</span><span class="n">height</span><span class="p">()))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowState</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowNoState</span><span class="p">)</span>
+
+                    <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">globalX</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">screen</span><span class="o">.</span><span class="n">width</span><span class="p">():</span>
+                        <span class="c1"># snap to right edge</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">QPoint</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">screen</span><span class="o">.</span><span class="n">height</span><span class="p">()))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowState</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowNoState</span><span class="p">)</span>
+
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="c1"># move window if top of window is outside display</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">QPoint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="mi">0</span><span class="p">))</span>
+
+                <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QMouseEvent</span><span class="o">.</span><span class="n">MouseButtonDblClick</span><span class="p">:</span>
+                    <span class="c1"># maximize/restore on double click</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowState</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">WindowMaximized</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowState</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowNoState</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowState</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">WindowNoState</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">showMaximized</span><span class="p">()</span>
+
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">.</span><span class="n">Leave</span> <span class="ow">and</span> <span class="n">widget</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">titlebar</span><span class="p">():</span>
+                <span class="c1"># fixes __moving remain True after clicking titlebar on border and leaving titlebar</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__moving</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">windowState</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowFullScreen</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">WindowMaximized</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">isResizingEnabled</span><span class="p">()):</span>
+                <span class="c1"># when cursor is not over titlebar</span>
+                <span class="c1"># and window is not maximized or in full screen mode</span>
+
+                <span class="c1"># button pressed</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QMouseEvent</span><span class="o">.</span><span class="n">MouseButtonPress</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__griprect</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span><span class="p">:</span>
+                        <span class="c1"># corner grip</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="o">=</span> <span class="kc">True</span>
+
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__hgriprect</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span><span class="p">:</span>
+                        <span class="c1"># right grip</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span> <span class="o">=</span> <span class="kc">True</span>
+
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__vgriprect</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span><span class="p">:</span>
+                        <span class="c1"># bottom grip</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span> <span class="o">=</span> <span class="kc">True</span>
+
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QMouseEvent</span><span class="o">.</span><span class="n">MouseButtonRelease</span><span class="p">:</span>
+                    <span class="c1"># stop resizing</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span> <span class="o">=</span> <span class="kc">False</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">ArrowCursor</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QMouseEvent</span><span class="o">.</span><span class="n">MouseMove</span><span class="p">:</span>
+                    <span class="c1"># moving cursor while holding left button -&gt; resize</span>
+
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">buttons</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">LeftButton</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SizeFDiagCursor</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="n">event</span><span class="o">.</span><span class="n">y</span><span class="p">()))</span>
+
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">buttons</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">LeftButton</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SizeHorCursor</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">()))</span>
+
+                    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">buttons</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">LeftButton</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SizeVerCursor</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">(),</span> <span class="n">event</span><span class="o">.</span><span class="n">y</span><span class="p">()))</span>
+
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__griprect</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span>
+                                <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span>
+                                <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SizeFDiagCursor</span><span class="p">)</span>
+                        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__hgriprect</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span>
+                              <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span>
+                              <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__verticalResizing</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SizeHorCursor</span><span class="p">)</span>
+                        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__vgriprect</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">pos</span><span class="p">())</span>
+                              <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__resizing</span>
+                              <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__horizontalResizing</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">SizeVerCursor</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">ArrowCursor</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">eventFilter</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

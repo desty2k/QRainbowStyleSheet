@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../../qrainbowstyle.html">qrainbowstyle</a> &raquo;</li>
+      <li>qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The MIT License (MIT)</span>
+
+<span class="sd">Copyright (c) 2012-2014 Alexander Turkin</span>
+<span class="sd">Copyright (c) 2014 William Hallatt</span>
+<span class="sd">Copyright (c) 2015 Jacob Dawid</span>
+<span class="sd">Copyright (c) 2016 Luca Weiss</span>
+<span class="sd">Copyright (c) 2017 fbjorn</span>
+<span class="sd">Copyright (c) 2020 Wojciech Wentland</span>
+
+<span class="sd">Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span class="sd">of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span class="sd">in the Software without restriction, including without limitation the rights</span>
+<span class="sd">to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="sd">copies of the Software, and to permit persons to whom the Software is</span>
+<span class="sd">furnished to do so, subject to the following conditions:</span>
+
+<span class="sd">The above copyright notice and this permission notice shall be included in all</span>
+<span class="sd">copies or substantial portions of the Software.</span>
+
+<span class="sd">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span class="sd">IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span class="sd">FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span class="sd">AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span class="sd">LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span class="sd">OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span class="sd">SOFTWARE.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">QTimer</span><span class="p">,</span> <span class="n">QRectF</span><span class="p">,</span> <span class="n">Signal</span><span class="p">,</span> <span class="n">QEvent</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtGui</span> <span class="kn">import</span> <span class="n">QColor</span><span class="p">,</span> <span class="n">QPainter</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="kn">import</span> <span class="n">QWidget</span>
+
+<span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+
+
+<div class="viewcode-block" id="WaitingSpinner"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner">[docs]</a><span class="k">class</span> <span class="nc">WaitingSpinner</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;QtWaitingSpinner is a highly configurable, custom Qt widget</span>
+<span class="sd">    for showing &quot;waiting&quot; or &quot;loading&quot; spinner icons in Qt applications,</span>
+<span class="sd">    e.g. the spinners below are all QtWaitingSpinner widgets</span>
+<span class="sd">    differing only in their configuration</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        parent (QWidget): Parent widget.</span>
+<span class="sd">        centerOnParent (bool): Center on parent widget.</span>
+<span class="sd">        disableParentWhenSpinning (bool): Disable parent widget when spinning.</span>
+<span class="sd">        modality (Qt.WindowModality): Spinner modality.</span>
+<span class="sd">        roundness (float): Lines roundness.</span>
+<span class="sd">        fade (float): Spinner fade.</span>
+<span class="sd">        lines (int): Lines count.</span>
+<span class="sd">        line_length (int): Lines length.</span>
+<span class="sd">        line_width (int): Lines width.</span>
+<span class="sd">        radius (int): Spinner radius.</span>
+<span class="sd">        speed (float): Spinner speed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">centerOnParent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disableParentWhenSpinning</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">modality</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">NonModal</span><span class="p">,</span> <span class="n">roundness</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span> <span class="n">fade</span><span class="o">=</span><span class="mf">80.</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                 <span class="n">line_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">speed</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_centerOnParent</span> <span class="o">=</span> <span class="n">centerOnParent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_disableParentWhenSpinning</span> <span class="o">=</span> <span class="n">disableParentWhenSpinning</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="n">QColor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_roundness</span> <span class="o">=</span> <span class="n">roundness</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_minimumTrailOpacity</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trailFadePercentage</span> <span class="o">=</span> <span class="n">fade</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_oldTrailFadePercentage</span> <span class="o">=</span> <span class="n">fade</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_revolutionsPerSecond</span> <span class="o">=</span> <span class="n">speed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span> <span class="o">=</span> <span class="n">lines</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lineLength</span> <span class="o">=</span> <span class="n">line_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lineWidth</span> <span class="o">=</span> <span class="n">line_width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_innerRadius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_isSpinning</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeInTimer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeOutTimer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rotate</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateSize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateTimer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowModality</span><span class="p">(</span><span class="n">modality</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">WA_TranslucentBackground</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">getCurrentPalette</span><span class="p">()</span><span class="o">.</span><span class="n">COLOR_ACCENT_4</span><span class="p">)</span>
+
+<div class="viewcode-block" id="WaitingSpinner.paintEvent"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.paintEvent">[docs]</a>    <span class="k">def</span> <span class="nf">paintEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">QPaintEvent</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updatePosition</span><span class="p">()</span>
+        <span class="n">painter</span> <span class="o">=</span> <span class="n">QPainter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">painter</span><span class="o">.</span><span class="n">fillRect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rect</span><span class="p">(),</span> <span class="n">Qt</span><span class="o">.</span><span class="n">transparent</span><span class="p">)</span>
+        <span class="n">painter</span><span class="o">.</span><span class="n">setRenderHint</span><span class="p">(</span><span class="n">QPainter</span><span class="o">.</span><span class="n">Antialiasing</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">painter</span><span class="o">.</span><span class="n">setPen</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">NoPen</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span><span class="p">):</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_innerRadius</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineLength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_innerRadius</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineLength</span><span class="p">)</span>
+            <span class="n">rotateAngle</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">360</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span><span class="p">)</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">rotateAngle</span><span class="p">)</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_innerRadius</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineCountDistanceFromPrimary</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span><span class="p">)</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentLineColor</span><span class="p">(</span>
+                <span class="n">distance</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_trailFadePercentage</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_minimumTrailOpacity</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_color</span>
+            <span class="p">)</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">setBrush</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">drawRoundedRect</span><span class="p">(</span>
+                <span class="n">QRectF</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineWidth</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineLength</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineWidth</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_roundness</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_roundness</span><span class="p">,</span>
+                <span class="n">Qt</span><span class="o">.</span><span class="n">RelativeSize</span>
+            <span class="p">)</span>
+            <span class="n">painter</span><span class="o">.</span><span class="n">restore</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.changeEvent"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.changeEvent">[docs]</a>    <span class="k">def</span> <span class="nf">changeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">QEvent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Change event handler.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event (QEvent): Event.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">.</span><span class="n">StyleChange</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">getCurrentPalette</span><span class="p">()</span><span class="o">.</span><span class="n">COLOR_ACCENT_4</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.start"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.start">[docs]</a>    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updatePosition</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_isSpinning</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parentWidget</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_disableParentWhenSpinning</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">isActive</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.stop"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_isSpinning</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_disableParentWhenSpinning</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">isActive</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setNumberOfLines"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setNumberOfLines">[docs]</a>    <span class="k">def</span> <span class="nf">setNumberOfLines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span> <span class="o">=</span> <span class="n">lines</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateTimer</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setLineLength"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setLineLength">[docs]</a>    <span class="k">def</span> <span class="nf">setLineLength</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lineLength</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateSize</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setLineWidth"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setLineWidth">[docs]</a>    <span class="k">def</span> <span class="nf">setLineWidth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lineWidth</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateSize</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setInnerRadius"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setInnerRadius">[docs]</a>    <span class="k">def</span> <span class="nf">setInnerRadius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_innerRadius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateSize</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.fadeIn"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.fadeIn">[docs]</a>    <span class="k">def</span> <span class="nf">fadeIn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setTrailFadePercentage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stopFade</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeInTimer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeInTimer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_fadeIn</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeInTimer</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">time</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_on_fadeIn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trailFadePercentage</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_oldTrailFadePercentage</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trailFadePercentage</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setTrailFadePercentage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trailFadePercentage</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fadeInTimer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<div class="viewcode-block" id="WaitingSpinner.fadeOut"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.fadeOut">[docs]</a>    <span class="k">def</span> <span class="nf">fadeOut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stopFade</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeOutTimer</span> <span class="o">=</span> <span class="n">QTimer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeOutTimer</span><span class="o">.</span><span class="n">timeout</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_on_fadeOut</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fadeOutTimer</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">time</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_on_fadeOut</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">trailFadePercentage</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setTrailFadePercentage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trailFadePercentage</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fadeOutTimer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_isFading</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="WaitingSpinner.stopFade"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.stopFade">[docs]</a>    <span class="k">def</span> <span class="nf">stopFade</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fadeInTimer</span><span class="o">.</span><span class="n">isActive</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fadeInTimer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fadeOutTimer</span><span class="o">.</span><span class="n">isActive</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fadeOutTimer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">roundness</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_roundness</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">minimumTrailOpacity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minimumTrailOpacity</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">trailFadePercentage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_trailFadePercentage</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">revolutionsPersSecond</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_revolutionsPerSecond</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">numberOfLines</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lineLength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineLength</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lineWidth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineWidth</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">innerRadius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_innerRadius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">isSpinning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isSpinning</span>
+
+<div class="viewcode-block" id="WaitingSpinner.setRoundness"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setRoundness">[docs]</a>    <span class="k">def</span> <span class="nf">setRoundness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roundness</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_roundness</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">roundness</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setColor"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setColor">[docs]</a>    <span class="k">def</span> <span class="nf">setColor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">Qt</span><span class="o">.</span><span class="n">black</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="n">QColor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setRevolutionsPerSecond"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setRevolutionsPerSecond">[docs]</a>    <span class="k">def</span> <span class="nf">setRevolutionsPerSecond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">revolutionsPerSecond</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_revolutionsPerSecond</span> <span class="o">=</span> <span class="n">revolutionsPerSecond</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">updateTimer</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setTrailFadePercentage"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setTrailFadePercentage">[docs]</a>    <span class="k">def</span> <span class="nf">setTrailFadePercentage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trail</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trailFadePercentage</span> <span class="o">=</span> <span class="n">trail</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.setMinimumTrailOpacity"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.setMinimumTrailOpacity">[docs]</a>    <span class="k">def</span> <span class="nf">setMinimumTrailOpacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimumTrailOpacity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_minimumTrailOpacity</span> <span class="o">=</span> <span class="n">minimumTrailOpacity</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.rotate"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.rotate">[docs]</a>    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_currentCounter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.updateSize"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.updateSize">[docs]</a>    <span class="k">def</span> <span class="nf">updateSize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_innerRadius</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lineLength</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setFixedSize</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.updateTimer"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.updateTimer">[docs]</a>    <span class="k">def</span> <span class="nf">updateTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span><span class="o">.</span><span class="n">setInterval</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_numberOfLines</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_revolutionsPerSecond</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.updatePosition"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.updatePosition">[docs]</a>    <span class="k">def</span> <span class="nf">updatePosition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_centerOnParent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span>
+                <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.lineCountDistanceFromPrimary"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.lineCountDistanceFromPrimary">[docs]</a>    <span class="k">def</span> <span class="nf">lineCountDistanceFromPrimary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">primary</span><span class="p">,</span> <span class="n">totalNrOfLines</span><span class="p">):</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">primary</span> <span class="o">-</span> <span class="n">current</span>
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">distance</span> <span class="o">+=</span> <span class="n">totalNrOfLines</span>
+        <span class="k">return</span> <span class="n">distance</span></div>
+
+<div class="viewcode-block" id="WaitingSpinner.currentLineColor"><a class="viewcode-back" href="../../../../reference/qrainbowstyle.widgets.QtWaitingSpinner.html#qrainbowstyle.widgets.QtWaitingSpinner.pyqtspinner.WaitingSpinner.currentLineColor">[docs]</a>    <span class="k">def</span> <span class="nf">currentLineColor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">countDistance</span><span class="p">,</span> <span class="n">totalNrOfLines</span><span class="p">,</span> <span class="n">trailFadePerc</span><span class="p">,</span> <span class="n">minOpacity</span><span class="p">,</span> <span class="n">colorinput</span><span class="p">):</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">QColor</span><span class="p">(</span><span class="n">colorinput</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">countDistance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">color</span>
+        <span class="n">minAlphaF</span> <span class="o">=</span> <span class="n">minOpacity</span> <span class="o">/</span> <span class="mf">100.0</span>
+        <span class="n">distanceThreshold</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">totalNrOfLines</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">trailFadePerc</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">countDistance</span> <span class="o">&gt;</span> <span class="n">distanceThreshold</span><span class="p">:</span>
+            <span class="n">color</span><span class="o">.</span><span class="n">setAlphaF</span><span class="p">(</span><span class="n">minAlphaF</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">alphaDiff</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">alphaF</span><span class="p">()</span> <span class="o">-</span> <span class="n">minAlphaF</span>
+            <span class="n">gradient</span> <span class="o">=</span> <span class="n">alphaDiff</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">distanceThreshold</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">resultAlpha</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">alphaF</span><span class="p">()</span> <span class="o">-</span> <span class="n">gradient</span> <span class="o">*</span> <span class="n">countDistance</span>
+            <span class="c1"># If alpha is out of bounds, clip it.</span>
+            <span class="n">resultAlpha</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">resultAlpha</span><span class="p">))</span>
+            <span class="n">color</span><span class="o">.</span><span class="n">setAlphaF</span><span class="p">(</span><span class="n">resultAlpha</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">color</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>qrainbowstyle &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>qrainbowstyle</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for qrainbowstyle</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;QRainbowStyle is a fully customizable stylesheet for Python and Qt applications.</span>
+
+<span class="sd">This module provides a function to load pre-compiled stylesheets. To generate your own</span>
+<span class="sd">style based on custom color palette clone package from project homepage.</span>
+
+<span class="sd">qrainbowstyle.windows module adds frameless windows and message boxes.</span>
+<span class="sd">From version v0.8 module supports native Windows calls.</span>
+<span class="sd">Features:</span>
+
+<span class="sd">    - Borders snapping</span>
+<span class="sd">    - Minimize, restore, close animations</span>
+<span class="sd">    - Size grips on borders</span>
+<span class="sd">    - Frame shadow</span>
+<span class="sd">    - Aero shake</span>
+
+<span class="sd">.. image:: https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v3.png</span>
+
+<span class="sd">On Linux and Darwin qrainbowstyle will load class with its own implementation of these features.</span>
+<span class="sd">Due to a bug in Qt, window minimizing is not supported on MacOS.</span>
+
+<span class="sd">First, start importing our module</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    import qrainbowstyle</span>
+
+<span class="sd">Then you can get stylesheet provided by QRainbowStyle for various Qt wrappers</span>
+<span class="sd">as shown below</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    # PySide2</span>
+<span class="sd">    stylesheet = qrainbowstyle.load_stylesheet_pyside2(style=&#39;oceanic&#39;)</span>
+<span class="sd">    # PyQt5</span>
+<span class="sd">    stylesheet = qrainbowstyle.load_stylesheet_pyqt5(style=&#39;oceanic&#39;)</span>
+
+<span class="sd">Alternatively, from environment variables provided by QtPy, Qt.Py</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    # QtPy</span>
+<span class="sd">    stylesheet =  qrainbowstyle.load_stylesheet(style=&#39;oceanic&#39;)</span>
+<span class="sd">    # Qt.Py</span>
+<span class="sd">    stylesheet = qrainbowstyle.load_stylesheet(style=&#39;oceanic&#39;, qt_api=Qt.__binding__)</span>
+
+<span class="sd">Finally, set your QApplication with it</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    app.setStyleSheet(stylesheet)</span>
+
+<span class="sd">To load frameless window in your app import both qrainbowstyle and qrainbowstyle.windows modules</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    import qrainbowstyle</span>
+<span class="sd">    import qrainbowstyle.windows</span>
+
+<span class="sd">Initialize qt app and load choosen stylesheet.</span>
+<span class="sd">Next, create instances of frameless window and your master widget with content you want to show.</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    # Create app and load selected stylesheet</span>
+<span class="sd">    app = QtWidgets.QApplication(sys.argv)</span>
+<span class="sd">    app.setStyleSheet(qrainbowstyle.load_stylesheet(style=&quot;oceanic&quot;))</span>
+
+<span class="sd">    # Package options</span>
+<span class="sd">    # qrainbowstyle.alignButtonsLeft()      # align titlebar buttons to left side</span>
+<span class="sd">    # qrainbowstyle.useDarwinButtons()      # use darwin style buttons</span>
+<span class="sd">    qrainbowstyle.setAppName(&quot;My new application&quot;)  # set global name for application</span>
+<span class="sd">    # qrainbowstyle.setAppIcon(&quot;icon.ico&quot;)    # set global app icon</span>
+
+<span class="sd">    # Create frameless mainwindow</span>
+<span class="sd">    win = qrainbowstyle.windows.FramelessWindow()</span>
+
+<span class="sd">    # Create content widget and pass reference to main window</span>
+<span class="sd">    widget = MasterWidget(win)</span>
+
+<span class="sd">    # Add widget to main window and show it</span>
+<span class="sd">    win.addContentWidget(widget)</span>
+<span class="sd">    win.show()</span>
+
+<span class="sd">    sys.exit(app.exec())</span>
+
+<span class="sd">Enjoy!</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Standard library imports</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.9.6&quot;</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;qrainbowstyle&quot;</span><span class="p">)</span>
+
+<span class="c1"># Folder&#39;s path</span>
+<span class="n">REPO_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+
+<span class="n">EXAMPLE_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="s1">&#39;example&#39;</span><span class="p">)</span>
+<span class="n">IMAGES_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="s1">&#39;images&#39;</span><span class="p">)</span>
+<span class="n">PACKAGE_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="s1">&#39;qrainbowstyle&#39;</span><span class="p">)</span>
+
+<span class="n">QSS_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;qss&#39;</span><span class="p">)</span>
+<span class="n">RC_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;rc&#39;</span><span class="p">)</span>
+<span class="n">SVG_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+<span class="n">STYLES_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="s1">&#39;styles&#39;</span><span class="p">)</span>
+
+<span class="n">BUTTONS_DARWIN_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SVG_PATH</span><span class="p">,</span> <span class="s1">&#39;buttons_darwin&#39;</span><span class="p">)</span>
+<span class="n">BUTTONS_NT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SVG_PATH</span><span class="p">,</span> <span class="s1">&#39;buttons_nt&#39;</span><span class="p">)</span>
+
+<span class="c1"># File names</span>
+<span class="n">QSS_FILE</span> <span class="o">=</span> <span class="s1">&#39;style.qss&#39;</span>
+<span class="n">QRC_FILE</span> <span class="o">=</span> <span class="n">QSS_FILE</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.qss&#39;</span><span class="p">,</span> <span class="s1">&#39;.qrc&#39;</span><span class="p">)</span>
+
+<span class="n">MAIN_SCSS_FILE</span> <span class="o">=</span> <span class="s1">&#39;main.scss&#39;</span>
+<span class="n">STYLES_SCSS_FILE</span> <span class="o">=</span> <span class="s1">&#39;_styles.scss&#39;</span>
+<span class="n">VARIABLES_SCSS_FILE</span> <span class="o">=</span> <span class="s1">&#39;_variables.scss&#39;</span>
+
+<span class="c1"># File paths</span>
+<span class="n">QSS_FILEPATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="n">QSS_FILE</span><span class="p">)</span>
+<span class="n">QRC_FILEPATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">,</span> <span class="n">QRC_FILE</span><span class="p">)</span>
+
+<span class="n">MAIN_SCSS_FILEPATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">QSS_PATH</span><span class="p">,</span> <span class="n">MAIN_SCSS_FILE</span><span class="p">)</span>
+<span class="n">STYLES_SCSS_FILEPATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">QSS_PATH</span><span class="p">,</span> <span class="n">STYLES_SCSS_FILE</span><span class="p">)</span>
+<span class="n">VARIABLES_SCSS_FILEPATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">QSS_PATH</span><span class="p">,</span> <span class="n">VARIABLES_SCSS_FILE</span><span class="p">)</span>
+
+<span class="n">USE_DARWIN_BUTTONS</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ALIGN_BUTTONS_LEFT</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Global app name</span>
+<span class="n">APP_NAME</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Path to app icon</span>
+<span class="n">APP_ICON_PATH</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="setAppIcon"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.setAppIcon">[docs]</a><span class="k">def</span> <span class="nf">setAppIcon</span><span class="p">(</span><span class="n">icon_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set path to app icon which will be used in titlebars&quot;&quot;&quot;</span>
+    <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">APP_ICON_PATH</span> <span class="o">=</span> <span class="n">icon_path</span></div>
+
+
+<div class="viewcode-block" id="alignButtonsLeft"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.alignButtonsLeft">[docs]</a><span class="k">def</span> <span class="nf">alignButtonsLeft</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Align titlebar buttons to left&quot;&quot;&quot;</span>
+    <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">ALIGN_BUTTONS_LEFT</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Buttons will be aligned to left&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="useDarwinButtons"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.useDarwinButtons">[docs]</a><span class="k">def</span> <span class="nf">useDarwinButtons</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Use darwin styled buttons everywhere in app&quot;&quot;&quot;</span>
+    <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">USE_DARWIN_BUTTONS</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Darwin buttons style has been enabled&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="getAvailableStyles"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.getAvailableStyles">[docs]</a><span class="k">def</span> <span class="nf">getAvailableStyles</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Get list of available styles&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">STYLES_PATH</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__.py&#39;</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="getAvailablePalettes"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.getAvailablePalettes">[docs]</a><span class="k">def</span> <span class="nf">getAvailablePalettes</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get list of available palettes&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">qrainbowstyle.palette</span> <span class="k">as</span> <span class="nn">source</span>
+    <span class="n">palettes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">source</span><span class="o">.</span><span class="n">BasePalette</span><span class="p">)</span> <span class="ow">and</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">source</span><span class="o">.</span><span class="n">BasePalette</span><span class="p">:</span>
+            <span class="n">palettes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">palettes</span></div>
+
+
+<div class="viewcode-block" id="getCurrentPalette"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.getCurrentPalette">[docs]</a><span class="k">def</span> <span class="nf">getCurrentPalette</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Returns loaded palette&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">style_rc</span> <span class="kn">import</span> <span class="n">palette</span>  <span class="c1"># noqa</span>
+        <span class="k">return</span> <span class="n">palette</span>
+    <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span><span class="s2">&quot;Cannot find current palette. Did you load style sheet?&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="rainbowize"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.rainbowize">[docs]</a><span class="k">def</span> <span class="nf">rainbowize</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Replaces color names with hashes in text&quot;&quot;&quot;</span>
+    <span class="n">color_dict</span> <span class="o">=</span> <span class="n">getCurrentPalette</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">color_dict</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">color_dict</span><span class="p">[</span><span class="n">color</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">text</span></div>
+
+
+<span class="k">def</span> <span class="nf">_apply_os_patches</span><span class="p">(</span><span class="n">palette</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply OS-only specific stylesheet pacthes.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: stylesheet string (css).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">os_fix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+        <span class="c1"># See issue #12, #267</span>
+        <span class="n">os_fix</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        QDockWidget::title</span>
+<span class="s1">        {{</span>
+<span class="s1">            background-color: </span><span class="si">{color}</span><span class="s1">;</span>
+<span class="s1">            text-align: center;</span>
+<span class="s1">            height: 12px;</span>
+<span class="s1">        }}</span>
+<span class="s1">        QTabBar::close-button {{</span>
+<span class="s1">            padding: 2px;</span>
+<span class="s1">        }}</span>
+<span class="s1">        &#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">palette</span><span class="o">.</span><span class="n">COLOR_BACKGROUND_4</span><span class="p">)</span>
+
+    <span class="c1"># Only open the QSS file if any patch is needed</span>
+    <span class="k">if</span> <span class="n">os_fix</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found OS patches to be applied.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">os_fix</span>
+
+
+<span class="k">def</span> <span class="nf">_apply_binding_patches</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply binding-only specific stylesheet patches for the same OS.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: stylesheet string (css).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">binding_fix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">binding_fix</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found binding patches to be applied.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">binding_fix</span>
+
+
+<span class="k">def</span> <span class="nf">_apply_version_patches</span><span class="p">(</span><span class="n">qt_version</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply version-only specific stylesheet patches for the same binding.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        qt_version (str): Qt string version.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: stylesheet string (css).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">version_fix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span> <span class="o">=</span> <span class="n">qt_version</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">major</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">minor</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">major</span> <span class="o">==</span> <span class="mi">5</span> <span class="ow">and</span> <span class="n">minor</span> <span class="o">&gt;=</span> <span class="mi">14</span><span class="p">:</span>
+        <span class="c1"># See issue #214</span>
+        <span class="n">version_fix</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        QMenu::item {</span>
+<span class="s1">            padding: 4px 24px 4px 6px;</span>
+<span class="s1">        }</span>
+<span class="s1">        &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">version_fix</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found version patches to be applied.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">version_fix</span>
+
+
+<span class="k">def</span> <span class="nf">_apply_application_patches</span><span class="p">(</span><span class="n">palette</span><span class="p">,</span> <span class="n">QCoreApplication</span><span class="p">,</span> <span class="n">QPalette</span><span class="p">,</span> <span class="n">QColor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Apply application level fixes on the QPalette.</span>
+
+<span class="sd">    The import names args must be passed here because the import is done</span>
+<span class="sd">    inside the load_stylesheet() function, as QtPy is only imported in</span>
+<span class="sd">    that moment for setting reasons.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># See issue #139</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">palette</span><span class="o">.</span><span class="n">COLOR_ACCENT_3</span>
+    <span class="n">qcolor</span> <span class="o">=</span> <span class="n">QColor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Todo: check if it is qcoreapplication indeed</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QCoreApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+
+    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found application patches to be applied.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">app</span><span class="p">:</span>
+        <span class="n">app_palette</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">palette</span><span class="p">()</span>
+        <span class="n">app_palette</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="n">QPalette</span><span class="o">.</span><span class="n">Normal</span><span class="p">,</span> <span class="n">QPalette</span><span class="o">.</span><span class="n">Link</span><span class="p">,</span> <span class="n">qcolor</span><span class="p">)</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">setPalette</span><span class="p">(</span><span class="n">app_palette</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No QCoreApplication instance found. &quot;</span>
+                        <span class="s2">&quot;Application patches not applied. &quot;</span>
+                        <span class="s2">&quot;You have to call load_stylesheet function after &quot;</span>
+                        <span class="s2">&quot;instantiation of QApplication to take effect. &quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load the stylesheet based on QtPy abstraction layer environment variable.</span>
+
+<span class="sd">    If the argument is not passed, it uses the current QT_API environment</span>
+<span class="sd">    variable to make the imports of Qt bindings. If passed, it sets this</span>
+<span class="sd">    variable then make the imports.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        qt_api (str): qt binding name to set QT_API environment variable.</span>
+<span class="sd">                      Default is &#39;&#39;. Possible values are pyside2,</span>
+<span class="sd">                      pyqt5. Not case sensitive.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        - Note that the variable QT_API is read when first imported. So,</span>
+<span class="sd">          pay attention to the import order.</span>
+<span class="sd">        - OS, binding and binding version number, and application specific</span>
+<span class="sd">          patches are applied in this order.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: stylesheet string (css).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">qt_api</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;QT_API&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">qt_api</span>
+
+    <span class="c1"># Import is made after setting QT_API</span>
+    <span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">QCoreApplication</span><span class="p">,</span> <span class="n">QFile</span><span class="p">,</span> <span class="n">QTextStream</span>
+    <span class="kn">from</span> <span class="nn">qtpy.QtGui</span> <span class="kn">import</span> <span class="n">QColor</span><span class="p">,</span> <span class="n">QPalette</span>
+    <span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QT_VERSION</span>
+
+    <span class="c1"># Search for style in styles directory</span>
+    <span class="n">style_dir</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">available_styles</span> <span class="o">=</span> <span class="n">getAvailableStyles</span><span class="p">()</span>
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available styles: </span><span class="si">{</span><span class="n">available_styles</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">stl</span> <span class="ow">in</span> <span class="n">available_styles</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">style</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">stl</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+            <span class="n">style_dir</span> <span class="o">=</span> <span class="n">stl</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">style_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">stylesheet</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Style &quot;</span> <span class="o">+</span> <span class="n">style</span> <span class="o">+</span> <span class="s2">&quot; does not exists&quot;</span><span class="p">)</span>
+
+    <span class="c1"># check if any style_rc was loaded before</span>
+    <span class="k">if</span> <span class="s2">&quot;style_rc&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found already imported style in sys.modules&quot;</span><span class="p">)</span>
+
+        <span class="c1"># use qCleanupResources to remove all resource files</span>
+        <span class="k">global</span> <span class="n">style_rc</span>  <span class="c1"># noqa</span>
+        <span class="n">style_rc</span><span class="o">.</span><span class="n">qCleanupResources</span><span class="p">()</span>
+
+        <span class="c1"># remove imported modules</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">module</span> <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span> <span class="k">if</span> <span class="n">module</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;style_rc&quot;</span><span class="p">)]:</span>
+            <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+            <span class="k">del</span> <span class="n">style_rc</span>
+
+        <span class="c1"># remove path to previously imported style from sys.path</span>
+        <span class="k">for</span> <span class="n">stylepath</span> <span class="ow">in</span> <span class="p">[</span><span class="n">path</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span> <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">style</span> <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">getAvailableStyles</span><span class="p">()</span> <span class="k">if</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">path</span><span class="p">)]:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">stylepath</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Removed all imported styles&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Loading style from directory: &quot;</span> <span class="o">+</span> <span class="n">style_dir</span><span class="p">)</span>
+        <span class="n">old_working_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="c1"># set style directory</span>
+        <span class="n">package_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STYLES_PATH</span><span class="p">,</span> <span class="n">style_dir</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">package_dir</span><span class="p">)</span>
+
+        <span class="c1"># append directory to sys.path and import style_rc</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package_dir</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">style_rc</span>  <span class="c1"># noqa</span>
+            <span class="c1"># get palette</span>
+            <span class="n">palette</span> <span class="o">=</span> <span class="n">style_rc</span><span class="o">.</span><span class="n">palette</span>
+
+        <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ModuleNotFoundError</span><span class="p">(</span><span class="s2">&quot;Failed to import style_rc from directory: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">package_dir</span><span class="p">))</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">old_working_dir</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">FileExistsError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Missing style_rc.py file&quot;</span><span class="p">)</span>
+
+    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Style resources imported successfully&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Thus, by importing the binary we can access the resources</span>
+    <span class="n">package_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">PACKAGE_PATH</span><span class="p">)</span>
+    <span class="n">qss_rc_path</span> <span class="o">=</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_dir</span><span class="p">,</span> <span class="n">QSS_FILE</span><span class="p">)</span>
+
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Reading QSS file in: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">qss_rc_path</span><span class="p">)</span>
+
+    <span class="c1"># It gets the qss file from compiled style_rc that was import</span>
+    <span class="c1"># not from the file QSS as we are using resources</span>
+    <span class="n">qss_file</span> <span class="o">=</span> <span class="n">QFile</span><span class="p">(</span><span class="n">qss_rc_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">qss_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">qss_file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">QFile</span><span class="o">.</span><span class="n">ReadOnly</span> <span class="o">|</span> <span class="n">QFile</span><span class="o">.</span><span class="n">Text</span><span class="p">)</span>
+        <span class="n">text_stream</span> <span class="o">=</span> <span class="n">QTextStream</span><span class="p">(</span><span class="n">qss_file</span><span class="p">)</span>
+        <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">text_stream</span><span class="o">.</span><span class="n">readAll</span><span class="p">()</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;QSS file sucessfuly loaded.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">stylesheet</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="c1"># Todo: check this raise type and add to docs</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Unable to find QSS file &#39;</span><span class="si">{}</span><span class="s2">&#39; &quot;</span>
+                                <span class="s2">&quot;in resources.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qss_rc_path</span><span class="p">))</span>
+
+    <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Checking patches for being applied.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Todo: check execution order for these functions</span>
+    <span class="c1"># 1. Apply OS specific patches</span>
+    <span class="n">stylesheet</span> <span class="o">+=</span> <span class="n">_apply_os_patches</span><span class="p">(</span><span class="n">palette</span><span class="p">)</span>
+
+    <span class="c1"># 2. Apply binding specific patches</span>
+    <span class="n">stylesheet</span> <span class="o">+=</span> <span class="n">_apply_binding_patches</span><span class="p">()</span>
+
+    <span class="c1"># 3. Apply binding version specific patches</span>
+    <span class="n">stylesheet</span> <span class="o">+=</span> <span class="n">_apply_version_patches</span><span class="p">(</span><span class="n">QT_VERSION</span><span class="p">)</span>
+
+    <span class="c1"># 4. Apply palette fix. See issue #139</span>
+    <span class="n">_apply_application_patches</span><span class="p">(</span><span class="n">palette</span><span class="p">,</span> <span class="n">QCoreApplication</span><span class="p">,</span> <span class="n">QPalette</span><span class="p">,</span> <span class="n">QColor</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stylesheet</span>
+
+
+<div class="viewcode-block" id="load_stylesheet"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.load_stylesheet">[docs]</a><span class="k">def</span> <span class="nf">load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;qdarkstyle3&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load the stylesheet. Takes care of importing the rc module.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        qt_api (str): Qt binding name to set QT_API environment variable.</span>
+<span class="sd">                      Default is &#39;&#39;, i.e PyQt5 the default QtPy binding.</span>
+<span class="sd">                      Possible values are pyside2, pyqt5.</span>
+<span class="sd">                      Not case sensitive.</span>
+
+<span class="sd">        style (str): Style to use. Default is &#39;darkblue&#39;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: the stylesheet string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">stylesheet</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">qt_api</span><span class="p">:</span>
+        <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">_load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="n">qt_api</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">stylesheet</span> <span class="o">=</span> <span class="n">_load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="s1">&#39;pyqt5&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stylesheet</span></div>
+
+
+<div class="viewcode-block" id="load_stylesheet_pyside2"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.load_stylesheet_pyside2">[docs]</a><span class="k">def</span> <span class="nf">load_stylesheet_pyside2</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load the stylesheet for use in a PySide2 application.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: the stylesheet string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="s1">&#39;pyside2&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="load_stylesheet_pyqt5"><a class="viewcode-back" href="../reference/qrainbowstyle.html#qrainbowstyle.load_stylesheet_pyqt5">[docs]</a><span class="k">def</span> <span class="nf">load_stylesheet_pyqt5</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load the stylesheet for use in a PyQt5 application.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: the stylesheet string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="s1">&#39;pyqt5&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

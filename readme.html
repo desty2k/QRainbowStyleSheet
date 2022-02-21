@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QRainbowStyleSheet &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="qrainbowstyle" href="reference/modules.html" />
+    <link rel="prev" title="Welcome to QRainbowStyle’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QRainbowStyleSheet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preview">Preview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#frameless-windows">Frameless windows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Frameless windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#style-sheet">Style sheet</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#available-styles">Available styles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#widgets">Widgets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#googlemapsview">GoogleMapsView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stylepicker">StylePicker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qroundprogressbar">QRoundProgressBar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qtwaitingspinner">QtWaitingSpinner</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-your-own-style-sheet">Building your own style sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-new">What is new?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changelog">Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authors">Authors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/modules.html">scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>QRainbowStyleSheet</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qrainbowstylesheet">
+<h1>QRainbowStyleSheet<a class="headerlink" href="#qrainbowstylesheet" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="https://pypi.org/project/QRainbowStyle/"><img alt="Latest PyPI version" src="https://img.shields.io/pypi/v/QRainbowStyle.svg" /></a> <a class="reference external" href="https://pypi.org/project/QRainbowStyle/"><img alt="Supported python versions" src="https://img.shields.io/pypi/pyversions/QRainbowStyle.svg" /></a> <a class="reference external" href="https://github.com/desty2k/QRainbowStyleSheet/actions?workflow=build"><img alt="Build Status" src="https://github.com/desty2k/QRainbowStyleSheet/workflows/build/badge.svg" /></a> <a class="reference external" href="https://desty2k.github.io/QRainbowStyleSheet/"><img alt="Docs Status" src="https://github.com/desty2k/QRainbowStyleSheet/workflows/docs/badge.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/dub/l/vibe-d.svg?color=lightgrey" /></a>
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/"><img alt="License: CC BY 4.0" src="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg" /></a> <a class="reference external" href="https://www.contributor-covenant.org/version/2/0/code_of_conduct/"><img alt="Conduct" src="https://img.shields.io/badge/code%20of%20conduct-contributor%20covenant-green.svg?style=flat&amp;color=lightgrey" /></a></p>
+<p>The most complete customizable stylesheet for Qt application (PySide2,
+PyQt5, QtPy, Qt.Py).</p>
+<section id="preview">
+<h2>Preview<a class="headerlink" href="#preview" title="Permalink to this headline"></a></h2>
+<p>From version v0.8 qrainbowstyle.windows module supports native Windows calls.
+Features:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Borders snapping</p></li>
+<li><p>Minimize, restore, close animations</p></li>
+<li><p>Size grips on borders</p></li>
+<li><p>Frame shadow</p></li>
+<li><p>Aero shake</p></li>
+</ul>
+</div></blockquote>
+<p>On Linux and Darwin qrainbowstyle will load class with its own implementation of these features.
+Due to a bug in Qt, window minimizing is not supported on MacOS.</p>
+<section id="frameless-windows">
+<h3>Frameless windows<a class="headerlink" href="#frameless-windows" title="Permalink to this headline"></a></h3>
+<img alt="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v3.png" src="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_window_v3.png" />
+</section>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>From PyPI: Get the latest stable version of <code class="docutils literal notranslate"><span class="pre">qrainbowstyle</span></code> package using
+<em>pip</em> (preferable):</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install qrainbowstyle
+</pre></div>
+</div>
+</div></blockquote>
+<p>From code: Download/clone the project, go to <code class="docutils literal notranslate"><span class="pre">qrainbowstyle</span></code> folder then:</p>
+<ul>
+<li><p>You can use the <em>setup</em> script and pip install.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install .
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Or, you can use the <em>setup</em> script with Python:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<section id="id1">
+<h3>Frameless windows<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle.windows</span>
+
+<span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span>
+<span class="kn">from</span> <span class="nn">qtpy.QtCore</span> <span class="kn">import</span> <span class="n">Qt</span>
+
+<span class="n">QApplication</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AA_UseHighDpiPixmaps</span><span class="p">)</span>
+<span class="n">QApplication</span><span class="o">.</span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">AA_EnableHighDpiScaling</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;oceanic&quot;</span><span class="p">))</span>
+
+<span class="c1"># Package options</span>
+<span class="c1"># qrainbowstyle.alignButtonsLeft()</span>
+<span class="c1"># qrainbowstyle.userDarwinButtons()</span>
+<span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;My new application&quot;</span><span class="p">)</span>
+<span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">setAppIcon</span><span class="p">(</span><span class="s2">&quot;/path/to/icon.ico&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create frameless mainwindow</span>
+<span class="n">win</span> <span class="o">=</span> <span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">windows</span><span class="o">.</span><span class="n">FramelessWindow</span><span class="p">()</span>
+
+<span class="c1"># Example of using signals</span>
+<span class="n">win</span><span class="o">.</span><span class="n">closeClicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Close clicked!&quot;</span><span class="p">))</span>
+
+<span class="c1"># Create content widget and pass reference to main window</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">SomeWidget</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+
+<span class="c1"># Add widget to main window and show it</span>
+<span class="n">win</span><span class="o">.</span><span class="n">addContentWidget</span><span class="p">(</span><span class="n">widget</span><span class="p">)</span>
+<span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="style-sheet">
+<h3>Style sheet<a class="headerlink" href="#style-sheet" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+
+<span class="c1"># set the environment variable to use a specific wrapper</span>
+<span class="c1"># it can be set to pyqt, pyqt5, or pyside2</span>
+<span class="c1"># you do not need to use QtPy to set this variable</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;QT_API&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;pyqt5&#39;</span>
+
+<span class="c1"># import from QtPy instead of doing it directly</span>
+<span class="c1"># note that QtPy always uses PyQt5 API</span>
+<span class="kn">from</span> <span class="nn">qtpy</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
+
+<span class="c1"># create the application and the main window</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">()</span>
+
+<span class="c1"># setup stylesheet</span>
+<span class="c1"># the default system in qrainbowstyle uses qtpy environment variable</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">())</span>
+
+<span class="c1"># run</span>
+<span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you are using PyQt5 directly, see the complete example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span>
+
+<span class="c1"># create the application and the main window</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">QMainWindow</span><span class="p">()</span>
+
+<span class="c1"># setup stylesheet</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet_pyqt5</span><span class="p">())</span>
+<span class="c1"># or in new API</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="s1">&#39;pyqt5&#39;</span><span class="p">))</span>
+
+<span class="c1"># run</span>
+<span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is an example using PySide2</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+<span class="kn">from</span> <span class="nn">Pyside2.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QMainWindow</span>
+
+<span class="c1"># create the application and the main window</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">window</span> <span class="o">=</span> <span class="n">QMainWindow</span><span class="p">()</span>
+
+<span class="c1"># setup stylesheet</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet_pyside2</span><span class="p">())</span>
+<span class="c1"># or in new API</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">qt_api</span><span class="o">=</span><span class="s1">&#39;pyside2&#39;</span><span class="p">))</span>
+
+<span class="c1"># run</span>
+<span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you are using Qt.py, which is different from qtpy, you should install
+qtpy then set both to the same binding.</p>
+</section>
+</section>
+<section id="available-styles">
+<h2>Available styles<a class="headerlink" href="#available-styles" title="Permalink to this headline"></a></h2>
+<p>Currently available styles are:</p>
+<ul class="simple">
+<li><p>Oceanic</p></li>
+<li><p>QDarkStyle3</p></li>
+<li><p>QDarkstyle3Light</p></li>
+<li><p>LightOrange</p></li>
+<li><p>DarkOrange</p></li>
+<li><p>QDarkStyle (original)</p></li>
+</ul>
+<p>Select style by using <code class="docutils literal notranslate"><span class="pre">style=</span></code> keyword argument</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;lightorange&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="widgets">
+<h2>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline"></a></h2>
+<p>In v0.6 I added a few new widgets which automatically load colors from current
+stylesheet’s palette.</p>
+<section id="googlemapsview">
+<h3>GoogleMapsView<a class="headerlink" href="#googlemapsview" title="Permalink to this headline"></a></h3>
+<p>GoogleMapsView allows to load Google Maps to application. Supports creating markers and polylines.
+Call handler captures all map/markers/polylines actions such as map move or marker click/double click.</p>
+<img alt="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_google_maps_example.png" src="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_google_maps_example.png" />
+</section>
+<section id="stylepicker">
+<h3>StylePicker<a class="headerlink" href="#stylepicker" title="Permalink to this headline"></a></h3>
+<p>StylePicker is small widget used to change stylesheet without restarting application.
+Only styles generated by QRainbowStyle are supported. Widget is available in 3 versions: horizontal, vertical and grid.</p>
+<img alt="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_color_picker_example.png" src="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_color_picker_example.png" />
+</section>
+<section id="qroundprogressbar">
+<h3>QRoundProgressBar<a class="headerlink" href="#qroundprogressbar" title="Permalink to this headline"></a></h3>
+<p>Modified version of <a class="reference external" href="https://github.com/ozmartian/QRoundProgressBar">https://github.com/ozmartian/QRoundProgressBar</a>.
+I replaced PyQt5 imports with qtpy and fixed widget background.</p>
+<img alt="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_round_progress_bar.png" src="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/frameless_mainwindow_round_progress_bar.png" />
+</section>
+<section id="qtwaitingspinner">
+<h3>QtWaitingSpinner<a class="headerlink" href="#qtwaitingspinner" title="Permalink to this headline"></a></h3>
+<p>Modified version of <a class="reference external" href="https://github.com/fbjorn/QtWaitingSpinner">https://github.com/fbjorn/QtWaitingSpinner</a>. Added fade out and fade in.
+Spinner designer can be found in <cite>qrainbowstyle/widgets/QtWaitingSpinner/designer.py</cite></p>
+<img alt="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/waiting_spinner_designer.png" src="https://raw.githubusercontent.com/desty2k/QRainbowStyleSheet/master/images/waiting_spinner_designer.png" />
+</section>
+</section>
+<section id="building-your-own-style-sheet">
+<h2>Building your own style sheet<a class="headerlink" href="#building-your-own-style-sheet" title="Permalink to this headline"></a></h2>
+<p>Download/clone the project, go to <code class="docutils literal notranslate"><span class="pre">qrainbowstyle</span></code> folder then:</p>
+<ol class="arabic">
+<li><p>Create new style in palette.py by subclassing BasePalette. New palette should have unique name, for example <code class="docutils literal notranslate"><span class="pre">DeepBluePalette</span></code></p></li>
+<li><p>Override default colors by your own. Example:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DeepBluePalette</span><span class="p">(</span><span class="n">BasePalette</span><span class="p">):</span>
+    <span class="n">COLOR_BACKGROUND_1</span> <span class="o">=</span> <span class="s2">&quot;#263238&quot;</span>
+    <span class="n">COLOR_BACKGROUND_2</span> <span class="o">=</span> <span class="s2">&quot;#2f4048&quot;</span>
+    <span class="n">COLOR_BACKGROUND_3</span> <span class="o">=</span> <span class="s2">&quot;#34474f&quot;</span>
+    <span class="n">COLOR_BACKGROUND_4</span> <span class="o">=</span> <span class="s2">&quot;#394d57&quot;</span>
+    <span class="n">COLOR_BACKGROUND_5</span> <span class="o">=</span> <span class="s2">&quot;#3d545f&quot;</span>
+    <span class="n">COLOR_BACKGROUND_6</span> <span class="o">=</span> <span class="s2">&quot;#425b67&quot;</span>
+
+    <span class="n">COLOR_TEXT_1</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B130</span>
+    <span class="n">COLOR_TEXT_2</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B110</span>
+    <span class="n">COLOR_TEXT_3</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B90</span>
+    <span class="n">COLOR_TEXT_4</span> <span class="o">=</span> <span class="n">Gray</span><span class="o">.</span><span class="n">B80</span>
+
+    <span class="n">COLOR_ACCENT_1</span> <span class="o">=</span> <span class="s2">&quot;#0a4542&quot;</span>
+    <span class="n">COLOR_ACCENT_2</span> <span class="o">=</span> <span class="s2">&quot;#136460&quot;</span>
+    <span class="n">COLOR_ACCENT_3</span> <span class="o">=</span> <span class="s2">&quot;#097D74&quot;</span>
+    <span class="n">COLOR_ACCENT_4</span> <span class="o">=</span> <span class="s2">&quot;#56BFBA&quot;</span>
+    <span class="n">COLOR_ACCENT_5</span> <span class="o">=</span> <span class="s2">&quot;#C4D6DB&quot;</span>
+
+    <span class="n">TITLE_BAR_BACKGROUND_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_3</span>
+    <span class="n">TITLE_BAR_BUTTONS_HOVER_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_4</span>
+    <span class="n">TITLE_BAR_BUTTONS_DISABLED_COLOR</span> <span class="o">=</span> <span class="n">COLOR_ACCENT_1</span>
+    <span class="n">TITLE_BAR_TEXT_COLOR</span> <span class="o">=</span> <span class="n">COLOR_TEXT_1</span>
+
+    <span class="n">OPACITY_TOOLTIP</span> <span class="o">=</span> <span class="mi">230</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Generate resources for your style by running scripts/process_qrc.py</p></li>
+<li><p>Install package by running:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>To use style sheet in your application:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qrainbowstyle</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qrainbowstyle</span><span class="o">.</span><span class="n">load_stylesheet</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;deepblue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="what-is-new">
+<h2>What is new?<a class="headerlink" href="#what-is-new" title="Permalink to this headline"></a></h2>
+<p>Starting with new package name, I added frameless widnows and possibility to
+design your own stylesheet. I added few new SVG icons such as title bar icons.</p>
+<ul class="simple">
+<li><p>0.6 - widget subpackage</p></li>
+<li><p>0.8 - Windows API support</p></li>
+<li><p>0.9 - modern style for frameless windows, full support for new color system</p></li>
+</ul>
+</section>
+<section id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline"></a></h2>
+<p>Please, see <a class="reference external" href="CHANGES.rst">CHANGES</a> file.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<p>This project is licensed under the MIT license. Images contained in this
+project are licensed under CC-BY license.</p>
+<p>For more information see <a class="reference external" href="LICENSE.rst">LICENSE</a> file.</p>
+</section>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline"></a></h2>
+<p>For more information see <a class="reference external" href="AUTHORS.rst">AUTHORS</a> file.</p>
+</section>
+<section id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h2>
+<p>Most widgets have been styled. If you find a widget that has not been
+style, just open an issue on the issue tracker or, better, submit a pull
+request.</p>
+<p>If you want to contribute, see <a class="reference external" href="CONTRIBUTING.rst">CONTRIBUTING</a> file.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to QRainbowStyle’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="reference/modules.html" class="btn btn-neutral float-right" title="qrainbowstyle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

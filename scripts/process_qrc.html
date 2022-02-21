@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>process_qrc module &mdash; QRainbowStyle  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="process_ui module" href="process_ui.html" />
+    <link rel="prev" title="scripts" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> QRainbowStyle
+          </a>
+              <div class="version">
+                0.9.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">QRainbowStyleSheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/modules.html">qrainbowstyle</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">scripts</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">process_qrc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="process_ui.html">process_ui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_ui_css_edition.html">run_ui_css_edition module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QRainbowStyle</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">scripts</a> &raquo;</li>
+      <li>process_qrc module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/scripts/process_qrc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-process_qrc">
+<span id="process-qrc-module"></span><h1>process_qrc module<a class="headerlink" href="#module-process_qrc" title="Permalink to this headline"></a></h1>
+<p>Script to process QRC files (convert .qrc to _rc.py and .rcc).</p>
+<p>The script will attempt to compile the qrc file using the following tools:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>pyrcc4 for PyQt4 and PyQtGraph (Python)</p></li>
+<li><p>pyrcc5 for PyQt5 and QtPy (Python)</p></li>
+<li><p>pyside-rcc for PySide (Python)</p></li>
+<li><p>pyside2-rcc for PySide2 (Python)</p></li>
+<li><p>rcc for Qt4 and Qt5 (C++)</p></li>
+</ul>
+</div></blockquote>
+<p>Delete the compiled files that you don’t want to use manually after
+running this script.</p>
+<p>Links to understand those tools:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>pyrcc4: <a class="reference external" href="http://pyqt.sourceforge.net/Docs/PyQt4/resources.html#pyrcc4">http://pyqt.sourceforge.net/Docs/PyQt4/resources.html#pyrcc4</a></p></li>
+<li><p>pyrcc5: <a class="reference external" href="http://pyqt.sourceforge.net/Docs/PyQt5/resources.html#pyrcc5">http://pyqt.sourceforge.net/Docs/PyQt5/resources.html#pyrcc5</a></p></li>
+<li><p>pyside-rcc: <a class="reference external" href="https://www.mankier.com/1/pyside-rcc">https://www.mankier.com/1/pyside-rcc</a></p></li>
+<li><p>pyside2-rcc: <a class="reference external" href="https://doc.qt.io/qtforpython/overviews/resources.html">https://doc.qt.io/qtforpython/overviews/resources.html</a> (Documentation Incomplete)</p></li>
+<li><p>rcc on Qt4: <a class="reference external" href="http://doc.qt.io/archives/qt-4.8/rcc.html">http://doc.qt.io/archives/qt-4.8/rcc.html</a></p></li>
+<li><p>rcc on Qt5: <a class="reference external" href="http://doc.qt.io/qt-5/rcc.html">http://doc.qt.io/qt-5/rcc.html</a></p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="process_qrc.QSSFileHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">process_qrc.</span></span><span class="sig-name descname"><span class="pre">QSSFileHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser_args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/process_qrc.html#QSSFileHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#process_qrc.QSSFileHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">watchdog.events.FileSystemEventHandler</span></code></p>
+<p>QSS File observer.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="process_qrc.QSSFileHandler.on_modified">
+<span class="sig-name descname"><span class="pre">on_modified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/process_qrc.html#QSSFileHandler.on_modified"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#process_qrc.QSSFileHandler.on_modified" title="Permalink to this definition"></a></dt>
+<dd><p>Handle file system events.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="process_qrc.main">
+<span class="sig-prename descclassname"><span class="pre">process_qrc.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arguments</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/process_qrc.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#process_qrc.main" title="Permalink to this definition"></a></dt>
+<dd><p>Process QRC files.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="process_qrc.run_process">
+<span class="sig-prename descclassname"><span class="pre">process_qrc.</span></span><span class="sig-name descname"><span class="pre">run_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/process_qrc.html#run_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#process_qrc.run_process" title="Permalink to this definition"></a></dt>
+<dd><p>Process qrc files.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="scripts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="process_ui.html" class="btn btn-neutral float-right" title="process_ui module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Wojciech Wentland.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
