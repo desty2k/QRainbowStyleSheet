@@ -29,7 +29,7 @@ SOFTWARE.
 
 import math
 
-from qtpy.QtCore import Qt, QTimer, QRect, Signal, QEvent
+from qtpy.QtCore import Qt, QTimer, QRectF, Signal, QEvent
 from qtpy.QtGui import QColor, QPainter
 from qtpy.QtWidgets import QWidget
 
@@ -117,7 +117,7 @@ class WaitingSpinner(QWidget):
             )
             painter.setBrush(color)
             painter.drawRoundedRect(
-                QRect(0, - self._lineWidth / 2, self._lineLength, self._lineWidth),
+                QRectF(0, - self._lineWidth / 2, self._lineLength, self._lineWidth),
                 self._roundness,
                 self._roundness,
                 Qt.RelativeSize
@@ -275,17 +275,17 @@ class WaitingSpinner(QWidget):
         self.update()
 
     def updateSize(self):
-        size = (self._innerRadius + self._lineLength) * 2
+        size = int((self._innerRadius + self._lineLength) * 2)
         self.setFixedSize(size, size)
 
     def updateTimer(self):
-        self._timer.setInterval(1000 / (self._numberOfLines * self._revolutionsPerSecond))
+        self._timer.setInterval(int(1000 / (self._numberOfLines * self._revolutionsPerSecond)))
 
     def updatePosition(self):
         if self.parentWidget() and self._centerOnParent:
             self.move(
-                self.parentWidget().width() / 2 - self.width() / 2,
-                self.parentWidget().height() / 2 - self.height() / 2
+                int(self.parentWidget().width() / 2 - self.width() / 2),
+                int(self.parentWidget().height() / 2 - self.height() / 2)
             )
 
     def lineCountDistanceFromPrimary(self, current, primary, totalNrOfLines):

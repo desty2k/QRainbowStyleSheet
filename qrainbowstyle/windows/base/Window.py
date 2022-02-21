@@ -66,7 +66,7 @@ class FramelessWindowBase(QDialog):
 
         QMetaObject.connectSlotsByName(self)
         self.showSizeControl(True)
-        self.resize(QSize(self.__rect.width() / 2, self.__rect.height() / 2))
+        self.resize(QSize(int(self.__rect.width() / 2), int(self.__rect.height() / 2)))
 
     def setContentsMargins(self, left, top, right, bottom):
         self.__contentWidgetLayout.setContentsMargins(left, top, right, bottom)
