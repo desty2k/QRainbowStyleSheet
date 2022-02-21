@@ -24,7 +24,7 @@ SOFTWARE.
 
 import sys
 
-from qtpy.QtCore import Qt
+from qtpy.QtCore import Qt, qInstallMessageHandler
 from qtpy.QtWidgets import (QWidget, QGridLayout, QGroupBox, QHBoxLayout, QSpinBox, QDoubleSpinBox, QPushButton,
                             QLabel, QColorDialog, QApplication, QMessageBox, QFormLayout)
 
@@ -33,6 +33,7 @@ from pyqtspinner import WaitingSpinner
 import qrainbowstyle
 import qrainbowstyle.widgets
 import qrainbowstyle.windows
+from qrainbowstyle.extras import qt_message_handler
 
 
 class Demo(QWidget):
@@ -220,6 +221,7 @@ class Demo(QWidget):
 
 
 if __name__ == '__main__':
+    qInstallMessageHandler(qt_message_handler)
     app = QApplication(sys.argv)
     app.setStyleSheet(qrainbowstyle.load_stylesheet())
     win = qrainbowstyle.windows.FramelessWindow()
