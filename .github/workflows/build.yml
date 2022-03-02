@@ -14,7 +14,7 @@ jobs:
         platform: [ubuntu-latest, macos-latest, windows-latest]
         python-version: [3.6, 3.9]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2.3.2
       with:
@@ -42,7 +42,7 @@ jobs:
         python-version: [3.9]
         tasks: [lint, safety, metric, doc, release]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2.3.2
       with:
@@ -65,7 +65,7 @@ jobs:
     name: Publish release
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v2.3.2
       with:

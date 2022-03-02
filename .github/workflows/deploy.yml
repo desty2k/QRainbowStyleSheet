@@ -11,7 +11,7 @@ jobs:
     name: Deploy to PyPI test server
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v2.3.2
       with:
@@ -35,7 +35,7 @@ jobs:
     name: Deploy to PyPI
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v2.3.2
       with:
