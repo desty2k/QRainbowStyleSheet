@@ -37,7 +37,6 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 # Local imports
-import qrainbowstyle
 from qrainbowstyle import PACKAGE_PATH, STYLES_PATH, QRC_FILE, QSS_FILE
 from qrainbowstyle.extras import OutputLogger, qt_message_handler
 from qrainbowstyle.utils.images import create_images, create_palette_image, generate_qrc_file, create_titlebar_images
